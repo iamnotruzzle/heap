@@ -40,7 +40,6 @@
               <v-form @submit.prevent="submit">
                 <v-text-field
                   v-model="form.login"
-                  :rules="emailRules"
                   prepend-icon="mdi-account"
                   name="login"
                   label="Login"
