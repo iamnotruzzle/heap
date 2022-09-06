@@ -1,93 +1,75 @@
 <template>
-  <jet-authentication-card>
-    <template #logo>
-      <jet-authentication-card-logo />
-    </template>
-
-    <jet-validation-errors class="mb-4" />
-
-    <div
-      v-if="status"
-      class="mb-4 text-sm font-medium text-green-600"
+  <v-app>
+    <v-container
+      fluid
+      fill-height
     >
-      {{ status }}
-    </div>
-
-    <form @submit.prevent="submit">
-      <!-- <div>
-        <jet-label
-          for="email"
-          value="Email"
-        />
-        <jet-input
-          id="email"
-          type="email"
-          class="block w-full mt-1"
-          v-model="form.email"
-          required
-          autofocus
-        />
-      </div> -->
-
-      <div>
-        <jet-label
-          for="login"
-          value="Username"
-        />
-        <jet-input
-          id="login"
-          type="login"
-          class="block w-full mt-1"
-          v-model="form.login"
-          required
-          autofocus
-        />
-      </div>
-
-      <div class="mt-4">
-        <jet-label
-          for="password"
-          value="Password"
-        />
-        <jet-input
-          id="password"
-          type="password"
-          class="block w-full mt-1"
-          v-model="form.password"
-          required
-          autocomplete="current-password"
-        />
-      </div>
-
-      <div class="block mt-4">
-        <label class="flex items-center">
-          <jet-checkbox
-            name="remember"
-            v-model="form.remember"
-          />
-          <span class="ml-2 text-sm text-gray-600">Remember me</span>
-        </label>
-      </div>
-
-      <div class="flex items-center justify-end mt-4">
-        <inertia-link
-          v-if="canResetPassword"
-          :href="route('password.request')"
-          class="text-sm text-gray-600 underline hover:text-gray-900"
+      <v-layout
+        align-center
+        justify-center
+      >
+        <v-flex
+          xs12
+          sm8
+          md4
         >
-          Forgot your password?
-        </inertia-link>
+          <v-card class="elevation-12">
+            <v-toolbar
+              dark
+              color="color_add"
+            >
+              <v-toolbar-title>Login</v-toolbar-title>
+            </v-toolbar>
 
-        <jet-button
-          class="ml-4"
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-        >
-          Login
-        </jet-button>
-      </div>
-    </form>
-  </jet-authentication-card>
+            <div
+              v-if="hasErrors"
+              class="text-center red--text ma-2"
+            >
+              <div class="mb-2 font-weight-black">Whoops! Something went wrong.</div>
+
+              <p
+                class="ma-0 pa-0"
+                v-for="(error, key) in errors"
+                :key="key"
+              >
+                {{ error }}
+              </p>
+            </div>
+
+            <v-card-text>
+              <v-form @submit.prevent="submit">
+                <v-text-field
+                  v-model="form.login"
+                  :rules="emailRules"
+                  prepend-icon="mdi-account"
+                  name="login"
+                  label="Login"
+                  type="login"
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.password"
+                  id="password"
+                  prepend-icon="mdi-lock"
+                  name="password"
+                  label="Password"
+                  type="password"
+                ></v-text-field>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    color="color_add white--text"
+                    type="submit"
+                    >Login</v-btn
+                  >
+                </v-card-actions>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -135,6 +117,15 @@ export default {
         .post(this.route('login'), {
           onFinish: () => this.form.reset('password'),
         });
+    },
+  },
+
+  computed: {
+    errors() {
+      return this.$page.props.errors;
+    },
+    hasErrors() {
+      return Object.keys(this.errors).length > 0;
     },
   },
 };
