@@ -15,11 +15,27 @@
         <jet-input
           id="name"
           type="text"
-          class="mt-1 block w-full"
+          class="block w-full mt-1"
           v-model="form.name"
           required
           autofocus
           autocomplete="name"
+        />
+      </div>
+
+      <div>
+        <jet-label
+          for="username"
+          value="username"
+        />
+        <jet-input
+          id="username"
+          type="text"
+          class="block w-full mt-1"
+          v-model="form.username"
+          required
+          autofocus
+          autocomplete="username"
         />
       </div>
 
@@ -31,7 +47,7 @@
         <jet-input
           id="email"
           type="email"
-          class="mt-1 block w-full"
+          class="block w-full mt-1"
           v-model="form.email"
           required
         />
@@ -45,7 +61,7 @@
         <jet-input
           id="password"
           type="password"
-          class="mt-1 block w-full"
+          class="block w-full mt-1"
           v-model="form.password"
           required
           autocomplete="new-password"
@@ -60,7 +76,7 @@
         <jet-input
           id="password_confirmation"
           type="password"
-          class="mt-1 block w-full"
+          class="block w-full mt-1"
           v-model="form.password_confirmation"
           required
           autocomplete="new-password"
@@ -84,14 +100,14 @@
               <a
                 target="_blank"
                 :href="route('terms.show')"
-                class="underline text-sm text-gray-600 hover:text-gray-900"
+                class="text-sm text-gray-600 underline hover:text-gray-900"
                 >Terms of Service</a
               >
               and
               <a
                 target="_blank"
                 :href="route('policy.show')"
-                class="underline text-sm text-gray-600 hover:text-gray-900"
+                class="text-sm text-gray-600 underline hover:text-gray-900"
                 >Privacy Policy</a
               >
             </div>
@@ -102,7 +118,7 @@
       <div class="flex items-center justify-end mt-4">
         <inertia-link
           :href="route('login')"
-          class="underline text-sm text-gray-600 hover:text-gray-900"
+          class="text-sm text-gray-600 underline hover:text-gray-900"
         >
           Already registered?
         </inertia-link>
@@ -143,6 +159,7 @@ export default {
     return {
       form: this.$inertia.form({
         name: '',
+        username: '',
         email: '',
         password: '',
         password_confirmation: '',

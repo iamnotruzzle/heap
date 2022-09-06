@@ -8,13 +8,13 @@
 
     <div
       v-if="status"
-      class="mb-4 font-medium text-sm text-green-600"
+      class="mb-4 text-sm font-medium text-green-600"
     >
       {{ status }}
     </div>
 
     <form @submit.prevent="submit">
-      <div>
+      <!-- <div>
         <jet-label
           for="email"
           value="Email"
@@ -22,8 +22,23 @@
         <jet-input
           id="email"
           type="email"
-          class="mt-1 block w-full"
+          class="block w-full mt-1"
           v-model="form.email"
+          required
+          autofocus
+        />
+      </div> -->
+
+      <div>
+        <jet-label
+          for="login"
+          value="Username"
+        />
+        <jet-input
+          id="login"
+          type="login"
+          class="block w-full mt-1"
+          v-model="form.login"
           required
           autofocus
         />
@@ -37,7 +52,7 @@
         <jet-input
           id="password"
           type="password"
-          class="mt-1 block w-full"
+          class="block w-full mt-1"
           v-model="form.password"
           required
           autocomplete="current-password"
@@ -58,7 +73,7 @@
         <inertia-link
           v-if="canResetPassword"
           :href="route('password.request')"
-          class="underline text-sm text-gray-600 hover:text-gray-900"
+          class="text-sm text-gray-600 underline hover:text-gray-900"
         >
           Forgot your password?
         </inertia-link>
@@ -103,7 +118,7 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        email: '',
+        login: '',
         password: '',
         remember: false,
       }),
