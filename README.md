@@ -14,3 +14,10 @@
 - **Custom theme colors*
 
 Check https://github.com/iamnotruzzle/vilt-crud for CRUD operations with filtering
+
+### Modify login credentials in this files
+
+- **app/Actions/Fortify/CreateNewUser.php*
+- **app/Providers/JetreamServiceProvider.php*
+- **config/fortify.php*
+- **resources/js/Pages/Auth/Login.vue*
