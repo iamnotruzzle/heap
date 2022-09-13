@@ -15,7 +15,19 @@ Vue.use(Vuetify);
 const app = document.getElementById('app');
 
 new Vue({
-  vuetify: new Vuetify(),
+  vuetify: new Vuetify({
+    theme: {
+      dark: false, // here we need to set theme
+      themes: {
+        light: {
+          color_list_item_group: '#7352C7',
+          color_add: '#7352C7',
+          color_header: '#F5F7FA',
+          color_main_background: '#F5F7FA',
+        },
+      },
+    },
+  }),
   render: (h) =>
     h(InertiaApp, {
       props: {

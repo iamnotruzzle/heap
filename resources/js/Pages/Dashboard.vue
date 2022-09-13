@@ -1,5 +1,9 @@
 <template>
   <div class="management">
+    <Head>
+      <title>VILT-TEMPLATE Dashboard</title>
+    </Head>
+
     <h1 class="subtitle-1 grey--text">Dashboard</h1>
 
     <v-container class="my-5">
@@ -204,6 +208,7 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout';
+import { Head } from '@inertiajs/inertia-vue';
 
 export default {
   layout: (h, page) => h(Layout, [page]),
