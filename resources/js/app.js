@@ -6,6 +6,7 @@ import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-v
 import PortalVue from 'portal-vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import { InertiaProgress } from '@inertiajs/progress';
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
@@ -36,3 +37,17 @@ new Vue({
       },
     }),
 }).$mount(app);
+
+InertiaProgress.init({
+  // appear during navigation, in milliseconds.
+  delay: 250,
+
+  // The color of the progress bar.
+  color: '#ac60f7',
+
+  // Whether to include the default NProgress styles.
+  includeCSS: true,
+
+  // Whether the NProgress spinner will be shown.
+  showSpinner: true,
+});
