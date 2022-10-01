@@ -33,15 +33,19 @@ class UserController extends Controller
             ->paginate($request->page_size ?? 10);
 
         return Inertia::render('Users/Index', ['users' => $users]);
-        //asset('storage/'. $users->image)
     }
 
     public function store(Request $request)
     {
         $image = '';
 
+        if ($request->hasFile('image')) {
+            $request->validate(['image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',]);
+        } else {
+            $image = null;
+        }
+
         $request->validate([
-            'image' => 'image|mimes:jpeg,jpg,png,gif,svg|max:5048',
             'firstName' => 'required|string|alpha',
             'middleName' => 'string|alpha|nullable',
             'lastName' => 'required|string|alpha',
@@ -56,6 +60,7 @@ class UserController extends Controller
         }
 
         User::create([
+            'image' => $image,
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
@@ -63,7 +68,6 @@ class UserController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'image' => $image,
         ]);
 
         return redirect()->back();
@@ -74,7 +78,7 @@ class UserController extends Controller
         $image = $user->image;
 
         $request->validate([
-            // 'image' => 'image|mimes:jpeg,jpg,png,gif,svg|max:5048',
+            // 'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
             'firstName' => 'required|string|alpha',
             'middleName' => 'string|alpha|nullable',
             'lastName' => 'required|string|alpha',
@@ -99,6 +103,7 @@ class UserController extends Controller
         }
 
         $user->update([
+            'image' => $image,
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
@@ -106,7 +111,6 @@ class UserController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'image' => $image
         ]);
 
         return redirect()->back();

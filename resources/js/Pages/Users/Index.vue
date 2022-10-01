@@ -304,6 +304,7 @@ export default {
 
   // Using the shorthand
   layout: AppLayout,
+
   components: {
     AppLayout,
     Head,
@@ -318,14 +319,12 @@ export default {
       snackText: '',
       dialog: false,
       dialogDelete: false,
-      // TODO change itemId to userId
       itemId: null,
       valid: true,
       url: null,
       isUpdate: false,
       isLoading: false,
       search: '',
-      // TODO change itemId to userId
       itemId: null,
       options: {},
       params: {},
@@ -335,24 +334,22 @@ export default {
           align: 'start',
           value: 'image',
           sortable: false,
+          filterable: false,
         },
         {
           text: 'NAME',
           align: 'start',
           value: 'fullName',
-          sortable: false,
         },
         {
           text: 'USERNAME',
           align: 'start',
           value: 'username',
-          //   sortable: false,
         },
         {
           text: 'EMAIL',
           align: 'start',
           value: 'email',
-          //   sortable: false,
         },
         {
           text: 'CREATED AT',
@@ -481,10 +478,6 @@ export default {
   },
   watch: {
     options: function (val) {
-      // the this.params, is the params in the URL
-      // ex. users?page=1&page_size=10&sort_by=&order_by=
-      // this.params will be the data pass in this.$inertia.get
-      // that will be pass as request in the laravel controller index function
       this.params.page = val.page;
       this.params.page_size = val.itemsPerPage;
       if (val.sortBy.length != 0) {
