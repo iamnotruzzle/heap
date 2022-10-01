@@ -7,9 +7,21 @@
         app
       >
         <!-- drawer toggler -->
-        <v-app-bar-nav-icon @click="drawer = !drawer">
+        <!-- use mini as toggler when screen is mdAndUp/desktop -->
+        <v-app-bar-nav-icon
+          v-if="$vuetify.breakpoint.mdAndUp"
+          @click.stop="mini = !mini"
+          class="clickable"
+        >
           <!-- use default slot if you want to change icon -->
           <!-- <v-icon>mdi-menu-open</v-icon> -->
+        </v-app-bar-nav-icon>
+        <!-- use drawer as toggler when screen is smAndDown/tablet/mobile -->
+        <v-app-bar-nav-icon
+          v-if="$vuetify.breakpoint.smAndDown"
+          @click.stop="drawer = !drawer"
+          class="clickable"
+        >
         </v-app-bar-nav-icon>
 
         <!-- header nav title -->
@@ -37,13 +49,17 @@
       <!-- drawer -->
       <v-navigation-drawer
         v-model="drawer"
+        :mini-variant.sync="mini"
+        :expand-on-hover="mini"
+        :permanent="$vuetify.breakpoint.mdOnly"
+        :temporary="$vuetify.breakpoint.smAndDown"
         app
       >
-        <v-row>
-          <v-col class="mt-5 text-center">
+        <v-list>
+          <v-list-item class="px-2 py-0 my-0">
             <v-avatar
               v-if="user.image != null"
-              size="100"
+              size="40"
               class="ava-border"
             >
               <img
@@ -53,19 +69,20 @@
             </v-avatar>
             <v-avatar
               v-else
-              size="100"
+              size="40"
               class="ava-border"
             >
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
             </v-avatar>
-            <p class="mt-2 mb-0 text-body-1-edited font-weight-medium text-uppercase">
-              {{ user.firstName }}
-            </p>
-            <p class="text-caption-edited text-uppercase text--secondary">
-              {{ user.email }}
-            </p>
-          </v-col>
-        </v-row>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="text-h6-edited"> {{ user.firstName }} </v-list-item-title>
+              <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
 
         <v-divider></v-divider>
 
@@ -172,24 +189,6 @@
             </Link> -->
           </v-list-group>
         </v-list>
-
-        <!-- Logout button inside drawer -->
-        <template v-slot:append>
-          <div class="pa-2">
-            <form
-              method="POST"
-              @submit.prevent="logout"
-            >
-              <v-btn
-                text
-                block
-                type="submit"
-                >Logout
-                <v-icon right>mdi-exit-to-app</v-icon>
-              </v-btn>
-            </form>
-          </div>
-        </template>
       </v-navigation-drawer>
     </v-card>
   </nav>
@@ -206,7 +205,8 @@ export default {
   },
   data() {
     return {
-      drawer: true,
+      mini: false,
+      drawer: null,
       selected: 1,
     };
   },
@@ -244,5 +244,9 @@ export default {
 
 .v-list-group__header {
   color: #fff !important;
+}
+
+.clickable {
+  -webkit-app-region: no-drag;
 }
 </style>
