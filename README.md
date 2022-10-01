@@ -9,6 +9,7 @@
 
 - Database: SQLSERVER
 - User factory
+- User resource
 - Inertia Progress
 - Access to the authenticated users info declared in HandleInertiaRequests.php
 - Vue feather icons https://github.com/egoist/vue-feather-icons
