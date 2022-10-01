@@ -28,7 +28,6 @@
           <v-card>
             <v-card-title class="mb-4 text-h5-edited"> {{ formTitle }} </v-card-title>
 
-            <!-- TODO fix validation errors not showing when updating -->
             <!-- form -->
             <v-card-text>
               <v-form
@@ -37,9 +36,6 @@
               >
                 <v-row>
                   <v-col>
-                    <!-- TODO change this component to camera icon
-                      and change the icon to image of input
-                    -->
                     <v-file-input
                       v-model="form.image"
                       @input="form.image = $event.target.files[0]"
@@ -391,6 +387,11 @@ export default {
     },
     submit() {
       if (this.isUpdate) {
+        // NOTE: only use Inertia.post when updating with files included
+        // use this.form.put when there is no need to upload files
+        // TODO fix bug where in validation error
+        // is not showing when updating
+        // Alternative solution: using client side vuetify form validation
         Inertia.post(
           route('users.update', this.itemId),
           {
@@ -429,7 +430,7 @@ export default {
       }
     },
     editItem(item) {
-      this.form.clearErrors();
+      //   this.form.clearErrors();
       this.form.firstName = item.firstName;
       this.form.middleName = item.middleName;
       this.form.lastName = item.lastName;
