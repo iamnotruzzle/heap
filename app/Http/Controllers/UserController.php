@@ -17,19 +17,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::when($request->sort_by, function ($query, $value) {
-            $query->orderBy($value, request('order_by', 'asc'));
+        $users = User::when($request->search, function ($query, $value) {
+            $query->where('firstName', 'LIKE', '%' . $value . '%')
+                ->orWhere('middleName', 'LIKE', '%' . $value . '%')
+                ->orWhere('lastName', 'LIKE', '%' . $value . '%')
+                ->orWhere('username', 'LIKE', '%' . $value . '%')
+                ->orWhere('email', 'LIKE', '%' . $value . '%');
         })
-            ->when(!isset($request->sort_by), function ($query) {
-                $query->latest();
-            })
-            ->when($request->search, function ($query, $value) {
-                $query->where('firstName', 'LIKE', '%' . $value . '%')
-                    ->orWhere('middleName', 'LIKE', '%' . $value . '%')
-                    ->orWhere('lastName', 'LIKE', '%' . $value . '%')
-                    ->orWhere('username', 'LIKE', '%' . $value . '%')
-                    ->orWhere('email', 'LIKE', '%' . $value . '%');
-            })
             ->paginate($request->page_size ?? 10);
 
         return Inertia::render('Users/Index', ['users' => $users]);
