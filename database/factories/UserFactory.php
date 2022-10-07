@@ -15,7 +15,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'firstName' => 'admin',
+            'firstName' => 'super',
             'middleName' => null,
             'lastName' => 'admin',
             'suffix' => null,

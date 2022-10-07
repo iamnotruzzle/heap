@@ -231,7 +231,6 @@
               <img :src="`/storage/${item.image}`" />
             </v-avatar>
             <v-avatar v-else>
-              <!-- <img :src="'/storage/image/no_image.png'" /> -->
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
             </v-avatar>
           </template>
@@ -369,7 +368,7 @@ export default {
   },
   methods: {
     updateData() {
-      this.$inertia.get('/users', this.params, {
+      this.$inertia.get('users', this.params, {
         preserveState: true,
         preserveScroll: true,
       });
@@ -430,7 +429,6 @@ export default {
       }
     },
     editItem(item) {
-      //   this.form.clearErrors();
       this.form.firstName = item.firstName;
       this.form.middleName = item.middleName;
       this.form.lastName = item.lastName;

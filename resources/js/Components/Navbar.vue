@@ -91,13 +91,13 @@
           nav
         >
           <Link
-            href="/dashboard"
-            :class="{ 'active-list-item': $page.url.startsWith('/dashboard') }"
+            href="dashboard"
+            :class="{ 'active-list-item': $page.component === 'Dashboard' }"
             as="v-list-item"
           >
             <v-list-item-icon>
               <pie-chart-icon
-                :class="[$page.url.startsWith('/dashboard') ? 'active-icon' : 'not-active-icon']"
+                :class="[$page.component === 'Dashboard' ? 'active-icon' : 'not-active-icon']"
                 size="24"
                 as="v-icon"
               ></pie-chart-icon>
@@ -105,7 +105,7 @@
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.url.startsWith('/dashboard') ? 'active-title' : 'not-active-title']"
+                :class="[$page.component === 'Dashboard' ? 'active-icon' : 'not-active-icon']"
                 class="text-subtitle-1-edited"
                 >Dashboard</v-list-item-title
               >
@@ -113,13 +113,13 @@
           </Link>
 
           <Link
-            href="/users"
-            :class="{ 'active-list-item': $page.url.startsWith('/users') }"
+            href="users"
+            :class="{ 'active-list-item': $page.component === 'Users/Index' }"
             as="v-list-item"
           >
             <v-list-item-icon>
               <user-icon
-                :class="[$page.url.startsWith('/users') ? 'active-icon' : 'not-active-icon']"
+                :class="[$page.component === 'Users/Index' ? 'active-icon' : 'not-active-icon']"
                 size="24"
                 as="v-icon"
               ></user-icon>
@@ -127,7 +127,7 @@
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.url.startsWith('/users') ? 'active-title' : 'not-active-title']"
+                :class="[$page.component === 'Users/Index' ? 'active-icon' : 'not-active-icon']"
                 class="text-subtitle-1-edited"
                 >Users</v-list-item-title
               >
@@ -165,26 +165,6 @@
                   size="24"
                   as="v-icon"
                 ></calendar-icon>
-              </v-list-item-icon>
-            </Link>
-
-            <Link
-              href="/authTasks"
-              :class="{ 'active-list-item': $page.url.startsWith('/authTasks') }"
-              as="v-list-item"
-            >
-              <v-list-item-title
-                :class="[$page.url.startsWith('/authTasks') ? 'active-title' : 'not-active-title']"
-                class="text-subtitle-2-edited"
-                >Assigned tasks</v-list-item-title
-              >
-
-              <v-list-item-icon>
-                <edit-icon
-                  :class="[$page.url.startsWith('/authTasks') ? 'active-icon' : 'not-active-icon']"
-                  size="24"
-                  as="v-icon"
-                ></edit-icon>
               </v-list-item-icon>
             </Link> -->
           </v-list-group>

@@ -1,29 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        $users = User::when($request->search, function ($query, $value) {
-            $query->where('firstName', 'LIKE', '%' . $value . '%')
-                ->orWhere('middleName', 'LIKE', '%' . $value . '%')
-                ->orWhere('lastName', 'LIKE', '%' . $value . '%')
-                ->orWhere('username', 'LIKE', '%' . $value . '%')
-                ->orWhere('email', 'LIKE', '%' . $value . '%');
+        $users = User::when($request->sort_by, function ($query, $value) {
+            $query->orderBy($value, request('order_by', 'asc'));
         })
+            ->when(!isset($request->sort_by), function ($query) {
+                $query->latest();
+            })
+            ->when($request->search, function ($query, $value) {
+                $query->where('firstName', 'LIKE', '%' . $value . '%')
+                    ->orWhere('middleName', 'LIKE', '%' . $value . '%')
+                    ->orWhere('lastName', 'LIKE', '%' . $value . '%')
+                    ->orWhere('username', 'LIKE', '%' . $value . '%')
+                    ->orWhere('email', 'LIKE', '%' . $value . '%');
+            })
             ->paginate($request->page_size ?? 10);
 
         return Inertia::render('Users/Index', ['users' => $users]);
@@ -33,13 +36,8 @@ class UserController extends Controller
     {
         $image = '';
 
-        if ($request->hasFile('image')) {
-            $request->validate(['image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',]);
-        } else {
-            $image = null;
-        }
-
         $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
             'firstName' => 'required|string|alpha',
             'middleName' => 'string|alpha|nullable',
             'lastName' => 'required|string|alpha',
@@ -51,10 +49,11 @@ class UserController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('image', 'public');
+        } else {
+            $image = null;
         }
 
         User::create([
-            'image' => $image,
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
@@ -62,9 +61,11 @@ class UserController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
+            'image' => $image,
         ]);
 
-        return redirect()->back();
+        // return redirect()->back();
+        return Redirect::route('users.index');
     }
 
     public function update(User $user, Request $request)
@@ -72,7 +73,7 @@ class UserController extends Controller
         $image = $user->image;
 
         $request->validate([
-            // 'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
             'firstName' => 'required|string|alpha',
             'middleName' => 'string|alpha|nullable',
             'lastName' => 'required|string|alpha',
@@ -97,7 +98,6 @@ class UserController extends Controller
         }
 
         $user->update([
-            'image' => $image,
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
@@ -105,9 +105,11 @@ class UserController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
+            'image' => $image
         ]);
 
-        return redirect()->back();
+        // return redirect()->back();
+        return Redirect::route('users.index');
     }
 
     public function destroy(User $user)
@@ -116,6 +118,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->back();
+        // return redirect()->back();
+        return Redirect::route('users.index');
     }
 }
