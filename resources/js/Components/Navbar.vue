@@ -92,21 +92,22 @@
         >
           <Link
             href="dashboard"
-            :class="{ 'active-list-item': $page.component === 'Dashboard' }"
+            :class="{ color_primary: $page.component === 'Dashboard' }"
             as="v-list-item"
+            @click="isGroupOpen = false"
           >
-            <v-list-item-icon>
+            <v-list-item-icon class="mr-3">
               <pie-chart-icon
-                :class="[$page.component === 'Dashboard' ? 'active-icon' : 'not-active-icon']"
+                :class="[$page.component === 'Dashboard' ? 'active' : 'not-active']"
                 size="24"
-                as="v-icon"
+                stroke-width="1"
               ></pie-chart-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Dashboard' ? 'active-icon' : 'not-active-icon']"
-                class="text-subtitle-1-edited"
+                :class="[$page.component === 'Dashboard' ? 'active' : 'not-active']"
+                class="text-body-1-edited font-weight-regular"
                 >Dashboard</v-list-item-title
               >
             </v-list-item-content>
@@ -114,59 +115,71 @@
 
           <Link
             href="users"
-            :class="{ 'active-list-item': $page.component === 'Users/Index' }"
+            :class="{ color_primary: $page.component === 'Users/Index' }"
             as="v-list-item"
+            @click="isGroupOpen = false"
           >
-            <v-list-item-icon>
+            <v-list-item-icon class="mr-3">
               <user-icon
-                :class="[$page.component === 'Users/Index' ? 'active-icon' : 'not-active-icon']"
+                :class="[$page.component === 'Users/Index' ? 'active' : 'not-active']"
                 size="24"
-                as="v-icon"
+                stroke-width="1"
               ></user-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Users/Index' ? 'active-icon' : 'not-active-icon']"
-                class="text-subtitle-1-edited"
+                :class="[$page.component === 'Users/Index' ? 'active' : 'not-active']"
+                class="text-body-1-edited font-weight-regular"
                 >Users</v-list-item-title
               >
             </v-list-item-content>
           </Link>
 
-          <!-- with sub-group -->
+          <!-- with list-group -->
           <v-list-group
-            :value="true"
-            prepend-icon="mdi-clipboard-list-outline"
-            class="list-title"
+            v-model="isGroupOpen"
+            active-class="color_primary"
+            color="white"
             no-action
-            color="grey darken-1"
           >
             <template v-slot:activator>
+              <v-list-item-icon class="mr-3">
+                <book-open-icon
+                  :class="[isGroupOpen === true ? 'active' : 'not-active']"
+                  size="24"
+                  stroke-width="1"
+                ></book-open-icon>
+              </v-list-item-icon>
+
               <v-list-item-content>
-                <v-list-item-title class="text-subtitle-1-edited">List group</v-list-item-title>
+                <v-list-item-title class="text-body-1-edited font-weight-regular">List group</v-list-item-title>
               </v-list-item-content>
             </template>
 
-            <!-- <Link
-              href="/tasks"
-              :class="{ 'active-list-item': $page.url.startsWith('/tasks') }"
+            <Link
+              href="users"
+              :class="{ color_primary_accent: $page.component === 'Users/Index' }"
               as="v-list-item"
+              class="pa-0 ma-0"
             >
-              <v-list-item-title
-                :class="[$page.url.startsWith('/tasks') ? 'active-title' : 'not-active-title']"
-                class="text-subtitle-2-edited"
-                >Calendar</v-list-item-title
-              >
-
-              <v-list-item-icon>
-                <calendar-icon
-                  :class="[$page.url.startsWith('/tasks') ? 'active-icon' : 'not-active-icon']"
-                  size="24"
-                  as="v-icon"
-                ></calendar-icon>
+              <!-- This icon is only added to add margin right. Take note that the size is set to 0 -->
+              <v-list-item-icon class="mr-5">
+                <circle-icon
+                  size="0"
+                  stroke-width="0"
+                ></circle-icon>
               </v-list-item-icon>
-            </Link> -->
+
+              <v-list-item-content class="ma-0">
+                <v-list-item-title
+                  :class="[$page.component === 'Users/Index' ? 'active' : 'not-active']"
+                  class="text-body-1-edited font-weight-regular"
+                >
+                  Users
+                </v-list-item-title>
+              </v-list-item-content>
+            </Link>
           </v-list-group>
         </v-list>
       </v-navigation-drawer>
@@ -175,16 +188,20 @@
 </template>
 <script>
 import { Link } from '@inertiajs/inertia-vue';
-import { UserIcon, PieChartIcon } from 'vue-feather-icons';
+import { UserIcon, PieChartIcon, ActivityIcon, CircleIcon, BookOpenIcon } from 'vue-feather-icons';
 
 export default {
   components: {
     Link,
     UserIcon,
     PieChartIcon,
+    ActivityIcon,
+    CircleIcon,
+    BookOpenIcon,
   },
   data() {
     return {
+      isGroupOpen: false,
       mini: false,
       drawer: null,
       selected: 1,
@@ -212,18 +229,17 @@ export default {
   background-color: rgba(134, 17, 236, 0.8);
 }
 
-.active-icon,
-.active-title {
+.active {
   color: #fff;
+  stroke-width: 2;
 }
 
-.not-active-icon,
-.not-active-title {
-  opacity: 0.7;
-}
+/* .not-active {
+  opacity: 0.8;
+} */
 
 .v-list-group__header {
-  color: #fff !important;
+  padding: 0;
 }
 
 .clickable {

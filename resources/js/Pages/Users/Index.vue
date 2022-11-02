@@ -9,13 +9,14 @@
       <v-row>
         <v-dialog
           v-model="dialog"
+          @keydown.esc="cancel"
+          @click:outside="cancel"
           width="500"
-          persistent
         >
           <template v-slot:activator="{ on, attrs }">
             <v-col class="text-right">
               <v-btn
-                color="color_add white--text mb-2"
+                color="color_secondary white--text mb-2"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -26,23 +27,25 @@
           </template>
 
           <v-card>
-            <v-card-title class="mb-4 text-h5-edited"> {{ formTitle }} </v-card-title>
+            <v-card-title class="text-h6-edited color_primary white--text"> {{ formTitle }} </v-card-title>
 
             <!-- form -->
-            <v-card-text>
+            <v-card-text class="mt-8">
               <v-form
                 ref="form"
                 v-model="valid"
               >
                 <v-row>
-                  <v-col>
+                  <v-col
+                    cols="12"
+                    class="py-0"
+                  >
                     <v-file-input
                       v-model="form.image"
                       @input="form.image = $event.target.files[0]"
                       :error-messages="form.errors.image"
-                      dense
-                      class="mb-4"
-                      color="color_add"
+                      outlined
+                      color="black"
                       chips
                       show-size
                       small-chips
@@ -50,81 +53,120 @@
                       prepend-icon=""
                       truncate-length="15"
                     ></v-file-input>
+                  </v-col>
 
+                  <v-col
+                    cols="12"
+                    md="6"
+                    class="py-0"
+                  >
                     <v-text-field
                       v-model="form.firstName"
                       :error-messages="form.errors.firstName"
-                      dense
-                      class="mb-4"
+                      outlined
                       autofocus
                       clearable
-                      color="color_add"
+                      color="black"
                       label="Given name"
                       required
+                      @keyup.enter="submit"
                     ></v-text-field>
+                  </v-col>
 
+                  <v-col
+                    cols="12"
+                    md="6"
+                    class="py-0"
+                  >
                     <v-text-field
                       v-model="form.middleName"
                       :error-messages="form.errors.middleName"
-                      dense
-                      class="mb-4"
+                      outlined
                       clearable
-                      color="color_add"
+                      color="black"
                       label="Middle name"
+                      @keyup.enter="submit"
                     ></v-text-field>
+                  </v-col>
 
+                  <v-col
+                    cols="12"
+                    md="6"
+                    class="py-0"
+                  >
                     <v-text-field
                       v-model="form.lastName"
                       :error-messages="form.errors.lastName"
-                      dense
-                      class="mb-4"
+                      outlined
                       clearable
-                      color="color_add"
+                      color="black"
                       label="Last name"
                       required
+                      @keyup.enter="submit"
                     ></v-text-field>
+                  </v-col>
 
+                  <v-col
+                    cols="12"
+                    md="6"
+                    class="py-0"
+                  >
                     <v-text-field
                       v-model="form.suffix"
                       :error-messages="form.errors.suffix"
-                      dense
-                      class="mb-4"
+                      outlined
                       clearable
-                      color="color_add"
+                      color="black"
                       label="Suffix"
+                      @keyup.enter="submit"
                     ></v-text-field>
+                  </v-col>
 
-                    <v-text-field
-                      v-model="form.username"
-                      :error-messages="form.errors.username"
-                      dense
-                      class="mb-4"
-                      clearable
-                      color="color_add"
-                      label="Username"
-                    ></v-text-field>
-
+                  <v-col
+                    cols="12"
+                    class="py-0"
+                  >
                     <v-text-field
                       v-model="form.email"
                       :error-messages="form.errors.email"
-                      dense
-                      class="mb-4"
+                      outlined
                       clearable
-                      color="color_add"
+                      color="black"
                       label="E-mail"
                       required
+                      @keyup.enter="submit"
                     ></v-text-field>
+                  </v-col>
 
+                  <v-col
+                    cols="12"
+                    class="py-0"
+                  >
+                    <v-text-field
+                      v-model="form.username"
+                      :error-messages="form.errors.username"
+                      outlined
+                      clearable
+                      color="black"
+                      label="Username"
+                      @keyup.enter="submit"
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                    class="py-0"
+                  >
                     <v-text-field
                       v-model="form.password"
                       :error-messages="form.errors.password"
-                      dense
-                      class="mb-4"
+                      outlined
                       clearable
-                      color="color_add"
+                      color="black"
                       label="Password"
                       type="password"
                       required
+                      @keyup.enter="submit"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -138,6 +180,7 @@
               <v-spacer></v-spacer>
               <div>
                 <v-btn
+                  color="color_error"
                   text
                   :disabled="form.processing"
                   @click="cancel"
@@ -146,7 +189,7 @@
                 </v-btn>
 
                 <v-btn
-                  color="color_add"
+                  color="color_primary"
                   text
                   :loading="form.processing"
                   @click="submit"
@@ -182,7 +225,7 @@
               </v-btn>
 
               <v-btn
-                color="error"
+                color="color_error"
                 text
                 :loading="form.processing"
                 @click="destroy"
@@ -204,10 +247,13 @@
           <div>Users</div>
           <v-spacer></v-spacer>
           <v-text-field
+            color="black"
+            dense
+            outlined
+            clearable
             v-model="search"
             append-icon="mdi-magnify"
             label="Search"
-            single-line
             hide-details
           ></v-text-field>
         </v-card-title>
@@ -244,7 +290,7 @@
           <template v-slot:item.actions="{ item }">
             <v-icon
               small
-              color="yellow darken-4"
+              color="color_warning"
               @click="editItem(item)"
             >
               mdi-pencil
@@ -252,7 +298,7 @@
 
             <v-icon
               small
-              color="red"
+              color="color_error"
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -309,6 +355,26 @@ export default {
   },
   data() {
     return {
+      series: [44, 55, 41, 17, 15],
+      chartOptions: {
+        chart: {
+          type: 'donut',
+        },
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200,
+              },
+              legend: {
+                position: 'bottom',
+              },
+            },
+          },
+        ],
+      },
+
       snack: '',
       snackColor: '',
       snackText: '',
@@ -320,7 +386,6 @@ export default {
       isUpdate: false,
       isLoading: false,
       search: '',
-      itemId: null,
       options: {},
       params: {},
       headers: [
@@ -335,6 +400,7 @@ export default {
           text: 'NAME',
           align: 'start',
           value: 'fullName',
+          sortable: false,
         },
         {
           text: 'USERNAME',
@@ -456,17 +522,17 @@ export default {
     },
     createdMsg() {
       this.snack = true;
-      this.snackColor = 'color_add';
+      this.snackColor = 'color_primary';
       this.snackText = 'Account saved.';
     },
     updatedMsg() {
       this.snack = true;
-      this.snackColor = 'info';
+      this.snackColor = 'warning';
       this.snackText = 'Account updated.';
     },
     deletedMsg() {
       this.snack = true;
-      this.snackColor = 'error';
+      this.snackColor = 'color_error';
       this.snackText = 'Account deleted.';
     },
   },
@@ -479,6 +545,13 @@ export default {
     options: function (val) {
       this.params.page = val.page;
       this.params.page_size = val.itemsPerPage;
+      if (val.sortBy.length != 0) {
+        this.params.sort_by = val.sortBy[0];
+        this.params.order_by = val.sortDesc[0] ? 'desc' : 'asc';
+      } else {
+        this.params.sort_by = null;
+        this.params.order_by = null;
+      }
       this.updateData();
     },
     search: function (val) {
@@ -490,14 +563,14 @@ export default {
 </script>
 
 <style scoped>
-.vrow {
+/* .vrow {
   border-style: solid;
   border-color: red;
 }
 .vcol {
   border-style: solid;
   border-color: purple;
-}
+} */
 .v-select .v-select__selections > input {
   display: none !important;
 }

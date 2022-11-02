@@ -22,9 +22,12 @@ new Vue({
       themes: {
         light: {
           color_list_item_group: '#7352C7',
-          color_add: '#7352C7',
-          color_header: '#F5F7FA',
-          color_main_background: '#F5F7FA',
+          color_primary: '#0CB9C5',
+          color_primary_accent: '#07D7E6',
+          color_secondary: '#EE8A6A',
+          color_warning: '#03C9D7',
+          color_error: '#FC4B6C',
+          color_main_background: '#F6F6F6',
         },
       },
     },
