@@ -576,6 +576,6 @@ export default {
 }
 
 .rounded-data__table {
-  border-radius: 24px;
+  border-radius: 8px;
 }
 </style>
