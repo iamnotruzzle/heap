@@ -2,8 +2,6 @@
   <div class="users">
     <Head title="Users" />
 
-    <h1 class="text-subtitle-1-edited grey--text">Users</h1>
-
     <v-container class="my-5">
       <!-- create user modal -->
       <v-row>
@@ -16,7 +14,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-col class="text-right">
               <v-btn
-                color="color_secondary white--text mb-2"
+                color="color_primary white--text mb-2"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -27,7 +25,7 @@
           </template>
 
           <v-card>
-            <v-card-title class="text-h6-edited color_primary white--text"> {{ formTitle }} </v-card-title>
+            <v-card-title class="text-h6-edited color_secondary white--text"> {{ formTitle }} </v-card-title>
 
             <!-- form -->
             <v-card-text class="mt-8">
@@ -189,7 +187,7 @@
                 </v-btn>
 
                 <v-btn
-                  color="color_primary"
+                  color="color_secondary"
                   text
                   :loading="form.processing"
                   @click="submit"
@@ -273,24 +271,37 @@
         >
           <!-- avatar -->
           <template #item.image="{ item }">
-            <v-avatar v-if="item.image != null">
+            <v-avatar
+              v-if="item.image != null"
+              class="my-1"
+            >
               <img :src="`/storage/${item.image}`" />
             </v-avatar>
-            <v-avatar v-else>
+            <v-avatar
+              v-else
+              class="my-1"
+            >
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
             </v-avatar>
           </template>
 
           <!-- full name -->
           <template #item.fullName="{ item }">
-            {{ item.firstName }} {{ item.middleName }} {{ item.lastName }}
+            <v-chip
+              class="pa-2 green--text"
+              label
+              small
+              input-value="true"
+            >
+              {{ item.firstName }} {{ item.middleName }} {{ item.lastName }}
+            </v-chip>
             <span v-if="item.suffix != null">{{ item.suffix }}</span>
           </template>
 
           <template v-slot:item.actions="{ item }">
             <v-icon
               small
-              color="color_warning"
+              color="color_secondary"
               @click="editItem(item)"
             >
               mdi-pencil
@@ -522,12 +533,12 @@ export default {
     },
     createdMsg() {
       this.snack = true;
-      this.snackColor = 'color_primary';
+      this.snackColor = 'color_secondary';
       this.snackText = 'Account saved.';
     },
     updatedMsg() {
       this.snack = true;
-      this.snackColor = 'warning';
+      this.snackColor = 'color_warning';
       this.snackText = 'Account updated.';
     },
     deletedMsg() {
