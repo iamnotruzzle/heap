@@ -108,12 +108,13 @@
           dense
           nav
         >
-          <!-- Logs -->
+          <!-- List -->
           <v-list-group
             :value="false"
             active-class="color_secondary"
             color="white"
             no-action
+            v-if="can(['create-users, edit-users, delete-users'])"
           >
             <template v-slot:activator>
               <v-list-item-icon class="mr-3">
@@ -160,6 +161,7 @@
             href="users"
             :class="{ color_secondary: $page.component === 'Users/Index' }"
             as="v-list-item"
+            v-if="can(['create-users, edit-users, delete-users'])"
             @click="isGroupOpen = false"
           >
             <v-list-item-icon class="mr-3">
@@ -227,6 +229,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.$page.props.auth.user.roles);
     const theme = localStorage.getItem('darkTheme');
     // Check if the user has set the theme state before
     if (theme) {
@@ -247,6 +250,30 @@ export default {
     },
     logout() {
       this.$inertia.post(route('logout'));
+    },
+    can([permission]) {
+      //   if permission is only 1 data and not an array use this
+      //   let data = this.$page.props.auth.user.permissions.filter((ability) => ability === permission);
+      //   in the conditional, change found == true to data.length > 0
+      //   Check if any value in the permission array is equal to this.$page.props.auth.user.permissions array values
+      let found = this.$page.props.auth.user.permissions.some((r) => permission.indexOf(r) >= 0);
+      //   console.log(found);
+      if (
+        this.$page.props.auth.user.roles[0] === 'super-admin' ||
+        this.$page.props.auth.user.roles[0] === 'admin' ||
+        found == true
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    saOnly() {
+      if (this.$page.props.auth.user.roles[0] === 'super-admin') {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
   computed: {

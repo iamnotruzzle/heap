@@ -14,7 +14,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-col class="text-right">
               <v-btn
-                color="color_primary white--text mb-2"
+                color="color_primary mb-2"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -25,7 +25,7 @@
           </template>
 
           <v-card>
-            <v-card-title class="text-h6-edited color_secondary white--text"> {{ formTitle }} </v-card-title>
+            <v-card-title class="text-h6-edited color_secondary"> {{ formTitle }} </v-card-title>
 
             <!-- form -->
             <v-card-text class="mt-8">
@@ -238,10 +238,11 @@
                 </v-btn>
 
                 <v-btn
-                  color="color_secondary"
+                  color="color_secondary_accent"
                   text
                   :loading="form.processing"
                   @click="submit"
+                  @keyup.enter="submit"
                 >
                   Save
                 </v-btn>
@@ -274,7 +275,7 @@
               </v-btn>
 
               <v-btn
-                color="color_error"
+                color="error"
                 text
                 :loading="form.processing"
                 @click="destroy"
@@ -296,12 +297,10 @@
           <div>Users</div>
           <v-spacer></v-spacer>
           <v-text-field
-            dense
-            outlined
-            clearable
             v-model="search"
             append-icon="mdi-magnify"
             label="Search"
+            single-line
             hide-details
           ></v-text-field>
         </v-card-title>
@@ -324,13 +323,13 @@
           <template #item.image="{ item }">
             <v-avatar
               v-if="item.image != null"
-              class="my-1"
+              class="my-2"
             >
               <img :src="`/storage/${item.image}`" />
             </v-avatar>
             <v-avatar
               v-else
-              class="my-1"
+              class="my-2"
             >
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
             </v-avatar>
@@ -339,7 +338,6 @@
           <!-- full name -->
           <template #item.fullName="{ item }">
             {{ item.firstName }} {{ item.middleName }} {{ item.lastName }}
-
             <span v-if="item.suffix != null">{{ item.suffix }}</span>
           </template>
 
@@ -381,21 +379,43 @@
           </template>
 
           <template v-slot:item.actions="{ item }">
-            <v-icon
-              small
-              color="color_secondary"
-              @click="editItem(item)"
-            >
-              mdi-pencil
-            </v-icon>
+            <!-- {{ item.roles[0].name }} -->
+            <!-- $page.props.auth.user.roles[0] -->
+            <div v-if="$page.props.auth.user.roles[0] == 'admin' && item.roles[0].name != 'super-admin'">
+              <v-icon
+                small
+                color="yellow darken-4"
+                @click="editItem(item)"
+              >
+                mdi-pencil
+              </v-icon>
 
-            <v-icon
-              small
-              color="color_error"
-              @click="deleteItem(item)"
-            >
-              mdi-delete
-            </v-icon>
+              <v-icon
+                small
+                color="red"
+                @click="deleteItem(item)"
+              >
+                mdi-delete
+              </v-icon>
+            </div>
+
+            <div v-if="$page.props.auth.user.roles[0] == 'super-admin'">
+              <v-icon
+                small
+                color="yellow darken-4"
+                @click="editItem(item)"
+              >
+                mdi-pencil
+              </v-icon>
+
+              <v-icon
+                small
+                color="red"
+                @click="deleteItem(item)"
+              >
+                mdi-delete
+              </v-icon>
+            </div>
           </template>
 
           <!-- pagination -->
@@ -451,7 +471,74 @@ export default {
       roles: ['super-admin', 'admin', 'editor'],
       selectedPermissions: [],
       userPermissionList: [],
-      permissions: ['create-icu-bed', 'edit-icu-bed', 'delete-icu-bed'],
+      permissions: [
+        'create-icu-bed',
+        'edit-icu-bed',
+        'delete-icu-bed',
+        'create-icu-bed-entry',
+        'edit-icu-bed-entry',
+        'delete-icu-bed-entry',
+        'create-non-icu-bed',
+        'edit-non-icu-bed',
+        'delete-non-icu-bed',
+        'create-non-icu-bed-entry',
+        'edit-non-icu-bed-entry',
+        'delete-non-icu-bed-entry',
+        'create-suspect',
+        'edit-suspect',
+        'delete-suspect',
+        'create-probable',
+        'edit-probable',
+        'delete-probable',
+        'create-confirmed',
+        'edit-confirmed',
+        'delete-confirmed',
+        'create-waitlisted',
+        'edit-waitlisted',
+        'delete-waitlisted',
+        'create-ndd',
+        'edit-ndd',
+        'delete-ndd',
+        'create-hcw-confirmed',
+        'edit-hcw-confirmed',
+        'delete-hcw-confirmed',
+        'create-hcw-quarantined',
+        'edit-hcw-quarantined',
+        'delete-hcw-quarantined',
+        'create-hcw-per-division',
+        'edit-hcw-per-division',
+        'delete-hcw-per-division',
+        'create-c19-equipment',
+        'edit-c19-equipment',
+        'delete-c19-equipment',
+        'create-c19-equipment-entry',
+        'edit-c19-equipment-entry',
+        'delete-c19-equipment-entry',
+        'create-c19-mv-area',
+        'edit-c19-mv-area',
+        'delete-c19-mv-area',
+        'create-c19-mv-area-entry',
+        'edit-c19-mv-area-entry',
+        'delete-c19-mv-area-entry',
+        'create-non-c19-mv-area',
+        'edit-non-c19-mv-area',
+        'delete-non-c19-mv-area',
+        'create-non-c19-mv-area-entry',
+        'edit-non-c19-mv-area-entry',
+        'delete-non-c19-mv-area-entry',
+        'create-medical-oxygen',
+        'edit-medical-oxygen',
+        'delete-medical-oxygen',
+        'create-compressed-air',
+        'edit-compressed-air',
+        'delete-compressed-air',
+        'create-flask-type',
+        'edit-flask-type',
+        'delete-flask-type',
+        'create-c19-supplies',
+        'edit-c19-supplies',
+        'delete-c19-supplies',
+      ],
       snack: '',
       snackColor: '',
       snackText: '',
@@ -523,6 +610,7 @@ export default {
       }),
     };
   },
+  mounted() {},
   methods: {
     updateData() {
       this.$inertia.get('users', this.params, {
@@ -629,7 +717,7 @@ export default {
     },
     updatedMsg() {
       this.snack = true;
-      this.snackColor = 'color_warning';
+      this.snackColor = 'color_primary';
       this.snackText = 'Account updated.';
     },
     deletedMsg() {
@@ -649,6 +737,7 @@ export default {
     can(permission) {
       // Check Permissions
       //   let data = this.$page.props.auth.user.permissions.filter((ability) => ability === permission);
+
       if (
         this.$page.props.auth.user.roles[0] === 'super-admin' ||
         this.$page.props.auth.user.roles[0] === 'admin' ||
@@ -701,19 +790,19 @@ export default {
 </script>
 
 <style scoped>
-/* .vrow {
+.vrow {
   border-style: solid;
   border-color: red;
 }
 .vcol {
   border-style: solid;
   border-color: purple;
-} */
+}
 .v-select .v-select__selections > input {
   display: none !important;
 }
 
 .rounded-data__table {
-  border-radius: 8px;
+  border-radius: 24px;
 }
 </style>

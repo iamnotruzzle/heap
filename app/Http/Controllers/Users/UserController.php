@@ -12,6 +12,15 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    // restrict controller based on the users role
+    public function __construct()
+    {
+        // this will disable routes for users that is not super-admin or admin
+        $this->middleware(['role:super-admin|admin']);
+        // $this->middleware(['role_or_permission:super-admin|admin|edit-users']);
+        // $this->middleware(['permission:create-users']);
+    }
+
     public function index(Request $request)
     {
         $users = User::with(['roles', 'permissions'])->when($request->sort_by, function ($query, $value) {
@@ -34,15 +43,17 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
         $image = '';
 
         $request->validate([
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
-            'firstName' => 'required|string|alpha',
-            'middleName' => 'string|alpha|nullable',
-            'lastName' => 'required|string|alpha',
-            'suffix' => 'string|alpha|nullable',
+            'firstName' => 'required|string',
+            'middleName' => 'string|nullable',
+            'lastName' => 'required|string',
+            'suffix' => 'string|nullable',
             'role' => 'required|string',
+            // 'permissions' => 'required',
             'email' => 'required|email|unique:users,email|max:40',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
@@ -77,6 +88,8 @@ class UserController extends Controller
 
     public function update(User $user, Request $request)
     {
+        // dd($request->image);
+
         $image = $user->image;
 
         if ($request->password != null || $request->password != '') {
@@ -87,6 +100,7 @@ class UserController extends Controller
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
                 'role' => 'required|string',
+                // 'permissions' => 'required',
                 'email' => [
                     'required',
                     'email',
@@ -111,7 +125,6 @@ class UserController extends Controller
                 'middleName' => $request->middleName,
                 'lastName' => $request->lastName,
                 'suffix' => $request->suffix,
-                'role' => 'required|string',
                 'email' => $request->email,
                 'username' => $request->username,
                 'password' => bcrypt($request->password),
@@ -124,6 +137,8 @@ class UserController extends Controller
                 'middleName' => 'string|nullable',
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
+                'role' => 'required|string',
+                // 'permissions' => 'required',
                 'email' => [
                     'required',
                     'email',
