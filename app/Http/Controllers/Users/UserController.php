@@ -72,41 +72,77 @@ class UserController extends Controller
     {
         $image = $user->image;
 
-        $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
-            'firstName' => 'required|string|alpha',
-            'middleName' => 'string|alpha|nullable',
-            'lastName' => 'required|string|alpha',
-            'suffix' => 'string|alpha|nullable',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($user->id)
-            ],
-            'username' => [
-                'required',
-                'string',
-                'max:14',
-                Rule::unique('users')->ignore($user->id)
-            ],
-            'password' => 'required|min:8',
-        ]);
+        if ($request->password != null || $request->password != '') {
+            $request->validate([
+                'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
+                'firstName' => 'required|string',
+                'middleName' => 'string|nullable',
+                'lastName' => 'required|string',
+                'suffix' => 'string|nullable',
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users')->ignore($user->id)
+                ],
+                'username' => [
+                    'required',
+                    'string',
+                    'max:14',
+                    Rule::unique('users')->ignore($user->id)
+                ],
+                'password' => 'required|min:8'
+            ]);
 
-        if ($request->hasFile('image')) {
-            Storage::delete('public/' . $user->image);
-            $image = $request->file('image')->store('image', 'public');
+            if ($request->hasFile('image')) {
+                Storage::delete('public/' . $user->image);
+                $image = $request->file('image')->store('image', 'public');
+            }
+
+            $user->update([
+                'firstName' => $request->firstName,
+                'middleName' => $request->middleName,
+                'lastName' => $request->lastName,
+                'suffix' => $request->suffix,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => bcrypt($request->password),
+                'image' => $image
+            ]);
+        } else {
+            $request->validate([
+                'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
+                'firstName' => 'required|string',
+                'middleName' => 'string|nullable',
+                'lastName' => 'required|string',
+                'suffix' => 'string|nullable',
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users')->ignore($user->id)
+                ],
+                'username' => [
+                    'required',
+                    'string',
+                    'max:14',
+                    Rule::unique('users')->ignore($user->id)
+                ],
+            ]);
+
+            if ($request->hasFile('image')) {
+                Storage::delete('public/' . $user->image);
+                $image = $request->file('image')->store('image', 'public');
+            }
+
+            $user->update([
+                'firstName' => $request->firstName,
+                'middleName' => $request->middleName,
+                'lastName' => $request->lastName,
+                'suffix' => $request->suffix,
+                'email' => $request->email,
+                'username' => $request->username,
+                'image' => $image
+            ]);
         }
-
-        $user->update([
-            'firstName' => $request->firstName,
-            'middleName' => $request->middleName,
-            'lastName' => $request->lastName,
-            'suffix' => $request->suffix,
-            'email' => $request->email,
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'image' => $image
-        ]);
 
         // return redirect()->back();
         return Redirect::route('users.index');
