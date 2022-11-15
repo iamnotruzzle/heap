@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::when($request->sort_by, function ($query, $value) {
+        $users = User::with(['roles', 'permissions'])->when($request->sort_by, function ($query, $value) {
             $query->orderBy($value, request('order_by', 'asc'));
         })
             ->when(!isset($request->sort_by), function ($query) {
@@ -42,6 +42,7 @@ class UserController extends Controller
             'middleName' => 'string|alpha|nullable',
             'lastName' => 'required|string|alpha',
             'suffix' => 'string|alpha|nullable',
+            'role' => 'required|string',
             'email' => 'required|email|unique:users,email|max:40',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
@@ -53,7 +54,7 @@ class UserController extends Controller
             $image = null;
         }
 
-        User::create([
+        $user = User::create([
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
@@ -63,6 +64,12 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'image' => $image,
         ]);
+
+        // assign role
+        $user->assignRole($request->role);
+
+        // assign permissions
+        $user->givePermissionTo($request->permissions);
 
         // return redirect()->back();
         return Redirect::route('users.index');
@@ -79,6 +86,7 @@ class UserController extends Controller
                 'middleName' => 'string|nullable',
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
+                'role' => 'required|string',
                 'email' => [
                     'required',
                     'email',
@@ -103,6 +111,7 @@ class UserController extends Controller
                 'middleName' => $request->middleName,
                 'lastName' => $request->lastName,
                 'suffix' => $request->suffix,
+                'role' => 'required|string',
                 'email' => $request->email,
                 'username' => $request->username,
                 'password' => bcrypt($request->password),
@@ -144,6 +153,12 @@ class UserController extends Controller
             ]);
         }
 
+        // update user role
+        $user->syncRoles($request->role);
+
+        // update user permissions
+        $user->syncPermissions([$request->permissions]);
+
         // return redirect()->back();
         return Redirect::route('users.index');
     }
@@ -153,6 +168,12 @@ class UserController extends Controller
         Storage::delete('public/' . $user->image);
 
         $user->delete();
+
+        // remove user role
+        $user->roles()->detach();
+
+        // remove user role
+        $user->permissions()->detach();
 
         // return redirect()->back();
         return Redirect::route('users.index');
