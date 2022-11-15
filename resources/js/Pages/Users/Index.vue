@@ -256,6 +256,7 @@
           :search="search"
           :headers="headers"
           :items="users.data"
+          :items-per-page="15"
           :options.sync="options"
           :server-items-length="users.total"
           class="elevation-1"

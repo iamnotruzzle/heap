@@ -27,7 +27,7 @@ class UserController extends Controller
                     ->orWhere('username', 'LIKE', '%' . $value . '%')
                     ->orWhere('email', 'LIKE', '%' . $value . '%');
             })
-            ->paginate($request->page_size ?? 10);
+            ->paginate($request->page_size ?? 15);
 
         return Inertia::render('Users/Index', ['users' => $users]);
     }
