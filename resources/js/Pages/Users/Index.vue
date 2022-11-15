@@ -43,7 +43,6 @@
                       @input="form.image = $event.target.files[0]"
                       :error-messages="form.errors.image"
                       outlined
-                      color="black"
                       chips
                       show-size
                       small-chips
@@ -64,7 +63,6 @@
                       outlined
                       autofocus
                       clearable
-                      color="black"
                       label="Given name"
                       required
                       @keyup.enter="submit"
@@ -81,7 +79,6 @@
                       :error-messages="form.errors.middleName"
                       outlined
                       clearable
-                      color="black"
                       label="Middle name"
                       @keyup.enter="submit"
                     ></v-text-field>
@@ -97,7 +94,6 @@
                       :error-messages="form.errors.lastName"
                       outlined
                       clearable
-                      color="black"
                       label="Last name"
                       required
                       @keyup.enter="submit"
@@ -114,7 +110,6 @@
                       :error-messages="form.errors.suffix"
                       outlined
                       clearable
-                      color="black"
                       label="Suffix"
                       @keyup.enter="submit"
                     ></v-text-field>
@@ -129,7 +124,6 @@
                       :error-messages="form.errors.email"
                       outlined
                       clearable
-                      color="black"
                       label="E-mail"
                       required
                       @keyup.enter="submit"
@@ -145,7 +139,6 @@
                       :error-messages="form.errors.username"
                       outlined
                       clearable
-                      color="black"
                       label="Username"
                       @keyup.enter="submit"
                     ></v-text-field>
@@ -160,7 +153,6 @@
                       :error-messages="form.errors.password"
                       outlined
                       clearable
-                      color="black"
                       label="Password"
                       type="password"
                       required
@@ -245,7 +237,6 @@
           <div>Users</div>
           <v-spacer></v-spacer>
           <v-text-field
-            color="black"
             dense
             outlined
             clearable
