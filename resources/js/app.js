@@ -28,6 +28,7 @@ new Vue({
           color_warning: '#FEC90F',
           color_success: '#05B187',
           color_disabled: '#85BFF1',
+          color_main_background: '#F6F6F6',
         },
         dark: {
           color_primary: '#1E88E5',
@@ -37,6 +38,7 @@ new Vue({
           color_warning: '#FEC90F',
           color_success: '#05B187',
           color_disabled: '#85BFF1',
+          color_main_background: '#F6F6F6',
         },
       },
     },
@@ -55,7 +57,7 @@ InertiaProgress.init({
   delay: 250,
 
   // The color of the progress bar.
-  color: '#ac60f7',
+  color: '#0CB9C5',
 
   // Whether to include the default NProgress styles.
   includeCSS: true,

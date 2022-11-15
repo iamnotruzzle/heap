@@ -185,7 +185,12 @@
     </v-card>
 
     <!-- <v-main class="color_main_background"> -->
-    <v-main>
+    <v-main
+      :class="{
+        color_main_background: !$vuetify.theme.dark,
+        black: $vuetify.theme.dark,
+      }"
+    >
       <v-container>
         <slot></slot>
       </v-container>
@@ -286,7 +291,7 @@ export default {
 
 <style scoped>
 .ava-border {
-  border: 2px solid #1852f1;
+  border: 2px solid #1e88e5;
 }
 
 .active {

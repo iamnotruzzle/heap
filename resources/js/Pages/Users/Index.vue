@@ -14,7 +14,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-col class="text-right">
               <v-btn
-                color="color_primary mb-2"
+                color="color_primary white--text mb-2"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -118,6 +118,7 @@
                   <v-col
                     cols="12"
                     class="py-0"
+                    v-if="$page.props.auth.user.roles[0] === 'super-admin'"
                   >
                     <v-select
                       v-model="form.role"
@@ -128,11 +129,25 @@
                     >
                     </v-select>
                   </v-col>
+                  <v-col
+                    cols="12"
+                    class="py-0"
+                    v-else
+                  >
+                    <v-select
+                      v-model="form.role"
+                      :error-messages="form.errors.role"
+                      :items="rolesIfAdmin"
+                      label="Role"
+                      outlined
+                    >
+                    </v-select>
+                  </v-col>
 
                   <v-col
                     cols="12"
                     class="py-0"
-                    v-if="form.role === 'editor'"
+                    v-if="form.role === 'user'"
                   >
                     <v-select
                       v-model="form.permissions"
@@ -296,12 +311,15 @@
         <v-card-title>
           <div>Users</div>
           <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
+            outlined
+            label="Search Users"
+            dense
           ></v-text-field>
         </v-card-title>
         <!-- :items="users.data" -->
@@ -349,7 +367,7 @@
           <!-- permissions -->
           <template v-slot:item.permissions="{ item }">
             <v-chip
-              v-if="item.roles[0].name === 'editor' && item.permissions.length > 0"
+              v-if="item.roles[0].name === 'user' && item.permissions.length > 0"
               class="pa-2 pink--text darken-4"
               label
               small
@@ -359,7 +377,7 @@
               List
             </v-chip>
             <v-chip
-              v-else-if="item.roles[0].name === 'editor'"
+              v-else-if="item.roles[0].name === 'user'"
               class="pa-2 cyan--text"
               label
               small
@@ -384,7 +402,7 @@
             <div v-if="$page.props.auth.user.roles[0] == 'admin' && item.roles[0].name != 'super-admin'">
               <v-icon
                 small
-                color="yellow darken-4"
+                color="color_secondary"
                 @click="editItem(item)"
               >
                 mdi-pencil
@@ -392,7 +410,7 @@
 
               <v-icon
                 small
-                color="red"
+                color="color_error"
                 @click="deleteItem(item)"
               >
                 mdi-delete
@@ -402,7 +420,7 @@
             <div v-if="$page.props.auth.user.roles[0] == 'super-admin'">
               <v-icon
                 small
-                color="yellow darken-4"
+                color="color_secondary"
                 @click="editItem(item)"
               >
                 mdi-pencil
@@ -410,7 +428,7 @@
 
               <v-icon
                 small
-                color="red"
+                color="color_error"
                 @click="deleteItem(item)"
               >
                 mdi-delete
@@ -468,77 +486,11 @@ export default {
   },
   data() {
     return {
-      roles: ['super-admin', 'admin', 'editor'],
+      roles: ['super-admin', 'admin', 'user'],
+      rolesIfAdmin: ['admin', 'user'],
       selectedPermissions: [],
       userPermissionList: [],
-      permissions: [
-        'create-icu-bed',
-        'edit-icu-bed',
-        'delete-icu-bed',
-        'create-icu-bed-entry',
-        'edit-icu-bed-entry',
-        'delete-icu-bed-entry',
-        'create-non-icu-bed',
-        'edit-non-icu-bed',
-        'delete-non-icu-bed',
-        'create-non-icu-bed-entry',
-        'edit-non-icu-bed-entry',
-        'delete-non-icu-bed-entry',
-        'create-suspect',
-        'edit-suspect',
-        'delete-suspect',
-        'create-probable',
-        'edit-probable',
-        'delete-probable',
-        'create-confirmed',
-        'edit-confirmed',
-        'delete-confirmed',
-        'create-waitlisted',
-        'edit-waitlisted',
-        'delete-waitlisted',
-        'create-ndd',
-        'edit-ndd',
-        'delete-ndd',
-        'create-hcw-confirmed',
-        'edit-hcw-confirmed',
-        'delete-hcw-confirmed',
-        'create-hcw-quarantined',
-        'edit-hcw-quarantined',
-        'delete-hcw-quarantined',
-        'create-hcw-per-division',
-        'edit-hcw-per-division',
-        'delete-hcw-per-division',
-        'create-c19-equipment',
-        'edit-c19-equipment',
-        'delete-c19-equipment',
-        'create-c19-equipment-entry',
-        'edit-c19-equipment-entry',
-        'delete-c19-equipment-entry',
-        'create-c19-mv-area',
-        'edit-c19-mv-area',
-        'delete-c19-mv-area',
-        'create-c19-mv-area-entry',
-        'edit-c19-mv-area-entry',
-        'delete-c19-mv-area-entry',
-        'create-non-c19-mv-area',
-        'edit-non-c19-mv-area',
-        'delete-non-c19-mv-area',
-        'create-non-c19-mv-area-entry',
-        'edit-non-c19-mv-area-entry',
-        'delete-non-c19-mv-area-entry',
-        'create-medical-oxygen',
-        'edit-medical-oxygen',
-        'delete-medical-oxygen',
-        'create-compressed-air',
-        'edit-compressed-air',
-        'delete-compressed-air',
-        'create-flask-type',
-        'edit-flask-type',
-        'delete-flask-type',
-        'create-c19-supplies',
-        'edit-c19-supplies',
-        'delete-c19-supplies',
-      ],
+      permissions: ['create-users', 'edit-users', 'delete-users'],
       snack: '',
       snackColor: '',
       snackText: '',
@@ -803,6 +755,6 @@ export default {
 }
 
 .rounded-data__table {
-  border-radius: 24px;
+  border-radius: 8px;
 }
 </style>
