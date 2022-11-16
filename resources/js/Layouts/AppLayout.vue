@@ -191,7 +191,7 @@
         black: $vuetify.theme.dark,
       }"
     >
-      <v-container>
+      <v-container fluid :style="$vuetify.breakpoint.xs ? 'width: 100%': 'width: 80%'">
         <slot></slot>
       </v-container>
     </v-main>
