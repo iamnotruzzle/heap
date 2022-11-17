@@ -184,14 +184,17 @@
       </v-navigation-drawer>
     </v-card>
 
-    <!-- <v-main class="color_main_background"> -->
+    <!-- TODO change background color on light theme -->
     <v-main
       :class="{
         color_main_background: !$vuetify.theme.dark,
-        black: $vuetify.theme.dark,
+        bgcolor: $vuetify.theme.dark,
       }"
     >
-      <v-container fluid :style="$vuetify.breakpoint.xs ? 'width: 100%': 'width: 80%'">
+      <v-container
+        fluid
+        :style="$vuetify.breakpoint.xs ? 'width: 100%' : 'width: 80%'"
+      >
         <slot></slot>
       </v-container>
     </v-main>
@@ -301,5 +304,10 @@ export default {
 
 .clickable {
   -webkit-app-region: no-drag;
+}
+
+.bgcolor {
+  /* background-color: #0c0c0cb6; */
+  background-color: #00000048;
 }
 </style>
