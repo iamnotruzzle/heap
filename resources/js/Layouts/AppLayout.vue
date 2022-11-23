@@ -41,7 +41,7 @@
           <v-icon
             class="mr-1"
             color="blue-grey darken-4"
-            >mdi-lightbulb</v-icon
+            >mdi-weather-sunny</v-icon
           >
         </v-btn>
         <v-btn
@@ -49,7 +49,7 @@
           v-if="$vuetify.theme.dark"
           @click="toggleTheme()"
         >
-          <v-icon color="yellow darken-3">mdi-lightbulb-outline</v-icon>
+          <v-icon color="yellow darken-3">mdi-weather-night</v-icon>
         </v-btn>
 
         <!-- logout button -->
