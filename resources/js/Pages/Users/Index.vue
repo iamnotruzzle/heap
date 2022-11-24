@@ -987,17 +987,18 @@ export default {
     options: function (val) {
       this.params.page = val.page;
       this.params.page_size = val.itemsPerPage;
-      if (val.sortBy.length != 0) {
-        this.params.sort_by = val.sortBy[0];
-        this.params.order_by = val.sortDesc[0] ? 'desc' : 'asc';
-      } else {
-        this.params.sort_by = null;
-        this.params.order_by = null;
-      }
+      // if (val.sortBy.length != 0) {
+      this.params.sort_by = val.sortBy[0];
+      this.params.order_by = val.sortDesc[0] ? 'asc' : 'desc';
+      // } else {
+      //   this.params.sort_by = null;
+      //   this.params.order_by = null;
+      // }
       this.updateData();
     },
     search: function (val) {
       this.params.search = val;
+      this.params.page = 1;
       this.updateData();
     },
   },

@@ -26,9 +26,9 @@ class UserController extends Controller
         $users = User::with(['roles', 'permissions'])->when($request->sort_by, function ($query, $value) {
             $query->orderBy($value, request('order_by', 'asc'));
         })
-            ->when(!isset($request->sort_by), function ($query) {
-                $query->latest();
-            })
+            // ->when(!isset($request->sort_by), function ($query) {
+            //     $query->latest();
+            // })
             ->when($request->search, function ($query, $value) {
                 $query->where('firstName', 'LIKE', '%' . $value . '%')
                     ->orWhere('middleName', 'LIKE', '%' . $value . '%')
