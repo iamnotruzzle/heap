@@ -28,7 +28,7 @@ new Vue({
           color_warning: '#FEC90F',
           color_success: '#05B187',
           color_disabled: '#85BFF1',
-          color_main_background: '#F6F6F6',
+          color_light_app_container_bg: '#F6F6F6',
         },
         dark: {
           color_primary: '#1E88E5',
@@ -38,7 +38,8 @@ new Vue({
           color_warning: '#FEC90F',
           color_success: '#05B187',
           color_disabled: '#85BFF1',
-          color_main_background: '#F6F6F6',
+          color_dark_app_container_bg: '#121212',
+          color_main_dark_background: '#1E1E1E',
         },
       },
     },

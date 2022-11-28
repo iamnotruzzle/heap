@@ -4,6 +4,9 @@
 
     <v-card class="mx-auto overflow-hidden">
       <v-app-bar
+        :class="{
+          color_main_dark_background: $vuetify.theme.dark,
+        }"
         elevate-on-scroll
         app
       >
@@ -69,6 +72,9 @@
       <!-- drawer -->
 
       <v-navigation-drawer
+        :class="{
+          color_main_dark_background: $vuetify.theme.dark,
+        }"
         v-model="drawer"
         :mini-variant.sync="mini"
         :expand-on-hover="mini"
@@ -187,13 +193,17 @@
     <!-- TODO change background color on light theme -->
     <v-main
       :class="{
-        color_main_background: !$vuetify.theme.dark,
-        bgcolor: $vuetify.theme.dark,
+        color_light_app_container_bg: !$vuetify.theme.dark,
+        color_dark_app_container_bg: $vuetify.theme.dark,
       }"
     >
       <v-container
         fluid
-        :style="$vuetify.breakpoint.xs ? 'width: 100%' : 'width: 80%'"
+        :style="
+          $vuetify.breakpoint.xs || $vuetify.breakpoint.sm || $vuetify.breakpoint.md || $vuetify.breakpoint.lg
+            ? 'width: 100%'
+            : 'width: 80%'
+        "
       >
         <slot></slot>
       </v-container>
@@ -294,7 +304,7 @@ export default {
 
 <style scoped>
 .ava-border {
-  border: 2px solid #1e88e5;
+  border: 2px solid #0cb9c5;
 }
 
 .active {
@@ -304,10 +314,5 @@ export default {
 
 .clickable {
   -webkit-app-region: no-drag;
-}
-
-.bgcolor {
-  /* background-color: #0c0c0cb6; */
-  background-color: #00000048;
 }
 </style>
