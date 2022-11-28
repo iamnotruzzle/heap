@@ -3,269 +3,6 @@
     <Head title="Users" />
 
     <v-container class="my-5">
-      <!-- create user modal -->
-      <!-- <v-row>
-        <v-dialog
-          v-model="dialog"
-          @keydown.esc="cancel"
-          @click:outside="cancel"
-          width="500"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-col class="text-right">
-              <v-btn
-                color="color_primary white--text mb-2"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon left>mdi-account-plus</v-icon>
-                <span>Add user</span>
-              </v-btn>
-            </v-col>
-          </template>
-
-          <v-card>
-            <v-card-title class="text-h6-edited color_secondary"> {{ formTitle }} </v-card-title>
-
-            <v-card-text class="mt-8">
-              <v-form
-                ref="form"
-                v-model="valid"
-              >
-                <v-row>
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                  >
-                    <v-file-input
-                      v-model="form.image"
-                      @input="form.image = $event.target.files[0]"
-                      :error-messages="form.errors.image"
-                      outlined
-                      chips
-                      show-size
-                      small-chips
-                      label="Image"
-                      prepend-icon=""
-                      truncate-length="15"
-                    ></v-file-input>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    md="6"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.firstName"
-                      :error-messages="form.errors.firstName"
-                      outlined
-                      autofocus
-                      clearable
-                      label="Given name"
-                      required
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    md="6"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.middleName"
-                      :error-messages="form.errors.middleName"
-                      outlined
-                      clearable
-                      label="Middle name"
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    md="6"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.lastName"
-                      :error-messages="form.errors.lastName"
-                      outlined
-                      clearable
-                      label="Last name"
-                      required
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    md="6"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.suffix"
-                      :error-messages="form.errors.suffix"
-                      outlined
-                      clearable
-                      label="Suffix"
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                    v-if="$page.props.auth.user.roles[0] === 'super-admin'"
-                  >
-                    <v-select
-                      v-model="form.role"
-                      :error-messages="form.errors.role"
-                      :items="roles"
-                      label="Role"
-                      outlined
-                    >
-                    </v-select>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                    v-else
-                  >
-                    <v-select
-                      v-model="form.role"
-                      :error-messages="form.errors.role"
-                      :items="rolesIfAdmin"
-                      label="Role"
-                      outlined
-                    >
-                    </v-select>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                    v-if="form.role === 'user'"
-                  >
-                    <v-select
-                      v-model="form.permissions"
-                      :items="permissions"
-                      :menu-props="{ maxHeight: '300' }"
-                      label="Authorization"
-                      outlined
-                      multiple
-                    >
-                      <template v-slot:prepend-item>
-                        <v-list-item
-                          ripple
-                          @mousedown.prevent
-                          @click="toggle"
-                        >
-                          <v-list-item-action>
-                            <v-icon :color="selectedPermissions.length > 0 ? 'indigo darken-4' : ''">
-                              {{ icon }}
-                            </v-icon>
-                          </v-list-item-action>
-                          <v-list-item-content>
-                            <v-list-item-title> Select All </v-list-item-title>
-                          </v-list-item-content>
-                        </v-list-item>
-                        <v-divider class="mt-2"></v-divider>
-                      </template>
-
-                      <template v-slot:selection="{ item, index }">
-                        <v-chip v-if="index === 0">
-                          <span>{{ item }}</span>
-                        </v-chip>
-                        <span
-                          v-if="index === 1"
-                          class="grey--text text-caption"
-                        >
-                          (+{{ form.permissions.length - 1 }} others)
-                        </span>
-                      </template>
-                    </v-select>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.email"
-                      :error-messages="form.errors.email"
-                      outlined
-                      clearable
-                      label="E-mail"
-                      required
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.username"
-                      :error-messages="form.errors.username"
-                      outlined
-                      clearable
-                      label="Username"
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    class="py-0"
-                  >
-                    <v-text-field
-                      v-model="form.password"
-                      :error-messages="form.errors.password"
-                      outlined
-                      clearable
-                      label="Password"
-                      type="password"
-                      required
-                      @keyup.enter="submit"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-form>
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <div>
-                <v-btn
-                  color="color_error"
-                  text
-                  :disabled="form.processing"
-                  @click="cancel"
-                >
-                  Cancel
-                </v-btn>
-
-                <v-btn
-                  color="color_secondary_accent"
-                  text
-                  :loading="form.processing"
-                  @click="submit"
-                  @keyup.enter="submit"
-                >
-                  Save
-                </v-btn>
-              </div>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row> -->
-      <!-- end create user modal -->
-
       <!-- data table  -->
       <v-card
         text
@@ -311,7 +48,18 @@
                 </template>
 
                 <v-card>
-                  <v-card-title class="text-h6-edited color_secondary"> {{ formTitle }} </v-card-title>
+                  <v-card-title
+                    class="text-h6-edited color_primary white--text"
+                    v-if="formTitle == 'Create User'"
+                  >
+                    {{ formTitle }}
+                  </v-card-title>
+                  <v-card-title
+                    class="text-h6-edited color_secondary white--text d-flex justify-space-between"
+                    v-if="formTitle == 'Edit User'"
+                  >
+                    {{ formTitle }}
+                  </v-card-title>
 
                   <v-card-text class="mt-8">
                     <v-form
@@ -537,13 +285,25 @@
                       </v-btn>
 
                       <v-btn
-                        color="color_secondary_accent"
+                        v-if="isUpdate == false"
+                        color="color_primary"
                         text
                         :loading="form.processing"
                         @click="submit"
                         @keyup.enter="submit"
                       >
                         Save
+                      </v-btn>
+
+                      <v-btn
+                        v-else
+                        color="color_secondary_accent"
+                        text
+                        :loading="form.processing"
+                        @click="submit"
+                        @keyup.enter="submit"
+                      >
+                        Update
                       </v-btn>
                     </div>
                   </v-card-actions>
@@ -627,9 +387,13 @@
           <template v-slot:item.actions="{ item }">
             <!-- {{ item.roles[0].name }} -->
             <!-- $page.props.auth.user.roles[0] -->
-            <div v-if="$page.props.auth.user.roles[0] == 'admin' && item.roles[0].name != 'super-admin'">
+            <div
+              class="d-flex flex-no-wrap"
+              v-if="$page.props.auth.user.roles[0] == 'admin' && item.roles[0].name != 'super-admin'"
+            >
               <v-icon
-                small
+                size="20"
+                class="mr-1"
                 color="color_secondary"
                 @click="editItem(item)"
               >
@@ -637,17 +401,21 @@
               </v-icon>
 
               <v-icon
-                small
+                size="20"
                 color="color_error"
-                @click="deleteItem(item)"
+                @click.stop="deleteItem(item)"
               >
                 mdi-delete
               </v-icon>
             </div>
 
-            <div v-if="$page.props.auth.user.roles[0] == 'super-admin'">
+            <div
+              class="d-flex flex-no-wrap"
+              v-if="$page.props.auth.user.roles[0] == 'super-admin'"
+            >
               <v-icon
-                small
+                size="20"
+                class="mr-1"
                 color="color_secondary"
                 @click="editItem(item)"
               >
@@ -655,9 +423,9 @@
               </v-icon>
 
               <v-icon
-                small
+                size="20"
                 color="color_error"
-                @click="deleteItem(item)"
+                @click.stop="deleteItem(item)"
               >
                 mdi-delete
               </v-icon>
@@ -678,7 +446,7 @@
         max-width="500"
       >
         <v-card>
-          <v-card-title class="text-h5-edited"> Delete User </v-card-title>
+          <v-card-title class="text-h5-edited"> Delete user </v-card-title>
           <v-card-text class="text-center text-h6-edited">
             Are you sure you want to delete this user account?
           </v-card-text>
@@ -927,12 +695,12 @@ export default {
     },
     createdMsg() {
       this.snack = true;
-      this.snackColor = 'color_secondary';
+      this.snackColor = 'color_primary';
       this.snackText = 'Account saved.';
     },
     updatedMsg() {
       this.snack = true;
-      this.snackColor = 'color_primary';
+      this.snackColor = 'color_secondary';
       this.snackText = 'Account updated.';
     },
     deletedMsg() {
@@ -1006,19 +774,15 @@ export default {
 </script>
 
 <style scoped>
-.vrow {
-  border-style: solid;
-  border-color: red;
-}
-.vcol {
-  border-style: solid;
-  border-color: purple;
-}
 .v-select .v-select__selections > input {
   display: none !important;
 }
 
 .rounded-data__table {
   border-radius: 8px;
+}
+
+.cursor_pointer {
+  cursor: pointer;
 }
 </style>

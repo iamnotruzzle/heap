@@ -237,7 +237,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$page.props.auth.user.roles);
+    // console.log(this.$page.props.auth.user.roles);
     const theme = localStorage.getItem('darkTheme');
     // Check if the user has set the theme state before
     if (theme) {
