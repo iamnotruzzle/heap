@@ -55,6 +55,42 @@
           <v-icon color="yellow darken-3">mdi-weather-night</v-icon>
         </v-btn>
 
+        <!-- notification -->
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn
+              icon
+              v-on="on"
+            >
+              <v-badge
+                color="color_error"
+                overlap
+              >
+                <template slot="badge">5</template>
+                <bell-icon
+                  icon
+                  as="v-btn"
+                ></bell-icon>
+              </v-badge>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-list dense>
+              <v-subheader>Notifications</v-subheader>
+              <v-divider></v-divider>
+
+              <v-list-item
+                v-for="notification in notifications"
+                :key="notification.id"
+              >
+                <v-list-item-content>
+                  <v-list-item-title> {{ notification.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+
         <!-- logout button -->
         <form
           method="POST"
@@ -213,7 +249,6 @@
 
 <script>
 import Navbar from '@/Components/Navbar';
-
 import { Link } from '@inertiajs/inertia-vue';
 import {
   UserIcon,
@@ -223,6 +258,7 @@ import {
   BarChart2Icon,
   CircleIcon,
   FileTextIcon,
+  BellIcon,
 } from 'vue-feather-icons';
 
 export default {
@@ -236,10 +272,17 @@ export default {
     BarChart2Icon,
     CircleIcon,
     FileTextIcon,
+    BellIcon,
   },
 
   data() {
     return {
+      notifications: [
+        { id: 1, title: 'Click Me' },
+        { id: 2, title: 'Click Me' },
+        { id: 3, title: 'Click Me' },
+        { id: 4, title: 'Click Me 2' },
+      ],
       isGroupOpen: false,
       mini: false,
       drawer: null,
