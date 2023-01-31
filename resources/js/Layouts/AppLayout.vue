@@ -1,13 +1,11 @@
 <template>
   <v-app>
-    <!-- <Navbar /> -->
-
+    <!-- app bar and sidebar -->
     <v-card class="mx-auto overflow-hidden">
       <v-app-bar
         :class="{
           color_main_dark_background: $vuetify.theme.dark,
         }"
-        elevate-on-scroll
         app
       >
         <!-- drawer toggler -->
@@ -18,7 +16,6 @@
           class="clickable"
         >
           <!-- use default slot if you want to change icon -->
-          <!-- <v-icon>mdi-menu-open</v-icon> -->
         </v-app-bar-nav-icon>
         <!-- use drawer as toggler when screen is smAndDown/tablet/mobile -->
         <v-app-bar-nav-icon
@@ -55,7 +52,6 @@
           <v-icon color="yellow darken-3">mdi-weather-night</v-icon>
         </v-btn>
 
-        <!-- notification -->
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn
@@ -63,7 +59,7 @@
               v-on="on"
             >
               <v-badge
-                color="color_error"
+                color="color_primary"
                 overlap
               >
                 <template slot="badge">5</template>
@@ -106,11 +102,8 @@
       </v-app-bar>
 
       <!-- drawer -->
-
       <v-navigation-drawer
-        :class="{
-          color_main_dark_background: $vuetify.theme.dark,
-        }"
+        class="sidebar"
         v-model="drawer"
         :mini-variant.sync="mini"
         :expand-on-hover="mini"
@@ -138,45 +131,67 @@
 
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="text-h6-edited"> {{ user.firstName }} </v-list-item-title>
-              <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
+              <v-list-item-title class="text-h6-edited white--text">
+                {{ user.firstName }} {{ user.middleName }} {{ user.lastName }}
+              </v-list-item-title>
+              <v-list-item-subtitle class="white--text">{{ user.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
 
-        <v-divider></v-divider>
+        <v-divider class="white"></v-divider>
 
         <v-list
           dense
           nav
         >
+          <!-- v-if="can(['create-users, edit-users, delete-users'])" -->
           <!-- List -->
+          <!-- <v-list-group
+            :value="false"
+            active-class="color_primary--text"
+            no-action
+          > -->
           <v-list-group
             :value="false"
-            active-class="color_secondary"
-            color="white"
+            active-class="color_primary--text"
             no-action
-            v-if="can(['create-users, edit-users, delete-users'])"
           >
+            <template v-slot:appendIcon>
+              <v-icon
+                size="15"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : '']"
+              >
+                mdi-chevron-down
+              </v-icon>
+            </template>
+
             <template v-slot:activator>
-              <v-list-item-icon class="mr-3">
-                <file-text-icon
+              <v-list-item-icon
+                class="mr-3"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : '']"
+              >
+                <package-icon
                   :class="[isGroupOpen === true ? 'active' : 'not-active']"
                   size="24"
                   stroke-width="1"
-                ></file-text-icon>
+                ></package-icon>
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title class="text-body-1-edited font-weight-regular">List</v-list-item-title>
+                <v-list-item-title
+                  class="text-body-1-edited font-weight-regular"
+                  :class="[$page.component === 'Users/Index' ? 'color_primary--text' : '']"
+                  >List</v-list-item-title
+                >
               </v-list-item-content>
             </template>
 
+            <!-- :class="{ 'color_primary--text': $page.component === 'Users/Index', }" -->
             <Link
               href="users"
-              :class="{
-                color_secondary_accent: $page.component === 'Users/Index',
-              }"
+              :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
+              label
               as="v-list-item"
               class="pa-0 ma-0"
             >
@@ -188,9 +203,12 @@
                 ></circle-icon>
               </v-list-item-icon>
 
-              <v-list-item-content class="ma-0">
+              <v-list-item-content
+                class="ma-0"
+                color="color_primary"
+              >
                 <v-list-item-title
-                  :class="[$page.component === 'Users/Index' ? 'active' : 'not-active']"
+                  :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
                   class="text-body-1-edited font-weight-regular"
                 >
                   Users
@@ -201,32 +219,62 @@
 
           <Link
             href="users"
-            :class="{ color_secondary: $page.component === 'Users/Index' }"
+            :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
             as="v-list-item"
-            v-if="can(['create-users, edit-users, delete-users'])"
             @click="isGroupOpen = false"
           >
             <v-list-item-icon class="mr-3">
-              <user-icon
-                :class="[$page.component === 'Users/Index' ? 'active' : 'not-active']"
+              <users-icon
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
                 size="24"
                 stroke-width="1"
-              ></user-icon>
+              ></users-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Users/Index' ? 'active' : 'not-active']"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
                 class="text-body-1-edited font-weight-regular"
                 >Users</v-list-item-title
               >
             </v-list-item-content>
           </Link>
+
+          <Link
+            href="users"
+            :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
+            as="v-list-item"
+            @click="isGroupOpen = false"
+          >
+            <v-list-item-icon class="mr-3">
+              <users-icon
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
+                size="24"
+                stroke-width="1"
+              ></users-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
+                class="text-body-1-edited font-weight-regular"
+                >Users</v-list-item-title
+              >
+            </v-list-item-content>
+
+            <v-chip
+              class="pa-2 white--text pulse"
+              small
+              input-value="true"
+            >
+              4
+            </v-chip>
+          </Link>
         </v-list>
       </v-navigation-drawer>
     </v-card>
+    <!-- end app bar and sidebar -->
 
-    <!-- TODO change background color on light theme -->
     <v-main
       :class="{
         color_light_app_container_bg: !$vuetify.theme.dark,
@@ -235,11 +283,7 @@
     >
       <v-container
         fluid
-        :style="
-          $vuetify.breakpoint.xs || $vuetify.breakpoint.sm || $vuetify.breakpoint.md || $vuetify.breakpoint.lg
-            ? 'width: 100%'
-            : 'width: 80%'
-        "
+        :style="($vuetify.breakpoint.xs = 'width: 100%')"
       >
         <slot></slot>
       </v-container>
@@ -251,28 +295,28 @@
 import Navbar from '@/Components/Navbar';
 import { Link } from '@inertiajs/inertia-vue';
 import {
-  UserIcon,
-  PieChartIcon,
-  PackageIcon,
-  ActivityIcon,
-  BarChart2Icon,
   CircleIcon,
-  FileTextIcon,
+  UserIcon,
+  PackageIcon,
+  EditIcon,
   BellIcon,
+  CheckSquareIcon,
+  UsersIcon,
+  FileTextIcon,
 } from 'vue-feather-icons';
 
 export default {
   components: {
     Navbar,
     Link,
-    UserIcon,
-    PieChartIcon,
-    PackageIcon,
-    ActivityIcon,
-    BarChart2Icon,
     CircleIcon,
-    FileTextIcon,
+    UserIcon,
+    PackageIcon,
+    EditIcon,
     BellIcon,
+    CheckSquareIcon,
+    UsersIcon,
+    FileTextIcon,
   },
 
   data() {
@@ -290,7 +334,6 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.$page.props.auth.user.roles);
     const theme = localStorage.getItem('darkTheme');
     // Check if the user has set the theme state before
     if (theme) {
@@ -312,30 +355,6 @@ export default {
     logout() {
       this.$inertia.post(route('logout'));
     },
-    can([permission]) {
-      //   if permission is only 1 data and not an array use this
-      //   let data = this.$page.props.auth.user.permissions.filter((ability) => ability === permission);
-      //   in the conditional, change found == true to data.length > 0
-      //   Check if any value in the permission array is equal to this.$page.props.auth.user.permissions array values
-      let found = this.$page.props.auth.user.permissions.some((r) => permission.indexOf(r) >= 0);
-      //   console.log(found);
-      if (
-        this.$page.props.auth.user.roles[0] === 'super-admin' ||
-        this.$page.props.auth.user.roles[0] === 'admin' ||
-        found == true
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    saOnly() {
-      if (this.$page.props.auth.user.roles[0] === 'super-admin') {
-        return true;
-      } else {
-        return false;
-      }
-    },
   },
   computed: {
     user() {
@@ -346,16 +365,58 @@ export default {
 </script>
 
 <style scoped>
+/* pulse animation */
+.pulse {
+  border-radius: 50%;
+  background: #009f5b;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(0, 159, 91, 0.5);
+  animation: pulse 1s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 159, 91, 0.5);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 159, 91, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 159, 91, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(0, 159, 91, 0.5);
+    box-shadow: 0 0 0 0 rgba(0, 159, 91, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(0, 159, 91, 0);
+    box-shadow: 0 0 0 10px rgba(0, 159, 91, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(0, 159, 91, 0);
+    box-shadow: 0 0 0 0 rgba(0, 159, 91, 0);
+  }
+}
+/* end pulse animation */
+
 .ava-border {
-  border: 2px solid #0cb9c5;
+  border: 2px solid #01c68d;
 }
 
 .active {
-  color: #fff;
   stroke-width: 2;
 }
 
 .clickable {
   -webkit-app-region: no-drag;
+}
+
+.cursor_pointer {
+  cursor: pointer;
 }
 </style>

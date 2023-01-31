@@ -3,13 +3,304 @@
     <Head title="Users" />
 
     <v-container class="my-5">
-      <!-- data table  -->
+      <!-- add user dialog -->
+
+      <h2 class="text-overline-edited">USERS</h2>
+
+      <v-row>
+        <v-col
+          cols="12"
+          class="text-right mb-2"
+        >
+          <v-dialog
+            v-model="dialog"
+            @keydown.esc="cancel"
+            @click:outside="cancel"
+            width="500"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="color_primary white--text"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon left>mdi-account-plus</v-icon>
+                <span>Add user</span>
+              </v-btn>
+            </template>
+
+            <v-card>
+              <v-card-title
+                class="text-h6-edited color_primary white--text"
+                v-if="formTitle == 'Create User'"
+              >
+                {{ formTitle }}
+              </v-card-title>
+              <v-card-title
+                class="text-h6-edited color_secondary white--text d-flex justify-space-between"
+                v-if="formTitle == 'Edit User'"
+              >
+                {{ formTitle }}
+              </v-card-title>
+
+              <v-card-text class="mt-8">
+                <v-form
+                  ref="form"
+                  v-model="valid"
+                >
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                    >
+                      <v-file-input
+                        v-model="form.image"
+                        @input="form.image = $event.target.files[0]"
+                        :error-messages="form.errors.image"
+                        color="color_primary"
+                        chips
+                        show-size
+                        small-chips
+                        label="Image"
+                        prepend-icon=""
+                        truncate-length="15"
+                      ></v-file-input>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      md="6"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.firstName"
+                        :error-messages="form.errors.firstName"
+                        color="color_primary"
+                        autofocus
+                        clearable
+                        label="Given name"
+                        required
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      md="6"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.middleName"
+                        :error-messages="form.errors.middleName"
+                        color="color_primary"
+                        clearable
+                        label="Middle name"
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      md="6"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.lastName"
+                        :error-messages="form.errors.lastName"
+                        color="color_primary"
+                        clearable
+                        label="Last name"
+                        required
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      md="6"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.suffix"
+                        :error-messages="form.errors.suffix"
+                        color="color_primary"
+                        clearable
+                        label="Suffix"
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                      v-if="$page.props.auth.user.roles[0] === 'super-admin'"
+                    >
+                      <v-select
+                        v-model="form.role"
+                        :error-messages="form.errors.role"
+                        color="color_primary"
+                        :items="roles"
+                        label="Role"
+                      >
+                      </v-select>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                      v-else
+                    >
+                      <v-select
+                        v-model="form.role"
+                        :error-messages="form.errors.role"
+                        color="color_primary"
+                        :items="rolesIfAdmin"
+                        label="Role"
+                      >
+                      </v-select>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                      v-if="form.role === 'user'"
+                    >
+                      <v-select
+                        v-model="form.permissions"
+                        :items="permissions"
+                        :menu-props="{ maxHeight: '300' }"
+                        label="Authorization"
+                        multiple
+                        color="color_primary"
+                      >
+                        <template v-slot:prepend-item>
+                          <v-list-item
+                            ripple
+                            @mousedown.prevent
+                            @click="toggle"
+                          >
+                            <v-list-item-action>
+                              <v-icon :color="selectedPermissions.length > 0 ? 'indigo darken-4' : ''">
+                                {{ icon }}
+                              </v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                              <v-list-item-title> Select All </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                          <v-divider class="mt-2"></v-divider>
+                        </template>
+
+                        <template v-slot:selection="{ item, index }">
+                          <v-chip v-if="index === 0">
+                            <span>{{ item }}</span>
+                          </v-chip>
+                          <span
+                            v-if="index === 1"
+                            class="grey--text text-caption"
+                          >
+                            (+{{ form.permissions.length - 1 }} others)
+                          </span>
+                        </template>
+                      </v-select>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.email"
+                        :error-messages="form.errors.email"
+                        color="color_primary"
+                        clearable
+                        label="E-mail"
+                        required
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.username"
+                        :error-messages="form.errors.username"
+                        color="color_primary"
+                        clearable
+                        label="Username"
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                    >
+                      <v-text-field
+                        v-model="form.password"
+                        :error-messages="form.errors.password"
+                        color="color_primary"
+                        clearable
+                        label="Password"
+                        type="password"
+                        required
+                        @keyup.enter="submit"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
+              </v-card-text>
+
+              <v-divider></v-divider>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <div>
+                  <v-btn
+                    color="color_error"
+                    text
+                    :disabled="form.processing"
+                    @click="cancel"
+                  >
+                    Cancel
+                  </v-btn>
+
+                  <v-btn
+                    v-if="isUpdate == false"
+                    color="color_primary white--text"
+                    :loading="form.processing"
+                    @click="submit"
+                    @keyup.enter="submit"
+                  >
+                    Save
+                  </v-btn>
+
+                  <v-btn
+                    v-else
+                    color="color_secondary white--text"
+                    :loading="form.processing"
+                    @click="submit"
+                    @keyup.enter="submit"
+                  >
+                    Update
+                  </v-btn>
+                </div>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-col>
+      </v-row>
+
       <v-card
         text
-        class="rounded-data__table"
+        :class="{
+          color_main_dark_background: $vuetify.theme.dark,
+        }"
+        elevation="20"
       >
         <v-card-text>
-          <v-row>
+          <v-row class="d-flex justify-end">
             <v-col
               cols="12"
               md="6"
@@ -18,302 +309,14 @@
               <v-text-field
                 v-model="search"
                 append-icon="mdi-magnify"
-                outlined
+                color="color_primary"
                 label="Search Users"
                 dense
               ></v-text-field>
             </v-col>
-
-            <v-col
-              cols="12"
-              md="6"
-              lg="8"
-              class="text-right"
-            >
-              <v-dialog
-                v-model="dialog"
-                @keydown.esc="cancel"
-                @click:outside="cancel"
-                width="500"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="color_primary white--text"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <v-icon left>mdi-account-plus</v-icon>
-                    <span>Add user</span>
-                  </v-btn>
-                </template>
-
-                <v-card>
-                  <v-card-title
-                    class="text-h6-edited color_primary white--text"
-                    v-if="formTitle == 'Create User'"
-                  >
-                    {{ formTitle }}
-                  </v-card-title>
-                  <v-card-title
-                    class="text-h6-edited color_secondary white--text d-flex justify-space-between"
-                    v-if="formTitle == 'Edit User'"
-                  >
-                    {{ formTitle }}
-                  </v-card-title>
-
-                  <v-card-text class="mt-8">
-                    <v-form
-                      ref="form"
-                      v-model="valid"
-                    >
-                      <v-row>
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                        >
-                          <v-file-input
-                            v-model="form.image"
-                            @input="form.image = $event.target.files[0]"
-                            :error-messages="form.errors.image"
-                            outlined
-                            chips
-                            show-size
-                            small-chips
-                            label="Image"
-                            prepend-icon=""
-                            truncate-length="15"
-                          ></v-file-input>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          md="6"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.firstName"
-                            :error-messages="form.errors.firstName"
-                            outlined
-                            autofocus
-                            clearable
-                            label="Given name"
-                            required
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          md="6"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.middleName"
-                            :error-messages="form.errors.middleName"
-                            outlined
-                            clearable
-                            label="Middle name"
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          md="6"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.lastName"
-                            :error-messages="form.errors.lastName"
-                            outlined
-                            clearable
-                            label="Last name"
-                            required
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          md="6"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.suffix"
-                            :error-messages="form.errors.suffix"
-                            outlined
-                            clearable
-                            label="Suffix"
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                          v-if="$page.props.auth.user.roles[0] === 'super-admin'"
-                        >
-                          <v-select
-                            v-model="form.role"
-                            :error-messages="form.errors.role"
-                            :items="roles"
-                            label="Role"
-                            outlined
-                          >
-                          </v-select>
-                        </v-col>
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                          v-else
-                        >
-                          <v-select
-                            v-model="form.role"
-                            :error-messages="form.errors.role"
-                            :items="rolesIfAdmin"
-                            label="Role"
-                            outlined
-                          >
-                          </v-select>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                          v-if="form.role === 'user'"
-                        >
-                          <v-select
-                            v-model="form.permissions"
-                            :items="permissions"
-                            :menu-props="{ maxHeight: '300' }"
-                            label="Authorization"
-                            outlined
-                            multiple
-                          >
-                            <template v-slot:prepend-item>
-                              <v-list-item
-                                ripple
-                                @mousedown.prevent
-                                @click="toggle"
-                              >
-                                <v-list-item-action>
-                                  <v-icon :color="selectedPermissions.length > 0 ? 'indigo darken-4' : ''">
-                                    {{ icon }}
-                                  </v-icon>
-                                </v-list-item-action>
-                                <v-list-item-content>
-                                  <v-list-item-title> Select All </v-list-item-title>
-                                </v-list-item-content>
-                              </v-list-item>
-                              <v-divider class="mt-2"></v-divider>
-                            </template>
-
-                            <template v-slot:selection="{ item, index }">
-                              <v-chip v-if="index === 0">
-                                <span>{{ item }}</span>
-                              </v-chip>
-                              <span
-                                v-if="index === 1"
-                                class="grey--text text-caption"
-                              >
-                                (+{{ form.permissions.length - 1 }} others)
-                              </span>
-                            </template>
-                          </v-select>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.email"
-                            :error-messages="form.errors.email"
-                            outlined
-                            clearable
-                            label="E-mail"
-                            required
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.username"
-                            :error-messages="form.errors.username"
-                            outlined
-                            clearable
-                            label="Username"
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                        >
-                          <v-text-field
-                            v-model="form.password"
-                            :error-messages="form.errors.password"
-                            outlined
-                            clearable
-                            label="Password"
-                            type="password"
-                            required
-                            @keyup.enter="submit"
-                          ></v-text-field>
-                        </v-col>
-                      </v-row>
-                    </v-form>
-                  </v-card-text>
-
-                  <v-divider></v-divider>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <div>
-                      <v-btn
-                        color="color_error"
-                        text
-                        :disabled="form.processing"
-                        @click="cancel"
-                      >
-                        Cancel
-                      </v-btn>
-
-                      <v-btn
-                        v-if="isUpdate == false"
-                        color="color_primary"
-                        text
-                        :loading="form.processing"
-                        @click="submit"
-                        @keyup.enter="submit"
-                      >
-                        Save
-                      </v-btn>
-
-                      <v-btn
-                        v-else
-                        color="color_secondary_accent"
-                        text
-                        :loading="form.processing"
-                        @click="submit"
-                        @keyup.enter="submit"
-                      >
-                        Update
-                      </v-btn>
-                    </div>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </v-col>
           </v-row>
         </v-card-text>
 
-        <!-- TODO fix column size -->
         <v-data-table
           fixed-header
           dense
@@ -323,19 +326,24 @@
           :items-per-page="15"
           :options.sync="options"
           :server-items-length="users.total"
-          class="elevation-1"
+          class="elevation-1 row_pointer"
+          :class="{
+            color_main_dark_background: $vuetify.theme.dark,
+          }"
         >
           <!-- avatar -->
           <template #item.image="{ item }">
             <v-avatar
               v-if="item.image != null"
               class="my-2"
+              size="34"
             >
               <img :src="`/storage/${item.image}`" />
             </v-avatar>
             <v-avatar
               v-else
               class="my-2"
+              size="34"
             >
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
             </v-avatar>
@@ -542,42 +550,49 @@ export default {
           value: 'image',
           sortable: false,
           filterable: false,
+          class: 'color_main_dark_background',
         },
         {
           text: 'NAME',
           align: 'start',
           value: 'fullName',
           sortable: false,
+          class: 'color_main_dark_background',
         },
         {
           text: 'ROLE',
           align: 'start',
           value: 'role',
           sortable: false,
+          class: 'color_main_dark_background',
         },
         {
           text: 'AUTHORIZATION',
           align: 'start',
           value: 'permissions',
           sortable: false,
+          class: 'color_main_dark_background',
         },
         {
           text: 'USERNAME',
           align: 'start',
           value: 'username',
+          class: 'color_main_dark_background',
         },
         {
           text: 'EMAIL',
           align: 'start',
           value: 'email',
+          class: 'color_main_dark_background',
         },
         {
           text: 'CREATED AT',
           align: 'start',
           value: 'created_at',
           sortable: false,
+          class: 'color_main_dark_background',
         },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
       form: this.$inertia.form({
         firstName: null,
@@ -778,11 +793,7 @@ export default {
   display: none !important;
 }
 
-.rounded-data__table {
-  border-radius: 8px;
-}
-
-.cursor_pointer {
+.row_pointer {
   cursor: pointer;
 }
 </style>

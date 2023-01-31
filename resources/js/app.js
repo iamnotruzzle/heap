@@ -21,25 +21,25 @@ new Vue({
       dark: false, // here we need to set theme
       themes: {
         light: {
-          color_primary: '#1E88E5',
-          color_secondary: '#0CB9C5',
-          color_secondary_accent: '#09d2e0',
-          color_error: '#FC5978',
-          color_warning: '#FEC90F',
-          color_success: '#05B187',
+          color_primary: '#01C68D',
+          color_secondary: '#fca311',
+          color_warning: '#fca311',
+          color_error: '#B51249',
+          color_success: '#01C68D',
           color_disabled: '#85BFF1',
           color_light_app_container_bg: '#F6F6F6',
+          sidebar: '#04070A',
         },
         dark: {
-          color_primary: '#1E88E5',
-          color_secondary: '#0CB9C5',
-          color_secondary_accent: '#09d2e0',
-          color_error: '#FC5978',
-          color_warning: '#FEC90F',
-          color_success: '#05B187',
+          color_primary: '#01C68D',
+          color_secondary: '#fca311',
+          color_warning: '#fca311',
+          color_error: '#B51249',
+          color_success: '#01C68D',
           color_disabled: '#85BFF1',
-          color_dark_app_container_bg: '#121212',
-          color_main_dark_background: '#1E1E1E',
+          color_dark_app_container_bg: '#0E161F',
+          color_main_dark_background: '#04070A',
+          sidebar: '#04070A',
         },
       },
     },
@@ -54,15 +54,16 @@ new Vue({
 }).$mount(app);
 
 InertiaProgress.init({
+  // The delay after which the progress bar will
   // appear during navigation, in milliseconds.
   delay: 250,
 
   // The color of the progress bar.
-  color: '#0CB9C5',
+  color: '#01C68D',
 
   // Whether to include the default NProgress styles.
-  includeCSS: true,
+  includeCSS: true, //this
 
   // Whether the NProgress spinner will be shown.
-  // showSpinner: true,
+  showSpinner: false,
 });

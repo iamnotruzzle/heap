@@ -11,38 +11,73 @@
         <v-flex
           xs12
           sm8
-          md4
+          md6
         >
-          <v-card class="elevation-12">
-            <v-toolbar
-              dark
-              color="color_primary"
-            >
-              <v-toolbar-title>Login</v-toolbar-title>
-            </v-toolbar>
-
-            <div
-              v-if="hasErrors"
-              class="text-center red--text ma-2"
-            >
-              <div class="mb-2 font-weight-black">Whoops! Something went wrong.</div>
-
-              <p
-                class="ma-0 pa-0"
-                v-for="(error, key) in errors"
-                :key="key"
+          <v-card
+            elevation="20"
+            light
+            tag="section"
+          >
+            <v-card-title>
+              <v-layout
+                align-center
+                justify-space-between
               >
-                {{ error }}
-              </p>
-            </div>
+                <v-row class="d-flex align-center">
+                  <v-col
+                    v-if="$vuetify.breakpoint.smAndDown"
+                    cols="12"
+                    class="d-flex justify-center flex-column align-center"
+                  >
+                    <img
+                      height="90px"
+                      src="/images/mmmhmc_logo.png"
+                      class="mr-4 mb-2"
+                    />
 
+                    <h4 class="text-h4-edited text-center prevent-wrap">template</h4>
+                  </v-col>
+
+                  <v-col
+                    v-if="$vuetify.breakpoint.mdAndUp"
+                    cols="12"
+                    class="d-flex justify-center align-center"
+                  >
+                    <img
+                      height="90px"
+                      src="/images/mmmhmc_logo.png"
+                      class="mr-4 mb-2"
+                    />
+
+                    <h4 class="text-h4-edited text-center prevent-wrap">template</h4>
+                  </v-col>
+                </v-row>
+              </v-layout>
+            </v-card-title>
+            <v-divider></v-divider>
             <v-card-text>
+              <div
+                v-if="hasErrors"
+                class="text-center red--text ma-2"
+              >
+                <div class="mb-2 font-weight-black">Whoops! Something went wrong.</div>
+
+                <p
+                  class="ma-0 pa-0"
+                  v-for="(error, key) in errors"
+                  :key="key"
+                >
+                  {{ error }}
+                </p>
+              </div>
+
+              <p>Sign in with your username and password:</p>
               <v-form @submit.prevent="submit">
                 <v-text-field
                   v-model="form.login"
                   prepend-icon="mdi-account"
                   name="login"
-                  label="Login"
+                  label="Username"
                   type="login"
                 ></v-text-field>
                 <v-text-field
@@ -54,16 +89,19 @@
                   type="password"
                 ></v-text-field>
 
-                <v-card-actions>
+                <v-card-actions :class="{ 'pa-3': $vuetify.breakpoint.smAndUp }">
                   <v-spacer></v-spacer>
                   <v-btn
                     color="color_primary white--text"
+                    :large="$vuetify.breakpoint.smAndUp"
                     type="submit"
-                    >Login</v-btn
                   >
+                    Login
+                  </v-btn>
                 </v-card-actions>
               </v-form>
             </v-card-text>
+            <v-divider></v-divider>
           </v-card>
         </v-flex>
       </v-layout>
@@ -129,3 +167,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.prevent-wrap {
+  /* white-space: pre-wrap; */
+  word-break: keep-all;
+}
+</style>
