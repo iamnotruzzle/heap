@@ -15,7 +15,6 @@
         >
           <v-card
             elevation="20"
-            light
             tag="section"
           >
             <v-card-title>
@@ -31,7 +30,7 @@
                   >
                     <img
                       height="90px"
-                      src="/images/mmmhmc_logo.png"
+                      src="images/hosp_logo.png"
                       class="mr-4 mb-2"
                     />
 
@@ -45,7 +44,7 @@
                   >
                     <img
                       height="90px"
-                      src="/images/mmmhmc_logo.png"
+                      src="images/hosp_logo.png"
                       class="mr-4 mb-2"
                     />
 
@@ -76,6 +75,7 @@
                 <v-text-field
                   v-model="form.login"
                   prepend-icon="mdi-account"
+                  color="color_primary"
                   name="login"
                   label="Username"
                   type="login"
@@ -84,6 +84,7 @@
                   v-model="form.password"
                   id="password"
                   prepend-icon="mdi-lock"
+                  color="color_primary"
                   name="password"
                   label="Password"
                   type="password"
@@ -92,9 +93,10 @@
                 <v-card-actions :class="{ 'pa-3': $vuetify.breakpoint.smAndUp }">
                   <v-spacer></v-spacer>
                   <v-btn
-                    color="color_primary white--text"
+                    color="color_primary white--text pa-0"
                     :large="$vuetify.breakpoint.smAndUp"
                     type="submit"
+                    x-small
                   >
                     Login
                   </v-btn>
