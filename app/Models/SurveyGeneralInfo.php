@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KeyGenerator extends Model
+class SurveyGeneralInfo extends Model
 {
     use HasFactory;
 
-    protected $table = 'key_generator';
+    protected $table = 'survey_general_info';
     // protected $primaryKey = 'id';
     // public $incrementing = false;
     // declare primary as string
@@ -17,7 +17,16 @@ class KeyGenerator extends Model
 
     protected $fillable = [
         'id',
-        'generate',
+        'pss_id',
+        'respondent_type',
+        'respondent_name',
+        'educational_attainment',
+        'age',
+        'sex',
+        'religion',
+        'date_of_visit',
+        'department_visited',
+        'visited_before',
     ];
 
     protected $casts = [
