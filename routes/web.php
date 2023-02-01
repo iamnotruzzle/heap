@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -14,4 +15,4 @@ Route::redirect('/', 'login');
 // })->name('dashboard');
 
 
-Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified']);
+Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
