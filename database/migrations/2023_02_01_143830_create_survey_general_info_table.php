@@ -19,7 +19,7 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->string('respondent_type');
             $table->string('respondent_name')->nullable();
             $table->string('educational_attainment');
-            $table->int('age');
+            $table->integer('age');
             $table->string('sex');
             $table->string('religion');
             $table->date('date_of_visit');

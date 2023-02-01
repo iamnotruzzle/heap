@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SurveyQuestions extends Model
+class SurveyAnswers extends Model
 {
     use HasFactory;
 
-    protected $table = 'survey_questions';
+    protected $table = 'survey_answers';
     // protected $primaryKey = 'id';
     // public $incrementing = false;
     // declare primary as string
@@ -18,7 +18,8 @@ class SurveyQuestions extends Model
     protected $fillable = [
         'id',
         'pss_id',
-        'desc',
+        'survey_question_id',
+        'rating',
     ];
 
     protected $casts = [
