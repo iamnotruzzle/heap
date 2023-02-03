@@ -302,6 +302,89 @@
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
+
+                  <v-col
+                    cols="12"
+                    md="3"
+                  >
+                    <label
+                      for="dateOfVisit"
+                      class="font-weight-bold"
+                    >
+                      Date of Consultation/Visit
+                    </label>
+                    <v-text-field
+                      id="dateOfVisit"
+                      v-model="dateOfVisit"
+                      type="date"
+                      dense
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <!-- department visited -->
+                  <v-col cols="12">
+                    <label
+                      for="department"
+                      class="font-weight-bold"
+                    >
+                      Department Visited
+                    </label>
+
+                    <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
+                      <v-checkbox
+                        id="department"
+                        v-model="department"
+                        label="Emergency Room"
+                        value="Emergency Room"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="department"
+                        v-model="department"
+                        label="Outpatient Department"
+                        value="Outpatient Department"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="department"
+                        v-model="department"
+                        label="Inpatient/Ward"
+                        value="Inpatient/Ward"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <div class="d-flex flex-row">
+                        <v-checkbox
+                          id="department"
+                          v-model="enableDepartment"
+                          dense
+                        ></v-checkbox>
+                        <v-text-field
+                          id="department"
+                          v-model="otherDepartment"
+                          :disabled="!enableDepartment"
+                          label="Other offices (Specify)"
+                          dense
+                        ></v-text-field>
+                      </div>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
                 </v-row>
               </v-form>
             </v-card-text>
@@ -325,6 +408,10 @@ export default {
       enableReligion: false,
       otherReligion: '',
       educationalAttainment: '',
+      dateOfVisit: '',
+      department: '',
+      enableDepartment: false,
+      otherDepartment: '',
     };
   },
   watch: {
@@ -348,6 +435,17 @@ export default {
     enableReligion: function (val) {
       if (this.enableReligion == true) {
         this.religion = '';
+      }
+    },
+    department: function (val) {
+      if (this.department != '') {
+        this.otherDepartment = '';
+        this.enableDepartment = false;
+      }
+    },
+    enableDepartment: function (val) {
+      if (this.enableDepartment == true) {
+        this.department = '';
       }
     },
   },
