@@ -173,6 +173,7 @@
                   </v-col>
 
                   <v-spacer></v-spacer>
+
                   <!-- religion -->
                   <v-col
                     cols="12"
@@ -184,8 +185,9 @@
                       >Religion
                     </label>
 
-                    <div class="d-flex">
+                    <div class="d-flex flex-row">
                       <v-checkbox
+                        id="religion"
                         v-model="religion"
                         label="Catholic"
                         value="Catholic"
@@ -195,6 +197,7 @@
                       ></v-checkbox>
 
                       <v-checkbox
+                        id="religion"
                         v-model="religion"
                         label="Muslim"
                         value="Muslim"
@@ -205,16 +208,94 @@
 
                       <div class="d-flex flex-row">
                         <v-checkbox
+                          id="religion"
                           v-model="enableReligion"
                           dense
                         ></v-checkbox>
                         <v-text-field
+                          id="religion"
                           v-model="otherReligion"
                           :disabled="!enableReligion"
                           label="Others (Specify)"
                           dense
                         ></v-text-field>
                       </div>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <!-- educational attainment -->
+                  <v-col cols="12">
+                    <label
+                      for="educAt"
+                      class="font-weight-bold"
+                    >
+                      Educational Attainment
+                    </label>
+
+                    <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
+                      <v-checkbox
+                        id="educAt"
+                        v-model="educationalAttainment"
+                        label="Elementary"
+                        value="Elementary"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="educAt"
+                        v-model="educationalAttainment"
+                        label="Secondary"
+                        value="Secondary"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="educAt"
+                        v-model="educationalAttainment"
+                        label="Vocational"
+                        value="Vocational"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="educAt"
+                        v-model="educationalAttainment"
+                        label="College"
+                        value="College"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="educAt"
+                        v-model="educationalAttainment"
+                        label="Postgraduate/Masters"
+                        value="Postgraduate/Masters"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="educAt"
+                        v-model="educationalAttainment"
+                        label="No formal Education"
+                        value="No formal Education"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
                     </div>
                   </v-col>
 
@@ -243,6 +324,7 @@ export default {
       religion: '',
       enableReligion: false,
       otherReligion: '',
+      educationalAttainment: '',
     };
   },
   watch: {
@@ -274,7 +356,7 @@ export default {
 
 <style scoped>
 .background {
-  height: 100vh;
+  height: 100%;
   background-color: #ffe9ec;
   font-family: 'Roboto', sans-serif;
 }
