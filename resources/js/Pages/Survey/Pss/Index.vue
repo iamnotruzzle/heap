@@ -394,6 +394,7 @@
                       for each item.
                     </p>
 
+                    <!-- partA -->
                     <div class="grey lighten-1 mb-4">
                       <span class="text-h6-edited mx-2">A. Infrastructure and Process</span>
                     </div>
@@ -544,11 +545,11 @@
                     </div>
                   </v-col>
 
-                  <!-- section2 -->
-                  <v-col cols="12">
+                  <!-- partA1 -->
+                  <v-col cols="12 my-0 py-0">
                     <div class="grey lighten-1 mb-4">
                       <v-checkbox
-                        v-model="section2"
+                        v-model="partA1"
                         label="The processes were done fast, promptly and clearly"
                         class="text-h6-edited pa-1 font-weight-bold"
                         hide-details
@@ -556,7 +557,7 @@
                     </div>
 
                     <!-- q4 -->
-                    <div v-if="section2">
+                    <div v-if="partA1">
                       <p class="ma-0">4. Consultation process</p>
                       <v-btn-toggle
                         v-model="q4"
@@ -604,7 +605,7 @@
                     <div class="my-4"></div>
 
                     <!-- q5 -->
-                    <div v-if="section2">
+                    <div v-if="partA1">
                       <p class="ma-0">5. Admission process</p>
                       <v-btn-toggle
                         v-model="q5"
@@ -652,7 +653,7 @@
                     <div class="my-4"></div>
 
                     <!-- q6 -->
-                    <div v-if="section2">
+                    <div v-if="partA1">
                       <p class="ma-0">6. Laboratory and radiology processes</p>
                       <v-btn-toggle
                         v-model="q6"
@@ -700,7 +701,7 @@
                     <div class="my-4"></div>
 
                     <!-- q7 -->
-                    <div v-if="section2">
+                    <div v-if="partA1">
                       <p class="ma-0">7. Discharge Process (Discharging, Billing , and Cashier)</p>
                       <v-btn-toggle
                         v-model="q7"
@@ -748,7 +749,7 @@
                     <div class="my-4"></div>
 
                     <!-- q8 -->
-                    <div v-if="section2">
+                    <div v-if="partA1">
                       <p class="ma-0">8. Request of Documents from this Facility</p>
                       <v-btn-toggle
                         v-model="q8"
@@ -796,7 +797,7 @@
                     <div class="my-4"></div>
 
                     <!-- q9 -->
-                    <div v-if="section2">
+                    <div v-if="partA1">
                       <p class="ma-0">9. Process of Request for Assistance from Medical Social Service</p>
                       <v-btn-toggle
                         v-model="q9"
@@ -845,6 +846,268 @@
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
+
+                  <!-- partB -->
+                  <v-col cols="12">
+                    <div class="grey lighten-1 mb-4">
+                      <span class="text-h6-edited mx-2">
+                        B. Hospitals Staff's Relations towards patients, relative and companions
+                      </span>
+                    </div>
+
+                    <!-- q10 -->
+                    <div>
+                      <p class="ma-0">10. The medical condition and procedures were discussed clearly.</p>
+                      <v-btn-toggle
+                        v-model="q10"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q10 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q10 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q10 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q10 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q10 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q11 -->
+                    <div>
+                      <p class="ma-0">
+                        11. Our sentiments, cultural background, and beliefs were heard and considered in the treatment
+                        procedure.
+                      </p>
+                      <v-btn-toggle
+                        v-model="q11"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q11 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q11 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q11 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q11 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q11 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q12 -->
+                    <div>
+                      <p class="ma-0">
+                        12. We were given the chance to decide which treatment procedure shall be performed.
+                      </p>
+                      <v-btn-toggle
+                        v-model="q12"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q12 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q12 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q12 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q12 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q12 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q13 -->
+                    <div>
+                      <p class="ma-0">
+                        13. The discharge instructions were discussed to us clearly before we were allowed to go home,
+                        including the time/date and site of the follow-up consultation.
+                      </p>
+                      <v-btn-toggle
+                        v-model="q13"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q13 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q13 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q13 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q13 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q13 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q14 -->
+                    <div>
+                      <p class="ma-0">
+                        14. For those eligible for assistance from Malasakit Center. All my medical costs were covered
+                        for this particular medical treatment/admission.
+                      </p>
+                      <v-btn-toggle
+                        v-model="q14"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q14 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q14 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q14 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q14 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q14 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
                 </v-row>
               </v-form>
             </v-card-text>
@@ -875,13 +1138,18 @@ export default {
       q1: undefined,
       q2: undefined,
       q3: undefined,
-      section2: false,
+      partA1: false,
       q4: undefined,
       q5: undefined,
       q6: undefined,
       q7: undefined,
       q8: undefined,
       q9: undefined,
+      q10: undefined,
+      q11: undefined,
+      q12: undefined,
+      q13: undefined,
+      q14: undefined,
     };
   },
   watch: {
@@ -918,8 +1186,8 @@ export default {
         this.department = '';
       }
     },
-    section2: function (val) {
-      if (this.section2 == false) {
+    partA1: function (val) {
+      if (this.partA1 == false) {
         this.q4 = undefined;
         this.q5 = undefined;
         this.q6 = undefined;
