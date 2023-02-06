@@ -385,6 +385,466 @@
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
+
+                  <v-col cols="12">
+                    <h5 class="text-h5-edited font-weight-bold">How would you rate our service?</h5>
+                    <p>
+                      <span class="font-weight-bold">Direction:</span>
+                      Put a check mark(<v-icon>mdi-check</v-icon>) on the emoticon that best corresponds to your rating
+                      for each item.
+                    </p>
+
+                    <div class="grey lighten-1 mb-4">
+                      <span class="text-h6-edited mx-2">A. Infrastructure and Process</span>
+                    </div>
+
+                    <!-- q1 -->
+                    <div>
+                      <p class="ma-0">1. The waiting areas we used were clean, orderly, and comfortable.</p>
+                      <v-btn-toggle
+                        v-model="q1"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q1 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q1 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q1 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q1 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q1 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q2 -->
+                    <div>
+                      <p class="ma-0">
+                        2. The toilets and bathrooms inside the facility were kept clean, orderly and with steady water
+                        supply.
+                      </p>
+                      <v-btn-toggle
+                        v-model="q2"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q2 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q2 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q2 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q2 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q2 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q3 -->
+                    <div>
+                      <p class="ma-0">3. The patients' rooms were kept clean, tidy and comfortable.</p>
+                      <v-btn-toggle
+                        v-model="q3"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q3 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q3 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q3 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q3 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q3 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+                  </v-col>
+
+                  <!-- section2 -->
+                  <v-col cols="12">
+                    <div class="grey lighten-1 mb-4">
+                      <v-checkbox
+                        v-model="section2"
+                        label="The processes were done fast, promptly and clearly"
+                        class="text-h6-edited pa-1 font-weight-bold"
+                        hide-details
+                      ></v-checkbox>
+                    </div>
+
+                    <!-- q4 -->
+                    <div v-if="section2">
+                      <p class="ma-0">4. Consultation process</p>
+                      <v-btn-toggle
+                        v-model="q4"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q4 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q4 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q4 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q4 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q4 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q5 -->
+                    <div v-if="section2">
+                      <p class="ma-0">5. Admission process</p>
+                      <v-btn-toggle
+                        v-model="q5"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q5 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q5 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q5 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q5 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q5 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q6 -->
+                    <div v-if="section2">
+                      <p class="ma-0">6. Laboratory and radiology processes</p>
+                      <v-btn-toggle
+                        v-model="q6"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q6 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q6 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q6 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q6 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q6 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q7 -->
+                    <div v-if="section2">
+                      <p class="ma-0">7. Discharge Process (Discharging, Billing , and Cashier)</p>
+                      <v-btn-toggle
+                        v-model="q7"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q7 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q7 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q7 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q7 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q7 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q8 -->
+                    <div v-if="section2">
+                      <p class="ma-0">8. Request of Documents from this Facility</p>
+                      <v-btn-toggle
+                        v-model="q8"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q8 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q8 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q8 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q8 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q8 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q9 -->
+                    <div v-if="section2">
+                      <p class="ma-0">9. Process of Request for Assistance from Medical Social Service</p>
+                      <v-btn-toggle
+                        v-model="q9"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="q9 == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="q9 == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="q9 == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="q9 == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="q9 == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
                 </v-row>
               </v-form>
             </v-card-text>
@@ -412,6 +872,16 @@ export default {
       department: '',
       enableDepartment: false,
       otherDepartment: '',
+      q1: undefined,
+      q2: undefined,
+      q3: undefined,
+      section2: false,
+      q4: undefined,
+      q5: undefined,
+      q6: undefined,
+      q7: undefined,
+      q8: undefined,
+      q9: undefined,
     };
   },
   watch: {
@@ -448,6 +918,16 @@ export default {
         this.department = '';
       }
     },
+    section2: function (val) {
+      if (this.section2 == false) {
+        this.q4 = undefined;
+        this.q5 = undefined;
+        this.q6 = undefined;
+        this.q7 = undefined;
+        this.q8 = undefined;
+        this.q9 = undefined;
+      }
+    },
   },
 };
 </script>
@@ -478,5 +958,9 @@ export default {
 
 .no-wrap {
   white-space: no-wrap;
+}
+
+.active {
+  color: green;
 }
 </style>
