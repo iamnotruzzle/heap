@@ -2061,6 +2061,60 @@
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
+
+                  <v-col cols="12">
+                    <label for="opt_q_1">
+                      <span class="font-weight-bold ma-0"> {{ this.survey_opt_questions[0].desc }} (Optional) </span>
+                    </label>
+                    <v-textarea
+                      id="opt_q_1"
+                      v-model="opt_q_1.comment"
+                      height="24"
+                      outlined
+                    ></v-textarea>
+
+                    <label for="opt_q_2">
+                      <span class="font-weight-bold ma-0"> {{ this.survey_opt_questions[1].desc }} (Optional) </span>
+                    </label>
+                    <v-textarea
+                      id="opt_q_2"
+                      v-model="opt_q_2.comment"
+                      height="24"
+                      outlined
+                    ></v-textarea>
+
+                    <label for="opt_q_3">
+                      <span class="font-weight-bold ma-0"> {{ this.survey_opt_questions[2].desc }} (Optional) </span>
+                    </label>
+                    <v-text-field
+                      id="opt_q_3"
+                      v-model="opt_q_3.comment"
+                      hide-details
+                      dense
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                    class="my-4"
+                  >
+                    <div class="d-flex justify-center align-center flex-column">
+                      <h5 class="text-h5-edited font-weight-black">
+                        Thank you for your valuable time and opportunity to serve you better.
+                      </h5>
+
+                      <span class="font-weight-bold mt-2">Patient Satisfaction Committee</span>
+                      <span class="font-weight-bold font-italic"
+                        >Mariano Marcos Memorial Hospital and Medical Center</span
+                      >
+                      <span class="font-weight-bold">Brgy. 06 San Julian, Batac City, Ilocos Norte</span>
+                      <span class="font-weight-bold">Trunk line: (007) 600-8000</span>
+                      <span class="font-weight-bold">Fax line: (007) 792-3133</span>
+                      <span class="font-weight-bold text-decoration-underline">
+                        <a href="mailto: psc.mmmhmc@gmail.com">psc.mmmhmc@gmail.com</a>
+                      </span>
+                    </div>
+                  </v-col>
                 </v-row>
               </v-form>
             </v-card-text>
@@ -2076,6 +2130,7 @@ export default {
   props: {
     hospital_staffs: Array,
     survey_questions: Array,
+    survey_opt_questions: Array,
   },
   data() {
     return {
@@ -2223,11 +2278,24 @@ export default {
         id: 15,
         rating: undefined,
       },
+      opt_q_1: {
+        survey_question_id: this.survey_opt_questions[0].id,
+        comment: '',
+      },
+      opt_q_2: {
+        survey_question_id: this.survey_opt_questions[1].id,
+        comment: '',
+      },
+      opt_q_3: {
+        survey_question_id: this.survey_opt_questions[0].id,
+        comment: '',
+      },
     };
   },
   mounted() {
     console.log('hospital staffs', this.hospital_staffs);
     console.log('survey questions', this.survey_questions);
+    console.log('survey opt questions', this.survey_opt_questions);
   },
   watch: {
     respondent: function (val) {
