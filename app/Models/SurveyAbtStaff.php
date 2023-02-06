@@ -19,6 +19,7 @@ class SurveyAbtStaff extends Model
         'id',
         'pss_id',
         'staff_type',
+        'rating',
         'comment',
     ];
 

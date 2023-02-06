@@ -17,7 +17,8 @@ class CreateSurveyAbtStaffTable extends Migration
             $table->id();
             $table->string('pss_id');
             $table->bigInteger('staff_type');
-            $table->string('comment');
+            $table->integer('rating');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,6 @@ class CreateSurveyQuestionsTable extends Migration
     {
         Schema::create('survey_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('pss_id');
             $table->string('desc');
             $table->timestamps();
         });
