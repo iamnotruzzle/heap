@@ -48,6 +48,21 @@ class PssController extends Controller
             'q12.rating' => 'required',
             'q13.rating' => 'required',
             'q14.rating' => 'required',
+            'doctor.rating' => 'required',
+            'nurse.rating' => 'required',
+            'midwife.rating' => 'required',
+            'security.rating' => 'required',
+            'radiology.rating' => 'required',
+            'pharmacy.rating' => 'required',
+            'laboratory.rating' => 'required',
+            'admitting_staff.rating' => 'required',
+            'medical_records.rating' => 'required',
+            'billing.rating' => 'required',
+            'cashier.rating' => 'required',
+            'social_worker.rating' => 'required',
+            'food_server.rating' => 'required',
+            'janitors_orderly.rating' => 'required',
+            'q15.rating' => 'required',
         ]);
     }
 

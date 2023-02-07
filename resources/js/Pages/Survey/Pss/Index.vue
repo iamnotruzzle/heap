@@ -350,10 +350,10 @@
                       dense
                     ></v-text-field>
                     <div
-                      v-if="form.errors.educationalAttainment"
+                      v-show="form.errors.dateOfVisit"
                       class="red--text mx-2"
                     >
-                      {{ form.errors.educationalAttainment }}
+                      The date of consultation/visit is required.
                     </div>
                   </v-col>
 
@@ -1287,6 +1287,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`doctor.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.doctor.rating != null && form.doctor.rating != 0"
@@ -1353,6 +1359,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`nurse.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.nurse.rating != null && form.nurse.rating != 0"
@@ -1422,6 +1434,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`midwife.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.midwife.rating != null && form.midwife.rating != 0"
@@ -1490,6 +1508,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`security.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.security.rating != null && form.security.rating != 0"
@@ -1558,6 +1582,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`radiology.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.radiology.rating != null && form.radiology.rating != 0"
@@ -1626,6 +1656,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`pharmacy.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.pharmacy.rating != null && form.pharmacy.rating != 0"
@@ -1694,6 +1730,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`laboratory.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.laboratory.rating != null && form.laboratory.rating != 0"
@@ -1762,6 +1804,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`admitting_staff.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.admitting_staff.rating != null && form.admitting_staff.rating != 0"
@@ -1830,6 +1878,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`medical_records.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.medical_records.rating != null && form.medical_records.rating != 0"
@@ -1898,6 +1952,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`billing.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.billing.rating != null && form.billing.rating != 0"
@@ -1966,6 +2026,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`cashier.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.cashier.rating != null && form.cashier.rating != 0"
@@ -2034,6 +2100,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`social_worker.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.social_worker.rating != null && form.social_worker.rating != 0"
@@ -2102,6 +2174,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`food_server.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.food_server.rating != null && form.food_server.rating != 0"
@@ -2170,6 +2248,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`janitors_orderly.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
 
                       <div
                         v-if="form.janitors_orderly.rating != null && form.janitors_orderly.rating != 0"
@@ -2237,6 +2321,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                    </div>
+                    <div
+                      v-if="form.errors[`q15.rating`]"
+                      class="red--text mx-2"
+                    >
+                      Required
                     </div>
                   </v-col>
 
@@ -2498,8 +2588,7 @@ export default {
     // console.log('hospital staffs', this.hospital_staffs);
     // console.log('survey questions', this.survey_questions);
     // console.log('survey opt questions', this.survey_opt_questions);
-
-    console.log(this.form);
+    // console.log(this.form);
   },
   watch: {
     'form.respondent': function (val) {
