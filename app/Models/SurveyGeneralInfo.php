@@ -19,7 +19,6 @@ class SurveyGeneralInfo extends Model
         'id',
         'pss_id',
         'respondent_type',
-        'respondent_name',
         'educational_attainment',
         'age',
         'sex',

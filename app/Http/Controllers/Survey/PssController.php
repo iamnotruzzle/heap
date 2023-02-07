@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Survey;
 
 use App\Http\Controllers\Controller;
 use App\Models\HospitalStaff;
+use App\Models\KeyGenerator;
+use App\Models\SurveyGeneralInfo;
 use App\Models\SurveyOptQuestions;
 use App\Models\SurveyQuestions;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -31,7 +34,7 @@ class PssController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->q1['rating']);
+        dd($request);
         $request->validate([
             'respondent' => 'required',
             'age' => 'required|numeric',
@@ -40,6 +43,7 @@ class PssController extends Controller
             'educationalAttainment' => 'required',
             'dateOfVisit' => 'required',
             'department' => 'required',
+            'visited_before' => 'required',
             'q1.rating' => 'required',
             'q2.rating' => 'required',
             'q3.rating' => 'required',
@@ -63,6 +67,20 @@ class PssController extends Controller
             'food_server.rating' => 'required',
             'janitors_orderly.rating' => 'required',
             'q15.rating' => 'required',
+        ]);
+
+        // Generate key
+        $key = KeyGenerator::create([
+            'charge_desc' => 'y',
+        ]);
+        // get count of key generator where year is NOW
+        $currentCodeCount = KeyGenerator::whereYear('created_at', Carbon::now()->year)->count();
+        // PSS = Patient satisfaction survey
+        $pss_id = 'PSS' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
+
+        $surveyGeneralInfo = SurveyGeneralInfo::create([
+            'pss_id' => $pss_id,
+            'respondent_type' => $request->respondent,
         ]);
     }
 

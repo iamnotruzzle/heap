@@ -429,6 +429,43 @@
                   </v-col>
 
                   <v-col cols="12">
+                    <label
+                      for="visited_before"
+                      class="font-weight-bold"
+                      >Have you visited this hospital before?</label
+                    >
+                    <div class="d-flex flex-row">
+                      <v-checkbox
+                        id="visited_before"
+                        v-model="form.visited_before"
+                        label="Yes"
+                        value="y"
+                        dense
+                        hide-details
+                        class="mr-2"
+                      ></v-checkbox>
+                      <v-checkbox
+                        id="visited_before"
+                        v-model="form.visited_before"
+                        label="No"
+                        value="n"
+                        dense
+                        hide-details
+                      ></v-checkbox>
+                    </div>
+                    <div
+                      v-if="form.errors.visited_before"
+                      class="red--text"
+                    >
+                      {{ form.errors.visited_before }}
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <v-col cols="12">
                     <h5 class="text-h5-edited font-weight-bold">How would you rate our service?</h5>
                     <p>
                       <span class="font-weight-bold">Direction:</span>
@@ -2439,6 +2476,7 @@ export default {
         dateOfVisit: '',
         department: '',
         otherDepartment: '',
+        visited_before: '',
         q1: {
           id: 1,
           rating: undefined,

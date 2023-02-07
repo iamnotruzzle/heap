@@ -17,7 +17,6 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->id();
             $table->string('pss_id');
             $table->string('respondent_type');
-            $table->string('respondent_name')->nullable();
             $table->string('educational_attainment');
             $table->integer('age');
             $table->string('sex');
