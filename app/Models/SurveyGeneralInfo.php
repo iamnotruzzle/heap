@@ -18,7 +18,7 @@ class SurveyGeneralInfo extends Model
     protected $fillable = [
         'id',
         'pss_id',
-        'respondent_type',
+        'respondent',
         'educational_attainment',
         'age',
         'sex',

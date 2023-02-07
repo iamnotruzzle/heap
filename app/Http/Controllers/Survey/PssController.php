@@ -34,7 +34,7 @@ class PssController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $request->validate([
             'respondent' => 'required',
             'age' => 'required|numeric',
@@ -71,17 +71,50 @@ class PssController extends Controller
 
         // Generate key
         $key = KeyGenerator::create([
-            'charge_desc' => 'y',
+            'generate' => 'y',
         ]);
         // get count of key generator where year is NOW
         $currentCodeCount = KeyGenerator::whereYear('created_at', Carbon::now()->year)->count();
         // PSS = Patient satisfaction survey
         $pss_id = 'PSS' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
 
+        // assign value of respondent based on the condition
+        $respondent = '';
+        if ($request->respondent == '' || $request->respondent == null) {
+            $respondent = $request->otherRespondent;
+        } else {
+            $respondent = $request->respondent;
+        };
+
+        // assign value of religion based on the condition
+        $religion = '';
+        if ($request->religion == '' || $request->religion == null) {
+            $religion = $request->otherReligion;
+        } else {
+            $religion = $request->religion;
+        };
+
+        // assign value of departmentVisited based on the condition
+        $departmentVisited = '';
+        if ($request->department == '' || $request->department == null) {
+            $departmentVisited = $request->otherDepartment;
+        } else {
+            $departmentVisited = $request->department;
+        };
+
         $surveyGeneralInfo = SurveyGeneralInfo::create([
             'pss_id' => $pss_id,
-            'respondent_type' => $request->respondent,
+            'respondent' => $respondent,
+            'educational_attainment' => $request->educationalAttainment,
+            'age' => $request->age,
+            'sex' => $request->sex,
+            'religion' => $religion,
+            'date_of_visit' => $request->dateOfVisit,
+            'department_visited' => $departmentVisited,
+            'visited_before' => $request->visited_before,
         ]);
+
+        return redirect()->back();
     }
 
 

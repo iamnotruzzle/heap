@@ -16,7 +16,7 @@ class CreateSurveyGeneralInfoTable extends Migration
         Schema::create('survey_general_info', function (Blueprint $table) {
             $table->id();
             $table->string('pss_id');
-            $table->string('respondent_type');
+            $table->string('respondent');
             $table->string('educational_attainment');
             $table->integer('age');
             $table->string('sex');
