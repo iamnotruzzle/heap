@@ -13,4 +13,4 @@ Route::any('/login');
 
 Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 
-Route::resource('/', PssController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('/pss', PssController::class)->only(['index', 'store', 'update', 'destroy']);

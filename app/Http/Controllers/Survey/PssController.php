@@ -31,7 +31,24 @@ class PssController extends Controller
 
     public function store(Request $request)
     {
-        //
+        // dd($request->q1['rating']);
+        $request->validate([
+            'respondent' => 'required',
+            'age' => 'required|numeric',
+            'sex' => 'required',
+            'religion' => 'required',
+            'educationalAttainment' => 'required',
+            'dateOfVisit' => 'required',
+            'department' => 'required',
+            'q1.rating' => 'required',
+            'q2.rating' => 'required',
+            'q3.rating' => 'required',
+            'q10.rating' => 'required',
+            'q11.rating' => 'required',
+            'q12.rating' => 'required',
+            'q13.rating' => 'required',
+            'q14.rating' => 'required',
+        ]);
     }
 
 

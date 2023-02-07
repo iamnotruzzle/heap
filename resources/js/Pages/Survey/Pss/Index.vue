@@ -113,6 +113,12 @@
                           dense
                         ></v-text-field>
                       </div>
+                      <div
+                        v-if="form.errors.respondent"
+                        class="red--text mx-2"
+                      >
+                        {{ form.errors.respondent }}
+                      </div>
                     </div>
                   </v-col>
 
@@ -137,6 +143,12 @@
                       hide-spin-buttons
                       dense
                     ></v-text-field>
+                    <div
+                      v-if="form.errors.age"
+                      class="red--text mx-2"
+                    >
+                      {{ form.errors.age }}
+                    </div>
                   </v-col>
 
                   <v-spacer></v-spacer>
@@ -169,6 +181,12 @@
                         dense
                         hide-details
                       ></v-checkbox>
+                    </div>
+                    <div
+                      v-if="form.errors.sex"
+                      class="red--text mx-2"
+                    >
+                      {{ form.errors.sex }}
                     </div>
                   </v-col>
 
@@ -220,6 +238,12 @@
                           dense
                         ></v-text-field>
                       </div>
+                    </div>
+                    <div
+                      v-if="form.errors.religion"
+                      class="red--text mx-2"
+                    >
+                      {{ form.errors.religion }}
                     </div>
                   </v-col>
 
@@ -297,6 +321,12 @@
                         class="mr-2"
                       ></v-checkbox>
                     </div>
+                    <div
+                      v-if="form.errors.educationalAttainment"
+                      class="red--text mx-2"
+                    >
+                      {{ form.errors.educationalAttainment }}
+                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -319,6 +349,12 @@
                       type="date"
                       dense
                     ></v-text-field>
+                    <div
+                      v-if="form.errors.educationalAttainment"
+                      class="red--text mx-2"
+                    >
+                      {{ form.errors.educationalAttainment }}
+                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -379,6 +415,12 @@
                           dense
                         ></v-text-field>
                       </div>
+                    </div>
+                    <div
+                      v-if="form.errors.department"
+                      class="red--text mx-2"
+                    >
+                      {{ form.errors.department }}
                     </div>
                   </v-col>
 
@@ -445,6 +487,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q1.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
@@ -496,6 +544,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q2.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
@@ -544,6 +598,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q3.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
                   </v-col>
 
@@ -909,6 +969,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q10.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
@@ -964,6 +1030,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q11.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
@@ -1018,6 +1090,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q12.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
@@ -1073,6 +1151,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q13.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
@@ -1128,6 +1212,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q14.rating`]"
+                        class="red--text mx-2"
+                      >
+                        Required
+                      </div>
                     </div>
                   </v-col>
 
@@ -2194,6 +2284,7 @@
                     <!--  :loading="form.processing" -->
                     <v-btn
                       color="color_primary white--text"
+                      :loading="form.processing"
                       @click="submit"
                     >
                       Submit
@@ -2232,6 +2323,8 @@
 </template>
 
 <script>
+import { Inertia } from '@inertiajs/inertia';
+
 export default {
   props: {
     hospital_staffs: Array,
@@ -2245,7 +2338,7 @@ export default {
       enableDepartment: false,
       partA1: false,
       isLoading: false,
-      form: {
+      form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
         age: '',
@@ -2398,13 +2491,15 @@ export default {
           survey_question_id: this.survey_opt_questions[0].id,
           comment: '',
         },
-      },
+      }),
     };
   },
   mounted() {
-    console.log('hospital staffs', this.hospital_staffs);
-    console.log('survey questions', this.survey_questions);
-    console.log('survey opt questions', this.survey_opt_questions);
+    // console.log('hospital staffs', this.hospital_staffs);
+    // console.log('survey questions', this.survey_questions);
+    // console.log('survey opt questions', this.survey_opt_questions);
+
+    console.log(this.form);
   },
   watch: {
     'form.respondent': function (val) {
@@ -2526,8 +2621,7 @@ export default {
       this.partA1 = !this.partA1;
     },
     submit() {
-      this.form.post(route('/'), {
-        preserveScroll: true,
+      this.form.post(route('pss.store'), {
         onSuccess: () => {
           this.isLoading = true;
           this.form.reset();
