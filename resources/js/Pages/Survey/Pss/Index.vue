@@ -2533,6 +2533,10 @@ export default {
           id: 14,
           rating: undefined,
         },
+        q15: {
+          id: 15,
+          rating: undefined,
+        },
         doctor: {
           staff_type: this.hospital_staffs[0].id,
           rating: null,
@@ -2602,10 +2606,6 @@ export default {
           staff_type: this.hospital_staffs[13].id,
           rating: undefined,
           comment: '',
-        },
-        q15: {
-          id: 15,
-          rating: undefined,
         },
         opt_q_1: {
           survey_question_id: this.survey_opt_questions[0].id,
@@ -2751,6 +2751,7 @@ export default {
       this.form.post(route('pss.store'), {
         onSuccess: () => {
           this.isLoading = true;
+          this.partA1 = false;
           this.form.reset();
           this.createdMsg();
         },

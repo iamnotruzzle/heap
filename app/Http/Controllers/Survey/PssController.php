@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Survey;
 use App\Http\Controllers\Controller;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
+use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
 use App\Models\SurveyOptQuestions;
 use App\Models\SurveyQuestions;
@@ -113,6 +114,116 @@ class PssController extends Controller
             'department_visited' => $departmentVisited,
             'visited_before' => $request->visited_before,
         ]);
+
+        $surveyAnswers = SurveyAnswers::insert(
+            [
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q1['id'],
+                    'rating' => $request->q1['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q2['id'],
+                    'rating' => $request->q2['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q3['id'],
+                    'rating' => $request->q3['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q4['id'],
+                    'rating' => $request->q4['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q5['id'],
+                    'rating' => $request->q5['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q6['id'],
+                    'rating' => $request->q6['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q7['id'],
+                    'rating' => $request->q7['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q8['id'],
+                    'rating' => $request->q8['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q9['id'],
+                    'rating' => $request->q9['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q10['id'],
+                    'rating' => $request->q10['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q11['id'],
+                    'rating' => $request->q11['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q12['id'],
+                    'rating' => $request->q12['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q13['id'],
+                    'rating' => $request->q13['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q14['id'],
+                    'rating' => $request->q14['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->q15['id'],
+                    'rating' => $request->q15['rating'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+            ]
+        );
 
         return redirect()->back();
     }
