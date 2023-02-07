@@ -145,7 +145,7 @@
                     ></v-text-field>
                     <div
                       v-if="form.errors.age"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       {{ form.errors.age }}
                     </div>
@@ -184,7 +184,7 @@
                     </div>
                     <div
                       v-if="form.errors.sex"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       {{ form.errors.sex }}
                     </div>
@@ -241,7 +241,7 @@
                     </div>
                     <div
                       v-if="form.errors.religion"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       {{ form.errors.religion }}
                     </div>
@@ -323,7 +323,7 @@
                     </div>
                     <div
                       v-if="form.errors.educationalAttainment"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       {{ form.errors.educationalAttainment }}
                     </div>
@@ -351,7 +351,7 @@
                     ></v-text-field>
                     <div
                       v-show="form.errors.dateOfVisit"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       The date of consultation/visit is required.
                     </div>
@@ -418,7 +418,7 @@
                     </div>
                     <div
                       v-if="form.errors.department"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       {{ form.errors.department }}
                     </div>
@@ -489,7 +489,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q1.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -546,7 +546,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q2.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -600,7 +600,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q3.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -971,7 +971,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q10.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1032,7 +1032,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q11.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1092,7 +1092,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q12.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1153,7 +1153,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q13.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1214,7 +1214,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`q14.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1289,7 +1289,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`doctor.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1361,7 +1361,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`nurse.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1436,7 +1436,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`midwife.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1510,7 +1510,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`security.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1584,7 +1584,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`radiology.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1658,7 +1658,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`pharmacy.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1732,7 +1732,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`laboratory.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1806,7 +1806,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`admitting_staff.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1880,7 +1880,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`medical_records.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -1954,7 +1954,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`billing.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -2028,7 +2028,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`cashier.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -2102,7 +2102,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`social_worker.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -2176,7 +2176,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`food_server.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -2250,7 +2250,7 @@
                       </v-btn-toggle>
                       <div
                         v-if="form.errors[`janitors_orderly.rating`]"
-                        class="red--text mx-2"
+                        class="red--text"
                       >
                         Required
                       </div>
@@ -2324,7 +2324,7 @@
                     </div>
                     <div
                       v-if="form.errors[`q15.rating`]"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       Required
                     </div>
