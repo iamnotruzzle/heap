@@ -64,9 +64,9 @@
             </v-card-title>
 
             <v-card-text>
-              <v-row>
+              <v-row class="font-weight-bold">
                 <v-col cols="12">
-                  <p>Dear <span class="font-weight-bold">Patient/Client,</span></p>
+                  <p>Dear Patient/Client,</p>
                   <div class="indent">
                     The following questions talk about your overall experience in this hospital. We wish to improve the
                     level of service we deliver our clients because you are important to us. Any comments or suggestions
@@ -76,12 +76,9 @@
                 </v-col>
               </v-row>
 
-              <v-row>
+              <v-row class="font-weight-bold">
                 <v-col cols="12">
-                  <p>
-                    <b>Direction:</b> Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your
-                    answer:
-                  </p>
+                  <p>Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:</p>
                 </v-col>
               </v-row>
 
@@ -89,9 +86,9 @@
                 ref="form"
                 class="no-wrap"
               >
-                <v-row>
+                <v-row class="font-weight-bold">
                   <v-col cols="12">
-                    <p class="font-weight-bold">The Respondent of this Survey Form:</p>
+                    <p>The Respondent of this Survey Form:</p>
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
                         v-model="form.respondent"
@@ -140,12 +137,9 @@
                   <v-col
                     cols="4"
                     md="2"
+                    class="font-weight-bold"
                   >
-                    <label
-                      for="age"
-                      class="font-weight-bold"
-                      >Age</label
-                    >
+                    <label for="age">Age</label>
                     <v-text-field
                       id="age"
                       v-model="form.age"
