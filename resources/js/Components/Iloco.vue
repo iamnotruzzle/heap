@@ -1,5 +1,5 @@
 <template>
-  <h1>iloco</h1>
+  <h1>Iloco</h1>
 </template>
 
 <script>

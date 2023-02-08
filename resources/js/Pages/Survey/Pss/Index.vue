@@ -357,6 +357,7 @@
                       id="dateOfVisit"
                       v-model="form.dateOfVisit"
                       type="date"
+                      min="2022-01-01"
                       dense
                     ></v-text-field>
                     <div
@@ -2451,7 +2452,6 @@
                   </v-col>
                 </v-row>
               </v-form>
-              -->
             </v-card-text>
           </v-card>
         </v-layout>
