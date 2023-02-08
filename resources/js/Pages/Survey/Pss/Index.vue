@@ -418,7 +418,7 @@
                     </div>
                     <div
                       v-if="form.errors.department || form.errors.otherDepartment"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       The department visited field is required.
                     </div>
@@ -2423,7 +2423,7 @@
                     class="my-4"
                   >
                     <div class="d-flex justify-center align-center flex-column">
-                      <h5 class="text-h5-edited font-weight-black">
+                      <h5 class="text-h5-edited font-weight-black text-center">
                         Thank you for your valuable time and opportunity to serve you better.
                       </h5>
 
