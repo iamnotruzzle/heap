@@ -353,13 +353,43 @@
                     >
                       Date of Consultation/Visit
                     </label>
-                    <v-text-field
+                    <!-- <v-text-field
                       id="dateOfVisit"
                       v-model="form.dateOfVisit"
                       type="date"
                       min="2022-01-01"
+                      :max="maxDate"
                       dense
-                    ></v-text-field>
+                    ></v-text-field> -->
+                    <v-menu
+                      ref="datePickerMenu"
+                      v-model="datePickerMenu"
+                      :close-on-content-click="false"
+                      :return-value.sync="date"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="form.dateOfVisit"
+                          label="Date"
+                          append-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="form.dateOfVisit"
+                        min="2022-01-01"
+                        :max="maxDate"
+                        no-title
+                        scrollable
+                        @input="datePickerMenu = false"
+                      >
+                      </v-date-picker>
+                    </v-menu>
                     <div
                       v-show="form.errors.dateOfVisit"
                       class="red--text"
@@ -2502,6 +2532,9 @@ export default {
   data() {
     return {
       comp: Iloco,
+      datePickerMenu: false,
+      datePickerModal: false,
+      maxDate: new Date().toISOString().slice(0, -14),
       snack: '',
       snackColor: '',
       snackText: '',
