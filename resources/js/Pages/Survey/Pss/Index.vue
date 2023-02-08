@@ -347,19 +347,11 @@
                     >
                       Date of Consultation/Visit
                     </label>
-                    <!-- <v-text-field
-                      id="dateOfVisit"
-                      v-model="form.dateOfVisit"
-                      type="date"
-                      min="2022-01-01"
-                      :max="maxDate"
-                      dense
-                    ></v-text-field> -->
                     <v-menu
                       ref="datePickerMenu"
                       v-model="datePickerMenu"
                       :close-on-content-click="false"
-                      :return-value.sync="date"
+                      return-value.sync="form.dateOfVisit"
                       transition="scale-transition"
                       offset-y
                       min-width="auto"
@@ -367,11 +359,14 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="form.dateOfVisit"
-                          label="Date"
                           append-icon="mdi-calendar"
                           readonly
                           v-bind="attrs"
                           v-on="on"
+                          outlined
+                          dense
+                          hide-details
+                          id="dateOfVisit"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -2545,7 +2540,7 @@ export default {
         religion: '',
         otherReligion: '',
         educationalAttainment: '',
-        dateOfVisit: '',
+        dateOfVisit: new Date().toISOString().slice(0, -14),
         department: '',
         otherDepartment: '',
         visited_before: '',
