@@ -15,7 +15,7 @@ class CreateSurveyOptAnswersTable extends Migration
     {
         Schema::create('survey_opt_answers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('pss_id');
+            $table->string('pss_id');
             $table->bigInteger('survey_question_id');
             $table->string('comment')->nullable();
             $table->timestamps();

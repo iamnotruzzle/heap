@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Survey;
 use App\Http\Controllers\Controller;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
+use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
+use App\Models\SurveyOptAnswers;
 use App\Models\SurveyOptQuestions;
 use App\Models\SurveyQuestions;
 use Carbon\Carbon;
@@ -37,13 +39,16 @@ class PssController extends Controller
     {
         // dd($request);
         $request->validate([
-            'respondent' => 'required',
+            'respondent' => "required_if:otherRespondent,null",
+            'otherRespondent' => "required_if:respondent,null",
             'age' => 'required|numeric',
             'sex' => 'required',
-            'religion' => 'required',
+            'religion' => "required_if:otherReligion,null",
+            'otherReligion' => "required_if:religion,null",
             'educationalAttainment' => 'required',
             'dateOfVisit' => 'required',
-            'department' => 'required',
+            'department' => "required_if:otherDepartment,null",
+            'otherDepartment' => "required_if:department,null",
             'visited_before' => 'required',
             'q1.rating' => 'required',
             'q2.rating' => 'required',
@@ -106,14 +111,67 @@ class PssController extends Controller
         $surveyGeneralInfo = SurveyGeneralInfo::create([
             'pss_id' => $pss_id,
             'respondent' => $respondent,
+            // 'respondent' => $request->respondent,
             'educational_attainment' => $request->educationalAttainment,
             'age' => $request->age,
             'sex' => $request->sex,
             'religion' => $religion,
+            // 'religion' => $request->religion,
             'date_of_visit' => $request->dateOfVisit,
             'department_visited' => $departmentVisited,
+            // 'department_visited' => $request->department,
             'visited_before' => $request->visited_before,
         ]);
+
+        // dd($request->q4);
+
+        // assign value of q4 based on the condition
+        $q4 = 0;
+        if (isset($request->q4['rating']) == false) {
+            $q4 = 0;
+        } else {
+            $q4 = $request->q4['rating'];
+        }
+
+        // assign value of q5 based on the condition
+        $q5 = 0;
+        if (isset($request->q5['rating']) == false) {
+            $q5 = 0;
+        } else {
+            $q5 = $request->q5['rating'];
+        }
+
+        // assign value of q6 based on the condition
+        $q6 = 0;
+        if (isset($request->q6['rating']) == false) {
+            $q6 = 0;
+        } else {
+            $q6 = $request->q6['rating'];
+        }
+
+        // assign value of q7 based on the condition
+        $q7 = 0;
+        if (isset($request->q7['rating']) == false) {
+            $q7 = 0;
+        } else {
+            $q7 = $request->q7['rating'];
+        }
+
+        // assign value of q8 based on the condition
+        $q8 = 0;
+        if (isset($request->q8['rating']) == false) {
+            $q8 = 0;
+        } else {
+            $q8 = $request->q8['rating'];
+        }
+
+        // assign value of q9 based on the condition
+        $q9 = 0;
+        if (isset($request->q9['rating']) == false) {
+            $q9 = 0;
+        } else {
+            $q9 = $request->q9['rating'];
+        }
 
         $surveyAnswers = SurveyAnswers::insert(
             [
@@ -141,42 +199,42 @@ class PssController extends Controller
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q4['id'],
-                    'rating' => $request->q4['rating'],
+                    'rating' => $q4,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q5['id'],
-                    'rating' => $request->q5['rating'],
+                    'rating' => $q5,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q6['id'],
-                    'rating' => $request->q6['rating'],
+                    'rating' => $q6,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q7['id'],
-                    'rating' => $request->q7['rating'],
+                    'rating' => $q7,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q8['id'],
-                    'rating' => $request->q8['rating'],
+                    'rating' => $q8,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q9['id'],
-                    'rating' => $request->q9['rating'],
+                    'rating' => $q9,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
@@ -224,6 +282,258 @@ class PssController extends Controller
                 ],
             ]
         );
+
+        $doctor_comment = null;
+        if (isset($request->doctor['comment']) == false) {
+            $doctor_comment = null;
+        } else {
+            $doctor_comment = $request->doctor['comment'];
+        }
+
+        $nurse_comment = null;
+        if (isset($request->nurse['comment']) == false) {
+            $nurse_comment = null;
+        } else {
+            $nurse_comment = $request->nurse['comment'];
+        }
+
+        $midwife_comment = null;
+        if (isset($request->midwife['comment']) == false) {
+            $midwife_comment = null;
+        } else {
+            $midwife_comment = $request->midwife['comment'];
+        }
+
+        $security_comment = null;
+        if (isset($request->security['comment']) == false) {
+            $security_comment = null;
+        } else {
+            $security_comment = $request->security['comment'];
+        }
+
+        $radiology_comment = null;
+        if (isset($request->radiology['comment']) == false) {
+            $radiology_comment = null;
+        } else {
+            $radiology_comment = $request->radiology['comment'];
+        }
+
+        $pharmacy_comment = null;
+        if (isset($request->pharmacy['comment']) == false) {
+            $pharmacy_comment = null;
+        } else {
+            $pharmacy_comment = $request->pharmacy['comment'];
+        }
+
+        $laboratory_comment = null;
+        if (isset($request->laboratory['comment']) == false) {
+            $laboratory_comment = null;
+        } else {
+            $laboratory_comment = $request->laboratory['comment'];
+        }
+
+        $admitting_staff_comment = null;
+        if (isset($request->admitting_staff['comment']) == false) {
+            $admitting_staff_comment = null;
+        } else {
+            $admitting_staff_comment = $request->admitting_staff['comment'];
+        }
+
+        $medical_records_comment = null;
+        if (isset($request->medical_records['comment']) == false) {
+            $medical_records_comment = null;
+        } else {
+            $medical_records_comment = $request->medical_records['comment'];
+        }
+
+        $billing_comment = null;
+        if (isset($request->billing['comment']) == false) {
+            $billing_comment = null;
+        } else {
+            $billing_comment = $request->billing['comment'];
+        }
+
+        $cashier_comment = null;
+        if (isset($request->cashier['comment']) == false) {
+            $cashier_comment = null;
+        } else {
+            $cashier_comment = $request->cashier['comment'];
+        }
+
+        $social_worker_comment = null;
+        if (isset($request->social_worker['comment']) == false) {
+            $social_worker_comment = null;
+        } else {
+            $social_worker_comment = $request->social_worker['comment'];
+        }
+
+        $food_server_comment = null;
+        if (isset($request->food_server['comment']) == false) {
+            $food_server_comment = null;
+        } else {
+            $food_server_comment = $request->food_server['comment'];
+        }
+
+        $janitors_orderly_comment = null;
+        if (isset($request->janitors_orderly['comment']) == false) {
+            $janitors_orderly_comment = null;
+        } else {
+            $janitors_orderly_comment = $request->janitors_orderly['comment'];
+        }
+
+        $surveyAbtStaff = SurveyAbtStaff::insert([
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->doctor['id'],
+                'rating' => $request->doctor['rating'],
+                'comment' => $doctor_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->nurse['id'],
+                'rating' => $request->nurse['rating'],
+                'comment' => $nurse_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->midwife['id'],
+                'rating' => $request->midwife['rating'],
+                'comment' => $midwife_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->security['id'],
+                'rating' => $request->security['rating'],
+                'comment' => $security_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->radiology['id'],
+                'rating' => $request->radiology['rating'],
+                'comment' => $radiology_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->pharmacy['id'],
+                'rating' => $request->pharmacy['rating'],
+                'comment' => $pharmacy_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->laboratory['id'],
+                'rating' => $request->laboratory['rating'],
+                'comment' => $laboratory_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->admitting_staff['id'],
+                'rating' => $request->admitting_staff['rating'],
+                'comment' => $admitting_staff_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->medical_records['id'],
+                'rating' => $request->medical_records['rating'],
+                'comment' => $medical_records_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->billing['id'],
+                'rating' => $request->billing['rating'],
+                'comment' => $billing_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->cashier['id'],
+                'rating' => $request->cashier['rating'],
+                'comment' => $cashier_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->social_worker['id'],
+                'rating' => $request->social_worker['rating'],
+                'comment' => $social_worker_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->food_server['id'],
+                'rating' => $request->food_server['rating'],
+                'comment' => $food_server_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'pss_id' => $pss_id,
+                'staff_type' => $request->janitors_orderly['id'],
+                'rating' => $request->janitors_orderly['rating'],
+                'comment' => $janitors_orderly_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ]);
+
+        $opt_q_1_comment = null;
+        if (isset($request->opt_q_1['comment']) == false) {
+            $opt_q_1_comment = null;
+        } else {
+            $opt_q_1_comment = $request->opt_q_1['comment'];
+        }
+
+        $opt_q_2_comment = null;
+        if (isset($request->opt_q_2['comment']) == false) {
+            $opt_q_2_comment = null;
+        } else {
+            $opt_q_2_comment = $request->opt_q_2['comment'];
+        }
+
+        $opt_q_3_comment = null;
+        if (isset($request->opt_q_3['comment']) == false) {
+            $opt_q_3_comment = null;
+        } else {
+            $opt_q_3_comment = $request->opt_q_3['comment'];
+        }
+        // dd((int)$request->opt_q_1['survey_question_id']);
+        $surveyOptAnswers = SurveyOptAnswers::insert([
+            [
+                'pss_id' => $pss_id,
+                'survey_question_id' => $request->opt_q_1['survey_question_id'],
+                'comment' => $opt_q_1_comment,
+            ],
+            [
+                'pss_id' => $pss_id,
+                'survey_question_id' => $request->opt_q_2['survey_question_id'],
+                'comment' => $opt_q_2_comment,
+            ],
+            [
+                'pss_id' => $pss_id,
+                'survey_question_id' => $request->opt_q_3['survey_question_id'],
+                'comment' => $opt_q_3_comment,
+            ],
+        ]);
 
         return redirect()->back();
     }

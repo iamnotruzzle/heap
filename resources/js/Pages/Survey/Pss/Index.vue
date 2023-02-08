@@ -114,10 +114,10 @@
                         ></v-text-field>
                       </div>
                       <div
-                        v-if="form.errors.respondent"
+                        v-if="form.errors.respondent || form.errors.otherRespondent"
                         class="red--text mx-2"
                       >
-                        {{ form.errors.respondent }}
+                        The respondent field is required.
                       </div>
                     </div>
                   </v-col>
@@ -240,10 +240,10 @@
                       </div>
                     </div>
                     <div
-                      v-if="form.errors.religion"
-                      class="red--text"
+                      v-if="form.errors.religion || form.errors.otherReligion"
+                      class="red--text mx-2"
                     >
-                      {{ form.errors.religion }}
+                      The religion field is required.
                     </div>
                   </v-col>
 
@@ -417,10 +417,10 @@
                       </div>
                     </div>
                     <div
-                      v-if="form.errors.department"
-                      class="red--text"
+                      v-if="form.errors.department || form.errors.otherDepartment"
+                      class="red--text mx-2"
                     >
-                      {{ form.errors.department }}
+                      The department visited field is required.
                     </div>
                   </v-col>
 
@@ -2538,72 +2538,72 @@ export default {
           rating: undefined,
         },
         doctor: {
-          staff_type: this.hospital_staffs[0].id,
+          id: this.hospital_staffs[0].id,
           rating: null,
           comment: '',
         },
         nurse: {
-          staff_type: this.hospital_staffs[1].id,
+          id: this.hospital_staffs[1].id,
           rating: undefined,
           comment: '',
         },
         midwife: {
-          staff_type: this.hospital_staffs[2].id,
+          id: this.hospital_staffs[2].id,
           rating: undefined,
           comment: '',
         },
         security: {
-          staff_type: this.hospital_staffs[3].id,
+          id: this.hospital_staffs[3].id,
           rating: undefined,
           comment: '',
         },
         radiology: {
-          staff_type: this.hospital_staffs[4].id,
+          id: this.hospital_staffs[4].id,
           rating: undefined,
           comment: '',
         },
         pharmacy: {
-          staff_type: this.hospital_staffs[5].id,
+          id: this.hospital_staffs[5].id,
           rating: undefined,
           comment: '',
         },
         laboratory: {
-          staff_type: this.hospital_staffs[6].id,
+          id: this.hospital_staffs[6].id,
           rating: undefined,
           comment: '',
         },
         admitting_staff: {
-          staff_type: this.hospital_staffs[7].id,
+          id: this.hospital_staffs[7].id,
           rating: undefined,
           comment: '',
         },
         medical_records: {
-          staff_type: this.hospital_staffs[8].id,
+          id: this.hospital_staffs[8].id,
           rating: undefined,
           comment: '',
         },
         billing: {
-          staff_type: this.hospital_staffs[9].id,
+          id: this.hospital_staffs[9].id,
           rating: undefined,
           comment: '',
         },
         cashier: {
-          staff_type: this.hospital_staffs[10].id,
+          id: this.hospital_staffs[10].id,
           rating: undefined,
           comment: '',
         },
         social_worker: {
-          staff_type: this.hospital_staffs[11].id,
+          id: this.hospital_staffs[11].id,
           rating: undefined,
           comment: '',
         },
         food_server: {
-          staff_type: this.hospital_staffs[12].id,
+          id: this.hospital_staffs[12].id,
           rating: undefined,
           comment: '',
         },
         janitors_orderly: {
-          staff_type: this.hospital_staffs[13].id,
+          id: this.hospital_staffs[13].id,
           rating: undefined,
           comment: '',
         },
@@ -2616,7 +2616,7 @@ export default {
           comment: '',
         },
         opt_q_3: {
-          survey_question_id: this.survey_opt_questions[0].id,
+          survey_question_id: this.survey_opt_questions[2].id,
           comment: '',
         },
       }),
@@ -2708,8 +2708,8 @@ export default {
       }
     },
     'form.admitting_staff.rating': function (val) {
-      if (this.form.admittinh_staff.rating == 0) {
-        this.form.admittinh_staff.comment = '';
+      if (this.form.admitting_staff.rating == 0) {
+        this.form.admitting_staff.comment = '';
       }
     },
     'form.medical_records.rating': function (val) {
@@ -2751,8 +2751,8 @@ export default {
       this.form.post(route('pss.store'), {
         onSuccess: () => {
           this.isLoading = true;
-          this.partA1 = false;
           this.form.reset();
+          this.partA1 = false;
           this.createdMsg();
         },
       });
