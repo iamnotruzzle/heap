@@ -2445,6 +2445,28 @@
           </v-card>
         </v-layout>
       </v-container>
+
+      <!-- snackbar -->
+      <v-snackbar
+        v-model="snack"
+        :timeout="3000"
+        :color="snackColor"
+      >
+        <div class="d-flex align-center">
+          <v-icon class="mr-2">mdi-check-circle-outline</v-icon>
+          <span>{{ snackText }}</span>
+        </div>
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            v-bind="attrs"
+            text
+            @click="snack = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-app>
   </div>
 </template>
@@ -2460,6 +2482,9 @@ export default {
   },
   data() {
     return {
+      snack: '',
+      snackColor: '',
+      snackText: '',
       enableRespondent: false,
       enableReligion: false,
       enableDepartment: false,
@@ -2758,7 +2783,20 @@ export default {
           this.partA1 = false;
           this.createdMsg();
         },
+        onError: (errors) => {
+          this.errorExistsMsg();
+        },
       });
+    },
+    createdMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'Survey saved.';
+    },
+    errorExistsMsg() {
+      this.snack = true;
+      this.snackColor = 'color_error';
+      this.snackText = 'Failed to save survey, please answer the required questions.';
     },
   },
 };
