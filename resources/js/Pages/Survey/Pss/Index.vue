@@ -2752,6 +2752,9 @@ export default {
         onSuccess: () => {
           this.isLoading = true;
           this.form.reset();
+          this.enableRespondent = false;
+          this.enableReligion = false;
+          this.enableDepartment = false;
           this.partA1 = false;
           this.createdMsg();
         },
