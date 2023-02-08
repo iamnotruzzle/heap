@@ -6,13 +6,23 @@
         class="background"
       >
         <v-layout
-          align-center
           justify-center
+          align-center
         >
           <v-card
             elevation="24"
             class="corners large-screen"
           >
+            <v-tabs
+              active-class="blue white--text "
+              grow
+            >
+              <v-tab @click="comp = 'Iloco'">Iloco</v-tab>
+              <v-tab @click="comp = 'Tagalog'">Tagalog</v-tab>
+              <v-tab @click="comp = 'English'">English</v-tab>
+            </v-tabs>
+            <component :is="comp" />
+
             <v-card-title>
               <v-row>
                 <v-col cols="3">
@@ -2422,8 +2432,8 @@
                     cols="12"
                     class="my-4"
                   >
-                    <div class="d-flex justify-center align-center flex-column">
-                      <h5 class="text-h5-edited font-weight-black text-center">
+                    <div class="d-flex justify-center align-center flex-column text-center">
+                      <h5 class="text-h5-edited font-weight-black">
                         Thank you for your valuable time and opportunity to serve you better.
                       </h5>
 
@@ -2441,6 +2451,7 @@
                   </v-col>
                 </v-row>
               </v-form>
+              -->
             </v-card-text>
           </v-card>
         </v-layout>
@@ -2473,8 +2484,16 @@
 
 <script>
 import { Inertia } from '@inertiajs/inertia';
+import Iloco from '@/Components/Iloco';
+import English from '@/Components/English';
+import Tagalog from '@/Components/Tagalog';
 
 export default {
+  components: {
+    Iloco,
+    English,
+    Tagalog,
+  },
   props: {
     hospital_staffs: Array,
     survey_questions: Array,
@@ -2482,6 +2501,7 @@ export default {
   },
   data() {
     return {
+      comp: Iloco,
       snack: '',
       snackColor: '',
       snackText: '',
