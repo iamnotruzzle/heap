@@ -444,7 +444,10 @@
                           v-model="form.otherDepartment"
                           :disabled="!enableDepartment"
                           :items="departments"
+                          item-value="id"
+                          item-text="name"
                           label="Other"
+                          multiple
                           outlined
                           dense
                           hide-details
@@ -2559,6 +2562,7 @@ export default {
     hospital_staffs: Array,
     survey_questions: Array,
     survey_opt_questions: Array,
+    departments: Array,
   },
   data() {
     return {
@@ -2573,7 +2577,7 @@ export default {
       enableReligion: false,
       enableDepartment: false,
       isLoading: false,
-      departments: ['Office of the Medical Center Chief'],
+      //   departments: ['Office of the Medical Center Chief'],
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
