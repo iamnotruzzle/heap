@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Survey;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
 use App\Models\SurveyAbtStaff;
@@ -25,12 +26,15 @@ class PssController extends Controller
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
+        $departments = Department::all('id', 'name');
+
         return Inertia::render(
             'Survey/Pss/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
+                'departments' => $departments,
             ]
         );
     }

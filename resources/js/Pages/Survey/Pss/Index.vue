@@ -359,7 +359,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="form.dateOfVisit"
-                          append-icon="mdi-calendar"
+                          append-outer-icon="mdi-calendar"
                           readonly
                           v-bind="attrs"
                           v-on="on"
@@ -367,6 +367,7 @@
                           dense
                           hide-details
                           id="dateOfVisit"
+                          class="change-width"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -437,13 +438,24 @@
                           v-model="enableDepartment"
                           dense
                         ></v-checkbox>
-                        <v-text-field
+
+                        <v-select
+                          id="department"
+                          v-model="form.otherDepartment"
+                          :disabled="!enableDepartment"
+                          :items="departments"
+                          label="Other"
+                          outlined
+                          dense
+                          hide-details
+                        ></v-select>
+                        <!-- <v-text-field
                           id="department"
                           v-model="form.otherDepartment"
                           :disabled="!enableDepartment"
                           label="Other offices (Specify)"
                           dense
-                        ></v-text-field>
+                        ></v-text-field> -->
                       </div>
                     </div>
                     <div
@@ -2561,6 +2573,7 @@ export default {
       enableReligion: false,
       enableDepartment: false,
       isLoading: false,
+      departments: ['Office of the Medical Center Chief'],
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
@@ -2900,5 +2913,9 @@ export default {
 
 .active {
   color: green;
+}
+
+.change-width {
+  width: 200px;
 }
 </style>

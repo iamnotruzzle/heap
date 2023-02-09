@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             RoleAndPermissionSeeder::class,
             HospitalStaffSeeder::class,
             QuestionSeeder::class,
-            OptQuestionSeeder::class
+            OptQuestionSeeder::class,
+            DepartmentsSeeder::class
         ]);
     }
 }
