@@ -14,6 +14,7 @@ use App\Models\SurveyOptQuestions;
 use App\Models\SurveyQuestions;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class PssController extends Controller
@@ -26,7 +27,9 @@ class PssController extends Controller
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
-        $departments = Department::all('id', 'name');
+        // $departments = Department::all('id', 'name')->sortBy('name');
+        $departments = Department::orderBy('name')->get(['id', 'name']);
+        // dd($departments);
 
         return Inertia::render(
             'Survey/Pss/Index',

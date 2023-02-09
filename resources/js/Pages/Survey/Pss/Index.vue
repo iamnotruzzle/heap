@@ -438,7 +438,7 @@
                           v-model="enableDepartment"
                           dense
                         ></v-checkbox>
-
+                        {{ form.otherDepartment }}
                         <v-select
                           id="department"
                           v-model="form.otherDepartment"
