@@ -499,8 +499,7 @@
                     <h5 class="text-h5-edited font-weight-bold">How would you rate our service?</h5>
                     <p>
                       <span class="font-weight-bold">Direction:</span>
-                      Put a check mark(<v-icon>mdi-check</v-icon>) on the emoticon that best corresponds to your rating
-                      for each item.
+                      Click on the emoticon that best corresponds to your rating for each item.
                     </p>
 
                     <!-- partA -->
@@ -677,16 +676,11 @@
                   <!-- partA1 -->
                   <v-col cols="12 my-0 py-0">
                     <div class="grey lighten-1 mb-4">
-                      <v-checkbox
-                        @click="togglePartA1"
-                        label="The processes were done fast, promptly and clearly"
-                        class="text-h6-edited pa-1 font-weight-bold"
-                        hide-details
-                      ></v-checkbox>
+                      <span class="text-h6-edited mx-2"> The processes were done fast, promptly and clearly </span>
                     </div>
 
                     <!-- q4 -->
-                    <div v-if="partA1">
+                    <div>
                       <p class="font-weight-bold ma-0">4. Consultation process</p>
                       <v-btn-toggle
                         v-model="form.q4.rating"
@@ -729,12 +723,18 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q4.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q5 -->
-                    <div v-if="partA1">
+                    <div>
                       <p class="font-weight-bold ma-0">5. Admission process</p>
                       <v-btn-toggle
                         v-model="form.q5.rating"
@@ -777,12 +777,18 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q5.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q6 -->
-                    <div v-if="partA1">
+                    <div>
                       <p class="font-weight-bold ma-0">6. Laboratory and radiology processes</p>
                       <v-btn-toggle
                         v-model="form.q6.rating"
@@ -825,12 +831,18 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q6.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q7 -->
-                    <div v-if="partA1">
+                    <div>
                       <p class="font-weight-bold ma-0">7. Discharge Process (Discharging, Billing , and Cashier)</p>
                       <v-btn-toggle
                         v-model="form.q7.rating"
@@ -873,12 +885,18 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q7.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q8 -->
-                    <div v-if="partA1">
+                    <div>
                       <p class="font-weight-bold ma-0">8. Request of Documents from this Facility</p>
                       <v-btn-toggle
                         v-model="form.q8.rating"
@@ -921,12 +939,18 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q8.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q9 -->
-                    <div v-if="partA1">
+                    <div>
                       <p class="font-weight-bold ma-0">
                         9. Process of Request for Assistance from Medical Social Service
                       </p>
@@ -971,6 +995,12 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
+                      <div
+                        v-if="form.errors[`q9.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
                   </v-col>
 
@@ -2530,7 +2560,6 @@ export default {
       enableRespondent: false,
       enableReligion: false,
       enableDepartment: false,
-      partA1: false,
       isLoading: false,
       form: this.$inertia.form({
         respondent: '',
@@ -2811,9 +2840,6 @@ export default {
     },
   },
   methods: {
-    togglePartA1() {
-      this.partA1 = !this.partA1;
-    },
     submit() {
       this.form.post(route('pss.store'), {
         onSuccess: () => {

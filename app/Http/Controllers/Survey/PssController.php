@@ -53,6 +53,12 @@ class PssController extends Controller
             'q1.rating' => 'required',
             'q2.rating' => 'required',
             'q3.rating' => 'required',
+            'q4.rating' => 'required',
+            'q5.rating' => 'required',
+            'q6.rating' => 'required',
+            'q7.rating' => 'required',
+            'q8.rating' => 'required',
+            'q9.rating' => 'required',
             'q10.rating' => 'required',
             'q11.rating' => 'required',
             'q12.rating' => 'required',
@@ -125,53 +131,53 @@ class PssController extends Controller
 
         // dd($request->q4);
 
-        // assign value of q4 based on the condition
-        $q4 = 0;
-        if (isset($request->q4['rating']) == false) {
-            $q4 = 0;
-        } else {
-            $q4 = $request->q4['rating'];
-        }
+        // // assign value of q4 based on the condition
+        // $q4 = 0;
+        // if (isset($request->q4['rating']) == false) {
+        //     $q4 = 0;
+        // } else {
+        //     $q4 = $request->q4['rating'];
+        // }
 
-        // assign value of q5 based on the condition
-        $q5 = 0;
-        if (isset($request->q5['rating']) == false) {
-            $q5 = 0;
-        } else {
-            $q5 = $request->q5['rating'];
-        }
+        // // assign value of q5 based on the condition
+        // $q5 = 0;
+        // if (isset($request->q5['rating']) == false) {
+        //     $q5 = 0;
+        // } else {
+        //     $q5 = $request->q5['rating'];
+        // }
 
-        // assign value of q6 based on the condition
-        $q6 = 0;
-        if (isset($request->q6['rating']) == false) {
-            $q6 = 0;
-        } else {
-            $q6 = $request->q6['rating'];
-        }
+        // // assign value of q6 based on the condition
+        // $q6 = 0;
+        // if (isset($request->q6['rating']) == false) {
+        //     $q6 = 0;
+        // } else {
+        //     $q6 = $request->q6['rating'];
+        // }
 
-        // assign value of q7 based on the condition
-        $q7 = 0;
-        if (isset($request->q7['rating']) == false) {
-            $q7 = 0;
-        } else {
-            $q7 = $request->q7['rating'];
-        }
+        // // assign value of q7 based on the condition
+        // $q7 = 0;
+        // if (isset($request->q7['rating']) == false) {
+        //     $q7 = 0;
+        // } else {
+        //     $q7 = $request->q7['rating'];
+        // }
 
-        // assign value of q8 based on the condition
-        $q8 = 0;
-        if (isset($request->q8['rating']) == false) {
-            $q8 = 0;
-        } else {
-            $q8 = $request->q8['rating'];
-        }
+        // // assign value of q8 based on the condition
+        // $q8 = 0;
+        // if (isset($request->q8['rating']) == false) {
+        //     $q8 = 0;
+        // } else {
+        //     $q8 = $request->q8['rating'];
+        // }
 
-        // assign value of q9 based on the condition
-        $q9 = 0;
-        if (isset($request->q9['rating']) == false) {
-            $q9 = 0;
-        } else {
-            $q9 = $request->q9['rating'];
-        }
+        // // assign value of q9 based on the condition
+        // $q9 = 0;
+        // if (isset($request->q9['rating']) == false) {
+        //     $q9 = 0;
+        // } else {
+        //     $q9 = $request->q9['rating'];
+        // }
 
         $surveyAnswers = SurveyAnswers::insert(
             [
@@ -199,42 +205,42 @@ class PssController extends Controller
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q4['id'],
-                    'rating' => $q4,
+                    'rating' => $request->q4['rating'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q5['id'],
-                    'rating' => $q5,
+                    'rating' => $request->q5['rating'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q6['id'],
-                    'rating' => $q6,
+                    'rating' => $request->q6['rating'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q7['id'],
-                    'rating' => $q7,
+                    'rating' => $request->q7['rating'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q8['id'],
-                    'rating' => $q8,
+                    'rating' => $request->q8['rating'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->q9['id'],
-                    'rating' => $q9,
+                    'rating' => $request->q9['rating'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
