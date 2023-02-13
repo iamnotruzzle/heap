@@ -44,7 +44,7 @@ class PssController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        // implode & explode
 
         // dd($request);
         $request->validate([
