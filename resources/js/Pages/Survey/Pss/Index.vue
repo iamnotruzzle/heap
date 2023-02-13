@@ -208,43 +208,21 @@
                     </label>
 
                     <div class="d-flex flex-row">
-                      <v-checkbox
-                        id="religion"
-                        v-model="form.religion"
-                        label="Catholic"
-                        value="Catholic"
-                        dense
-                        hide-details
-                        class="mr-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        id="religion"
-                        v-model="form.religion"
-                        label="Muslim"
-                        value="Muslim"
-                        dense
-                        hide-details
-                        class="mr-2"
-                      ></v-checkbox>
-
                       <div class="d-flex flex-row">
-                        <v-checkbox
+                        <v-select
                           id="religion"
-                          v-model="enableReligion"
+                          v-model="form.religion"
+                          :items="religions"
+                          item-text="name"
+                          label="Choose Religion"
+                          outlined
                           dense
-                        ></v-checkbox>
-                        <v-text-field
-                          id="religion"
-                          v-model="form.otherReligion"
-                          :disabled="!enableReligion"
-                          label="Others (Specify)"
-                          dense
-                        ></v-text-field>
+                          hide-details
+                        ></v-select>
                       </div>
                     </div>
                     <div
-                      v-if="form.errors.religion || form.errors.otherReligion"
+                      v-if="form.errors.religion"
                       class="red--text mx-2"
                     >
                       The religion field is required.
@@ -438,7 +416,7 @@
                           v-model="enableDepartment"
                           dense
                         ></v-checkbox>
-                        {{ form.otherDepartment }}
+
                         <v-select
                           id="department"
                           v-model="form.otherDepartment"
@@ -2574,17 +2552,23 @@ export default {
       snackColor: '',
       snackText: '',
       enableRespondent: false,
-      enableReligion: false,
       enableDepartment: false,
       isLoading: false,
-      //   departments: ['Office of the Medical Center Chief'],
+      religions: [
+        'Aglipayan',
+        'Roman Catholic',
+        'Muslim',
+        'Protestant',
+        'Iglesia ni Cristo',
+        'Baptist',
+        "Jehovah's Witnesses",
+      ].sort(),
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
         age: '',
         sex: '',
         religion: '',
-        otherReligion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
         department: '',
@@ -2753,17 +2737,6 @@ export default {
         this.form.respondent = '';
       }
     },
-    'form.religion': function (val) {
-      if (this.form.religion != '') {
-        this.form.otherReligion = '';
-        this.enableReligion = false;
-      }
-    },
-    enableReligion: function (val) {
-      if (this.enableReligion == true) {
-        this.form.religion = '';
-      }
-    },
     'form.department': function (val) {
       if (this.form.department != '') {
         this.otherDepartment = '';
@@ -2863,7 +2836,6 @@ export default {
           this.isLoading = true;
           this.form.reset();
           this.enableRespondent = false;
-          this.enableReligion = false;
           this.enableDepartment = false;
           this.partA1 = false;
           this.createdMsg();

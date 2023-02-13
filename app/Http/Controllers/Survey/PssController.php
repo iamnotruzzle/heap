@@ -45,13 +45,14 @@ class PssController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+
+        // dd($request);
         $request->validate([
             'respondent' => "required_if:otherRespondent,null",
             'otherRespondent' => "required_if:respondent,null",
             'age' => 'required|numeric',
             'sex' => 'required',
-            'religion' => "required_if:otherReligion,null",
-            'otherReligion' => "required_if:religion,null",
+            'religion' => 'required',
             'educationalAttainment' => 'required',
             'dateOfVisit' => 'required',
             'department' => "required_if:otherDepartment,null",
@@ -105,14 +106,6 @@ class PssController extends Controller
             $respondent = $request->respondent;
         };
 
-        // assign value of religion based on the condition
-        $religion = '';
-        if ($request->religion == '' || $request->religion == null) {
-            $religion = $request->otherReligion;
-        } else {
-            $religion = $request->religion;
-        };
-
         // assign value of departmentVisited based on the condition
         $departmentVisited = '';
         if ($request->department == '' || $request->department == null) {
@@ -128,8 +121,7 @@ class PssController extends Controller
             'educational_attainment' => $request->educationalAttainment,
             'age' => $request->age,
             'sex' => $request->sex,
-            'religion' => $religion,
-            // 'religion' => $request->religion,
+            'religion' => $request->religion,
             'date_of_visit' => $request->dateOfVisit,
             'department_visited' => $departmentVisited,
             // 'department_visited' => $request->department,
