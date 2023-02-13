@@ -32,9 +32,19 @@ class PssController extends Controller
 
         $religions = Religion::orderBy('name')->get(['id', 'name']);
 
+        // er and inpatient/wards
+        $departments = OtherDepartment::orderBy('name')
+            ->where('name', '=', 'Emergency Room')
+            ->where('name', '=', 'Inpatient/Ward')
+            ->get(['id', 'name']);
+
         $other_departments = OtherDepartment::orderBy('name')->get(['id', 'name']);
 
-        $outpatient_dept = OutpatientDept::orderBy('name')->get(['id', 'name']);
+        // all outpatient dept
+        $outpatient_dept = Department::orderBy('name')
+            ->where('name', '!=', 'Emergency Room')
+            ->where('name', '!=', 'Inpatient/Ward')
+            ->get(['id', 'name']);
 
         return Inertia::render(
             'Survey/Pss/Index',
@@ -43,6 +53,7 @@ class PssController extends Controller
                 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
                 'religions' => $religions,
+                'departments' => $departments,
                 'other_departments' => $other_departments,
                 'outpatient_dept' => $outpatient_dept,
             ]
@@ -119,7 +130,7 @@ class PssController extends Controller
             // $departmentVisited = $request->otherDepartment;
             $departmentVisited = implode("', '", $request->otherDepartment);
         } else {
-            $departmentVisited = $request->department;
+            $departmentVisited = implode("', '", $request->department);
         };
 
         $surveyGeneralInfo = SurveyGeneralInfo::create([

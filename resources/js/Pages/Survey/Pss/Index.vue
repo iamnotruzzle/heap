@@ -403,15 +403,30 @@
                         class="mr-2"
                       ></v-checkbox>
 
-                      <v-checkbox
+                      <v-select
                         id="department"
                         v-model="form.department"
+                        :items="outpatient_dept"
+                        item-value="id"
+                        item-text="name"
                         label="Outpatient Department"
-                        value="Outpatient Department"
+                        multiple
+                        outlined
                         dense
                         hide-details
-                        class="mr-2"
-                      ></v-checkbox>
+                      >
+                        <template v-slot:selection="{ item, index }">
+                          <v-chip v-if="index < 2">
+                            <span>{{ item.name }}</span>
+                          </v-chip>
+                          <span
+                            v-if="index === 2"
+                            class="text-grey text-caption align-self-center"
+                          >
+                            (+{{ form.department.length - 2 }} others)
+                          </span>
+                        </template>
+                      </v-select>
 
                       <v-checkbox
                         id="department"
@@ -426,14 +441,14 @@
                       <div class="d-flex flex-row">
                         <v-checkbox
                           id="department"
-                          v-model="enableDepartment"
+                          v-model="enableOtherDepartment"
                           dense
                         ></v-checkbox>
 
                         <v-select
                           id="department"
                           v-model="form.otherDepartment"
-                          :disabled="!enableDepartment"
+                          :disabled="!enableOtherDepartment"
                           :items="other_departments"
                           item-value="id"
                           item-text="name"
@@ -458,7 +473,7 @@
                         <!-- <v-text-field
                           id="department"
                           v-model="form.otherDepartment"
-                          :disabled="!enableDepartment"
+                          :disabled="!enableOtherDepartment"
                           label="Other offices (Specify)"
                           dense
                         ></v-text-field> -->
@@ -2579,7 +2594,7 @@ export default {
       snackColor: '',
       snackText: '',
       enableRespondent: false,
-      enableDepartment: false,
+      enableOtherDepartment: false,
       isLoading: false,
       form: this.$inertia.form({
         respondent: '',
@@ -2589,7 +2604,7 @@ export default {
         religion: [],
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
-        department: '',
+        department: [],
         otherDepartment: '',
         visited_before: '',
         q1: {
@@ -2756,14 +2771,17 @@ export default {
       }
     },
     'form.department': function (val) {
-      if (this.form.department != '') {
-        this.form.otherDepartment = '';
-        this.enableDepartment = false;
+      if (this.form.department.length != 0) {
+        this.form.otherDepartment = [];
+        this.enableOtherDepartment = false;
       }
     },
-    enableDepartment: function (val) {
-      if (this.enableDepartment == true) {
-        this.form.department = '';
+    enableOtherDepartment: function (val) {
+      if (this.enableOtherDepartment == true) {
+        this.form.department = [];
+      }
+      if (this.enableOtherDepartment == false) {
+        this.form.otherDepartment = [];
       }
     },
     partA1: function (val) {
@@ -2854,7 +2872,7 @@ export default {
           this.isLoading = true;
           this.form.reset();
           this.enableRespondent = false;
-          this.enableDepartment = false;
+          this.enableOtherDepartment = false;
           this.partA1 = false;
           this.createdMsg();
         },
