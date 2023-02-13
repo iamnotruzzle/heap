@@ -2567,6 +2567,7 @@ export default {
     survey_opt_questions: Array,
     religions: Array,
     other_departments: Array,
+    outpatient_dept: Array,
   },
   data() {
     return {
