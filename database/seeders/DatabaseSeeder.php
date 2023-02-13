@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             OptQuestionSeeder::class,
             ReligionSeeder::class,
             OtherDepartmentsSeeder::class,
-            OutpatientDeptSeeder::class,
+            DepartmentsSeeder::class,
         ]);
     }
 }
