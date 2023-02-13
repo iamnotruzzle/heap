@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
+use App\Models\OtherDepartment;
 use App\Models\Religion;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
@@ -28,10 +29,9 @@ class PssController extends Controller
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
-        // $departments = Department::all('id', 'name')->sortBy('name');
-        $departments = Department::orderBy('name')->get(['id', 'name']);
-
         $religions = Religion::orderBy('name')->get(['id', 'name']);
+
+        $other_departments = OtherDepartment::orderBy('name')->get(['id', 'name']);
 
         return Inertia::render(
             'Survey/Pss/Index',
@@ -39,8 +39,8 @@ class PssController extends Controller
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
-                'departments' => $departments,
                 'religions' => $religions,
+                'other_departments' => $other_departments,
             ]
         );
     }
@@ -112,7 +112,8 @@ class PssController extends Controller
         // assign value of departmentVisited based on the condition
         $departmentVisited = '';
         if ($request->department == '' || $request->department == null) {
-            $departmentVisited = $request->otherDepartment;
+            // $departmentVisited = $request->otherDepartment;
+            $departmentVisited = implode("', '", $request->otherDepartment);
         } else {
             $departmentVisited = $request->department;
         };

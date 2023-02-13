@@ -434,7 +434,7 @@
                           id="department"
                           v-model="form.otherDepartment"
                           :disabled="!enableDepartment"
-                          :items="departments"
+                          :items="other_departments"
                           item-value="id"
                           item-text="name"
                           label="Other"
@@ -2565,8 +2565,8 @@ export default {
     hospital_staffs: Array,
     survey_questions: Array,
     survey_opt_questions: Array,
-    departments: Array,
     religions: Array,
+    other_departments: Array,
   },
   data() {
     return {
@@ -2585,7 +2585,7 @@ export default {
         otherRespondent: '',
         age: '',
         sex: '',
-        religion: '',
+        religion: [],
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
         department: '',
@@ -2756,7 +2756,7 @@ export default {
     },
     'form.department': function (val) {
       if (this.form.department != '') {
-        this.otherDepartment = '';
+        this.form.otherDepartment = '';
         this.enableDepartment = false;
       }
     },

@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use BaconQrCode\Renderer\RendererStyle\Fill;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class OutpatientDept extends Model
 {
     use HasFactory;
+    protected $table = 'outpatient_dept';
 
     protected $fillable = [
-        'name',
+        'id',
+        'name'
     ];
 }
