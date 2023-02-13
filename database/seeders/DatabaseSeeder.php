@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             HospitalStaffSeeder::class,
             QuestionSeeder::class,
             OptQuestionSeeder::class,
-            DepartmentsSeeder::class
+            DepartmentsSeeder::class,
+            ReligionSeeder::class
         ]);
     }
 }
