@@ -209,7 +209,7 @@
 
                     <div class="d-flex flex-row">
                       <div class="d-flex flex-row">
-                        <v-select
+                        <!-- <v-select
                           id="religion"
                           v-model="form.religion"
                           :items="religions"
@@ -218,7 +218,20 @@
                           outlined
                           dense
                           hide-details
-                        ></v-select>
+                        ></v-select> -->
+
+                        <v-select
+                          id="religion"
+                          v-model="form.religion"
+                          :items="religions"
+                          item-value="id"
+                          item-text="name"
+                          label="Choose Religion"
+                          outlined
+                          dense
+                          hide-details
+                        >
+                        </v-select>
                       </div>
                     </div>
                     <div
@@ -2553,6 +2566,7 @@ export default {
     survey_questions: Array,
     survey_opt_questions: Array,
     departments: Array,
+    religions: Array,
   },
   data() {
     return {
@@ -2566,15 +2580,6 @@ export default {
       enableRespondent: false,
       enableDepartment: false,
       isLoading: false,
-      religions: [
-        'Aglipayan',
-        'Roman Catholic',
-        'Muslim',
-        'Protestant',
-        'Iglesia ni Cristo',
-        'Baptist',
-        "Jehovah's Witnesses",
-      ].sort(),
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',

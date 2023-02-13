@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
+use App\Models\Religion;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
@@ -29,7 +30,8 @@ class PssController extends Controller
 
         // $departments = Department::all('id', 'name')->sortBy('name');
         $departments = Department::orderBy('name')->get(['id', 'name']);
-        // dd($departments);
+
+        $religions = Religion::orderBy('name')->get(['id', 'name']);
 
         return Inertia::render(
             'Survey/Pss/Index',
@@ -38,6 +40,7 @@ class PssController extends Controller
                 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
                 'departments' => $departments,
+                'religions' => $religions,
             ]
         );
     }
