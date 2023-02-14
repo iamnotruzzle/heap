@@ -386,7 +386,7 @@
                   <!-- department visited -->
                   <v-col cols="12">
                     <label
-                      for="department"
+                      for="departments"
                       class="font-weight-bold"
                     >
                       Department Visited
@@ -394,19 +394,19 @@
 
                     <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
                       <v-checkbox
-                        id="department"
-                        v-model="form.department"
+                        id="departments"
+                        v-model="form.departments"
                         label="Emergency Room"
-                        value="Emergency Room"
+                        :value="er_inpatient[0].id"
                         dense
                         hide-details
                         class="mr-2"
                       ></v-checkbox>
 
                       <v-select
-                        id="department"
-                        v-model="form.department"
-                        :items="outpatient_dept"
+                        id="departments"
+                        v-model="form.departments"
+                        :items="outpatient_depts"
                         item-value="id"
                         item-text="name"
                         label="Outpatient Department"
@@ -423,64 +423,48 @@
                             v-if="index === 2"
                             class="text-grey text-caption align-self-center"
                           >
-                            (+{{ form.department.length - 2 }} others)
+                            (+{{ form.departments.length - 2 }} others)
                           </span>
                         </template>
                       </v-select>
 
                       <v-checkbox
-                        id="department"
-                        v-model="form.department"
+                        id="departments"
+                        v-model="form.departments"
                         label="Inpatient/Ward"
-                        value="Inpatient/Ward"
+                        :value="er_inpatient[1].id"
                         dense
                         hide-details
                         class="mr-2"
                       ></v-checkbox>
 
-                      <div class="d-flex flex-row">
-                        <v-checkbox
-                          id="department"
-                          v-model="enableOtherDepartment"
-                          dense
-                        ></v-checkbox>
-
-                        <v-select
-                          id="department"
-                          v-model="form.otherDepartment"
-                          :disabled="!enableOtherDepartment"
-                          :items="other_departments"
-                          item-value="id"
-                          item-text="name"
-                          label="Other"
-                          multiple
-                          outlined
-                          dense
-                          hide-details
-                        >
-                          <template v-slot:selection="{ item, index }">
-                            <v-chip v-if="index < 2">
-                              <span>{{ item.name }}</span>
-                            </v-chip>
-                            <span
-                              v-if="index === 2"
-                              class="text-grey text-caption align-self-center"
-                            >
-                              (+{{ form.otherDepartment.length - 2 }} others)
-                            </span>
-                          </template>
-                        </v-select>
-                        <!-- <v-text-field
-                          id="department"
-                          v-model="form.otherDepartment"
-                          :disabled="!enableOtherDepartment"
-                          label="Other offices (Specify)"
-                          dense
-                        ></v-text-field> -->
-                      </div>
+                      <v-select
+                        id="departments"
+                        v-model="form.departments"
+                        :items="other_depts"
+                        item-value="id"
+                        item-text="name"
+                        label="Other"
+                        multiple
+                        outlined
+                        dense
+                        hide-details
+                      >
+                        <template v-slot:selection="{ item, index }">
+                          <v-chip v-if="index < 2">
+                            <span>{{ item.name }}</span>
+                          </v-chip>
+                          <span
+                            v-if="index === 2"
+                            class="text-grey text-caption align-self-center"
+                          >
+                            (+{{ form.departments.length - 2 }} others)
+                          </span>
+                        </template>
+                      </v-select>
                     </div>
                     <div
-                      v-if="form.errors.department || form.errors.otherDepartment"
+                      v-if="form.errors.departments"
                       class="red--text"
                     >
                       The department visited field is required.
@@ -495,8 +479,9 @@
                     <label
                       for="visited_before"
                       class="font-weight-bold"
-                      >Have you visited this hospital before?</label
                     >
+                      Have you visited this hospital before?
+                    </label>
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="visited_before"
@@ -2581,8 +2566,9 @@ export default {
     survey_questions: Array,
     survey_opt_questions: Array,
     religions: Array,
-    other_departments: Array,
-    outpatient_dept: Array,
+    er_inpatient: Array,
+    outpatient_depts: Array,
+    other_depts: Array,
   },
   data() {
     return {
@@ -2594,7 +2580,6 @@ export default {
       snackColor: '',
       snackText: '',
       enableRespondent: false,
-      enableOtherDepartment: false,
       isLoading: false,
       form: this.$inertia.form({
         respondent: '',
@@ -2604,8 +2589,7 @@ export default {
         religion: [],
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
-        department: [],
-        otherDepartment: '',
+        departments: [],
         visited_before: '',
         q1: {
           id: 1,
@@ -2757,6 +2741,7 @@ export default {
     // console.log('survey questions', this.survey_questions);
     // console.log('survey opt questions', this.survey_opt_questions);
     // console.log(this.form);
+    console.log(this.other_depts);
   },
   watch: {
     'form.respondent': function (val) {
@@ -2768,20 +2753,6 @@ export default {
     enableRespondent: function (val) {
       if (this.enableRespondent == true) {
         this.form.respondent = '';
-      }
-    },
-    'form.department': function (val) {
-      if (this.form.department.length != 0) {
-        this.form.otherDepartment = [];
-        this.enableOtherDepartment = false;
-      }
-    },
-    enableOtherDepartment: function (val) {
-      if (this.enableOtherDepartment == true) {
-        this.form.department = [];
-      }
-      if (this.enableOtherDepartment == false) {
-        this.form.otherDepartment = [];
       }
     },
     partA1: function (val) {

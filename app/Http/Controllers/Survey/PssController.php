@@ -33,17 +33,37 @@ class PssController extends Controller
         $religions = Religion::orderBy('name')->get(['id', 'name']);
 
         // er and inpatient/wards
-        $departments = OtherDepartment::orderBy('name')
-            ->where('name', '=', 'Emergency Room')
-            ->where('name', '=', 'Inpatient/Ward')
+        $er_inpatient = Department::orderBy('name')
+            ->where('id', 12)
+            ->orWhere('id', 13)
             ->get(['id', 'name']);
 
-        $other_departments = OtherDepartment::orderBy('name')->get(['id', 'name']);
+        $outpatient_depts = Department::orderBy('name')
+            ->where('id', '!=', 12)
+            ->where('id', '!=', 13)
+            ->where('id', '!=', 14)
+            ->where('id', '!=', 15)
+            ->where('id', '!=', 16)
+            ->where('id', '!=', 17)
+            ->where('id', '!=', 18)
+            ->where('id', '!=', 19)
+            ->get(['id', 'name']);
 
-        // all outpatient dept
-        $outpatient_dept = Department::orderBy('name')
-            ->where('name', '!=', 'Emergency Room')
-            ->where('name', '!=', 'Inpatient/Ward')
+        // other depts
+        $other_depts = Department::orderBy('name')
+            ->where('id', '!=', 1)
+            ->where('id', '!=', 2)
+            ->where('id', '!=', 3)
+            ->where('id', '!=', 4)
+            ->where('id', '!=', 5)
+            ->where('id', '!=', 6)
+            ->where('id', '!=', 7)
+            ->where('id', '!=', 8)
+            ->where('id', '!=', 9)
+            ->where('id', '!=', 10)
+            ->where('id', '!=', 11)
+            ->where('id', '!=', 12)
+            ->where('id', '!=', 13)
             ->get(['id', 'name']);
 
         return Inertia::render(
@@ -53,9 +73,9 @@ class PssController extends Controller
                 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
                 'religions' => $religions,
-                'departments' => $departments,
-                'other_departments' => $other_departments,
-                'outpatient_dept' => $outpatient_dept,
+                'er_inpatient' => $er_inpatient,
+                'outpatient_depts' => $outpatient_depts,
+                'other_depts' => $other_depts,
             ]
         );
     }
@@ -73,8 +93,7 @@ class PssController extends Controller
             'religion' => 'required',
             'educationalAttainment' => 'required',
             'dateOfVisit' => 'required',
-            'department' => "required_if:otherDepartment,null",
-            'otherDepartment' => "required_if:department,null",
+            'departments' => 'required',
             'visited_before' => 'required',
             'q1.rating' => 'required',
             'q2.rating' => 'required',
@@ -125,13 +144,11 @@ class PssController extends Controller
         };
 
         // assign value of departmentVisited based on the condition
-        $departmentVisited = '';
-        if ($request->department == '' || $request->department == null) {
-            // $departmentVisited = $request->otherDepartment;
-            $departmentVisited = implode("', '", $request->otherDepartment);
-        } else {
-            $departmentVisited = implode("', '", $request->department);
-        };
+        // $departmentsVisited = '';
+        // if ($request->department == '' || $request->department == null) {
+        //     // $departmentVisited = $request->otherDepartment;
+        //     $departmentsVisited = implode("', '", $request->departments);
+        // };
 
         $surveyGeneralInfo = SurveyGeneralInfo::create([
             'pss_id' => $pss_id,
@@ -142,7 +159,7 @@ class PssController extends Controller
             'sex' => $request->sex,
             'religion' => $request->religion,
             'date_of_visit' => $request->dateOfVisit,
-            'department_visited' => $departmentVisited,
+            'department_visited' => implode("', '", $request->departments),
             // 'department_visited' => $request->department,
             'visited_before' => $request->visited_before,
         ]);

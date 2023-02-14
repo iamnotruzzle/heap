@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             QuestionSeeder::class,
             OptQuestionSeeder::class,
             ReligionSeeder::class,
-            OtherDepartmentsSeeder::class,
             DepartmentsSeeder::class,
         ]);
     }
