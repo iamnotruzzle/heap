@@ -258,6 +258,7 @@
                     <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
                       <v-checkbox
                         id="educAt"
+                        :disabled="!enableElementary"
                         v-model="form.educationalAttainment"
                         label="Elementary"
                         value="Elementary"
@@ -268,6 +269,7 @@
 
                       <v-checkbox
                         id="educAt"
+                        :disabled="!enableSecondary"
                         v-model="form.educationalAttainment"
                         label="Secondary"
                         value="Secondary"
@@ -278,6 +280,7 @@
 
                       <v-checkbox
                         id="educAt"
+                        :disabled="!enableVocational"
                         v-model="form.educationalAttainment"
                         label="Vocational"
                         value="Vocational"
@@ -288,6 +291,7 @@
 
                       <v-checkbox
                         id="educAt"
+                        :disabled="!enableCollege"
                         v-model="form.educationalAttainment"
                         label="College"
                         value="College"
@@ -298,6 +302,7 @@
 
                       <v-checkbox
                         id="educAt"
+                        :disabled="!enablePGM"
                         v-model="form.educationalAttainment"
                         label="Postgraduate/Masters"
                         value="Postgraduate/Masters"
@@ -308,6 +313,7 @@
 
                       <v-checkbox
                         id="educAt"
+                        :disabled="!enableNoEduc"
                         v-model="form.educationalAttainment"
                         label="No formal Education"
                         value="No formal Education"
@@ -392,7 +398,13 @@
                       Department Visited
                     </label>
 
-                    <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
+                    <div
+                      :class="
+                        $vuetify.breakpoint.smAndDown == true
+                          ? 'd-flex flex-column justify-center '
+                          : 'd-flex flex-row justify-center align-center'
+                      "
+                    >
                       <v-checkbox
                         id="departments"
                         v-model="form.departments"
@@ -400,7 +412,17 @@
                         :value="er_inpatient[0].id"
                         dense
                         hide-details
-                        class="mr-2"
+                        class="ma-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        id="departments"
+                        v-model="form.departments"
+                        label="Inpatient/Ward"
+                        :value="er_inpatient[1].id"
+                        dense
+                        hide-details
+                        class="ma-2"
                       ></v-checkbox>
 
                       <v-select
@@ -414,9 +436,13 @@
                         outlined
                         dense
                         hide-details
+                        class="ma-2"
                       >
                         <template v-slot:selection="{ item, index }">
-                          <v-chip v-if="index < 2">
+                          <v-chip
+                            v-if="index < 2"
+                            class="ma-1"
+                          >
                             <span>{{ item.name }}</span>
                           </v-chip>
                           <span
@@ -428,31 +454,25 @@
                         </template>
                       </v-select>
 
-                      <v-checkbox
-                        id="departments"
-                        v-model="form.departments"
-                        label="Inpatient/Ward"
-                        :value="er_inpatient[1].id"
-                        dense
-                        hide-details
-                        class="mr-2"
-                      ></v-checkbox>
-
                       <v-select
                         id="departments"
                         v-model="form.departments"
                         :items="other_depts"
                         item-value="id"
                         item-text="name"
-                        label="Other"
+                        label="Other departments"
                         multiple
                         outlined
                         dense
                         hide-details
+                        class="ma-2"
                       >
                         <template v-slot:selection="{ item, index }">
-                          <v-chip v-if="index < 2">
-                            <span>{{ item.name }}</span>
+                          <v-chip
+                            v-if="index < 2"
+                            class="ma-1"
+                          >
+                            <span class="ma-0 pa-0">{{ item.name }}</span>
                           </v-chip>
                           <span
                             v-if="index === 2"
@@ -2581,6 +2601,14 @@ export default {
       snackText: '',
       enableRespondent: false,
       isLoading: false,
+      //   educational attainment enable checker
+      enableElementary: false,
+      enableSecondary: false,
+      enableVocational: false,
+      enableCollege: false,
+      enablePGM: false,
+      enableNoEduc: false,
+      //   end educational attainment enable checker
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
@@ -2741,9 +2769,48 @@ export default {
     // console.log('survey questions', this.survey_questions);
     // console.log('survey opt questions', this.survey_opt_questions);
     // console.log(this.form);
-    console.log(this.other_depts);
+    // console.log(this.other_depts);
   },
   watch: {
+    'form.age': function (val) {
+      // enableElementary: false,
+      // enableSecondary: false,
+      // enableVocational: false,
+      // enableCollege: false,
+      // enablePGM: false,
+      // enableNoEduc: false,
+      // console.log(this.enableElementary);
+      if (val >= 11) {
+        this.enableElementary = true;
+      } else {
+        this.enableElementary = false;
+      }
+      if (val >= 17) {
+        this.enableSecondary = true;
+      } else {
+        this.enableSecondary = false;
+      }
+      if (val >= 18) {
+        this.enableVocational = true;
+      } else {
+        this.enableVocational = false;
+      }
+      if (val >= 19) {
+        this.enableCollege = true;
+      } else {
+        this.enableCollege = false;
+      }
+      if (val >= 22) {
+        this.enablePGM = true;
+      } else {
+        this.enablePGM = false;
+      }
+      if (val > 6) {
+        this.enableNoEduc = true;
+      } else {
+        this.enableNoEduc = false;
+      }
+    },
     'form.respondent': function (val) {
       if (this.form.respondent != '') {
         this.form.otherRespondent = '';
