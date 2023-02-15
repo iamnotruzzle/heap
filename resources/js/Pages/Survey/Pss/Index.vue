@@ -58,13 +58,13 @@
                   class="text-center word-break"
                 >
                   <h6 class="text-h6-edited ma-0 pa-0">Mariano Marcos Memorial Hospital And Medical Center</h6>
-                  <h4 class="text-h4-edited font-weight-bold ma-0 pa-0">PATIENT SATISFACTION QUESTIONNAIRE</h4>
+                  <h4 class="text-h4-edited ma-0 pa-0">PATIENT SATISFACTION QUESTIONNAIRE</h4>
                 </v-col>
               </v-row>
             </v-card-title>
 
             <v-card-text>
-              <v-row class="font-weight-bold">
+              <v-row class="font-weight-black">
                 <v-col cols="12">
                   <p>Dear Patient/Client,</p>
                   <div class="indent">
@@ -76,7 +76,7 @@
                 </v-col>
               </v-row>
 
-              <v-row class="font-weight-bold">
+              <v-row class="font-weight-black">
                 <v-col cols="12">
                   <p>Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:</p>
                 </v-col>
@@ -86,7 +86,7 @@
                 ref="form"
                 class="no-wrap"
               >
-                <v-row class="font-weight-bold">
+                <v-row class="font-weight-black">
                   <v-col cols="12">
                     <p>The Respondent of this Survey Form:</p>
                     <div class="d-flex flex-column ma-0 pa-0">
@@ -137,7 +137,7 @@
                   <v-col
                     cols="4"
                     md="2"
-                    class="font-weight-bold"
+                    class="font-weight-black"
                   >
                     <label for="age">Age</label>
                     <v-text-field
@@ -166,7 +166,7 @@
                   >
                     <label
                       for="sex"
-                      class="font-weight-bold"
+                      class="font-weight-black"
                       >Sex</label
                     >
                     <div class="d-flex flex-row">
@@ -205,7 +205,7 @@
                   >
                     <label
                       for="religion"
-                      class="font-weight-bold"
+                      class="font-weight-black"
                       >Religion
                     </label>
 
@@ -252,7 +252,7 @@
                   <v-col cols="12">
                     <label
                       for="educAt"
-                      class="font-weight-bold"
+                      class="font-weight-black"
                     >
                       Educational Attainment
                     </label>
@@ -342,7 +342,7 @@
                   >
                     <label
                       for="dateOfVisit"
-                      class="font-weight-bold"
+                      class="font-weight-black"
                     >
                       Date of Consultation/Visit
                     </label>
@@ -395,7 +395,7 @@
                   <v-col cols="12">
                     <label
                       for="departments"
-                      class="font-weight-bold"
+                      class="font-weight-black"
                     >
                       Department Visited
                     </label>
@@ -500,7 +500,7 @@
                   <v-col cols="12">
                     <label
                       for="visited_before"
-                      class="font-weight-bold"
+                      class="font-weight-black"
                     >
                       Have you visited this hospital before?
                     </label>
@@ -536,9 +536,9 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <h5 class="text-h5-edited font-weight-bold">How would you rate our service?</h5>
+                    <h5 class="text-h5-edited font-weight-black">How would you rate our service?</h5>
                     <p>
-                      <span class="font-weight-bold">Direction:</span>
+                      <span class="font-weight-black">Direction:</span>
                       Click on the emoticon that best corresponds to your rating for each item.
                     </p>
 
@@ -549,7 +549,7 @@
 
                     <!-- q1 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         1. The waiting areas we used were clean, orderly, and comfortable.
                       </p>
                       <v-btn-toggle
@@ -605,7 +605,7 @@
 
                     <!-- q2 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         2. The toilets and bathrooms inside the facility were kept clean, orderly and with steady water
                         supply.
                       </p>
@@ -662,7 +662,9 @@
 
                     <!-- q3 -->
                     <div>
-                      <p class="font-weight-bold ma-0">3. The patients' rooms were kept clean, tidy and comfortable.</p>
+                      <p class="font-weight-black ma-0">
+                        3. The patients' rooms were kept clean, tidy and comfortable.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q3.rating"
                         dense
@@ -721,7 +723,7 @@
 
                     <!-- q4 -->
                     <div>
-                      <p class="font-weight-bold ma-0">4. Consultation process</p>
+                      <p class="font-weight-black ma-0">4. Consultation process</p>
                       <v-btn-toggle
                         v-model="form.q4.rating"
                         dense
@@ -775,7 +777,7 @@
 
                     <!-- q5 -->
                     <div>
-                      <p class="font-weight-bold ma-0">5. Admission process</p>
+                      <p class="font-weight-black ma-0">5. Admission process</p>
                       <v-btn-toggle
                         v-model="form.q5.rating"
                         dense
@@ -829,7 +831,7 @@
 
                     <!-- q6 -->
                     <div>
-                      <p class="font-weight-bold ma-0">6. Laboratory and radiology processes</p>
+                      <p class="font-weight-black ma-0">6. Laboratory and radiology processes</p>
                       <v-btn-toggle
                         v-model="form.q6.rating"
                         dense
@@ -883,7 +885,7 @@
 
                     <!-- q7 -->
                     <div>
-                      <p class="font-weight-bold ma-0">7. Discharge Process (Discharging, Billing , and Cashier)</p>
+                      <p class="font-weight-black ma-0">7. Discharge Process (Discharging, Billing , and Cashier)</p>
                       <v-btn-toggle
                         v-model="form.q7.rating"
                         dense
@@ -937,7 +939,7 @@
 
                     <!-- q8 -->
                     <div>
-                      <p class="font-weight-bold ma-0">8. Request of Documents from this Facility</p>
+                      <p class="font-weight-black ma-0">8. Request of Documents from this Facility</p>
                       <v-btn-toggle
                         v-model="form.q8.rating"
                         dense
@@ -991,7 +993,7 @@
 
                     <!-- q9 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         9. Process of Request for Assistance from Medical Social Service
                       </p>
                       <v-btn-toggle
@@ -1058,7 +1060,7 @@
 
                     <!-- q10 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         10. The medical condition and procedures were discussed clearly.
                       </p>
                       <v-btn-toggle
@@ -1118,7 +1120,7 @@
 
                     <!-- q11 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         11. Our sentiments, cultural background, and beliefs were heard and considered in the treatment
                         procedure.
                       </p>
@@ -1179,7 +1181,7 @@
 
                     <!-- q12 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         12. We were given the chance to decide which treatment procedure shall be performed.
                       </p>
                       <v-btn-toggle
@@ -1239,7 +1241,7 @@
 
                     <!-- q13 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         13. The discharge instructions were discussed to us clearly before we were allowed to go home,
                         including the time/date and site of the follow-up consultation.
                       </p>
@@ -1300,7 +1302,7 @@
 
                     <!-- q14 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         14. For those eligible for assistance from Malasakit Center. All my medical costs were covered
                         for this particular medical treatment/admission.
                       </p>
@@ -1370,11 +1372,11 @@
 
                     <!-- survey staff -->
                     <div>
-                      <p class="my-2 font-weight-bold">
+                      <p class="my-2 font-weight-black">
                         15. The Hospital Staff we interacted with were courteous and helpful
                       </p>
 
-                      <p class="ma-0 font-weight-bold">Doctor</p>
+                      <p class="ma-0 font-weight-black">Doctor</p>
                       <v-btn-toggle
                         v-model="form.doctor.rating"
                         dense
@@ -1446,7 +1448,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Nurse</p>
+                      <p class="ma-0 font-weight-black">Nurse</p>
                       <v-btn-toggle
                         v-model="form.nurse.rating"
                         dense
@@ -1519,7 +1521,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Midwife</p>
+                      <p class="ma-0 font-weight-black">Midwife</p>
                       <v-btn-toggle
                         v-model="form.midwife.rating"
                         dense
@@ -1593,7 +1595,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Security</p>
+                      <p class="ma-0 font-weight-black">Security</p>
                       <v-btn-toggle
                         v-model="form.security.rating"
                         dense
@@ -1667,7 +1669,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Radiology</p>
+                      <p class="ma-0 font-weight-black">Radiology</p>
                       <v-btn-toggle
                         v-model="form.radiology.rating"
                         dense
@@ -1741,7 +1743,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Pharmacy</p>
+                      <p class="ma-0 font-weight-black">Pharmacy</p>
                       <v-btn-toggle
                         v-model="form.pharmacy.rating"
                         dense
@@ -1815,7 +1817,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Laboratory</p>
+                      <p class="ma-0 font-weight-black">Laboratory</p>
                       <v-btn-toggle
                         v-model="form.laboratory.rating"
                         dense
@@ -1889,7 +1891,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Admitting Staff</p>
+                      <p class="ma-0 font-weight-black">Admitting Staff</p>
                       <v-btn-toggle
                         v-model="form.admitting_staff.rating"
                         dense
@@ -1963,7 +1965,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Medical Records</p>
+                      <p class="ma-0 font-weight-black">Medical Records</p>
                       <v-btn-toggle
                         v-model="form.medical_records.rating"
                         dense
@@ -2037,7 +2039,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Billing</p>
+                      <p class="ma-0 font-weight-black">Billing</p>
                       <v-btn-toggle
                         v-model="form.billing.rating"
                         dense
@@ -2111,7 +2113,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Cashier</p>
+                      <p class="ma-0 font-weight-black">Cashier</p>
                       <v-btn-toggle
                         v-model="form.cashier.rating"
                         dense
@@ -2185,7 +2187,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Social Worker</p>
+                      <p class="ma-0 font-weight-black">Social Worker</p>
                       <v-btn-toggle
                         v-model="form.social_worker.rating"
                         dense
@@ -2259,7 +2261,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Food Server</p>
+                      <p class="ma-0 font-weight-black">Food Server</p>
                       <v-btn-toggle
                         v-model="form.food_server.rating"
                         dense
@@ -2333,7 +2335,7 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-bold">Janitors/Orderly</p>
+                      <p class="ma-0 font-weight-black">Janitors/Orderly</p>
                       <v-btn-toggle
                         v-model="form.janitors_orderly.rating"
                         dense
@@ -2410,7 +2412,7 @@
 
                     <!-- q15 -->
                     <div>
-                      <p class="font-weight-bold ma-0">
+                      <p class="font-weight-black ma-0">
                         16. The information with regard to our medical treatment was kept confidential.
                       </p>
                       <v-btn-toggle
@@ -2473,7 +2475,7 @@
 
                   <v-col cols="12">
                     <label for="opt_q_1">
-                      <span class="font-weight-bold ma-0"> {{ this.survey_opt_questions[0].desc }} (Optional) </span>
+                      <span class="font-weight-black ma-0"> {{ this.survey_opt_questions[0].desc }} (Optional) </span>
                     </label>
                     <v-textarea
                       id="opt_q_1"
@@ -2483,7 +2485,7 @@
                     ></v-textarea>
 
                     <label for="opt_q_2">
-                      <span class="font-weight-bold ma-0"> {{ this.survey_opt_questions[1].desc }} (Optional) </span>
+                      <span class="font-weight-black ma-0"> {{ this.survey_opt_questions[1].desc }} (Optional) </span>
                     </label>
                     <v-textarea
                       id="opt_q_2"
@@ -2493,7 +2495,7 @@
                     ></v-textarea>
 
                     <label for="opt_q_3">
-                      <span class="font-weight-bold ma-0"> {{ this.survey_opt_questions[2].desc }} (Optional) </span>
+                      <span class="font-weight-black ma-0"> {{ this.survey_opt_questions[2].desc }} (Optional) </span>
                     </label>
                     <v-text-field
                       id="opt_q_3"
@@ -2527,14 +2529,14 @@
                         Thank you for your valuable time and opportunity to serve you better.
                       </h5>
 
-                      <span class="font-weight-bold mt-2">Patient Satisfaction Committee</span>
-                      <span class="font-weight-bold font-italic"
+                      <span class="font-weight-black mt-2">Patient Satisfaction Committee</span>
+                      <span class="font-weight-black font-italic"
                         >Mariano Marcos Memorial Hospital and Medical Center</span
                       >
-                      <span class="font-weight-bold">Brgy. 06 San Julian, Batac City, Ilocos Norte</span>
-                      <span class="font-weight-bold">Trunk line: (007) 600-8000</span>
-                      <span class="font-weight-bold">Fax line: (007) 792-3133</span>
-                      <span class="font-weight-bold text-decoration-underline">
+                      <span class="font-weight-black">Brgy. 06 San Julian, Batac City, Ilocos Norte</span>
+                      <span class="font-weight-black">Trunk line: (007) 600-8000</span>
+                      <span class="font-weight-black">Fax line: (007) 792-3133</span>
+                      <span class="font-weight-black text-decoration-underline">
                         <a href="mailto: psc.mmmhmc@gmail.com">psc.mmmhmc@gmail.com</a>
                       </span>
                     </div>
