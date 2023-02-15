@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Religion extends Model
 {
     use HasFactory;
-
+    protected $connection = 'sqlsrv';
     protected $fillable = [
         'id',
         'name'

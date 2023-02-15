@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SurveyOptAnswers extends Model
 {
     use HasFactory;
-
+    protected $connection = 'sqlsrv';
     protected $table = 'survey_opt_answers';
     // protected $primaryKey = 'id';
     // public $incrementing = false;

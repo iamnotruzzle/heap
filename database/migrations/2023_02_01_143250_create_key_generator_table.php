@@ -13,7 +13,7 @@ class CreateKeyGeneratorTable extends Migration
      */
     public function up()
     {
-        Schema::create('key_generator', function (Blueprint $table) {
+        Schema::connection('sqlsrv')->create('key_generator', function (Blueprint $table) {
             $table->id();
             $table->string('generate');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateKeyGeneratorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('key_generator');
+        Schema::connection('sqlsrv')->dropIfExists('key_generator');
     }
 }

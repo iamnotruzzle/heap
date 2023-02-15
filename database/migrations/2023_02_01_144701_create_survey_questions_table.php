@@ -13,7 +13,7 @@ class CreateSurveyQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_questions', function (Blueprint $table) {
+        Schema::connection('sqlsrv')->create('survey_questions', function (Blueprint $table) {
             $table->id();
             $table->string('desc');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateSurveyQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey_questions');
+        Schema::connection('sqlsrv')->dropIfExists('survey_questions');
     }
 }

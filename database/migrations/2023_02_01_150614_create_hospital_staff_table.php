@@ -13,7 +13,7 @@ class CreateHospitalStaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('hospital_staff', function (Blueprint $table) {
+        Schema::connection('sqlsrv')->create('hospital_staff', function (Blueprint $table) {
             $table->id();
             $table->string('type');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateHospitalStaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospital_staff');
+        Schema::connection('sqlsrv')->dropIfExists('hospital_staff');
     }
 }
