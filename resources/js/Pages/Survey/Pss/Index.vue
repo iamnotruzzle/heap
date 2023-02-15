@@ -143,6 +143,8 @@
                     <v-text-field
                       id="age"
                       v-model="form.age"
+                      validate-on="input"
+                      :rules="ageRule"
                       type="number"
                       hide-spin-buttons
                       dense
@@ -2608,11 +2610,12 @@ export default {
       enableCollege: false,
       enablePGM: false,
       enableNoEduc: false,
-      //   end educational attainment enable checker
+      //   validation rules
+      ageRule: [(v) => !!v || 'Age is required', (v) => Number(v) < 120 || 'The age is too old. Please correct.'],
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
-        age: '',
+        age: null,
         sex: '',
         religion: [],
         educationalAttainment: '',
@@ -2780,6 +2783,14 @@ export default {
       // enablePGM: false,
       // enableNoEduc: false,
       // console.log(this.enableElementary);
+      if (val == null || val == 0) {
+        this.enableElementary = false;
+        this.enableSecondary = false;
+        this.enableVocational = false;
+        this.enableCollege = false;
+        this.enablePGM = false;
+        this.enableNoEduc = false;
+      }
       if (val >= 11) {
         this.enableElementary = true;
       } else {
