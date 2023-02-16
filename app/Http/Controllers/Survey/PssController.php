@@ -8,6 +8,7 @@ use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
 use App\Models\OtherDepartment;
 use App\Models\OutpatientDept;
+use App\Models\PatientAccount;
 use App\Models\Religion;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
@@ -24,6 +25,8 @@ class PssController extends Controller
 {
     public function index()
     {
+        // dd(PatientAccount::paginate(10));
+
         $hospital_staffs = HospitalStaff::all('id', 'type');
 
         $survey_questions = SurveyQuestions::all('id', 'desc');

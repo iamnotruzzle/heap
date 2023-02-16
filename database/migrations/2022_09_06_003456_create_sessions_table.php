@@ -11,9 +11,10 @@ class CreateSessionsTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::connection('sqlsrv')->create('sessions', function (Blueprint $table) {
+        Schema::connection('sqlsrv2')->create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
@@ -30,6 +31,6 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('sqlsrv')->dropIfExists('sessions');
+        Schema::connection('sqlsrv2')->dropIfExists('sessions');
     }
 }

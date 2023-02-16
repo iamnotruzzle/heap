@@ -11,7 +11,7 @@ class PatientAccount extends Model
 
     protected $connection = 'sqlsrv2';
     protected $table = 'hpatacct';
-    protected $primaryKey = 'enccode';
+    protected $primaryKey = 'paacctno';
     public $incrementing = false;
 
     protected $keyType = 'string';

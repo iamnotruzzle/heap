@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlsrv')->table('users', function (Blueprint $table) {
+        Schema::connection('sqlsrv2')->table('users', function (Blueprint $table) {
             $table->text('two_factor_secret')
                 ->after('password')
                 ->nullable();
@@ -38,7 +38,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection('sqlsrv')->table('users', function (Blueprint $table) {
+        Schema::connection('sqlsrv2')->table('users', function (Blueprint $table) {
             $table->dropColumn(array_merge([
                 'two_factor_secret',
                 'two_factor_recovery_codes',

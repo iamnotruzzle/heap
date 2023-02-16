@@ -79,44 +79,47 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        // primary database
+        // hospital: database primary database
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'pss'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', 'pinakb3t'),
+            'host' => env('DB_HOST_2', '192.168.0.3'),
+            'port' => env('DB_PORT_2', '1433'),
+            'database' => env('DB_DATABASE_2', 'hospital'),
+            'username' => env('DB_USERNAME_2', 'sa'),
+            'password' => env('DB_PASSWORD_2', 'pacs'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
         ],
-        // hospital database
-        // 'sqlsrv2' => [
-        //     'driver' => 'sqlsrv',
-        //     'url' => env('DATABASE_URL'),
-        //     'host' => env('DB_HOST', '192.168.0.3'),
-        //     'port' => env('DB_PORT', '1433'),
-        //     'database' => env('DB_DATABASE', 'hospital'),
-        //     'username' => env('DB_USERNAME', 'sa'),
-        //     'password' => env('DB_PASSWORD', 'pacs'),
-        //     'charset' => 'utf8',
-        //     'prefix' => '',
-        //     'prefix_indexes' => true,
-        // ],
+
+        // PSS: secondary database
         'sqlsrv2' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST_2', 'localhost'),
             'port' => env('DB_PORT_2', '1433'),
-            'database' => env('DB_DATABASE_2', 'test'),
+            'database' => env('DB_DATABASE_2', 'pss'),
             'username' => env('DB_USERNAME_2', 'root'),
             'password' => env('DB_PASSWORD_2', 'pinakb3t'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+
+        // test database
+        // 'sqlsrv2' => [
+        //     'driver' => 'sqlsrv',
+        //     'url' => env('DATABASE_URL'),
+        //     'host' => env('DB_HOST_2', 'localhost'),
+        //     'port' => env('DB_PORT_2', '1433'),
+        //     'database' => env('DB_DATABASE_2', 'test'),
+        //     'username' => env('DB_USERNAME_2', 'root'),
+        //     'password' => env('DB_PASSWORD_2', 'pinakb3t'),
+        //     'charset' => 'utf8',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        // ],
     ],
 
     /*

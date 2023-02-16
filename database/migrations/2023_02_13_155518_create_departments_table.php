@@ -13,7 +13,7 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlsrv')->create('departments', function (Blueprint $table) {
+        Schema::connection('sqlsrv2')->create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('sqlsrv')->dropIfExists('departments');
+        Schema::connection('sqlsrv2')->dropIfExists('departments');
     }
 }

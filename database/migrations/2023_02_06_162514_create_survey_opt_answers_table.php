@@ -13,7 +13,7 @@ class CreateSurveyOptAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlsrv')->create('survey_opt_answers', function (Blueprint $table) {
+        Schema::connection('sqlsrv2')->create('survey_opt_answers', function (Blueprint $table) {
             $table->id();
             $table->string('pss_id');
             $table->bigInteger('survey_question_id');
@@ -29,6 +29,6 @@ class CreateSurveyOptAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::connection('sqlsrv')->dropIfExists('survey_opt_answers');
+        Schema::connection('sqlsrv2')->dropIfExists('survey_opt_answers');
     }
 }

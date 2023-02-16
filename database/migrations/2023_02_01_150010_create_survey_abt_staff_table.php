@@ -13,7 +13,7 @@ class CreateSurveyAbtStaffTable extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlsrv')->create('survey_abt_staff', function (Blueprint $table) {
+        Schema::connection('sqlsrv2')->create('survey_abt_staff', function (Blueprint $table) {
             $table->id();
             $table->string('pss_id');
             $table->bigInteger('staff_type');
@@ -30,6 +30,6 @@ class CreateSurveyAbtStaffTable extends Migration
      */
     public function down()
     {
-        Schema::connection('sqlsrv')->dropIfExists('survey_abt_staff');
+        Schema::connection('sqlsrv2')->dropIfExists('survey_abt_staff');
     }
 }
