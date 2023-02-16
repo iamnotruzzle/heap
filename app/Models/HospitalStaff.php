@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class HospitalStaff extends Model
 {
     use HasFactory;
-    protected $connection = 'sqlsrv';
+
     protected $table = 'hospital_staff';
     // protected $primaryKey = 'id';
     // public $incrementing = false;

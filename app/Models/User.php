@@ -20,7 +20,6 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    protected $connection = 'sqlsrv';
 
     /**
      * The attributes that are mass assignable.

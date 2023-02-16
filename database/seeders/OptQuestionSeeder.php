@@ -27,7 +27,7 @@ class OptQuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Name of the Respondent',
+                'desc' => "Patient's hospital number",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

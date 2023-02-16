@@ -2482,7 +2482,9 @@
                     ></v-textarea>
 
                     <label for="opt_q_3">
-                      <span class="font-weight-black ma-0"> {{ this.survey_opt_questions[2].desc }} (Optional) </span>
+                      <span class="font-weight-black ma-0">
+                        {{ this.survey_opt_questions[2].desc }} <span class="red--text">(Required)</span>
+                      </span>
                     </label>
                     <v-text-field
                       id="opt_q_3"
@@ -2491,6 +2493,12 @@
                       dense
                       outlined
                     ></v-text-field>
+                    <div
+                      v-if="$page.props.errors[0]"
+                      class="red--text"
+                    >
+                      {{ $page.props.errors[0] }}
+                    </div>
                   </v-col>
 
                   <v-col

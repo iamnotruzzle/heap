@@ -9,7 +9,7 @@ class PatientAccount extends Model
 {
     use HasFactory;
 
-    protected $connection = 'sqlsrv2';
+    protected $connection = 'sqlsrv';
     protected $table = 'hpatacct';
     protected $primaryKey = 'paacctno';
     public $incrementing = false;

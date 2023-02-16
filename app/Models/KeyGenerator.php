@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class KeyGenerator extends Model
 {
     use HasFactory;
-    protected $connection = 'sqlsrv';
+
     protected $table = 'key_generator';
     // protected $primaryKey = 'id';
     // public $incrementing = false;
