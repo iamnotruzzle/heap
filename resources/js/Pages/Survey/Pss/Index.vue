@@ -2548,6 +2548,7 @@
         v-model="snack"
         :timeout="3000"
         :color="snackColor"
+        timeout="8000"
       >
         <div class="d-flex align-center">
           <v-icon class="mr-2">mdi-check-circle-outline</v-icon>

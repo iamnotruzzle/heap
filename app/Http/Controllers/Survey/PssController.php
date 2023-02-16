@@ -26,8 +26,6 @@ class PssController extends Controller
 {
     public function index()
     {
-        // dd(PatientAccount::paginate(10));
-
         $hospital_staffs = HospitalStaff::all('id', 'type');
 
         $survey_questions = SurveyQuestions::all('id', 'desc');
@@ -86,11 +84,9 @@ class PssController extends Controller
 
     public function store(Request $request)
     {
-        $pat_acct = PatientAccount::where('paacctno',  $request->opt_q_3['comment'])->first();
-        // dd($pat_acct);
+        $pat_acct = PatientAccount::where('paacctno', $request->opt_q_3['comment'])->first();
 
         if ($pat_acct == null) {
-            // return redirect()->back()->with('error', 'Hospital number not found.');
             return Redirect::back()->withErrors(['Hospital number not found.']);
         } else {
             $request->validate([
