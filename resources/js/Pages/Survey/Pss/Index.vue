@@ -143,8 +143,6 @@
                     <v-text-field
                       id="age"
                       v-model="form.age"
-                      validate-on="input"
-                      :rules="ageRule"
                       type="number"
                       hide-spin-buttons
                       dense
@@ -211,17 +209,6 @@
 
                     <div class="d-flex flex-row">
                       <div class="d-flex flex-row">
-                        <!-- <v-select
-                          id="religion"
-                          v-model="form.religion"
-                          :items="religions"
-                          item-text="name"
-                          label="Choose Religion"
-                          outlined
-                          dense
-                          hide-details
-                        ></v-select> -->
-
                         <v-select
                           id="religion"
                           v-model="form.religion"
@@ -2613,7 +2600,7 @@ export default {
       enablePGM: false,
       enableNoEduc: false,
       //   validation rules
-      ageRule: [(v) => !!v || 'Age is required', (v) => Number(v) < 120 || 'The age is too old. Please correct.'],
+      //   ageRule: [(v) => !!v || 'Age is required', (v) => Number(v) < 120 || 'The age is too old. Please correct.'],
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
@@ -2771,10 +2758,6 @@ export default {
   },
   mounted() {
     // console.log('hospital staffs', this.hospital_staffs);
-    // console.log('survey questions', this.survey_questions);
-    // console.log('survey opt questions', this.survey_opt_questions);
-    // console.log(this.form);
-    // console.log(this.other_depts);
   },
   watch: {
     'form.age': function (val) {

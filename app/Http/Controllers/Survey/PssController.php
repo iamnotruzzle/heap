@@ -88,7 +88,7 @@ class PssController extends Controller
         $request->validate([
             'respondent' => "required_if:otherRespondent,null",
             'otherRespondent' => "required_if:respondent,null",
-            'age' => 'required|numeric',
+            'age' => 'required|numeric|max:120',
             'sex' => 'required',
             'religion' => 'required',
             'educationalAttainment' => 'required',
@@ -563,16 +563,22 @@ class PssController extends Controller
                 'pss_id' => $pss_id,
                 'survey_question_id' => $request->opt_q_1['survey_question_id'],
                 'comment' => $opt_q_1_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'pss_id' => $pss_id,
                 'survey_question_id' => $request->opt_q_2['survey_question_id'],
                 'comment' => $opt_q_2_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'pss_id' => $pss_id,
                 'survey_question_id' => $request->opt_q_3['survey_question_id'],
                 'comment' => $opt_q_3_comment,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ]);
 
