@@ -91,6 +91,11 @@ class QuestionSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'desc' => "How would you rate this computer assisted Patient Satisfaction Survey?",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
         foreach ($survey_questions as $sq) {

@@ -128,6 +128,7 @@ class PssController extends Controller
                 'food_server.rating' => 'required',
                 'janitors_orderly.rating' => 'required',
                 'q15.rating' => 'required',
+                'q16.rating' => 'required',
             ]);
 
             // Generate key
@@ -265,6 +266,13 @@ class PssController extends Controller
                         'pss_id' => $pss_id,
                         'survey_question_id' => $request->q15['id'],
                         'rating' => $request->q15['rating'],
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ],
+                    [
+                        'pss_id' => $pss_id,
+                        'survey_question_id' => $request->q16['id'],
+                        'rating' => $request->q16['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],

@@ -536,9 +536,7 @@
 
                     <!-- q1 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        1. The waiting areas we used were clean, orderly, and comfortable.
-                      </p>
+                      <p class="font-weight-black ma-0">1. {{ survey_questions[0].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q1.rating"
                         dense
@@ -592,10 +590,7 @@
 
                     <!-- q2 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        2. The toilets and bathrooms inside the facility were kept clean, orderly and with steady water
-                        supply.
-                      </p>
+                      <p class="font-weight-black ma-0">2. {{ survey_questions[1].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q2.rating"
                         dense
@@ -649,9 +644,7 @@
 
                     <!-- q3 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        3. The patients' rooms were kept clean, tidy and comfortable.
-                      </p>
+                      <p class="font-weight-black ma-0">3. {{ survey_questions[2].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q3.rating"
                         dense
@@ -710,7 +703,7 @@
 
                     <!-- q4 -->
                     <div>
-                      <p class="font-weight-black ma-0">4. Consultation process</p>
+                      <p class="font-weight-black ma-0">4. {{ survey_questions[3].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q4.rating"
                         dense
@@ -764,7 +757,7 @@
 
                     <!-- q5 -->
                     <div>
-                      <p class="font-weight-black ma-0">5. Admission process</p>
+                      <p class="font-weight-black ma-0">5. {{ survey_questions[4].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q5.rating"
                         dense
@@ -818,7 +811,7 @@
 
                     <!-- q6 -->
                     <div>
-                      <p class="font-weight-black ma-0">6. Laboratory and radiology processes</p>
+                      <p class="font-weight-black ma-0">6. {{ survey_questions[5].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q6.rating"
                         dense
@@ -872,7 +865,7 @@
 
                     <!-- q7 -->
                     <div>
-                      <p class="font-weight-black ma-0">7. Discharge Process (Discharging, Billing , and Cashier)</p>
+                      <p class="font-weight-black ma-0">7. {{ survey_questions[6].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q7.rating"
                         dense
@@ -926,7 +919,7 @@
 
                     <!-- q8 -->
                     <div>
-                      <p class="font-weight-black ma-0">8. Request of Documents from this Facility</p>
+                      <p class="font-weight-black ma-0">8. {{ survey_questions[7].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q8.rating"
                         dense
@@ -980,9 +973,7 @@
 
                     <!-- q9 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        9. Process of Request for Assistance from Medical Social Service
-                      </p>
+                      <p class="font-weight-black ma-0">9. {{ survey_questions[8].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q9.rating"
                         dense
@@ -1047,9 +1038,7 @@
 
                     <!-- q10 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        10. The medical condition and procedures were discussed clearly.
-                      </p>
+                      <p class="font-weight-black ma-0">10. {{ survey_questions[9].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q10.rating"
                         dense
@@ -1107,10 +1096,7 @@
 
                     <!-- q11 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        11. Our sentiments, cultural background, and beliefs were heard and considered in the treatment
-                        procedure.
-                      </p>
+                      <p class="font-weight-black ma-0">11. {{ survey_questions[10].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q11.rating"
                         dense
@@ -1168,9 +1154,7 @@
 
                     <!-- q12 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        12. We were given the chance to decide which treatment procedure shall be performed.
-                      </p>
+                      <p class="font-weight-black ma-0">12. {{ survey_questions[11].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q12.rating"
                         dense
@@ -1228,10 +1212,7 @@
 
                     <!-- q13 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        13. The discharge instructions were discussed to us clearly before we were allowed to go home,
-                        including the time/date and site of the follow-up consultation.
-                      </p>
+                      <p class="font-weight-black ma-0">13. {{ survey_questions[12].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q13.rating"
                         dense
@@ -1289,10 +1270,7 @@
 
                     <!-- q14 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        14. For those eligible for assistance from Malasakit Center. All my medical costs were covered
-                        for this particular medical treatment/admission.
-                      </p>
+                      <p class="font-weight-black ma-0">14. {{ survey_questions[13].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q14.rating"
                         dense
@@ -2399,9 +2377,7 @@
 
                     <!-- q15 -->
                     <div>
-                      <p class="font-weight-black ma-0">
-                        16. The information with regard to our medical treatment was kept confidential.
-                      </p>
+                      <p class="font-weight-black ma-0">16. {{ survey_questions[14].desc }}</p>
                       <v-btn-toggle
                         v-model="form.q15.rating"
                         dense
@@ -2498,6 +2474,27 @@
                       class="red--text"
                     >
                       {{ $page.props.errors[0] }}
+                    </div>
+
+                    <div class="mt-6">
+                      <label for="opt_q_4">
+                        <span class="font-weight-black ma-0">
+                          {{ survey_questions[15].desc }}
+                        </span>
+                      </label>
+                      <v-rating
+                        id="opt_q_4"
+                        v-model="form.q16.rating"
+                        background-color="orange darken-3"
+                        class="ma-0 pa-0"
+                        color="orange"
+                      ></v-rating>
+                      <div
+                        v-if="form.errors[`q16.rating`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
                     </div>
                   </v-col>
 
@@ -2680,6 +2677,10 @@ export default {
           id: 15,
           rating: undefined,
         },
+        q16: {
+          id: 16,
+          rating: undefined,
+        },
         doctor: {
           id: this.hospital_staffs[0].id,
           rating: null,
@@ -2759,6 +2760,10 @@ export default {
           comment: '',
         },
         opt_q_3: {
+          survey_question_id: this.survey_opt_questions[2].id,
+          comment: '',
+        },
+        opt_q_4: {
           survey_question_id: this.survey_opt_questions[2].id,
           comment: '',
         },
