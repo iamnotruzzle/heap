@@ -32,7 +32,7 @@ class OptQuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => "Which form of survey do you prefer?",
+                'desc' => "Which mode of survey do you prefer?",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

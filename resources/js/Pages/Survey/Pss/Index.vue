@@ -204,7 +204,7 @@
                       for="religion"
                       class="font-weight-black"
                     >
-                      Religion
+                      Religion (Please encode if your religion is not included in the list. )
                     </label>
 
                     <v-combobox
