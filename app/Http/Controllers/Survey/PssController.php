@@ -67,7 +67,7 @@ class PssController extends Controller
             ->get(['id', 'name']);
 
         return Inertia::render(
-            'Survey/Pss/Index',
+            'Survey/English/Pss/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,

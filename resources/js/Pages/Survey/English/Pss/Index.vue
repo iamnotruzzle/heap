@@ -13,46 +13,62 @@
             elevation="24"
             class="corners large-screen"
           >
-            <!-- <v-tabs
+            <v-tabs
               active-class="blue white--text "
               grow
             >
-              <v-tab @click="comp = 'Iloco'">Iloco</v-tab>
-              <v-tab @click="comp = 'Tagalog'">Tagalog</v-tab>
-              <v-tab @click="comp = 'English'">English</v-tab>
+              <v-tab> Iloco </v-tab>
+              <v-tab> Tagalog </v-tab>
+              <v-tab
+                as="Link"
+                href="eng"
+              >
+                English
+              </v-tab>
             </v-tabs>
-            <component :is="comp" /> -->
+            <!-- <component :is="comp" /> -->
 
             <v-card-title>
               <v-row>
-                <v-col cols="3">
-                  <v-img
-                    height="100"
-                    src="images/logo_1.jpg"
-                    contain
-                  />
+                <v-col cols="12">
+                  <div class="d-flex flex-row justify-space-around align-center">
+                    <v-img
+                      height="90px"
+                      width="20px"
+                      src="images/doh-logo.png"
+                      contain
+                    />
+
+                    <v-img
+                      height="90px"
+                      width="20px"
+                      src="images/logo_2.jpg"
+                      contain
+                    />
+
+                    <v-img
+                      height="90px"
+                      width="20px"
+                      src="images/f1_plus.jpg"
+                      contain
+                    />
+
+                    <v-img
+                      height="90px"
+                      width="20px"
+                      src="images/logo_4.jpg"
+                      contain
+                    />
+
+                    <v-img
+                      height="90px"
+                      width="20px"
+                      src="images/socotec.jpg"
+                      contain
+                    />
+                  </div>
                 </v-col>
-                <v-col cols="3">
-                  <v-img
-                    height="100"
-                    src="images/logo_2.jpg"
-                    contain
-                  />
-                </v-col>
-                <v-col cols="3">
-                  <v-img
-                    height="100"
-                    src="images/logo_3.jpg"
-                    contain
-                  />
-                </v-col>
-                <v-col cols="3">
-                  <v-img
-                    height="100"
-                    src="images/logo_4.jpg"
-                    contain
-                  />
-                </v-col>
+
                 <v-col
                   cols="12"
                   class="text-center word-break"
@@ -2604,12 +2620,14 @@ import { Inertia } from '@inertiajs/inertia';
 import Iloco from '@/Components/Iloco';
 import English from '@/Components/English';
 import Tagalog from '@/Components/Tagalog';
+import { Link } from '@inertiajs/inertia-vue';
 
 export default {
   components: {
     Iloco,
     English,
     Tagalog,
+    Link,
   },
   props: {
     hospital_staffs: Array,
