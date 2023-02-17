@@ -31,6 +31,11 @@ class OptQuestionSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'desc' => "Which form of survey do you prefer?",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
         foreach ($survey_opt_questions as $soq) {

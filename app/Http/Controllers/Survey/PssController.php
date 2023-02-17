@@ -129,6 +129,8 @@ class PssController extends Controller
                 'janitors_orderly.rating' => 'required',
                 'q15.rating' => 'required',
                 'q16.rating' => 'required',
+                'opt_q_4.comment' => 'required',
+                'opt_q_4.why' => 'required',
             ]);
 
             // Generate key
@@ -512,7 +514,8 @@ class PssController extends Controller
             } else {
                 $opt_q_3_comment = $request->opt_q_3['comment'];
             }
-            // dd((int)$request->opt_q_1['survey_question_id']);
+
+            $opt_q_4_comment = [$request->opt_q_4['comment'], $request->opt_q_4['why']];
             $surveyOptAnswers = SurveyOptAnswers::insert([
                 [
                     'pss_id' => $pss_id,
@@ -532,6 +535,13 @@ class PssController extends Controller
                     'pss_id' => $pss_id,
                     'survey_question_id' => $request->opt_q_3['survey_question_id'],
                     'comment' => $opt_q_3_comment,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'pss_id' => $pss_id,
+                    'survey_question_id' => $request->opt_q_3['survey_question_id'],
+                    'comment' => implode("', '", $opt_q_4_comment),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],

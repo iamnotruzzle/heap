@@ -2496,6 +2496,47 @@
                         Required
                       </div>
                     </div>
+
+                    <div class="mt-6">
+                      <label for="opt_q_4">
+                        <span class="font-weight-black ma-0">
+                          {{ this.survey_opt_questions[3].desc }}
+                        </span>
+                      </label>
+                      <v-radio-group
+                        v-model="form.opt_q_4.comment"
+                        hide-details
+                        dense
+                        row
+                        class="mt-1 pa-0"
+                      >
+                        <v-radio
+                          label="Paper & Pen"
+                          value="Paper & Pen"
+                        ></v-radio>
+                        <v-radio
+                          label="Computer Assisted"
+                          value="Computer Assisted"
+                        ></v-radio>
+                      </v-radio-group>
+                      <label for="opt_q_4">
+                        <span class="font-weight-black ma-0"> Why? </span>
+                      </label>
+                      <v-textarea
+                        id="opt_q_4"
+                        v-model="form.opt_q_4.why"
+                        hide-details
+                        dense
+                        height="24"
+                        outlined
+                      ></v-textarea>
+                      <div
+                        v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
+                        class="red--text"
+                      >
+                        Required
+                      </div>
+                    </div>
                   </v-col>
 
                   <v-col
@@ -2761,11 +2802,12 @@ export default {
         },
         opt_q_3: {
           survey_question_id: this.survey_opt_questions[2].id,
-          comment: '',
+          comment: '1900-000000273',
         },
         opt_q_4: {
           survey_question_id: this.survey_opt_questions[2].id,
           comment: '',
+          why: '',
         },
       }),
     };
