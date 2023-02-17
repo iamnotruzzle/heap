@@ -13,7 +13,7 @@
             elevation="24"
             class="corners large-screen"
           >
-            <v-tabs
+            <!-- <v-tabs
               active-class="blue white--text "
               grow
             >
@@ -21,7 +21,7 @@
               <v-tab @click="comp = 'Tagalog'">Tagalog</v-tab>
               <v-tab @click="comp = 'English'">English</v-tab>
             </v-tabs>
-            <component :is="comp" />
+            <component :is="comp" /> -->
 
             <v-card-title>
               <v-row>
@@ -2592,7 +2592,7 @@ export default {
   },
   data() {
     return {
-      comp: Iloco,
+      //   comp: Iloco,
       datePickerMenu: false,
       datePickerModal: false,
       maxDate: new Date().toISOString().slice(0, -14),
