@@ -135,9 +135,9 @@
 
                   <!-- age -->
                   <v-col
-                    cols="4"
-                    md="2"
-                    class="font-weight-black"
+                    cols="12"
+                    md="3"
+                    class="font-weight-black ma-0"
                   >
                     <label for="age">Age</label>
                     <v-text-field
@@ -145,6 +145,7 @@
                       v-model="form.age"
                       type="number"
                       hide-spin-buttons
+                      outlined
                       dense
                     ></v-text-field>
                     <div
@@ -155,12 +156,11 @@
                     </div>
                   </v-col>
 
-                  <v-spacer></v-spacer>
-
                   <!-- sex -->
                   <v-col
-                    cols="8"
-                    md="2"
+                    cols="12"
+                    md="3"
+                    class="font-weight-black"
                   >
                     <label
                       for="sex"
@@ -194,35 +194,27 @@
                     </div>
                   </v-col>
 
-                  <v-spacer></v-spacer>
-
                   <!-- religion -->
                   <v-col
                     cols="12"
                     md="6"
+                    class="font-weight-black ma-0"
                   >
                     <label
                       for="religion"
                       class="font-weight-black"
-                      >Religion
+                    >
+                      Religion
                     </label>
 
-                    <div class="d-flex flex-row">
-                      <div class="d-flex flex-row">
-                        <v-select
-                          id="religion"
-                          v-model="form.religion"
-                          :items="religions"
-                          item-value="id"
-                          item-text="name"
-                          label="Choose Religion"
-                          outlined
-                          dense
-                          hide-details
-                        >
-                        </v-select>
-                      </div>
-                    </div>
+                    <v-combobox
+                      id="religion"
+                      v-model="form.religion"
+                      :items="religions"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-combobox>
                     <div
                       v-if="form.errors.religion"
                       class="red--text mx-2"
@@ -2623,7 +2615,6 @@ export default {
     hospital_staffs: Array,
     survey_questions: Array,
     survey_opt_questions: Array,
-    religions: Array,
     er_inpatient: Array,
     outpatient_depts: Array,
     other_depts: Array,
@@ -2646,14 +2637,23 @@ export default {
       enableCollege: false,
       enablePGM: false,
       enableNoEduc: false,
-      //   validation rules
-      //   ageRule: [(v) => !!v || 'Age is required', (v) => Number(v) < 120 || 'The age is too old. Please correct.'],
+      religions: [
+        'Aglipayan',
+        'Roman Catholic',
+        'Islam',
+        'Protestant',
+        'Iglesia ni Cristo',
+        'Baptist',
+        "Jehovah's Witnesses",
+        'Born Again',
+        'Evangelicals',
+      ].sort(),
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
         age: null,
         sex: '',
-        religion: [],
+        religion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
         departments: [],

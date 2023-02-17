@@ -9,7 +9,6 @@ use App\Models\KeyGenerator;
 use App\Models\OtherDepartment;
 use App\Models\OutpatientDept;
 use App\Models\PatientAccount;
-use App\Models\Religion;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
@@ -31,8 +30,6 @@ class PssController extends Controller
         $survey_questions = SurveyQuestions::all('id', 'desc');
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
-
-        $religions = Religion::orderBy('name')->get(['id', 'name']);
 
         // er and inpatient/wards
         $er_inpatient = Department::orderBy('name')
@@ -74,7 +71,6 @@ class PssController extends Controller
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
-                'religions' => $religions,
                 'er_inpatient' => $er_inpatient,
                 'outpatient_depts' => $outpatient_depts,
                 'other_depts' => $other_depts,

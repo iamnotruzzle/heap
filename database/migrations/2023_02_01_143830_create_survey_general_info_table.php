@@ -20,7 +20,7 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->string('educational_attainment');
             $table->integer('age');
             $table->string('sex');
-            $table->bigInteger('religion');
+            $table->string('religion');
             $table->date('date_of_visit');
             $table->string('department_visited');
             $table->string('visited_before');
