@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateDepartmentsVisitedTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::connection('sqlsrv2')->create('departments_visited', function (Blueprint $table) {
+            $table->id();
+            $table->string('pss_id');
+            $table->bigInteger('department_id');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::connection('sqlsrv2')->dropIfExists('departments_visited');
+    }
+}
