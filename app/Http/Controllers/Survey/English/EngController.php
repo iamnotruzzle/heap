@@ -82,7 +82,7 @@ class EngController extends Controller
         $departments_visited = $request->departments;
 
         $pat_acct = PatientAccount::where('hpercode', $request->opt_q_3['comment'])
-            ->where('admstat', 'a')
+            ->where('encstat', 'a')
             ->first();
 
         $record_exist = SurveyRespondents::where('hpercode', $request->opt_q_3['comment'])

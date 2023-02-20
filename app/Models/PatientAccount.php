@@ -11,7 +11,7 @@ class PatientAccount extends Model
 
     protected $connection = 'sqlsrv';
     // protected $table = 'hpatacct';
-    protected $table = 'hadmlog';
+    protected $table = 'henctr';
     public $incrementing = false;
 
     protected $keyType = 'string';
