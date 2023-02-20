@@ -81,9 +81,11 @@ class EngController extends Controller
     {
         $departments_visited = $request->departments;
 
-        $pat_acct = PatientAccount::where('paacctno', $request->opt_q_3['comment'])->first();
+        $pat_acct = PatientAccount::where('hpercode', $request->opt_q_3['comment'])
+            ->where('admstat', 'a')
+            ->first();
 
-        $record_exist = SurveyRespondents::where('paacctno', $request->opt_q_3['comment'])
+        $record_exist = SurveyRespondents::where('hpercode', $request->opt_q_3['comment'])
             ->whereDate('created_at', Carbon::now())
             ->first();
         // dd($record_exist);
@@ -561,7 +563,7 @@ class EngController extends Controller
 
                 $survey_respondents = SurveyRespondents::insert([
                     [
-                        'paacctno' => $request->opt_q_3['comment'],
+                        'hpercode' => $request->opt_q_3['comment'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],

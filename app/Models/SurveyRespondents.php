@@ -17,7 +17,7 @@ class SurveyRespondents extends Model
 
     protected $fillable = [
         'id',
-        'paacctno',
+        'hpercode',
     ];
 
     protected $casts = [
