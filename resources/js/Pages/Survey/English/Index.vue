@@ -243,7 +243,7 @@
                     ></v-combobox>
                     <div
                       v-if="form.errors.religion"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       The religion field is required.
                     </div>

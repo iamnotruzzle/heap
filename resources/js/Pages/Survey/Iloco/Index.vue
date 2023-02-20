@@ -166,7 +166,7 @@
                   <v-col
                     cols="12"
                     md="3"
-                    class="font-weight-black ma-0"
+                    class="font-weight-black"
                   >
                     <label for="age">Tawen</label>
                     <v-text-field
@@ -176,6 +176,7 @@
                       hide-spin-buttons
                       outlined
                       dense
+                      class="ma-0 pa-0"
                     ></v-text-field>
                     <div
                       v-if="form.errors.age"
@@ -246,7 +247,7 @@
                     ></v-combobox>
                     <div
                       v-if="form.errors.religion"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       Kasapulan.
                     </div>

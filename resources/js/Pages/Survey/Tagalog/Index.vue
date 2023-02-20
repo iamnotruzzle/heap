@@ -243,7 +243,7 @@
                     ></v-combobox>
                     <div
                       v-if="form.errors.religion"
-                      class="red--text mx-2"
+                      class="red--text"
                     >
                       Kailangan.
                     </div>
@@ -544,7 +544,7 @@
                     <h5 class="text-h5-edited font-weight-black">Paano mo ire-rate ang aming serbisyo?</h5>
                     <p>
                       <span class="font-weight-black">Direction:</span>
-                      Mag-click sa emoticon na pinakamahusay na tumutugma sa iyong rating para sa bawat item.
+                      Mag-click sa emoticon na tumutugma sa iyong rating para sa bawat item.
                     </p>
 
                     <!-- partA -->
@@ -3038,7 +3038,7 @@ export default {
     errorExistsMsg() {
       this.snack = true;
       this.snackColor = 'color_error';
-      this.snackText = 'Failed to save survey, please answer the required questions.';
+      this.snackText = 'Nabigong i-save ang survey, sagutin ang mga kinakailangang tanong.';
     },
   },
 };
