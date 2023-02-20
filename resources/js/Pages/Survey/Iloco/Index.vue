@@ -17,7 +17,12 @@
               active-class="blue white--text "
               grow
             >
-              <v-tab> Iloco </v-tab>
+              <v-tab
+                as="Link"
+                href="iloco"
+              >
+                Iloco
+              </v-tab>
               <v-tab> Tagalog </v-tab>
               <v-tab
                 as="Link"
@@ -2639,7 +2644,7 @@ export default {
   },
   data() {
     return {
-      //   comp: Iloco,
+      comp: Iloco,
       datePickerMenu: false,
       datePickerModal: false,
       maxDate: new Date().toISOString().slice(0, -14),

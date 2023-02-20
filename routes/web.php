@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Survey\EngController;
+use App\Http\Controllers\Survey\English\EngController;
+use App\Http\Controllers\Survey\Iloco\IlocoController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -12,4 +13,6 @@ Route::any('/login');
 
 Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 
+
 Route::resource('/eng', EngController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('/iloco', IlocoController::class)->only(['index', 'store', 'update', 'destroy']);

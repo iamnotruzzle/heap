@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Survey;
+namespace App\Http\Controllers\Survey\Iloco;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
@@ -19,10 +19,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class EngController extends Controller
+class IlocoController extends Controller
 {
-
-
     public function index()
     {
         $hospital_staffs = HospitalStaff::all('id', 'type');
@@ -66,7 +64,7 @@ class EngController extends Controller
             ->get(['id', 'name']);
 
         return Inertia::render(
-            'Survey/English/Pss/Index',
+            'Survey/Iloco/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,
