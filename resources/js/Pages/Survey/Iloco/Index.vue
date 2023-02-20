@@ -14,24 +14,29 @@
             class="corners large-screen"
           >
             <v-tabs
-              active-class="blue white--text "
+              active-class="blue white--text"
               grow
+              v-model="selectedTab"
             >
-              <v-tab
-                as="Link"
+              <Link
+                as="v-tab"
+                key="0"
                 href="iloco"
+                >Iloco</Link
               >
-                Iloco
-              </v-tab>
-              <v-tab> Tagalog </v-tab>
-              <v-tab
-                as="Link"
+              <Link
+                as="v-tab"
+                key="1"
+                href="tagalog"
+                >Tagalog</Link
+              >
+              <Link
+                as="v-tab"
+                key="2"
                 href="eng"
+                >English</Link
               >
-                English
-              </v-tab>
             </v-tabs>
-            <!-- <component :is="comp" /> -->
 
             <v-card-title>
               <v-row>
@@ -2644,7 +2649,7 @@ export default {
   },
   data() {
     return {
-      comp: Iloco,
+      selectedTab: 0,
       datePickerMenu: false,
       datePickerModal: false,
       maxDate: new Date().toISOString().slice(0, -14),
@@ -2980,7 +2985,7 @@ export default {
   },
   methods: {
     submit() {
-      this.form.post(route('eng.store'), {
+      this.form.post(route('iloco.store'), {
         onSuccess: () => {
           this.isLoading = true;
           this.form.reset();

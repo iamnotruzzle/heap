@@ -2649,7 +2649,7 @@ export default {
   },
   data() {
     return {
-      selectedTab: 2,
+      selectedTab: 1,
       datePickerMenu: false,
       datePickerModal: false,
       maxDate: new Date().toISOString().slice(0, -14),
@@ -2830,7 +2830,7 @@ export default {
         },
         opt_q_3: {
           survey_question_id: this.survey_opt_questions[2].id,
-          comment: '1900-000000273',
+          comment: '',
         },
         opt_q_4: {
           survey_question_id: this.survey_opt_questions[2].id,
@@ -2985,7 +2985,7 @@ export default {
   },
   methods: {
     submit() {
-      this.form.post(route('eng.store'), {
+      this.form.post(route('tagalog.store'), {
         onSuccess: () => {
           this.isLoading = true;
           this.form.reset();
