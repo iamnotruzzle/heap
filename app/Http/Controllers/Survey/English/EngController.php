@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Survey\English;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
+use App\Models\DepartmentsVisited;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
 use App\Models\PatientAccount;
@@ -78,6 +79,8 @@ class EngController extends Controller
 
     public function store(Request $request)
     {
+        $departments_visited = $request->departments;
+
         $pat_acct = PatientAccount::where('paacctno', $request->opt_q_3['comment'])->first();
 
         $record_exist = SurveyRespondents::where('paacctno', $request->opt_q_3['comment'])
@@ -161,10 +164,17 @@ class EngController extends Controller
                     'sex' => $request->sex,
                     'religion' => $request->religion,
                     'date_of_visit' => $request->dateOfVisit,
-                    'department_visited' => implode("', '", $request->departments),
+                    'department_visited' => $pss_id,
                     // 'department_visited' => $request->department,
                     'visited_before' => $request->visited_before,
                 ]);
+
+                foreach ($departments_visited as $id) {
+                    DepartmentsVisited::create([
+                        'pss_id' => $pss_id,
+                        'department_id' => $id
+                    ]);
+                }
 
                 $surveyAnswers = SurveyAnswers::insert(
                     [

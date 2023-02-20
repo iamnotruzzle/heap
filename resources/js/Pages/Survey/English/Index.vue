@@ -2825,7 +2825,7 @@ export default {
         },
         opt_q_3: {
           survey_question_id: this.survey_opt_questions[2].id,
-          comment: '',
+          comment: '1900-000000273',
         },
         opt_q_4: {
           survey_question_id: this.survey_opt_questions[2].id,
