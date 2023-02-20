@@ -22,20 +22,23 @@
                 as="v-tab"
                 key="0"
                 href="iloco"
-                >Iloco</Link
               >
+                Iloco
+              </Link>
               <Link
                 as="v-tab"
                 key="1"
                 href="tagalog"
-                >Tagalog</Link
               >
+                Tagalog
+              </Link>
               <Link
                 as="v-tab"
                 key="2"
                 href="eng"
-                >English</Link
               >
+                English
+              </Link>
             </v-tabs>
 
             <v-card-title>
@@ -92,19 +95,19 @@
             <v-card-text>
               <v-row class="font-weight-black">
                 <v-col cols="12">
-                  <p>Dear Patient/Client,</p>
+                  <p>Patpatgenmi a kliente ti MMMHMC,</p>
                   <div class="indent">
-                    The following questions talk about your overall experience in this hospital. We wish to improve the
-                    level of service we deliver our clients because you are important to us. Any comments or suggestions
-                    you provide through this survey will be highly-appreciated and will be treated with utmost
-                    confidentiality.
+                    Dagiti sumaganad a saludsod ket pakaseknan iti pannakapnekyo iti servisio ti MMMHMC a naipaay
+                    kadakayo. Iti gagemmi nga ad-adda pay a mapasayaat ti serbisiomi, dawatenmi iti naan-anay a
+                    panangsungbatyo a saludsod basar iti kapadasanyo. Mangnamnamakayo a sungbat key agserbi iti
+                    pannakapasayaat ti serbisio ti ospital ken agtalinaed a palimed iti siasinnoman.
                   </div>
                 </v-col>
               </v-row>
 
               <v-row class="font-weight-black">
                 <v-col cols="12">
-                  <p>Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:</p>
+                  <p>Tsekan (<v-icon>mdi-check</v-icon>) ti sungbat kadagiti sumaganad a saludsod.</p>
                 </v-col>
               </v-row>
 
@@ -114,11 +117,11 @@
               >
                 <v-row class="font-weight-black">
                   <v-col cols="12">
-                    <p>The Respondent of this Survey Form:</p>
+                    <p>Tay nagresponde kadaytoy a porma:</p>
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
                         v-model="form.respondent"
-                        label="Patient"
+                        label="Pasiente"
                         value="Patient"
                         dense
                         hide-details
@@ -127,7 +130,7 @@
 
                       <v-checkbox
                         v-model="form.respondent"
-                        label="Companion(Family/Relative)"
+                        label="Nangkadua(Kabagian)"
                         value="Companion"
                         dense
                         hide-details
@@ -142,7 +145,7 @@
                         <v-text-field
                           v-model="form.otherRespondent"
                           :disabled="!enableRespondent"
-                          label="Others (Specify)"
+                          label="Daduma pay, (Ilanad)"
                           dense
                         ></v-text-field>
                       </div>
@@ -150,7 +153,7 @@
                         v-if="form.errors.respondent || form.errors.otherRespondent"
                         class="red--text mx-2"
                       >
-                        The respondent field is required.
+                        Kasapulan
                       </div>
                     </div>
                   </v-col>
@@ -165,7 +168,7 @@
                     md="3"
                     class="font-weight-black ma-0"
                   >
-                    <label for="age">Age</label>
+                    <label for="age">Tawen</label>
                     <v-text-field
                       id="age"
                       v-model="form.age"
@@ -178,7 +181,7 @@
                       v-if="form.errors.age"
                       class="red--text"
                     >
-                      {{ form.errors.age }}
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -191,13 +194,13 @@
                     <label
                       for="sex"
                       class="font-weight-black"
-                      >Sex</label
+                      >Katatao</label
                     >
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="sex"
                         v-model="form.sex"
-                        label="Male"
+                        label="Lalaki"
                         value="Male"
                         dense
                         hide-details
@@ -206,7 +209,7 @@
                       <v-checkbox
                         id="sex"
                         v-model="form.sex"
-                        label="Female"
+                        label="Babai"
                         value="Female"
                         dense
                         hide-details
@@ -216,7 +219,7 @@
                       v-if="form.errors.sex"
                       class="red--text"
                     >
-                      {{ form.errors.sex }}
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -230,7 +233,7 @@
                       for="religion"
                       class="font-weight-black"
                     >
-                      Religion (Please encode if your religion is not included in the list. )
+                      Relihion (No awan dita listahan ket ilanad.)
                     </label>
 
                     <v-combobox
@@ -245,7 +248,7 @@
                       v-if="form.errors.religion"
                       class="red--text mx-2"
                     >
-                      The religion field is required.
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -259,7 +262,7 @@
                       for="educAt"
                       class="font-weight-black"
                     >
-                      Educational Attainment
+                      Naturpos nga adal
                     </label>
 
                     <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
@@ -267,7 +270,7 @@
                         id="educAt"
                         :disabled="!enableElementary"
                         v-model="form.educationalAttainment"
-                        label="Elementary"
+                        label="Elementaria"
                         value="Elementary"
                         dense
                         hide-details
@@ -278,7 +281,7 @@
                         id="educAt"
                         :disabled="!enableSecondary"
                         v-model="form.educationalAttainment"
-                        label="Secondary"
+                        label="Sekondaria"
                         value="Secondary"
                         dense
                         hide-details
@@ -289,7 +292,7 @@
                         id="educAt"
                         :disabled="!enableVocational"
                         v-model="form.educationalAttainment"
-                        label="Vocational"
+                        label="Bokasional"
                         value="Vocational"
                         dense
                         hide-details
@@ -300,7 +303,7 @@
                         id="educAt"
                         :disabled="!enableCollege"
                         v-model="form.educationalAttainment"
-                        label="College"
+                        label="Kolehio"
                         value="College"
                         dense
                         hide-details
@@ -311,7 +314,7 @@
                         id="educAt"
                         :disabled="!enablePGM"
                         v-model="form.educationalAttainment"
-                        label="Postgraduate/Masters"
+                        label="Nainayon nga adal wenno nagun-od kalpasan ti kolehio"
                         value="Postgraduate/Masters"
                         dense
                         hide-details
@@ -322,7 +325,7 @@
                         id="educAt"
                         :disabled="!enableNoEduc"
                         v-model="form.educationalAttainment"
-                        label="No formal Education"
+                        label="Awan pormal nga edukasion"
                         value="No formal Education"
                         dense
                         hide-details
@@ -333,7 +336,7 @@
                       v-if="form.errors.educationalAttainment"
                       class="red--text"
                     >
-                      {{ form.errors.educationalAttainment }}
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -349,7 +352,7 @@
                       for="dateOfVisit"
                       class="font-weight-black"
                     >
-                      Date of Consultation/Visit
+                      Aldaw nga nagpa-konsolta
                     </label>
                     <v-menu
                       ref="datePickerMenu"
@@ -388,7 +391,7 @@
                       v-show="form.errors.dateOfVisit"
                       class="red--text"
                     >
-                      The date of consultation/visit is required.
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -402,7 +405,7 @@
                       for="departments"
                       class="font-weight-black"
                     >
-                      Department Visited
+                      Napanan a Departamento
                     </label>
 
                     <div
@@ -467,7 +470,7 @@
                         :items="other_depts"
                         item-value="id"
                         item-text="name"
-                        label="Other departments"
+                        label="Dadduma pay nga opisina, ilanad"
                         multiple
                         outlined
                         dense
@@ -494,7 +497,7 @@
                       v-if="form.errors.departments"
                       class="red--text"
                     >
-                      The department visited field is required.
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -507,13 +510,13 @@
                       for="visited_before"
                       class="font-weight-black"
                     >
-                      Have you visited this hospital before?
+                      Nabisitam kadin ti ospital idi napalabas nga aldaw?
                     </label>
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="visited_before"
                         v-model="form.visited_before"
-                        label="Yes"
+                        label="Wen"
                         value="y"
                         dense
                         hide-details
@@ -522,7 +525,7 @@
                       <v-checkbox
                         id="visited_before"
                         v-model="form.visited_before"
-                        label="No"
+                        label="Saan"
                         value="n"
                         dense
                         hide-details
@@ -532,7 +535,7 @@
                       v-if="form.errors.visited_before"
                       class="red--text"
                     >
-                      {{ form.errors.visited_before }}
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -541,20 +544,22 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <h5 class="text-h5-edited font-weight-black">How would you rate our service?</h5>
+                    <h5 class="text-h5-edited font-weight-black">Pannakapnek iti naipaay a serbisio</h5>
                     <p>
-                      <span class="font-weight-black">Direction:</span>
-                      Click on the emoticon that best corresponds to your rating for each item.
+                      <span class="font-weight-black">Direksyon:</span>
+                      I-click ti rupa a kasayaatan a katupag ti rating mo para iti sumaganad a saludsod.
                     </p>
 
                     <!-- partA -->
                     <div class="grey lighten-1 mb-4">
-                      <span class="text-h6-edited mx-2">A. Infrastructure and Process</span>
+                      <span class="text-h6-edited mx-2">A. Maaramat a Pasilidad</span>
                     </div>
 
                     <!-- q1 -->
                     <div>
-                      <p class="font-weight-black ma-0">1. {{ survey_questions[0].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        1. Nadalus, naurnos, ken komportable dagiti naipaay a pagurayan dagiti pasiente.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q1.rating"
                         dense
@@ -600,7 +605,7 @@
                         v-if="form.errors[`q1.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -608,7 +613,10 @@
 
                     <!-- q2 -->
                     <div>
-                      <p class="font-weight-black ma-0">2. {{ survey_questions[1].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        2. Nadalus, naurnos, len umdas ti danum a maaramat kadagiti kasilia ken pagdigosan iti uneg ti
+                        pasilidad.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q2.rating"
                         dense
@@ -654,7 +662,7 @@
                         v-if="form.errors[`q2.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -662,7 +670,10 @@
 
                     <!-- q3 -->
                     <div>
-                      <p class="font-weight-black ma-0">3. {{ survey_questions[2].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        3. Kanayon a nadalus ken naurnos dagiti siled ken komportable dagiti pasiente nga agyan
+                        kadigitoy.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q3.rating"
                         dense
@@ -708,7 +719,7 @@
                         v-if="form.errors[`q3.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
                   </v-col>
@@ -716,12 +727,14 @@
                   <!-- partA1 -->
                   <v-col cols="12 my-0 py-0">
                     <div class="grey lighten-1 mb-4">
-                      <span class="text-h6-edited mx-2"> The processes were done fast, promptly and clearly </span>
+                      <span class="text-h6-edited mx-2">
+                        Alisto, napaspas ken nalawag a masurutan ti pannakaisayangkat dagiti sumaganad a proseso.
+                      </span>
                     </div>
 
                     <!-- q4 -->
                     <div>
-                      <p class="font-weight-black ma-0">4. {{ survey_questions[3].desc }}</p>
+                      <p class="font-weight-black ma-0">4. Konsultasion</p>
                       <v-btn-toggle
                         v-model="form.q4.rating"
                         dense
@@ -767,7 +780,7 @@
                         v-if="form.errors[`q4.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -775,7 +788,7 @@
 
                     <!-- q5 -->
                     <div>
-                      <p class="font-weight-black ma-0">5. {{ survey_questions[4].desc }}</p>
+                      <p class="font-weight-black ma-0">5. Pannaka admit iti ospital</p>
                       <v-btn-toggle
                         v-model="form.q5.rating"
                         dense
@@ -821,7 +834,7 @@
                         v-if="form.errors[`q5.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -829,7 +842,7 @@
 
                     <!-- q6 -->
                     <div>
-                      <p class="font-weight-black ma-0">6. {{ survey_questions[5].desc }}</p>
+                      <p class="font-weight-black ma-0">6. Pannakalaboratorio ken "radiology" (x-ray)</p>
                       <v-btn-toggle
                         v-model="form.q6.rating"
                         dense
@@ -875,7 +888,7 @@
                         v-if="form.errors[`q6.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -883,7 +896,9 @@
 
                     <!-- q7 -->
                     <div>
-                      <p class="font-weight-black ma-0">7. {{ survey_questions[6].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        7. Pannakakuenta, panagbayad ken pannakadischarge (pannakapalubos a rumuar ti pasiente)
+                      </p>
                       <v-btn-toggle
                         v-model="form.q7.rating"
                         dense
@@ -929,7 +944,7 @@
                         v-if="form.errors[`q7.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -937,7 +952,9 @@
 
                     <!-- q8 -->
                     <div>
-                      <p class="font-weight-black ma-0">8. {{ survey_questions[7].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        8. Pannakaipaay dagiti dokumento a kasapulan manipud iti ospital
+                      </p>
                       <v-btn-toggle
                         v-model="form.q8.rating"
                         dense
@@ -983,7 +1000,7 @@
                         v-if="form.errors[`q8.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -991,7 +1008,9 @@
 
                     <!-- q9 -->
                     <div>
-                      <p class="font-weight-black ma-0">9. {{ survey_questions[8].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        9. Pannakaipaay ti tulong manipud iti "Medical Social Service"
+                      </p>
                       <v-btn-toggle
                         v-model="form.q9.rating"
                         dense
@@ -1037,7 +1056,7 @@
                         v-if="form.errors[`q9.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
                   </v-col>
@@ -1050,13 +1069,15 @@
                   <v-col cols="12">
                     <div class="grey lighten-1 mb-4">
                       <span class="text-h6-edited mx-2">
-                        B. Hospitals Staff's Relations towards patients, relative and companions
+                        B. Pannakilangen dagiti empleado ti ospital kadagiti pasiente, kabagian ken nangkadua kadagitoy.
                       </span>
                     </div>
 
                     <!-- q10 -->
                     <div>
-                      <p class="font-weight-black ma-0">10. {{ survey_questions[9].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        10. Napintas ti pannakailawlawag ti proseso ken medikal a kondision ti pasiente.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q10.rating"
                         dense
@@ -1106,7 +1127,7 @@
                         v-if="form.errors[`q10.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -1114,7 +1135,10 @@
 
                     <!-- q11 -->
                     <div>
-                      <p class="font-weight-black ma-0">11. {{ survey_questions[10].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        11. Dagiti sentimyentomi, kultura ken pammatimi ket naipangag ken naikkan ti konsiderasyon iti
+                        proseso a panagagas.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q11.rating"
                         dense
@@ -1164,7 +1188,7 @@
                         v-if="form.errors[`q11.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -1172,7 +1196,10 @@
 
                     <!-- q12 -->
                     <div>
-                      <p class="font-weight-black ma-0">12. {{ survey_questions[11].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        12. Naikkan kami ti gundaway nga nagdisidir no ana nga wagas ti maisayangkat a proseso ti
+                        panagagas.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q12.rating"
                         dense
@@ -1222,7 +1249,7 @@
                         v-if="form.errors[`q12.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -1230,7 +1257,9 @@
 
                     <!-- q13 -->
                     <div>
-                      <p class="font-weight-black ma-0">13. {{ survey_questions[12].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        13. Nailawlawag a nasayaat dagiti rumbeng nga aramiden kasangwanan a mapagawid.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q13.rating"
                         dense
@@ -1280,7 +1309,7 @@
                         v-if="form.errors[`q13.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
@@ -1288,7 +1317,10 @@
 
                     <!-- q14 -->
                     <div>
-                      <p class="font-weight-black ma-0">14. {{ survey_questions[13].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        14. Naipaayan iti naan-anay a tulong, manipud iti pannakaadmit, ken pannakaagas manipud iti
+                        "Malasakit Center".
+                      </p>
                       <v-btn-toggle
                         v-model="form.q14.rating"
                         dense
@@ -1338,7 +1370,7 @@
                         v-if="form.errors[`q14.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
                   </v-col>
@@ -1350,13 +1382,15 @@
                   <!-- partC -->
                   <v-col cols="12">
                     <div class="grey lighten-1 mb-4">
-                      <span class="text-h6-edited mx-2"> C. Survey about the Hospital Staff </span>
+                      <span class="text-h6-edited mx-2">
+                        C. Pannakapnek kadagiti serbisio a naipaay babaen kadagiti empleado
+                      </span>
                     </div>
 
                     <!-- survey staff -->
                     <div>
                       <p class="my-2 font-weight-black">
-                        15. The Hospital Staff we interacted with were courteous and helpful
+                        15. Nadayaw ken managtulong dagiti empleado ti ospital a nangtaming kadakami.
                       </p>
 
                       <p class="ma-0 font-weight-black">Doctor</p>
@@ -1413,14 +1447,14 @@
                         v-if="form.errors[`doctor.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.doctor.rating != null && form.doctor.rating != 0"
                         class="mt-1"
                       >
-                        <label for="doctor"> Comments/Suggestions (Optional) </label>
+                        <label for="doctor"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="doctor"
                           v-model="form.doctor.comment"
@@ -1485,14 +1519,14 @@
                         v-if="form.errors[`nurse.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.nurse.rating != null && form.nurse.rating != 0"
                         class="mt-1"
                       >
-                        <label for="nurse"> Comments/Suggestions (Optional) </label>
+                        <label for="nurse"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           class="ma-0 pa-0"
                           id="nurse"
@@ -1560,14 +1594,14 @@
                         v-if="form.errors[`midwife.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.midwife.rating != null && form.midwife.rating != 0"
                         class="mt-1"
                       >
-                        <label for="midwife"> Comments/Suggestions (Optional) </label>
+                        <label for="midwife"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="midwife"
                           v-model="form.midwife.comment"
@@ -1634,14 +1668,14 @@
                         v-if="form.errors[`security.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.security.rating != null && form.security.rating != 0"
                         class="mt-1"
                       >
-                        <label for="security"> Comments/Suggestions (Optional) </label>
+                        <label for="security"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="security"
                           v-model="form.security.comment"
@@ -1708,14 +1742,14 @@
                         v-if="form.errors[`radiology.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.radiology.rating != null && form.radiology.rating != 0"
                         class="mt-1"
                       >
-                        <label for="radiology"> Comments/Suggestions (Optional) </label>
+                        <label for="radiology"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="radiology"
                           v-model="form.radiology.comment"
@@ -1782,14 +1816,14 @@
                         v-if="form.errors[`pharmacy.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.pharmacy.rating != null && form.pharmacy.rating != 0"
                         class="mt-1"
                       >
-                        <label for="pharmacy"> Comments/Suggestions (Optional) </label>
+                        <label for="pharmacy"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="pharmacy"
                           v-model="form.pharmacy.comment"
@@ -1856,14 +1890,14 @@
                         v-if="form.errors[`laboratory.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.laboratory.rating != null && form.laboratory.rating != 0"
                         class="mt-1"
                       >
-                        <label for="laboratory"> Comments/Suggestions (Optional) </label>
+                        <label for="laboratory"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="laboratory"
                           v-model="form.laboratory.comment"
@@ -1930,14 +1964,14 @@
                         v-if="form.errors[`admitting_staff.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.admitting_staff.rating != null && form.admitting_staff.rating != 0"
                         class="mt-1"
                       >
-                        <label for="admitting_staff"> Comments/Suggestions (Optional) </label>
+                        <label for="admitting_staff"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="admitting_staff"
                           v-model="form.admitting_staff.comment"
@@ -2004,14 +2038,14 @@
                         v-if="form.errors[`medical_records.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.medical_records.rating != null && form.medical_records.rating != 0"
                         class="mt-1"
                       >
-                        <label for="medical_records"> Comments/Suggestions (Optional) </label>
+                        <label for="medical_records"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="medical_records"
                           v-model="form.medical_records.comment"
@@ -2078,14 +2112,14 @@
                         v-if="form.errors[`billing.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.billing.rating != null && form.billing.rating != 0"
                         class="mt-1"
                       >
-                        <label for="billing"> Comments/Suggestions (Optional) </label>
+                        <label for="billing"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="billing"
                           v-model="form.billing.comment"
@@ -2152,14 +2186,14 @@
                         v-if="form.errors[`cashier.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.cashier.rating != null && form.cashier.rating != 0"
                         class="mt-1"
                       >
-                        <label for="cashier"> Comments/Suggestions (Optional) </label>
+                        <label for="cashier"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="cashier"
                           v-model="form.cashier.comment"
@@ -2226,14 +2260,14 @@
                         v-if="form.errors[`social_worker.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.social_worker.rating != null && form.social_worker.rating != 0"
                         class="mt-1"
                       >
-                        <label for="social_worker"> Comments/Suggestions (Optional) </label>
+                        <label for="social_worker"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="social_worker"
                           v-model="form.social_worker.comment"
@@ -2300,14 +2334,14 @@
                         v-if="form.errors[`food_server.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.food_server.rating != null && form.food_server.rating != 0"
                         class="mt-1"
                       >
-                        <label for="food_server"> Comments/Suggestions (Optional) </label>
+                        <label for="food_server"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="food_server"
                           v-model="form.food_server.comment"
@@ -2374,14 +2408,14 @@
                         v-if="form.errors[`janitors_orderly.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
 
                       <div
                         v-if="form.janitors_orderly.rating != null && form.janitors_orderly.rating != 0"
                         class="mt-1"
                       >
-                        <label for="janitors_orderly"> Comments/Suggestions (Optional) </label>
+                        <label for="janitors_orderly"> Komento/Singangsing (Opsional) </label>
                         <v-textarea
                           id="janitors_orderly"
                           v-model="form.janitors_orderly.comment"
@@ -2395,7 +2429,9 @@
 
                     <!-- q15 -->
                     <div>
-                      <p class="font-weight-black ma-0">16. {{ survey_questions[14].desc }}</p>
+                      <p class="font-weight-black ma-0">
+                        16. Agtalinaed a palimed dagiti impormasion pakaseknan ti pannakaagasmi.
+                      </p>
                       <v-btn-toggle
                         v-model="form.q15.rating"
                         dense
@@ -2446,7 +2482,7 @@
                       v-if="form.errors[`q15.rating`]"
                       class="red--text"
                     >
-                      Required
+                      Kasapulan.
                     </div>
                   </v-col>
 
@@ -2456,7 +2492,10 @@
 
                   <v-col cols="12">
                     <label for="opt_q_1">
-                      <span class="font-weight-black ma-0"> {{ this.survey_opt_questions[0].desc }} (Optional) </span>
+                      <span class="font-weight-black ma-0">
+                        Malaksid kadagiti nadakamat nga impormasion, addada kadi pay sabali a kapadasan a kayatyo nga
+                        idanon? (Opsional)
+                      </span>
                     </label>
                     <v-textarea
                       id="opt_q_1"
@@ -2466,7 +2505,10 @@
                     ></v-textarea>
 
                     <label for="opt_q_2">
-                      <span class="font-weight-black ma-0"> {{ this.survey_opt_questions[1].desc }} (Optional) </span>
+                      <span class="font-weight-black ma-0">
+                        Adda kadi dagiti empleado ti ospital a kayatmo a mapadayawan? No adda, pakisurat ti nagan iti
+                        nailannad nga espasio. (Opsional)
+                      </span>
                     </label>
                     <v-textarea
                       id="opt_q_2"
@@ -2477,7 +2519,7 @@
 
                     <label for="opt_q_3">
                       <span class="font-weight-black ma-0">
-                        {{ this.survey_opt_questions[2].desc }} <span class="red--text">(Required)</span>
+                        Hospital number ti pasiente <span class="red--text">(Kasapulan.)</span>
                       </span>
                     </label>
                     <v-text-field
@@ -2491,13 +2533,13 @@
                       v-if="$page.props.errors[0]"
                       class="red--text"
                     >
-                      {{ $page.props.errors[0] }}
+                      Saan a nasarakan ti ospital number ti pasiente.
                     </div>
 
                     <div class="mt-6">
                       <label for="opt_q_4">
                         <span class="font-weight-black ma-0">
-                          {{ survey_questions[15].desc }}
+                          Kasano ti panangi-rate mo iti daytoy computer assisted Patient Satisfaction Survey?
                         </span>
                       </label>
                       <v-rating
@@ -2511,15 +2553,13 @@
                         v-if="form.errors[`q16.rating`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
 
                     <div class="mt-6">
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0">
-                          {{ this.survey_opt_questions[3].desc }}
-                        </span>
+                        <span class="font-weight-black ma-0"> Ania a wagas ti surbey ti kaykayatyo? </span>
                       </label>
                       <v-radio-group
                         v-model="form.opt_q_4.comment"
@@ -2529,7 +2569,7 @@
                         class="mt-1 pa-0"
                       >
                         <v-radio
-                          label="Paper & Pen"
+                          label="Papel ken ballpen"
                           value="Paper & Pen"
                         ></v-radio>
                         <v-radio
@@ -2538,7 +2578,7 @@
                         ></v-radio>
                       </v-radio-group>
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0"> Why? </span>
+                        <span class="font-weight-black ma-0"> Apay? </span>
                       </label>
                       <v-textarea
                         id="opt_q_4"
@@ -2552,7 +2592,7 @@
                         v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
                         class="red--text"
                       >
-                        Required
+                        Kasapulan.
                       </div>
                     </div>
                   </v-col>
@@ -2577,7 +2617,8 @@
                   >
                     <div class="d-flex justify-center align-center flex-column text-center">
                       <h5 class="text-h5-edited font-weight-black">
-                        Thank you for your valuable time and opportunity to serve you better.
+                        Agyamankami iti inpaayyo nga oras para iti pannakaammo kadagiti suhestionyo para iti
+                        pannakapasayaat ti serbisio ti MMMHMC.
                       </h5>
 
                       <span class="font-weight-black mt-2">Patient Satisfaction Committee</span>
@@ -3007,7 +3048,7 @@ export default {
     errorExistsMsg() {
       this.snack = true;
       this.snackColor = 'color_error';
-      this.snackText = 'Failed to save survey, please answer the required questions.';
+      this.snackText = 'Napaay a mangisalakan iti surbey, pangngaasiyo ta sungbatanyo dagiti kasapulan a saludsod.';
     },
   },
 };
