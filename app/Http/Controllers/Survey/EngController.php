@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
-use App\Models\OtherDepartment;
-use App\Models\OutpatientDept;
 use App\Models\PatientAccount;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
@@ -18,12 +16,13 @@ use App\Models\SurveyQuestions;
 use App\Models\SurveyRespondents;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class PssController extends Controller
+class EngController extends Controller
 {
+
+
     public function index()
     {
         $hospital_staffs = HospitalStaff::all('id', 'type');
@@ -566,7 +565,6 @@ class PssController extends Controller
 
         // return redirect()->back();
     }
-
 
     public function update(Request $request, $id)
     {

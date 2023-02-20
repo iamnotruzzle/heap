@@ -2975,7 +2975,7 @@ export default {
   },
   methods: {
     submit() {
-      this.form.post(route('pss.store'), {
+      this.form.post(route('eng.store'), {
         onSuccess: () => {
           this.isLoading = true;
           this.form.reset();
