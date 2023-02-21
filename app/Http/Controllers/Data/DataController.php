@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Data;
 
 use App\Http\Controllers\Controller;
+use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,10 +16,12 @@ class DataController extends Controller
      */
     public function index()
     {
+        $survey_general_info = SurveyGeneralInfo::paginate(20);
+
         return Inertia::render(
             'Data/Index',
             [
-                // 'hospital_staffs' => $hospital_staffs,
+                'survey_general_info' => $survey_general_info,
             ]
         );
     }

@@ -24,4 +24,9 @@ class DepartmentsVisited extends Model
     protected $casts = [
         'created_at' => 'datetime:m-d-Y',
     ];
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class, 'department_id', 'id');
+    }
 }
