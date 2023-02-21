@@ -27,6 +27,6 @@ class DepartmentsVisited extends Model
 
     public function departments()
     {
-        return $this->hasMany(Department::class, 'department_id', 'id');
+        return $this->hasMany(Department::class, 'id', 'department_id');
     }
 }

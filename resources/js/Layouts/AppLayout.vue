@@ -27,7 +27,7 @@
 
         <!-- header nav title -->
         <v-toolbar-title class="text-uppercase">
-          <span>TEMPLATE</span>
+          <span>Patient Satisfaction Survey and Analysis</span>
         </v-toolbar-title>
 
         <!-- add space BETWEEN title and signout -->
@@ -153,7 +153,7 @@
           >
             <v-list-item-icon class="mr-3">
               <bar-chart-2-icon
-                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active']"
+                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active white--text']"
                 size="24"
                 stroke-width="1"
               ></bar-chart-2-icon>
@@ -161,8 +161,8 @@
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active']"
-                class="text-body-1-edited font-weight-regular"
+                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active white--text']"
+                class="text-body-1-edited font-weight-regular white--text"
                 >Data</v-list-item-title
               >
             </v-list-item-content>
@@ -176,7 +176,7 @@
             <template v-slot:appendIcon>
               <v-icon
                 size="15"
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : '']"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'white--text']"
               >
                 mdi-chevron-down
               </v-icon>
@@ -185,7 +185,7 @@
             <template v-slot:activator>
               <v-list-item-icon
                 class="mr-3"
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : '']"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'white--text']"
               >
                 <package-icon
                   :class="[isGroupOpen === true ? 'active' : 'not-active']"
@@ -197,7 +197,7 @@
               <v-list-item-content>
                 <v-list-item-title
                   class="text-body-1-edited font-weight-regular"
-                  :class="[$page.component === 'Users/Index' ? 'color_primary--text' : '']"
+                  :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'white--text']"
                   >List</v-list-item-title
                 >
               </v-list-item-content>
@@ -225,7 +225,7 @@
               >
                 <v-list-item-title
                   :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
-                  class="text-body-1-edited font-weight-regular"
+                  class="text-body-1-edited font-weight-regular white--text"
                 >
                   Users
                 </v-list-item-title>
@@ -241,7 +241,7 @@
           >
             <v-list-item-icon class="mr-3">
               <users-icon
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active white--text']"
                 size="24"
                 stroke-width="1"
               ></users-icon>
@@ -249,8 +249,8 @@
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
-                class="text-body-1-edited font-weight-regular"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active white--text']"
+                class="text-body-1-edited font-weight-regular white--text"
                 >Users</v-list-item-title
               >
             </v-list-item-content>
@@ -264,7 +264,7 @@
           >
             <v-list-item-icon class="mr-3">
               <users-icon
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active white--text']"
                 size="24"
                 stroke-width="1"
               ></users-icon>
@@ -272,8 +272,8 @@
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
-                class="text-body-1-edited font-weight-regular"
+                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active white--text']"
+                class="text-body-1-edited font-weight-regular white--text"
                 >Users</v-list-item-title
               >
             </v-list-item-content>

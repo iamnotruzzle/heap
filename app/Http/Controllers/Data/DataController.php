@@ -16,12 +16,21 @@ class DataController extends Controller
      */
     public function index()
     {
-        $survey_general_info = SurveyGeneralInfo::paginate(20);
+        $data = SurveyGeneralInfo::with(
+            'departmentsVisited',
+            'departmentsVisited.departments',
+            'surveyAnswers',
+            'surveyAbtStaffs',
+            'surveyOptAnswers',
+        )
+            ->paginate(20);
+
+        // dd($data);
 
         return Inertia::render(
             'Data/Index',
             [
-                'survey_general_info' => $survey_general_info,
+                'data' => $data,
             ]
         );
     }

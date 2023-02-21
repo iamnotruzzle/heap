@@ -5,292 +5,7 @@
     <v-container class="my-5">
       <!-- add user dialog -->
 
-      <h2 class="text-overline-edited">USERS</h2>
-
-      <v-row>
-        <v-col
-          cols="12"
-          class="text-right mb-2"
-        >
-          <v-dialog
-            v-model="dialog"
-            @keydown.esc="cancel"
-            @click:outside="cancel"
-            width="500"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="color_primary white--text"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon left>mdi-account-plus</v-icon>
-                <span>Add user</span>
-              </v-btn>
-            </template>
-
-            <v-card>
-              <v-card-title
-                class="text-h6-edited color_primary white--text"
-                v-if="formTitle == 'Create User'"
-              >
-                {{ formTitle }}
-              </v-card-title>
-              <v-card-title
-                class="text-h6-edited color_secondary white--text d-flex justify-space-between"
-                v-if="formTitle == 'Edit User'"
-              >
-                {{ formTitle }}
-              </v-card-title>
-
-              <v-card-text class="mt-8">
-                <v-form
-                  ref="form"
-                  v-model="valid"
-                >
-                  <v-row>
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                    >
-                      <v-file-input
-                        v-model="form.image"
-                        @input="form.image = $event.target.files[0]"
-                        :error-messages="form.errors.image"
-                        color="color_primary"
-                        chips
-                        show-size
-                        small-chips
-                        label="Image"
-                        prepend-icon=""
-                        truncate-length="15"
-                      ></v-file-input>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      md="6"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.firstName"
-                        :error-messages="form.errors.firstName"
-                        color="color_primary"
-                        autofocus
-                        clearable
-                        label="Given name"
-                        required
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      md="6"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.middleName"
-                        :error-messages="form.errors.middleName"
-                        color="color_primary"
-                        clearable
-                        label="Middle name"
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      md="6"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.lastName"
-                        :error-messages="form.errors.lastName"
-                        color="color_primary"
-                        clearable
-                        label="Last name"
-                        required
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      md="6"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.suffix"
-                        :error-messages="form.errors.suffix"
-                        color="color_primary"
-                        clearable
-                        label="Suffix"
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                      v-if="$page.props.auth.user.roles[0] === 'super-admin'"
-                    >
-                      <v-select
-                        v-model="form.role"
-                        :error-messages="form.errors.role"
-                        color="color_primary"
-                        :items="roles"
-                        label="Role"
-                      >
-                      </v-select>
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                      v-else
-                    >
-                      <v-select
-                        v-model="form.role"
-                        :error-messages="form.errors.role"
-                        color="color_primary"
-                        :items="rolesIfAdmin"
-                        label="Role"
-                      >
-                      </v-select>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                      v-if="form.role === 'user'"
-                    >
-                      <v-select
-                        v-model="form.permissions"
-                        :items="permissions"
-                        :menu-props="{ maxHeight: '300' }"
-                        label="Authorization"
-                        multiple
-                        color="color_primary"
-                      >
-                        <template v-slot:prepend-item>
-                          <v-list-item
-                            ripple
-                            @mousedown.prevent
-                            @click="toggle"
-                          >
-                            <v-list-item-action>
-                              <v-icon :color="selectedPermissions.length > 0 ? 'indigo darken-4' : ''">
-                                {{ icon }}
-                              </v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                              <v-list-item-title> Select All </v-list-item-title>
-                            </v-list-item-content>
-                          </v-list-item>
-                          <v-divider class="mt-2"></v-divider>
-                        </template>
-
-                        <template v-slot:selection="{ item, index }">
-                          <v-chip v-if="index === 0">
-                            <span>{{ item }}</span>
-                          </v-chip>
-                          <span
-                            v-if="index === 1"
-                            class="grey--text text-caption"
-                          >
-                            (+{{ form.permissions.length - 1 }} others)
-                          </span>
-                        </template>
-                      </v-select>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.email"
-                        :error-messages="form.errors.email"
-                        color="color_primary"
-                        clearable
-                        label="E-mail"
-                        required
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.username"
-                        :error-messages="form.errors.username"
-                        color="color_primary"
-                        clearable
-                        label="Username"
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                    >
-                      <v-text-field
-                        v-model="form.password"
-                        :error-messages="form.errors.password"
-                        color="color_primary"
-                        clearable
-                        label="Password"
-                        type="password"
-                        required
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-form>
-              </v-card-text>
-
-              <v-divider></v-divider>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <div>
-                  <v-btn
-                    color="color_error"
-                    text
-                    :disabled="form.processing"
-                    @click="cancel"
-                  >
-                    Cancel
-                  </v-btn>
-
-                  <v-btn
-                    v-if="isUpdate == false"
-                    color="color_primary white--text"
-                    :loading="form.processing"
-                    @click="submit"
-                    @keyup.enter="submit"
-                  >
-                    Save
-                  </v-btn>
-
-                  <v-btn
-                    v-else
-                    color="color_secondary white--text"
-                    :loading="form.processing"
-                    @click="submit"
-                    @keyup.enter="submit"
-                  >
-                    Update
-                  </v-btn>
-                </div>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-col>
-      </v-row>
+      <h2 class="text-overline-edited">Survey Answers</h2>
 
       <v-card
         text
@@ -310,7 +25,7 @@
                 v-model="search"
                 append-icon="mdi-magnify"
                 color="color_primary"
-                label="Search Users"
+                label="Search"
                 dense
               ></v-text-field>
             </v-col>
@@ -322,122 +37,18 @@
           dense
           :search="search"
           :headers="headers"
-          :items="survey_general_info.data"
+          :items="data.data"
           :items-per-page="15"
           :options.sync="options"
-          :server-items-length="survey_general_info.total"
+          :server-items-length="data.total"
           class="elevation-1 row_pointer"
           :class="{
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
-          <!-- avatar -->
-          <template #item.image="{ item }">
-            <v-avatar
-              v-if="item.image != null"
-              class="my-2"
-              size="34"
-            >
-              <img :src="`/storage/${item.image}`" />
-            </v-avatar>
-            <v-avatar
-              v-else
-              class="my-2"
-              size="34"
-            >
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
-            </v-avatar>
-          </template>
-
           <!-- full name -->
-          <template #item.fullName="{ item }">
-            {{ item.firstName }} {{ item.middleName }} {{ item.lastName }}
-            <span v-if="item.suffix != null">{{ item.suffix }}</span>
-          </template>
-
-          <!-- role -->
-          <template #item.role="{ item }">
-            {{ item.roles[0].name }}
-          </template>
-
-          <!-- permissions -->
-          <template v-slot:item.permissions="{ item }">
-            <v-chip
-              v-if="item.roles[0].name === 'user' && item.permissions.length > 0"
-              class="pa-2 pink--text darken-4"
-              label
-              small
-              input-value="true"
-              @click="editItem(item)"
-            >
-              List
-            </v-chip>
-            <v-chip
-              v-else-if="item.roles[0].name === 'user'"
-              class="pa-2 cyan--text"
-              label
-              small
-              input-value="true"
-            >
-              Dashboards only
-            </v-chip>
-            <v-chip
-              v-else
-              class="pa-2 green--text"
-              label
-              small
-              input-value="true"
-            >
-              Max authorization
-            </v-chip>
-          </template>
-
-          <template v-slot:item.actions="{ item }">
-            <!-- {{ item.roles[0].name }} -->
-            <!-- $page.props.auth.user.roles[0] -->
-            <div
-              class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'admin' && item.roles[0].name != 'super-admin'"
-            >
-              <v-icon
-                size="20"
-                class="mr-1"
-                color="color_secondary"
-                @click="editItem(item)"
-              >
-                mdi-pencil
-              </v-icon>
-
-              <v-icon
-                size="20"
-                color="color_error"
-                @click.stop="deleteItem(item)"
-              >
-                mdi-delete
-              </v-icon>
-            </div>
-
-            <div
-              class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'super-admin'"
-            >
-              <v-icon
-                size="20"
-                class="mr-1"
-                color="color_secondary"
-                @click="editItem(item)"
-              >
-                mdi-pencil
-              </v-icon>
-
-              <v-icon
-                size="20"
-                color="color_error"
-                @click.stop="deleteItem(item)"
-              >
-                mdi-delete
-              </v-icon>
-            </div>
+          <template #item.departments_visited="{ item }">
+            {{ item.departments_visited }}
           </template>
 
           <!-- pagination -->
@@ -447,41 +58,6 @@
         </v-data-table>
       </v-card>
       <!-- end data table  -->
-
-      <!-- delete user modal -->
-      <v-dialog
-        v-model="dialogDelete"
-        max-width="500"
-      >
-        <v-card>
-          <v-card-title class="text-h5-edited"> Delete user </v-card-title>
-          <v-card-text class="text-center text-h6-edited">
-            Are you sure you want to delete this user account?
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <div>
-              <v-btn
-                text
-                :disabled="form.processing"
-                @click="dialogDelete = false"
-              >
-                Cancel
-              </v-btn>
-
-              <v-btn
-                color="error"
-                text
-                :loading="form.processing"
-                @click="destroy"
-              >
-                Yes, I'm sure
-              </v-btn>
-            </div>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-      <!-- end delete user modal -->
     </v-container>
 
     <!-- snackbar -->
@@ -521,7 +97,7 @@ export default {
     Head,
   },
   props: {
-    survey_general_info: Object,
+    data: Object,
   },
   data() {
     return {
@@ -545,54 +121,61 @@ export default {
       params: {},
       headers: [
         {
-          text: 'Avatar',
+          text: 'PSS ID',
+          value: 'pss_id',
           align: 'start',
-          value: 'image',
           sortable: false,
           filterable: false,
-          class: 'color_main_dark_background',
         },
         {
-          text: 'NAME',
+          text: 'Respondent',
           align: 'start',
-          value: 'fullName',
+          value: 'respondent',
           sortable: false,
           class: 'color_main_dark_background',
         },
         {
-          text: 'ROLE',
+          text: 'AGE',
           align: 'start',
-          value: 'role',
+          value: 'age',
           sortable: false,
           class: 'color_main_dark_background',
         },
         {
-          text: 'AUTHORIZATION',
-          align: 'start',
-          value: 'permissions',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'USERNAME',
-          align: 'start',
-          value: 'username',
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'EMAIL',
-          align: 'start',
-          value: 'email',
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CREATED AT',
+          text: 'SEX',
           align: 'start',
           value: 'created_at',
           sortable: false,
           class: 'color_main_dark_background',
         },
-        { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
+        {
+          text: 'RELIGION',
+          align: 'start',
+          value: 'religion',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'LEVEL OF EDUCATION',
+          align: 'start',
+          value: 'educational_attainment',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'DATE OF CONSULT/VISIT',
+          align: 'start',
+          value: 'date_of_visit',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'DEPARTMENTS/OFFICE VISITED',
+          align: 'start',
+          value: 'departments_visited',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
       ],
       form: this.$inertia.form({
         firstName: null,
@@ -608,7 +191,9 @@ export default {
       }),
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.data);
+  },
   methods: {
     updateData() {
       this.$inertia.get('data', this.params, {
@@ -628,108 +213,14 @@ export default {
       this.form.clearErrors();
     },
     submit() {
-      if (this.isUpdate) {
-        // NOTE: only use Inertia.post when updating with files included
-        // use this.form.put when there is no need to upload files
-        // TODO fix bug where in validation error
-        // is not showing when updating
-        // Alternative solution: using client side vuetify form validation
-        Inertia.post(
-          route('data.update', this.itemId),
-          {
-            _method: 'put',
-            preserveScroll: true,
-            firstName: this.form.firstName,
-            middleName: this.form.middleName,
-            lastName: this.form.lastName,
-            suffix: this.form.suffix,
-            role: this.form.role,
-            permissions: this.form.permissions,
-            email: this.form.email,
-            username: this.form.username,
-            password: this.form.password,
-            image: this.form.image,
-          },
-          {
-            onSuccess: () => {
-              this.isLoading = false;
-              this.dialog = false;
-              this.isUpdate = false;
-              this.itemId = null;
-              this.form.reset();
-              this.updatedMsg();
-            },
-          }
-        );
-      } else {
-        this.form.post(route('data.store'), {
-          preserveScroll: true,
-          onSuccess: () => {
-            this.isLoading = true;
-            this.dialog = false;
-            this.form.reset();
-            this.createdMsg();
-          },
-        });
-      }
-    },
-    editItem(item) {
-      // get the users permissions
-      let permissionsCopy = [];
-      item.permissions.forEach((e) => {
-        permissionsCopy.push(e.name);
-      });
-      // end get the users permissions
-
-      this.form.firstName = item.firstName;
-      this.form.middleName = item.middleName;
-      this.form.lastName = item.lastName;
-      this.form.suffix = item.suffix;
-      this.form.role = item.roles[0].name;
-      this.form.permissions = permissionsCopy.slice(0);
-      this.form.email = item.email;
-      this.form.username = item.username;
-      this.form.password = item.password;
-      this.isUpdate = true;
-      this.itemId = item.id;
-      this.dialog = true;
-    },
-    deleteItem(item) {
-      this.itemId = item.id;
-      this.dialogDelete = true;
-    },
-    destroy() {
-      this.form.delete(route('data.destroy', this.itemId), {
+      this.form.post(route('data.store'), {
         preserveScroll: true,
         onSuccess: () => {
-          this.dialogDelete = false;
-          this.itemId = null;
-          this.deletedMsg();
+          this.isLoading = true;
+          this.dialog = false;
+          this.form.reset();
+          this.createdMsg();
         },
-      });
-    },
-    createdMsg() {
-      this.snack = true;
-      this.snackColor = 'color_primary';
-      this.snackText = 'Account saved.';
-    },
-    updatedMsg() {
-      this.snack = true;
-      this.snackColor = 'color_secondary';
-      this.snackText = 'Account updated.';
-    },
-    deletedMsg() {
-      this.snack = true;
-      this.snackColor = 'color_error';
-      this.snackText = 'Account deleted.';
-    },
-    toggle() {
-      this.$nextTick(() => {
-        if (this.selectedAllPermissions) {
-          this.form.permissions = [];
-        } else {
-          this.form.permissions = this.permissions.slice();
-        }
       });
     },
     can(permission) {
@@ -750,20 +241,6 @@ export default {
   computed: {
     user() {
       return this.$page.props.auth.user;
-    },
-    formTitle() {
-      return this.isUpdate ? 'Edit User' : 'Create User';
-    },
-    selectedAllPermissions() {
-      return this.form.permissions.length === this.permissions.length;
-    },
-    selectedSomePermissions() {
-      return this.form.permissions.length > 0 && !this.selectedAllPermissions;
-    },
-    icon() {
-      if (this.selectedAllPermissions) return 'mdi-close-box';
-      if (this.selectedSomePermissions) return 'mdi-minus-box';
-      return 'mdi-checkbox-blank-outline';
     },
   },
   watch: {

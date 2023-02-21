@@ -42,7 +42,7 @@ class SurveyGeneralInfo extends Model
         return $this->hasMany(SurveyAnswers::class, 'pss_id', 'pss_id');
     }
 
-    public function surveyAbyStaffs()
+    public function surveyAbtStaffs()
     {
         return $this->hasMany(SurveyAbtStaff::class, 'pss_id', 'pss_id');
     }
