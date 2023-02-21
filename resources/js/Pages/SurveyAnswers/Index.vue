@@ -1,6 +1,6 @@
 <template>
   <div class="users">
-    <Head title="Users" />
+    <Head title="Survey Answers" />
 
     <v-container class="my-5">
       <!-- add user dialog -->
@@ -37,10 +37,10 @@
           dense
           :search="search"
           :headers="headers"
-          :items="data.data"
+          :items="surveyAnswers.data"
           :items-per-page="15"
           :options.sync="options"
-          :server-items-length="data.total"
+          :server-items-length="surveyAnswers.total"
           class="elevation-1 row_pointer"
           :class="{
             color_main_dark_background: $vuetify.theme.dark,
@@ -99,7 +99,7 @@ export default {
     Head,
   },
   props: {
-    data: Object,
+    surveyAnswers: Object,
   },
   data() {
     return {
@@ -195,11 +195,11 @@ export default {
     };
   },
   mounted() {
-    console.log(this.data);
+    console.log(this.surveyAnswers);
   },
   methods: {
     updateData() {
-      this.$inertia.get('data', this.params, {
+      this.$inertia.get('answers', this.params, {
         preserveState: true,
         preserveScroll: true,
       });
@@ -216,7 +216,7 @@ export default {
       this.form.clearErrors();
     },
     submit() {
-      this.form.post(route('data.store'), {
+      this.form.post(route('answers.store'), {
         preserveScroll: true,
         onSuccess: () => {
           this.isLoading = true;

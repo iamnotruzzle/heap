@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Data\DataController;
+use App\Http\Controllers\Survey\Answers\AnswersController;
 use App\Http\Controllers\Survey\English\EngController;
 use App\Http\Controllers\Survey\Iloco\IlocoController;
 use App\Http\Controllers\Survey\Tagalog\TagalogController;
@@ -19,4 +19,4 @@ Route::resource('users', UserController::class)->middleware(['auth:sanctum', 've
 Route::resource('eng', EngController::class)->only(['index', 'store', 'update', 'destroy']);
 Route::resource('iloco', IlocoController::class)->only(['index', 'store', 'update', 'destroy']);
 Route::resource('tagalog', TagalogController::class)->only(['index', 'store', 'update', 'destroy']);
-Route::resource('data', DataController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('answers', AnswersController::class)->only(['index', 'store', 'update', 'destroy']);

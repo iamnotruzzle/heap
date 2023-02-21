@@ -146,14 +146,14 @@
           nav
         >
           <Link
-            href="data"
-            :class="{ 'color_primary--text': $page.component === 'Data/Index' }"
+            href="answers"
+            :class="{ 'color_primary--text': $page.component === 'SurveyAnswers/Index' }"
             as="v-list-item"
             @click="isGroupOpen = false"
           >
             <v-list-item-icon class="mr-3">
               <bar-chart-2-icon
-                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active white--text']"
+                :class="[$page.component === 'SurveyAnswers/Index' ? 'color_primary--text' : 'not-active white--text']"
                 size="24"
                 stroke-width="1"
               ></bar-chart-2-icon>
@@ -161,9 +161,9 @@
 
             <v-list-item-content>
               <v-list-item-title
-                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active white--text']"
+                :class="[$page.component === 'SurveyAnswers/Index' ? 'color_primary--text' : 'not-active white--text']"
                 class="text-body-1-edited font-weight-regular white--text"
-                >Data</v-list-item-title
+                >Survey answers</v-list-item-title
               >
             </v-list-item-content>
           </Link>

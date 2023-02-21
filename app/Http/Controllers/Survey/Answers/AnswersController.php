@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Data;
+namespace App\Http\Controllers\Survey\Answers;
 
 use App\Http\Controllers\Controller;
 use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class DataController extends Controller
+class AnswersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class DataController extends Controller
      */
     public function index()
     {
-        $data = SurveyGeneralInfo::with(
+        $surveyAnswers = SurveyGeneralInfo::with(
             'departmentsVisited',
             'departmentsVisited.departments',
             'surveyAnswers',
@@ -25,12 +25,12 @@ class DataController extends Controller
         )
             ->paginate(20);
 
-        // dd($data);
+        // dd($surveyAnswers);
 
         return Inertia::render(
-            'Data/Index',
+            'SurveyAnswers/Index',
             [
-                'data' => $data,
+                'surveyAnswers' => $surveyAnswers,
             ]
         );
     }
