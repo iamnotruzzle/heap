@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientAccount extends Model
+class HospitalNumber extends Model
 {
     use HasFactory;
 
@@ -18,5 +18,6 @@ class PatientAccount extends Model
 
     protected $fillable = [
         'hpercode',
+        'encstat'
     ];
 }

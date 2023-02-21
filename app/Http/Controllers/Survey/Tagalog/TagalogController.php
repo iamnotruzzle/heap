@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Survey\Tagalog;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\DepartmentsVisited;
+use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
-use App\Models\PatientAccount;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
@@ -81,7 +81,7 @@ class TagalogController extends Controller
     {
         $departments_visited = $request->departments;
 
-        $pat_acct = PatientAccount::where('hpercode', $request->opt_q_3['comment'])
+        $hospital_number = HospitalNumber::where('hpercode', $request->opt_q_3['comment'])
             ->where('encstat', 'a')
             ->first();
 
@@ -91,7 +91,7 @@ class TagalogController extends Controller
             ->first();
         // dd($record_exist);
 
-        if ($pat_acct == null) {
+        if ($hospital_number == null) {
             return Redirect::back()->withErrors(['Hospital number not found.']);
         } else {
             if ($record_exist != null) {
