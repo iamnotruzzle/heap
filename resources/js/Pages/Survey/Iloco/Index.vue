@@ -2875,7 +2875,7 @@ export default {
           comment: '',
         },
         opt_q_4: {
-          survey_question_id: this.survey_opt_questions[2].id,
+          survey_question_id: this.survey_opt_questions[3].id,
           comment: '',
           why: '',
         },

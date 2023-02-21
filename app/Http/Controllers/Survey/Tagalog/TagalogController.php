@@ -555,7 +555,7 @@ class TagalogController extends Controller
                     ],
                     [
                         'pss_id' => $pss_id,
-                        'survey_question_id' => $request->opt_q_3['survey_question_id'],
+                        'survey_question_id' => $request->opt_q_4['survey_question_id'],
                         'comment' => implode("', '", $opt_q_4_comment),
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
