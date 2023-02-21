@@ -145,13 +145,29 @@
           dense
           nav
         >
-          <!-- v-if="can(['create-users, edit-users, delete-users'])" -->
-          <!-- List -->
-          <!-- <v-list-group
-            :value="false"
-            active-class="color_primary--text"
-            no-action
-          > -->
+          <Link
+            href="data"
+            :class="{ 'color_primary--text': $page.component === 'Data/Index' }"
+            as="v-list-item"
+            @click="isGroupOpen = false"
+          >
+            <v-list-item-icon class="mr-3">
+              <bar-chart-2-icon
+                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active']"
+                size="24"
+                stroke-width="1"
+              ></bar-chart-2-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title
+                :class="[$page.component === 'Data/Index' ? 'color_primary--text' : 'not-active']"
+                class="text-body-1-edited font-weight-regular"
+                >Data</v-list-item-title
+              >
+            </v-list-item-content>
+          </Link>
+
           <v-list-group
             :value="false"
             active-class="color_primary--text"
@@ -303,6 +319,7 @@ import {
   CheckSquareIcon,
   UsersIcon,
   FileTextIcon,
+  BarChart2Icon,
 } from 'vue-feather-icons';
 
 export default {
@@ -317,6 +334,7 @@ export default {
     CheckSquareIcon,
     UsersIcon,
     FileTextIcon,
+    BarChart2Icon,
   },
 
   data() {
