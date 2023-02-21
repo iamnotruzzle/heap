@@ -48,7 +48,9 @@
         >
           <!-- full name -->
           <template #item.departments_visited="{ item }">
-            {{ item.departments_visited }}
+            <!-- {{ item.departments_visited }} -->
+
+            <span v-for="dv in item.departments_visited"> {{ dv.departments[0].name }}, </span>
           </template>
 
           <!-- pagination -->
@@ -126,6 +128,7 @@ export default {
           align: 'start',
           sortable: false,
           filterable: false,
+          class: 'color_main_dark_background',
         },
         {
           text: 'Respondent',
