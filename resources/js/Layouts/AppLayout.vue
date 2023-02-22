@@ -152,11 +152,11 @@
             @click="isGroupOpen = false"
           >
             <v-list-item-icon class="mr-3">
-              <bar-chart-2-icon
+              <edit-icon
                 :class="[$page.component === 'SurveyAnswers/Index' ? 'color_primary--text' : 'not-active white--text']"
                 size="24"
                 stroke-width="1"
-              ></bar-chart-2-icon>
+              ></edit-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
@@ -168,71 +168,6 @@
             </v-list-item-content>
           </Link>
 
-          <v-list-group
-            :value="false"
-            active-class="color_primary--text"
-            no-action
-          >
-            <template v-slot:appendIcon>
-              <v-icon
-                size="15"
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'white--text']"
-              >
-                mdi-chevron-down
-              </v-icon>
-            </template>
-
-            <template v-slot:activator>
-              <v-list-item-icon
-                class="mr-3"
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'white--text']"
-              >
-                <package-icon
-                  :class="[isGroupOpen === true ? 'active' : 'not-active']"
-                  size="24"
-                  stroke-width="1"
-                ></package-icon>
-              </v-list-item-icon>
-
-              <v-list-item-content>
-                <v-list-item-title
-                  class="text-body-1-edited font-weight-regular"
-                  :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'white--text']"
-                  >List</v-list-item-title
-                >
-              </v-list-item-content>
-            </template>
-
-            <!-- :class="{ 'color_primary--text': $page.component === 'Users/Index', }" -->
-            <Link
-              href="users"
-              :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
-              label
-              as="v-list-item"
-              class="pa-0 ma-0"
-            >
-              <!-- This icon is only added to add margin right. Take note that the size is set to 0 -->
-              <v-list-item-icon class="mr-5">
-                <circle-icon
-                  size="0"
-                  stroke-width="0"
-                ></circle-icon>
-              </v-list-item-icon>
-
-              <v-list-item-content
-                class="ma-0"
-                color="color_primary"
-              >
-                <v-list-item-title
-                  :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active']"
-                  class="text-body-1-edited font-weight-regular white--text"
-                >
-                  Users
-                </v-list-item-title>
-              </v-list-item-content>
-            </Link>
-          </v-list-group>
-
           <Link
             href="users"
             :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
@@ -254,37 +189,6 @@
                 >Users</v-list-item-title
               >
             </v-list-item-content>
-          </Link>
-
-          <Link
-            href="users"
-            :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
-            as="v-list-item"
-            @click="isGroupOpen = false"
-          >
-            <v-list-item-icon class="mr-3">
-              <users-icon
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active white--text']"
-                size="24"
-                stroke-width="1"
-              ></users-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title
-                :class="[$page.component === 'Users/Index' ? 'color_primary--text' : 'not-active white--text']"
-                class="text-body-1-edited font-weight-regular white--text"
-                >Users</v-list-item-title
-              >
-            </v-list-item-content>
-
-            <v-chip
-              class="pa-2 white--text pulse"
-              small
-              input-value="true"
-            >
-              4
-            </v-chip>
           </Link>
         </v-list>
       </v-navigation-drawer>
