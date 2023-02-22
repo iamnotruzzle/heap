@@ -7,6 +7,7 @@
 
       <h2 class="text-overline-edited">Survey Answers</h2>
 
+      <!-- primary card -->
       <v-card
         text
         :class="{
@@ -14,6 +15,8 @@
         }"
         elevation="20"
       >
+        <v-card-title>REQUIRED</v-card-title>
+
         <v-card-text>
           <v-row class="d-flex justify-end">
             <v-col
@@ -26,6 +29,7 @@
                 append-icon="mdi-magnify"
                 color="color_primary"
                 label="Search"
+                outlined
                 dense
               ></v-text-field>
             </v-col>
@@ -37,7 +41,7 @@
           fixed-header
           dense
           :search="search"
-          :headers="headers"
+          :headers="primary_answers"
           :items="surveyAnswers.data"
           :items-per-page="15"
           :options.sync="options"
@@ -269,25 +273,57 @@
             {{ (options.page - 1) * options.itemsPerPage + index + 1 }}
           </template>
         </v-data-table>
+      </v-card>
+
+      <div class="my-4"></div>
+
+      <!-- secondary card -->
+      <v-card
+        text
+        :class="{
+          color_main_dark_background: $vuetify.theme.dark,
+        }"
+        elevation="20"
+      >
+        <v-card-title>OPTIONAL</v-card-title>
 
         <!-- Secondary answers -->
         <v-data-table
           fixed-header
           dense
           :search="search"
-          :headers="headers"
+          :headers="secondary_answers"
           :items="surveyAnswers.data"
           :items-per-page="15"
           :options.sync="options"
           :server-items-length="surveyAnswers.total"
-          class="elevation-1 row_pointer"
+          class="elevation-1 row_pointer pt-4"
           :class="{
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
-          <!-- departments -->
-          <template #item.departments_visited="{ item }">
-            <span v-for="dv in item.departments_visited"> {{ dv.departments[0].name }}, </span>
+          <!-- optional q1 -->
+          <template #item.optq1="{ item }">
+            <span v-if="item.survey_opt_answers[0].comment == null">NA</span>
+            <span v-else>{{ item.survey_opt_answers[0].comment }}</span>
+          </template>
+
+          <!-- optional q2 -->
+          <template #item.optq2="{ item }">
+            <span v-if="item.survey_opt_answers[1].comment == null">NA</span>
+            <span v-else>{{ item.survey_opt_answers[1].comment }}</span>
+          </template>
+
+          <!-- optional q3 -->
+          <template #item.optq3="{ item }">
+            <span v-if="item.survey_opt_answers[2].comment == null">NA</span>
+            <span v-else>{{ item.survey_opt_answers[2].comment }}</span>
+          </template>
+
+          <!-- optional q4 -->
+          <template #item.optq4="{ item }">
+            <span v-if="item.survey_opt_answers[3].comment == null">NA</span>
+            <span v-else>{{ item.survey_opt_answers[3].comment }}</span>
           </template>
 
           <!-- pagination -->
@@ -358,7 +394,7 @@ export default {
       search: '',
       options: {},
       params: {},
-      headers: [
+      primary_answers: [
         {
           text: 'PSS ID',
           value: 'pss_id',
@@ -637,6 +673,40 @@ export default {
           align: 'start',
           value: 'janitors_orderly',
           sortable: false,
+          class: 'color_main_dark_background',
+        },
+      ],
+      secondary_answers: [
+        {
+          text: 'OPT. Q1',
+          value: 'optq1',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'OPT. Q2',
+          value: 'optq2',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'OPT. Q3/HOSPITAL NUMBER',
+          value: 'optq3',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'OPT. Q4/MODE PREFERENCE',
+          value: 'optq4',
+          align: 'start',
+          sortable: false,
+          filterable: false,
           class: 'color_main_dark_background',
         },
       ],
