@@ -14,8 +14,10 @@ class AnswersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchString = $request->search;
+
         $surveyAnswers = SurveyGeneralInfo::with(
             'departmentsVisited',
             'departmentsVisited.departments',
@@ -23,6 +25,10 @@ class AnswersController extends Controller
             'surveyAbtStaffs.hospitalStaffs',
             'surveyOptAnswers',
         )
+            ->where('pss_id', 'LIKE', '%' . $searchString . '%')
+            ->orWhereHas('surveyOptAnswers', function ($q) use ($searchString) {
+                $q->where('comment', 'LIKE', '%' . $searchString . '%');
+            })
             ->paginate(20);
 
         // dd($surveyAnswers);
