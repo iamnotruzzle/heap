@@ -32,6 +32,7 @@
           </v-row>
         </v-card-text>
 
+        <!-- Primary answers -->
         <v-data-table
           fixed-header
           dense
@@ -57,7 +58,7 @@
             <span v-else>NO</span>
           </template>
 
-          <!-- Q2 -->
+          <!-- Q1 -->
           <template #item.q1="{ item }">
             <span>{{ item.survey_answers[0].rating }}</span>
           </template>
@@ -135,6 +136,158 @@
           <!-- Q16 -->
           <template #item.q16="{ item }">
             <span>{{ item.survey_answers[15].rating }}</span>
+          </template>
+
+          <!-- Q17/DOCTOR -->
+          <template #item.doctor="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[0].rating }}
+              <span v-if="item.survey_abt_staffs[0].comment != null">,</span>
+              {{ item.survey_abt_staffs[0].comment }}
+            </span>
+          </template>
+
+          <!-- Q18/NURSE -->
+          <template #item.nurse="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[1].rating }}
+              <span v-if="item.survey_abt_staffs[1].comment != null">,</span>
+              {{ item.survey_abt_staffs[1].comment }}
+            </span>
+          </template>
+
+          <!-- Q19/MIDWIFE -->
+          <template #item.midwife="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[2].rating }}
+              <span v-if="item.survey_abt_staffs[2].comment != null">,</span>
+              {{ item.survey_abt_staffs[2].comment }}
+            </span>
+          </template>
+
+          <!-- Q20/SECURITY -->
+          <template #item.security="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[3].rating }}
+              <span v-if="item.survey_abt_staffs[3].comment != null">,</span>
+              {{ item.survey_abt_staffs[3].comment }}
+            </span>
+          </template>
+
+          <!-- Q21/RADIOLOGY -->
+          <template #item.radiology="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[4].rating }}
+              <span v-if="item.survey_abt_staffs[4].comment != null">,</span>
+              {{ item.survey_abt_staffs[4].comment }}
+            </span>
+          </template>
+
+          <!-- Q22/PHARMACY -->
+          <template #item.pharmacy="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[5].rating }}
+              <span v-if="item.survey_abt_staffs[5].comment != null">,</span>
+              {{ item.survey_abt_staffs[5].comment }}
+            </span>
+          </template>
+
+          <!-- Q23/LABORATORY -->
+          <template #item.laboratory="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[6].rating }}
+              <span v-if="item.survey_abt_staffs[6].comment != null">,</span>
+              {{ item.survey_abt_staffs[6].comment }}
+            </span>
+          </template>
+
+          <!-- Q24/ADMITTING STAFF -->
+          <template #item.admitting="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[7].rating }}
+              <span v-if="item.survey_abt_staffs[7].comment != null">,</span>
+              {{ item.survey_abt_staffs[7].comment }}
+            </span>
+          </template>
+
+          <!-- Q25/MEDICAL RECORDS -->
+          <template #item.medical_records="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[8].rating }}
+              <span v-if="item.survey_abt_staffs[8].comment != null">,</span>
+              {{ item.survey_abt_staffs[8].comment }}
+            </span>
+          </template>
+
+          <!-- Q26/BILLING -->
+          <template #item.billing="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[9].rating }}
+              <span v-if="item.survey_abt_staffs[9].comment != null">,</span>
+              {{ item.survey_abt_staffs[9].comment }}
+            </span>
+          </template>
+
+          <!-- Q27/CASHIER -->
+          <template #item.cashier="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[10].rating }}
+              <span v-if="item.survey_abt_staffs[10].comment != null">,</span>
+              {{ item.survey_abt_staffs[10].comment }}
+            </span>
+          </template>
+
+          <!-- Q28/SOCIAL WORKER -->
+          <template #item.social_worker="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[11].rating }}
+              <span v-if="item.survey_abt_staffs[11].comment != null">,</span>
+              {{ item.survey_abt_staffs[11].comment }}
+            </span>
+          </template>
+
+          <!-- Q29/FOOD SERVER -->
+          <template #item.food_server="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[12].rating }}
+              <span v-if="item.survey_abt_staffs[12].comment != null">,</span>
+              {{ item.survey_abt_staffs[12].comment }}
+            </span>
+          </template>
+
+          <!-- Q30/JANITORS/ORDERLY -->
+          <template #item.janitors_orderly="{ item }">
+            <span>
+              {{ item.survey_abt_staffs[13].rating }}
+              <span v-if="item.survey_abt_staffs[13].comment != null">,</span>
+              {{ item.survey_abt_staffs[13].comment }}
+            </span>
+          </template>
+
+          <!-- pagination -->
+          <template #[`item.index`]="{ index }">
+            {{ (options.page - 1) * options.itemsPerPage + index + 1 }}
+          </template>
+        </v-data-table>
+
+        <!-- Secondary answers -->
+        <v-data-table
+          fixed-header
+          dense
+          :search="search"
+          :headers="headers"
+          :items="surveyAnswers.data"
+          :items-per-page="15"
+          :options.sync="options"
+          :server-items-length="surveyAnswers.total"
+          class="elevation-1 row_pointer"
+          :class="{
+            color_main_dark_background: $vuetify.theme.dark,
+          }"
+        >
+          <!-- departments -->
+          <template #item.departments_visited="{ item }">
+            <span v-for="dv in item.departments_visited"> {{ dv.departments[0].name }}, </span>
           </template>
 
           <!-- pagination -->
@@ -379,6 +532,110 @@ export default {
           text: 'Q16',
           align: 'start',
           value: 'q16',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // DOCTOR
+        {
+          text: 'Q17/DOCTOR',
+          align: 'start',
+          value: 'doctor',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // NURSE
+        {
+          text: 'Q18/NURSE',
+          align: 'start',
+          value: 'nurse',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // MIDWIFE
+        {
+          text: 'Q19/MIDWIFE',
+          align: 'start',
+          value: 'midwife',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // SECURITY
+        {
+          text: 'Q20/SECURITY',
+          align: 'start',
+          value: 'security',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // RADIOLOGY
+        {
+          text: 'Q21/RADIOLOGY',
+          align: 'start',
+          value: 'radiology',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // PHARMACY
+        {
+          text: 'Q22/PHARMACY',
+          align: 'start',
+          value: 'pharmacy',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // ADMITTING STAFF
+        {
+          text: 'Q24/ADMITTING STAFF',
+          align: 'start',
+          value: 'admitting',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // MEDICAL RECORDS
+        {
+          text: 'Q25/MEDICAL RECORDS',
+          align: 'start',
+          value: 'medical_records',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // BILLING
+        {
+          text: 'Q26/BILLING',
+          align: 'start',
+          value: 'billing',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // CASHIER
+        {
+          text: 'Q27/CASHIER',
+          align: 'start',
+          value: 'cashier',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // SOCIAL WORKER
+        {
+          text: 'Q28/SOCIAL WORKER',
+          align: 'start',
+          value: 'social_worker',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // FOOD SERVER
+        {
+          text: 'Q29/FOOD SERVER',
+          align: 'start',
+          value: 'food_server',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        // JANITORS/ORDERLY
+        {
+          text: 'Q30/JANITORS/ORDERLY',
+          align: 'start',
+          value: 'janitors_orderly',
           sortable: false,
           class: 'color_main_dark_background',
         },

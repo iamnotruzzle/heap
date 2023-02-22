@@ -20,7 +20,7 @@ class AnswersController extends Controller
             'departmentsVisited',
             'departmentsVisited.departments',
             'surveyAnswers',
-            'surveyAbtStaffs',
+            'surveyAbtStaffs.hospitalStaffs',
             'surveyOptAnswers',
         )
             ->paginate(20);

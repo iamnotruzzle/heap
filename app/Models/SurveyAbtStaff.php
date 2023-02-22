@@ -26,4 +26,9 @@ class SurveyAbtStaff extends Model
     protected $casts = [
         'created_at' => 'datetime:m-d-Y',
     ];
+
+    public function hospitalStaffs()
+    {
+        return $this->hasMany(HospitalStaff::class, 'id', 'staff_type');
+    }
 }
