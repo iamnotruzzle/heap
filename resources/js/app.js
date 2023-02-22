@@ -7,11 +7,13 @@ import PortalVue from 'portal-vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import { InertiaProgress } from '@inertiajs/progress';
+import JsonExcel from 'vue-json-excel';
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
 Vue.use(Vuetify);
+Vue.use(JsonExcel);
 
 const app = document.getElementById('app');
 
