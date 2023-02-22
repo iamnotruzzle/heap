@@ -420,7 +420,7 @@ export default {
         {
           text: 'SEX',
           align: 'start',
-          value: 'created_at',
+          value: 'sex',
           sortable: false,
           class: 'color_main_dark_background',
         },

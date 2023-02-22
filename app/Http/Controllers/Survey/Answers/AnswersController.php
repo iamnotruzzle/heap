@@ -29,6 +29,7 @@ class AnswersController extends Controller
             ->orWhereHas('surveyOptAnswers', function ($q) use ($searchString) {
                 $q->where('comment', 'LIKE', '%' . $searchString . '%');
             })
+            ->orderBy('created_at', 'desc')
             ->paginate(20);
 
         // dd($surveyAnswers);
