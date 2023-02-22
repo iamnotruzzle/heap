@@ -46,11 +46,95 @@
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
-          <!-- full name -->
+          <!-- departments -->
           <template #item.departments_visited="{ item }">
-            <!-- {{ item.departments_visited }} -->
-
             <span v-for="dv in item.departments_visited"> {{ dv.departments[0].name }}, </span>
+          </template>
+
+          <!-- previous_visit -->
+          <template #item.previous_visit="{ item }">
+            <span v-if="item.visited_before == 'y'">YES</span>
+            <span v-else>NO</span>
+          </template>
+
+          <!-- Q2 -->
+          <template #item.q1="{ item }">
+            <span>{{ item.survey_answers[0].rating }}</span>
+          </template>
+
+          <!-- Q2 -->
+          <template #item.q2="{ item }">
+            <span>{{ item.survey_answers[1].rating }}</span>
+          </template>
+
+          <!-- Q3 -->
+          <template #item.q3="{ item }">
+            <span>{{ item.survey_answers[2].rating }}</span>
+          </template>
+
+          <!-- Q4 -->
+          <template #item.q4="{ item }">
+            <span>{{ item.survey_answers[3].rating }}</span>
+          </template>
+
+          <!-- Q5 -->
+          <template #item.q5="{ item }">
+            <span>{{ item.survey_answers[4].rating }}</span>
+          </template>
+
+          <!-- Q6 -->
+          <template #item.q6="{ item }">
+            <span>{{ item.survey_answers[5].rating }}</span>
+          </template>
+
+          <!-- Q7 -->
+          <template #item.q7="{ item }">
+            <span>{{ item.survey_answers[6].rating }}</span>
+          </template>
+
+          <!-- Q8 -->
+          <template #item.q8="{ item }">
+            <span>{{ item.survey_answers[7].rating }}</span>
+          </template>
+
+          <!-- Q9 -->
+          <template #item.q9="{ item }">
+            <span>{{ item.survey_answers[8].rating }}</span>
+          </template>
+
+          <!-- Q10 -->
+          <template #item.q10="{ item }">
+            <span>{{ item.survey_answers[9].rating }}</span>
+          </template>
+
+          <!-- Q11 -->
+          <template #item.q11="{ item }">
+            <span>{{ item.survey_answers[10].rating }}</span>
+          </template>
+
+          <!-- Q12 -->
+          <template #item.q12="{ item }">
+            <span>{{ item.survey_answers[11].rating }}</span>
+          </template>
+
+          <!-- Q13 -->
+          <template #item.q13="{ item }">
+            <span>{{ item.survey_answers[12].rating }}</span>
+          </template>
+
+          <!-- Q14 -->
+          <template #item.q14="{ item }">
+            <span>{{ item.survey_answers[13].rating }}</span>
+          </template>
+
+          <!-- Q15 -->
+          <template #item.q15="{ item }">
+            <span>{{ item.survey_answers[14].rating }}</span>
+          </template>
+
+          <!-- Q16 -->
+          <template #item.q16="{ item }">
+            <span>{{ item.survey_answers[15].rating }}</span>
           </template>
 
           <!-- pagination -->
@@ -176,6 +260,125 @@ export default {
           text: 'DEPARTMENTS/OFFICE VISITED',
           align: 'start',
           value: 'departments_visited',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'PREVIOUS VISIT',
+          align: 'start',
+          value: 'previous_visit',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q1',
+          align: 'start',
+          value: 'q1',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q2',
+          align: 'start',
+          value: 'q2',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q3',
+          align: 'start',
+          value: 'q3',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q4',
+          align: 'start',
+          value: 'q4',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q5',
+          align: 'start',
+          value: 'q5',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q6',
+          align: 'start',
+          value: 'q6',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q7',
+          align: 'start',
+          value: 'q7',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q8',
+          align: 'start',
+          value: 'q8',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q9',
+          align: 'start',
+          value: 'q9',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q10',
+          align: 'start',
+          value: 'q10',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q11',
+          align: 'start',
+          value: 'q11',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q12',
+          align: 'start',
+          value: 'q12',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q13',
+          align: 'start',
+          value: 'q13',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q14',
+          align: 'start',
+          value: 'q14',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q15',
+          align: 'start',
+          value: 'q15',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q16',
+          align: 'start',
+          value: 'q16',
           sortable: false,
           class: 'color_main_dark_background',
         },
