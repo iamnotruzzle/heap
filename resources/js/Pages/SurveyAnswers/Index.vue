@@ -25,6 +25,35 @@
               lg="4"
             >
               <v-text-field
+                v-model="startDate"
+                clearable
+                dense
+                outlined
+                type="date"
+                color="color_add"
+                label="Start"
+                hide-details
+              ></v-text-field>
+            </v-col>
+            <v-col class="pb-0 pt-6">
+              <v-text-field
+                v-model="endDate"
+                clearable
+                dense
+                outlined
+                type="date"
+                color="color_add"
+                label="End"
+                hide-details
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="6"
+              lg="4"
+            >
+              <v-text-field
                 v-model="search"
                 append-icon="mdi-magnify"
                 color="color_primary"
@@ -400,6 +429,8 @@ export default {
   },
   data() {
     return {
+      startDate: null,
+      endDate: null,
       departments_visited: [],
       // excel
       //   json_data: [{ Age: 'Hello', colB: 'World' }],
@@ -872,6 +903,14 @@ export default {
       //   this.params.sort_by = null;
       //   this.params.order_by = null;
       // }
+      this.updateData();
+    },
+    startDate: function (val) {
+      this.params.startDate = val;
+      this.updateData();
+    },
+    endDate: function (val) {
+      this.params.endDate = val;
       this.updateData();
     },
     search: function (val) {

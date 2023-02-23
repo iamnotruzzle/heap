@@ -25,10 +25,35 @@ class AnswersController extends Controller
             'surveyAbtStaffs.hospitalStaffs',
             'surveyOptAnswers',
         )
-            ->where('pss_id', 'LIKE', '%' . $searchString . '%')
-            ->orWhereHas('surveyOptAnswers', function ($q) use ($searchString) {
-                $q->where('comment', 'LIKE', '%' . $searchString . '%');
-            })
+
+            // ->where('pss_id', 'LIKE', '%' . $searchString . '%')
+            // ->orWhereHas('surveyOptAnswers', function ($q) use ($searchString) {
+            //     $q->where('comment', 'LIKE', '%' . $searchString . '%');
+            // })
+            ->when(
+                $request->search,
+                function ($query, $value) use ($request) {
+                    $query->where('pss_id', 'LIKE', '%' . $value . '%')
+                        ->orWhereHas(
+                            'surveyOptAnswers',
+                            function ($q) use ($request) {
+                                $q->where('comment', 'LIKE', '%' . $request->search . '%');
+                            }
+                        );
+                }
+            )
+            ->when(
+                $request->startDate,
+                function ($query, $value) {
+                    $query->whereDate('created_at', '>=', $value);
+                }
+            )
+            ->when(
+                $request->endDate,
+                function ($query, $value) {
+                    $query->whereDate('created_at', '<=', $value);
+                }
+            )
             ->orderBy('created_at', 'desc')
             ->paginate($request->page_size ?? 15);
 
