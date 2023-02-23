@@ -21,7 +21,7 @@
           <v-row class="d-flex justify-end">
             <v-col
               cols="12"
-              md="6"
+              md="3"
               lg="4"
             >
               <v-text-field
@@ -35,7 +35,11 @@
                 hide-details
               ></v-text-field>
             </v-col>
-            <v-col class="pb-0 pt-6">
+            <v-col
+              cols="12"
+              md="3"
+              lg="4"
+            >
               <v-text-field
                 v-model="endDate"
                 clearable
