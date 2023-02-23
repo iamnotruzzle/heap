@@ -30,7 +30,7 @@ class AnswersController extends Controller
                 $q->where('comment', 'LIKE', '%' . $searchString . '%');
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate($request->page_size ?? 15);
 
         // dd($surveyAnswers);
 
