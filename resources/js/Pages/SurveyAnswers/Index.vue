@@ -942,66 +942,73 @@ export default {
     };
   },
   mounted() {
-    console.log(this.surveyAnswers);
-
-    this.surveyAnswers.data.forEach((e) => {
-      for (let i = 0; i < e.departments_visited.length; i++) {
-        this.departments_visited.push(e.departments_visited[i].departments[0].name);
-      }
-
-      this.json_data.push({
-        ID: e.pss_id,
-        RESPONDENT: e.respondent,
-        AGE: e.age,
-        SEX: e.sex,
-        RELIGION: e.religion,
-        'LEVEL OF EDUCATION': e.educational_attainment,
-        'DATE OF CONSULT/VISIT': e.date_of_visit,
-        'DEPARTMENT/OFFICE VISITED': this.departments_visited.join(', ').toString(),
-        'PREVIOUS VISIT': e.visited_before == 'y' ? 'YES' : 'NO',
-        // general info
-        Q1: e.survey_answers[0].rating,
-        Q2: e.survey_answers[1].rating,
-        Q3: e.survey_answers[2].rating,
-        Q4: e.survey_answers[3].rating,
-        Q5: e.survey_answers[4].rating,
-        Q6: e.survey_answers[5].rating,
-        Q7: e.survey_answers[6].rating,
-        Q8: e.survey_answers[7].rating,
-        Q9: e.survey_answers[8].rating,
-        Q10: e.survey_answers[9].rating,
-        Q11: e.survey_answers[10].rating,
-        Q12: e.survey_answers[11].rating,
-        Q13: e.survey_answers[12].rating,
-        Q14: e.survey_answers[13].rating,
-        Q15: e.survey_answers[14].rating,
-        'Q16/PSS RATING': e.survey_answers[15].rating,
-        // about staff
-        Q17: e.survey_abt_staffs[0].rating + ', ' + e.survey_abt_staffs[0].comment,
-        Q18: e.survey_answers[1].rating + ', ' + e.survey_abt_staffs[1].comment,
-        Q19: e.survey_answers[2].rating + ', ' + e.survey_abt_staffs[2].comment,
-        Q20: e.survey_answers[3].rating + ', ' + e.survey_abt_staffs[3].comment,
-        Q21: e.survey_answers[4].rating + ', ' + e.survey_abt_staffs[4].comment,
-        Q22: e.survey_answers[5].rating + ', ' + e.survey_abt_staffs[5].comment,
-        Q23: e.survey_answers[6].rating + ', ' + e.survey_abt_staffs[6].comment,
-        Q24: e.survey_answers[7].rating + ', ' + e.survey_abt_staffs[7].comment,
-        Q25: e.survey_answers[8].rating + ', ' + e.survey_abt_staffs[8].comment,
-        Q26: e.survey_answers[9].rating + ', ' + e.survey_abt_staffs[9].comment,
-        Q27: e.survey_answers[10].rating + ', ' + e.survey_abt_staffs[10].comment,
-        Q28: e.survey_answers[11].rating + ', ' + e.survey_abt_staffs[11].comment,
-        Q29: e.survey_answers[12].rating + ', ' + e.survey_abt_staffs[12].comment,
-        Q30: e.survey_answers[13].rating + ', ' + e.survey_abt_staffs[13].comment,
-        'MODE PREFERENCE': e.survey_opt_answers[3].comment,
-      });
-
-      this.departments_visited = [];
-    });
+    // console.log(this.surveyAnswers);
+    this.processJsonData();
   },
   methods: {
     updateData() {
+      this.json_data = [];
       this.$inertia.get('answers', this.params, {
         preserveState: true,
         preserveScroll: true,
+        onFinish: (visit) => {
+          this.processJsonData();
+          //   console.log('adsad');
+        },
+      });
+    },
+    processJsonData() {
+      this.surveyAnswers.data.forEach((e) => {
+        for (let i = 0; i < e.departments_visited.length; i++) {
+          this.departments_visited.push(e.departments_visited[i].departments[0].name);
+        }
+
+        this.json_data.push({
+          ID: e.pss_id,
+          RESPONDENT: e.respondent,
+          AGE: e.age,
+          SEX: e.sex,
+          RELIGION: e.religion,
+          'LEVEL OF EDUCATION': e.educational_attainment,
+          'DATE OF CONSULT/VISIT': e.date_of_visit,
+          'DEPARTMENT/OFFICE VISITED': this.departments_visited.join(', ').toString(),
+          'PREVIOUS VISIT': e.visited_before == 'y' ? 'YES' : 'NO',
+          // general info
+          Q1: e.survey_answers[0].rating,
+          Q2: e.survey_answers[1].rating,
+          Q3: e.survey_answers[2].rating,
+          Q4: e.survey_answers[3].rating,
+          Q5: e.survey_answers[4].rating,
+          Q6: e.survey_answers[5].rating,
+          Q7: e.survey_answers[6].rating,
+          Q8: e.survey_answers[7].rating,
+          Q9: e.survey_answers[8].rating,
+          Q10: e.survey_answers[9].rating,
+          Q11: e.survey_answers[10].rating,
+          Q12: e.survey_answers[11].rating,
+          Q13: e.survey_answers[12].rating,
+          Q14: e.survey_answers[13].rating,
+          Q15: e.survey_answers[14].rating,
+          'Q16/PSS RATING': e.survey_answers[15].rating,
+          // about staff
+          Q17: e.survey_abt_staffs[0].rating + ', ' + e.survey_abt_staffs[0].comment,
+          Q18: e.survey_answers[1].rating + ', ' + e.survey_abt_staffs[1].comment,
+          Q19: e.survey_answers[2].rating + ', ' + e.survey_abt_staffs[2].comment,
+          Q20: e.survey_answers[3].rating + ', ' + e.survey_abt_staffs[3].comment,
+          Q21: e.survey_answers[4].rating + ', ' + e.survey_abt_staffs[4].comment,
+          Q22: e.survey_answers[5].rating + ', ' + e.survey_abt_staffs[5].comment,
+          Q23: e.survey_answers[6].rating + ', ' + e.survey_abt_staffs[6].comment,
+          Q24: e.survey_answers[7].rating + ', ' + e.survey_abt_staffs[7].comment,
+          Q25: e.survey_answers[8].rating + ', ' + e.survey_abt_staffs[8].comment,
+          Q26: e.survey_answers[9].rating + ', ' + e.survey_abt_staffs[9].comment,
+          Q27: e.survey_answers[10].rating + ', ' + e.survey_abt_staffs[10].comment,
+          Q28: e.survey_answers[11].rating + ', ' + e.survey_abt_staffs[11].comment,
+          Q29: e.survey_answers[12].rating + ', ' + e.survey_abt_staffs[12].comment,
+          Q30: e.survey_answers[13].rating + ', ' + e.survey_abt_staffs[13].comment,
+          'MODE PREFERENCE': e.survey_opt_answers[3].comment,
+        });
+
+        this.departments_visited = [];
       });
     },
     clearDateFilter() {
