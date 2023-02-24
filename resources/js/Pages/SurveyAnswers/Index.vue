@@ -307,154 +307,212 @@
 
           <!-- Q17/DOCTOR -->
           <template #item.doctor="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[0].rating }}
+
               <span v-if="item.survey_abt_staffs[0].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[0].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[0].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q18/NURSE -->
           <template #item.nurse="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[1].rating }}
+
               <span v-if="item.survey_abt_staffs[1].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[1].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[1].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q19/MIDWIFE -->
           <template #item.midwife="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[2].rating }}
+
               <span v-if="item.survey_abt_staffs[2].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[2].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[2].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q20/SECURITY -->
           <template #item.security="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[3].rating }}
+
               <span v-if="item.survey_abt_staffs[3].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[3].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[3].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q21/RADIOLOGY -->
           <template #item.radiology="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[4].rating }}
+
               <span v-if="item.survey_abt_staffs[4].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[4].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[4].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q22/PHARMACY -->
           <template #item.pharmacy="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[5].rating }}
+
               <span v-if="item.survey_abt_staffs[5].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[5].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[5].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q23/LABORATORY -->
           <template #item.laboratory="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[6].rating }}
+
               <span v-if="item.survey_abt_staffs[6].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[6].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[6].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q24/ADMITTING STAFF -->
           <template #item.admitting="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[7].rating }}
+
               <span v-if="item.survey_abt_staffs[7].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[7].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[7].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q25/MEDICAL RECORDS -->
           <template #item.medical_records="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[8].rating }}
+
               <span v-if="item.survey_abt_staffs[8].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[8].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[8].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q26/BILLING -->
           <template #item.billing="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[9].rating }}
+
               <span v-if="item.survey_abt_staffs[9].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[9].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[9].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q27/CASHIER -->
           <template #item.cashier="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[10].rating }}
+
               <span v-if="item.survey_abt_staffs[10].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[10].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[10].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q28/SOCIAL WORKER -->
           <template #item.social_worker="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[11].rating }}
+
               <span v-if="item.survey_abt_staffs[11].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[11].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[11].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q29/FOOD SERVER -->
           <template #item.food_server="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[12].rating }}
+
               <span v-if="item.survey_abt_staffs[12].comment != null">,</span>
-              <span class="text-truncate">
-                {{ item.survey_abt_staffs[12].comment }}
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[12].comment }}
               </span>
-            </span>
+            </div>
           </template>
 
           <!-- Q30/JANITORS/ORDERLY -->
           <template #item.janitors_orderly="{ item }">
-            <span>
+            <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[13].rating }}
+
               <span v-if="item.survey_abt_staffs[13].comment != null">,</span>
-              <span class="text-truncate">{{ item.survey_abt_staffs[13].comment }}</span>
-            </span>
+              <span
+                class="d-inline-block text-truncate"
+                style="max-width: 120px"
+              >
+                &nbsp; {{ item.survey_abt_staffs[13].comment }}
+              </span>
+            </div>
           </template>
 
           <!-- pagination -->
