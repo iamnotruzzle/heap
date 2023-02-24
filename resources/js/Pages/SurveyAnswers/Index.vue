@@ -109,7 +109,7 @@
                           </template>
                         </v-radio>
                         <v-radio
-                          value="''"
+                          value="NO FILTER"
                           color="color_primary"
                         >
                           <template v-slot:label>
@@ -549,11 +549,11 @@ export default {
       // filter menu
       from: null,
       to: null,
-      sex: null, // default selected
-      sexList: ['', 'Male', 'Female'],
-      education: null, // default selected
+      sex: 'NO FILTER', // default selected
+      sexList: ['NO FILTER', 'Male', 'Female'],
+      education: 'NO FILTER', // default selected
       educationList: [
-        '',
+        'NO FILTER',
         'Elementary',
         'Secondary',
         'Vocational',
@@ -870,6 +870,14 @@ export default {
       ],
       secondary_answers: [
         {
+          text: 'PSS ID',
+          value: 'pss_id',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
           text: 'OPT. Q1',
           value: 'optq1',
           align: 'start',
@@ -984,8 +992,8 @@ export default {
     clearDateFilter() {
       this.from = null;
       this.to = null;
-      this.sex = null;
-      this.education = null;
+      this.sex = 'NO FILTER';
+      this.education = 'NO FILTER';
     },
     cancel() {
       this.dialog = false;
@@ -1054,18 +1062,23 @@ export default {
       this.params.search = val;
       this.params.page = 1;
       this.updateData();
+      console.log(this.params.search);
     },
     sex: function (val) {
-      this.params.sex = val;
-      if (val == '') {
-        this.sex = null;
+      //   this.params.sex = val;
+      if (val == 'NO FILTER') {
+        this.params.education = '';
+      } else {
+        this.params.sex = val;
       }
       this.updateData();
     },
     education: function (val) {
-      this.params.education = val;
-      if (val == '') {
-        this.education = null;
+      //   this.params.education = val;
+      if (val == 'NO FILTER') {
+        this.params.education = '';
+      } else {
+        this.params.education = val;
       }
       this.updateData();
     },
