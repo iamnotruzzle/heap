@@ -283,9 +283,26 @@
             <span>{{ item.survey_answers[14].rating }}</span>
           </template>
 
-          <!-- Q16 -->
+          <!-- Q16/RATING -->
           <template #item.q16="{ item }">
-            <span>{{ item.survey_answers[15].rating }}</span>
+            <span
+              v-if="item.survey_answers[15].rating <= 2"
+              class="red--text"
+            >
+              {{ item.survey_answers[15].rating }}
+            </span>
+            <span
+              v-else-if="item.survey_answers[15].rating == 3"
+              class="amber--text darken-3"
+            >
+              {{ item.survey_answers[15].rating }}
+            </span>
+            <span
+              v-else
+              class="green--text"
+            >
+              {{ item.survey_answers[15].rating }}
+            </span>
           </template>
 
           <!-- Q17/DOCTOR -->
@@ -925,7 +942,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.surveyAnswers);
+    console.log(this.surveyAnswers);
 
     this.surveyAnswers.data.forEach((e) => {
       for (let i = 0; i < e.departments_visited.length; i++) {
@@ -1056,7 +1073,7 @@ export default {
     },
     sex: function (val) {
       if (val == 'NO FILTER') {
-        this.params.education = '';
+        this.params.sex = '';
       } else {
         this.params.sex = val;
       }

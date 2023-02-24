@@ -45,7 +45,7 @@ class AnswersController extends Controller
             ->when(
                 $request->sex,
                 function ($query, $value) {
-                    $query->where('sex', 'LIKE', '%' . $value . '%');
+                    $query->where('sex', $value);
                 }
             )
             ->when(
