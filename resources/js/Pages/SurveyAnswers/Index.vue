@@ -310,7 +310,9 @@
             <span>
               {{ item.survey_abt_staffs[0].rating }}
               <span v-if="item.survey_abt_staffs[0].comment != null">,</span>
-              {{ item.survey_abt_staffs[0].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[0].comment }}
+              </span>
             </span>
           </template>
 
@@ -319,7 +321,9 @@
             <span>
               {{ item.survey_abt_staffs[1].rating }}
               <span v-if="item.survey_abt_staffs[1].comment != null">,</span>
-              {{ item.survey_abt_staffs[1].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[1].comment }}
+              </span>
             </span>
           </template>
 
@@ -328,7 +332,9 @@
             <span>
               {{ item.survey_abt_staffs[2].rating }}
               <span v-if="item.survey_abt_staffs[2].comment != null">,</span>
-              {{ item.survey_abt_staffs[2].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[2].comment }}
+              </span>
             </span>
           </template>
 
@@ -337,7 +343,9 @@
             <span>
               {{ item.survey_abt_staffs[3].rating }}
               <span v-if="item.survey_abt_staffs[3].comment != null">,</span>
-              {{ item.survey_abt_staffs[3].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[3].comment }}
+              </span>
             </span>
           </template>
 
@@ -346,7 +354,9 @@
             <span>
               {{ item.survey_abt_staffs[4].rating }}
               <span v-if="item.survey_abt_staffs[4].comment != null">,</span>
-              {{ item.survey_abt_staffs[4].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[4].comment }}
+              </span>
             </span>
           </template>
 
@@ -355,7 +365,9 @@
             <span>
               {{ item.survey_abt_staffs[5].rating }}
               <span v-if="item.survey_abt_staffs[5].comment != null">,</span>
-              {{ item.survey_abt_staffs[5].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[5].comment }}
+              </span>
             </span>
           </template>
 
@@ -364,7 +376,9 @@
             <span>
               {{ item.survey_abt_staffs[6].rating }}
               <span v-if="item.survey_abt_staffs[6].comment != null">,</span>
-              {{ item.survey_abt_staffs[6].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[6].comment }}
+              </span>
             </span>
           </template>
 
@@ -373,7 +387,9 @@
             <span>
               {{ item.survey_abt_staffs[7].rating }}
               <span v-if="item.survey_abt_staffs[7].comment != null">,</span>
-              {{ item.survey_abt_staffs[7].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[7].comment }}
+              </span>
             </span>
           </template>
 
@@ -382,7 +398,9 @@
             <span>
               {{ item.survey_abt_staffs[8].rating }}
               <span v-if="item.survey_abt_staffs[8].comment != null">,</span>
-              {{ item.survey_abt_staffs[8].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[8].comment }}
+              </span>
             </span>
           </template>
 
@@ -391,7 +409,9 @@
             <span>
               {{ item.survey_abt_staffs[9].rating }}
               <span v-if="item.survey_abt_staffs[9].comment != null">,</span>
-              {{ item.survey_abt_staffs[9].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[9].comment }}
+              </span>
             </span>
           </template>
 
@@ -400,7 +420,9 @@
             <span>
               {{ item.survey_abt_staffs[10].rating }}
               <span v-if="item.survey_abt_staffs[10].comment != null">,</span>
-              {{ item.survey_abt_staffs[10].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[10].comment }}
+              </span>
             </span>
           </template>
 
@@ -409,7 +431,9 @@
             <span>
               {{ item.survey_abt_staffs[11].rating }}
               <span v-if="item.survey_abt_staffs[11].comment != null">,</span>
-              {{ item.survey_abt_staffs[11].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[11].comment }}
+              </span>
             </span>
           </template>
 
@@ -418,7 +442,9 @@
             <span>
               {{ item.survey_abt_staffs[12].rating }}
               <span v-if="item.survey_abt_staffs[12].comment != null">,</span>
-              {{ item.survey_abt_staffs[12].comment }}
+              <span class="text-truncate">
+                {{ item.survey_abt_staffs[12].comment }}
+              </span>
             </span>
           </template>
 
@@ -427,7 +453,7 @@
             <span>
               {{ item.survey_abt_staffs[13].rating }}
               <span v-if="item.survey_abt_staffs[13].comment != null">,</span>
-              {{ item.survey_abt_staffs[13].comment }}
+              <span class="text-truncate">{{ item.survey_abt_staffs[13].comment }}</span>
             </span>
           </template>
 
