@@ -925,12 +925,10 @@ export default {
     };
   },
   mounted() {
-    console.log(this.surveyAnswers);
+    // console.log(this.surveyAnswers);
 
     this.surveyAnswers.data.forEach((e) => {
       for (let i = 0; i < e.departments_visited.length; i++) {
-        // this.departments_visited.push(e.departments_visited.departments[0].name);
-        // console.log(e.departments_visited[i].departments[0].name);
         this.departments_visited.push(e.departments_visited[i].departments[0].name);
       }
 
@@ -1041,13 +1039,6 @@ export default {
     options: function (val) {
       this.params.page = val.page;
       this.params.page_size = val.itemsPerPage;
-      // if (val.sortBy.length != 0) {
-      //   this.params.sort_by = val.sortBy[0];
-      //   this.params.order_by = val.sortDesc[0] ? 'asc' : 'desc';
-      // } else {
-      //   this.params.sort_by = null;
-      //   this.params.order_by = null;
-      // }
       this.updateData();
     },
     from: function (val) {
@@ -1062,10 +1053,8 @@ export default {
       this.params.search = val;
       this.params.page = 1;
       this.updateData();
-      console.log(this.params.search);
     },
     sex: function (val) {
-      //   this.params.sex = val;
       if (val == 'NO FILTER') {
         this.params.education = '';
       } else {
@@ -1074,7 +1063,6 @@ export default {
       this.updateData();
     },
     education: function (val) {
-      //   this.params.education = val;
       if (val == 'NO FILTER') {
         this.params.education = '';
       } else {
