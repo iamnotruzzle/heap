@@ -43,15 +43,27 @@ class AnswersController extends Controller
                 }
             )
             ->when(
-                $request->startDate,
+                $request->sex,
+                function ($query, $value) {
+                    $query->where('sex', 'LIKE', '%' . $value . '%');
+                }
+            )
+            ->when(
+                $request->from,
                 function ($query, $value) {
                     $query->whereDate('created_at', '>=', $value);
                 }
             )
             ->when(
-                $request->endDate,
+                $request->to,
                 function ($query, $value) {
                     $query->whereDate('created_at', '<=', $value);
+                }
+            )
+            ->when(
+                $request->education,
+                function ($query, $value) {
+                    $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
                 }
             )
             ->orderBy('created_at', 'desc')

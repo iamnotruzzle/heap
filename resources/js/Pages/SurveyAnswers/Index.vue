@@ -18,14 +18,14 @@
         <v-card-title>REQUIRED</v-card-title>
 
         <v-card-text>
-          <v-row class="d-flex justify-end">
-            <v-col
+          <v-row class="d-flex justify-end flex-row">
+            <!-- <v-col
               cols="12"
               md="3"
-              lg="4"
+              lg="2"
             >
               <v-text-field
-                v-model="startDate"
+                v-model="from"
                 clearable
                 dense
                 outlined
@@ -38,10 +38,10 @@
             <v-col
               cols="12"
               md="3"
-              lg="4"
+              lg="2"
             >
               <v-text-field
-                v-model="endDate"
+                v-model="to"
                 clearable
                 dense
                 outlined
@@ -50,21 +50,123 @@
                 label="End"
                 hide-details
               ></v-text-field>
-            </v-col>
+            </v-col> -->
 
             <v-col
               cols="12"
               md="6"
               lg="4"
             >
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                color="color_primary"
-                label="Search"
-                outlined
-                dense
-              ></v-text-field>
+              <div class="d-flex flex-row">
+                <v-text-field
+                  v-model="search"
+                  append-icon="mdi-magnify"
+                  color="color_primary"
+                  label="Search"
+                  outlined
+                  dense
+                ></v-text-field>
+
+                <v-menu
+                  offset-y
+                  :close-on-content-click="false"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon large> mdi-filter </v-icon>
+                    </v-btn>
+                  </template>
+                  <v-card style="width: 280px; padding: 1em">
+                    <v-card-title class="ma-0 pa-0"> Filter </v-card-title>
+                    <v-divider></v-divider>
+                    <div class="d-flex flex-column mt-1 pa-0">
+                      <v-radio-group
+                        v-model="sex"
+                        class="ma-0"
+                        dense
+                      >
+                        <template v-slot:label>
+                          <div>Gender</div>
+                        </template>
+                        <v-radio
+                          value="Male"
+                          color="color_primary"
+                        >
+                          <template v-slot:label>
+                            <div>Male</div>
+                          </template>
+                        </v-radio>
+                        <v-radio
+                          value="Female"
+                          color="color_primary"
+                        >
+                          <template v-slot:label>
+                            <div>Female</div>
+                          </template>
+                        </v-radio>
+                        <v-radio
+                          value="''"
+                          color="color_primary"
+                        >
+                          <template v-slot:label>
+                            <div>No Filter</div>
+                          </template>
+                        </v-radio>
+                      </v-radio-group>
+
+                      <v-select
+                        :items="educationList"
+                        v-model="education"
+                        label="Level of education"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        dense
+                        outlined
+                      ></v-select>
+
+                      <v-text-field
+                        v-model="from"
+                        clearable
+                        dense
+                        outlined
+                        type="date"
+                        color="color_primary"
+                        class="mb-2"
+                        label="From"
+                        hide-details
+                      ></v-text-field>
+
+                      <v-text-field
+                        v-model="to"
+                        clearable
+                        dense
+                        outlined
+                        type="date"
+                        color="color_primary"
+                        class="mb-2"
+                        label="To"
+                        hide-details
+                      ></v-text-field>
+
+                      <v-divider></v-divider>
+
+                      <v-card-actions class="px-0 mb-0">
+                        <v-btn
+                          @click="clearDateFilter"
+                          class="ma-0 pa-0 align-self-start"
+                          color="color_error white--text"
+                        >
+                          Clear
+                        </v-btn>
+                      </v-card-actions>
+                    </div>
+                  </v-card>
+                </v-menu>
+              </div>
             </v-col>
           </v-row>
         </v-card-text>
@@ -91,8 +193,19 @@
 
           <!-- previous_visit -->
           <template #item.previous_visit="{ item }">
-            <span v-if="item.visited_before == 'y'">YES</span>
-            <span v-else>NO</span>
+            <span
+              v-if="item.visited_before == 'y'"
+              plain
+              class="color_primary--text"
+            >
+              YES
+            </span>
+            <span
+              v-else
+              class="color_error--text"
+            >
+              NO
+            </span>
           </template>
 
           <!-- Q1 -->
@@ -433,11 +546,25 @@ export default {
   },
   data() {
     return {
-      startDate: null,
-      endDate: null,
-      departments_visited: [],
+      // filter menu
+      from: null,
+      to: null,
+      sex: null, // default selected
+      sexList: ['', 'Male', 'Female'],
+      education: null, // default selected
+      educationList: [
+        '',
+        'Elementary',
+        'Secondary',
+        'Vocational',
+        'College',
+        'Postgraduate/Masters',
+        'No formal Education',
+      ],
+      // end filter menu
+
       // excel
-      //   json_data: [{ Age: 'Hello', colB: 'World' }],
+      departments_visited: [],
       json_data: [],
       // end excel
 
@@ -630,7 +757,7 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'Q16',
+          text: 'Q16/PSS RATING',
           align: 'start',
           value: 'q16',
           sortable: false,
@@ -854,6 +981,12 @@ export default {
         preserveScroll: true,
       });
     },
+    clearDateFilter() {
+      this.from = null;
+      this.to = null;
+      this.sex = null;
+      this.education = null;
+    },
     cancel() {
       this.dialog = false;
       this.isUpdate = false;
@@ -909,17 +1042,31 @@ export default {
       // }
       this.updateData();
     },
-    startDate: function (val) {
-      this.params.startDate = val;
+    from: function (val) {
+      this.params.from = val;
       this.updateData();
     },
-    endDate: function (val) {
-      this.params.endDate = val;
+    to: function (val) {
+      this.params.to = val;
       this.updateData();
     },
     search: function (val) {
       this.params.search = val;
       this.params.page = 1;
+      this.updateData();
+    },
+    sex: function (val) {
+      this.params.sex = val;
+      if (val == '') {
+        this.sex = null;
+      }
+      this.updateData();
+    },
+    education: function (val) {
+      this.params.education = val;
+      if (val == '') {
+        this.education = null;
+      }
       this.updateData();
     },
   },
