@@ -1462,6 +1462,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`doctor.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1535,6 +1541,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`nurse.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1609,6 +1621,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`midwife.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1683,6 +1701,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`security.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1757,6 +1781,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`radiology.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1831,6 +1861,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`pharmacy.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1905,6 +1941,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`laboratory.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -1979,6 +2021,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`admitting_staff.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -2053,6 +2101,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`medical_records.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -2127,6 +2181,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`billing.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -2201,6 +2261,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`cashier.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -2275,6 +2341,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`social_worker.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -2349,6 +2421,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`food_server.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
@@ -2423,6 +2501,12 @@
                           height="24"
                           outlined
                         ></v-textarea>
+                        <div
+                          v-if="form.errors[`janitors_orderly.comment`]"
+                          class="red--text"
+                        >
+                          Kabisiten ti komento.
+                        </div>
                       </div>
                     </div>
 
