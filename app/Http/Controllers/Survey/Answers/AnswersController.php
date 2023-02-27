@@ -25,11 +25,9 @@ class AnswersController extends Controller
             'surveyAbtStaffs.hospitalStaffs',
             'surveyOptAnswers',
         )
-
-            // ->where('pss_id', 'LIKE', '%' . $searchString . '%')
-            // ->orWhereHas('surveyOptAnswers', function ($q) use ($searchString) {
-            //     $q->where('comment', 'LIKE', '%' . $searchString . '%');
-            // })
+            ->when($request->sort_by, function ($query, $value) {
+                $query->orderBy($value, request('order_by', 'asc'));
+            })
             ->when(
                 $request->search,
                 function ($query, $value) use ($request) {

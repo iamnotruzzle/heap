@@ -707,7 +707,7 @@ export default {
           text: 'AGE',
           align: 'start',
           value: 'age',
-          sortable: false,
+          sortable: true,
           class: 'color_main_dark_background',
         },
         {
@@ -1161,6 +1161,9 @@ export default {
     options: function (val) {
       this.params.page = val.page;
       this.params.page_size = val.itemsPerPage;
+
+      this.params.sort_by = val.sortBy[0];
+      this.params.order_by = val.sortDesc[0] ? 'asc' : 'desc';
       this.updateData();
     },
     from: function (val) {
