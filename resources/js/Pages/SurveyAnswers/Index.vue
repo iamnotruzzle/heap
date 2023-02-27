@@ -582,7 +582,13 @@
 
           <!-- optional q4 -->
           <template #item.optq4="{ item }">
-            <span v-if="item.survey_opt_answers[3].comment == null">NA</span>
+            <span v-if="item.survey_opt_answers[3].comment.indexOf('1-CA') !== -1">
+              Computer assisted, {{ item.survey_opt_answers[3].comment }}
+            </span>
+            <!-- <span v-if="item.survey_opt_answers[3].comment == null">NA</span> -->
+            <span v-else-if="item.survey_opt_answers[3].comment.indexOf('2-PAP') !== -1">
+              Paper & Pen, {{ item.survey_opt_answers[3].comment }}
+            </span>
             <span v-else>{{ item.survey_opt_answers[3].comment }}</span>
           </template>
 
@@ -1119,7 +1125,8 @@ export default {
           'Q29-1': e.survey_abt_staffs[12].comment,
           Q30: e.survey_answers[13].rating,
           'Q30-1': e.survey_abt_staffs[13].comment,
-          'MODE PREFERENCE': e.survey_opt_answers[3].comment,
+          'MODE PREFERENCE': e.survey_opt_answers[3].comment.indexOf('1-CA') ? 2 : 1,
+          'MODE PREFERENCE-1': e.survey_opt_answers[3].comment,
         });
 
         this.departments_visited = [];
