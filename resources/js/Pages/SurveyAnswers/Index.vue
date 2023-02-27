@@ -583,11 +583,11 @@
           <!-- optional q4 -->
           <template #item.optq4="{ item }">
             <span v-if="item.survey_opt_answers[3].comment.indexOf('1-CA') !== -1">
-              Computer assisted, {{ item.survey_opt_answers[3].comment }}
+              Computer assisted {{ item.survey_opt_answers[3].comment.replace('1-CA', '---') }}
             </span>
             <!-- <span v-if="item.survey_opt_answers[3].comment == null">NA</span> -->
             <span v-else-if="item.survey_opt_answers[3].comment.indexOf('2-PAP') !== -1">
-              Paper & Pen, {{ item.survey_opt_answers[3].comment }}
+              Paper & Pen {{ item.survey_opt_answers[3].comment.replace('2-PAP', '---') }}
             </span>
             <span v-else>{{ item.survey_opt_answers[3].comment }}</span>
           </template>
