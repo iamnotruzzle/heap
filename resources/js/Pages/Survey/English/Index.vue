@@ -2613,12 +2613,12 @@
                         class="mt-1 pa-0"
                       >
                         <v-radio
-                          label="Paper & Pen"
-                          value="Paper & Pen"
+                          label="Computer Assisted"
+                          value="1"
                         ></v-radio>
                         <v-radio
-                          label="Computer Assisted"
-                          value="Computer Assisted"
+                          label="Paper & Pen"
+                          value="2"
                         ></v-radio>
                       </v-radio-group>
                       <label for="opt_q_4">

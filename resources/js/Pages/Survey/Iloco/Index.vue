@@ -2654,12 +2654,12 @@
                         class="mt-1 pa-0"
                       >
                         <v-radio
-                          label="Papel ken ballpen"
-                          value="Paper & Pen"
+                          label="Computer Assisted"
+                          value="1"
                         ></v-radio>
                         <v-radio
-                          label="Computer Assisted"
-                          value="Computer Assisted"
+                          label="Papel ken ballpen"
+                          value="2"
                         ></v-radio>
                       </v-radio-group>
                       <label for="opt_q_4">
