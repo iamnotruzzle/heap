@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Survey\Answers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,6 +18,8 @@ class AnswersController extends Controller
     public function index(Request $request)
     {
         $searchString = $request->search;
+
+        $departments = Department::orderBy('name')->get();
 
         $surveyAnswers = SurveyGeneralInfo::with(
             'departmentsVisited',
@@ -73,6 +76,7 @@ class AnswersController extends Controller
             'SurveyAnswers/Index',
             [
                 'surveyAnswers' => $surveyAnswers,
+                'departments' => $departments,
             ]
         );
     }

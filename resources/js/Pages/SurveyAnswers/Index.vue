@@ -128,6 +128,18 @@
                         outlined
                       ></v-select>
 
+                      <v-select
+                        :items="departments"
+                        v-model="department"
+                        item-value="id"
+                        item-text="name"
+                        label="Department visited"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        dense
+                        outlined
+                      ></v-select>
+
                       <v-text-field
                         v-model="from"
                         clearable
@@ -644,6 +656,7 @@ export default {
   },
   props: {
     surveyAnswers: Object,
+    departments: Array,
   },
   data() {
     return {
@@ -653,6 +666,7 @@ export default {
       sex: 'NO FILTER', // default selected
       sexList: ['NO FILTER', 'Male', 'Female'],
       education: 'NO FILTER', // default selected
+      department: null,
       educationList: [
         'NO FILTER',
         'Elementary',
@@ -708,6 +722,7 @@ export default {
           align: 'start',
           value: 'age',
           sortable: true,
+
           class: 'color_main_dark_background',
         },
         {
@@ -1026,7 +1041,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.surveyAnswers);
+    console.log(this.departments);
     this.processJsonData();
   },
   methods: {
