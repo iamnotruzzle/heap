@@ -18,6 +18,7 @@ class AnswersController extends Controller
     public function index(Request $request)
     {
         $searchString = $request->search;
+        $searchDepartment = $request->department;
 
         $departments = Department::orderBy('name')->get();
 
@@ -65,6 +66,23 @@ class AnswersController extends Controller
                 $request->education,
                 function ($query, $value) {
                     $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                }
+            )
+            // ->whereHas('departmentsVisited', function ($q) use ($searchDepartment) {
+            //     $q->where('department_id', $searchDepartment);
+            // })
+            // ->whereHas('departmentsVisited', function ($q) use ($request) {
+            //     $q->where('department_id', $request->department);
+            // })
+            ->WhereHas('departmentsVisited', function ($query) use ($request) {
+                $query->when($request->department, function ($query) use ($request) {
+                    return $query->where('department_id', '=', $request->department);
+                });
+            })
+            ->when(
+                $request->sex,
+                function ($query, $value) {
+                    $query->where('sex', $value);
                 }
             )
             ->orderBy('created_at', 'desc')

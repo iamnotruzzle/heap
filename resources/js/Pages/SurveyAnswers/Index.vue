@@ -131,6 +131,7 @@
                       <v-select
                         :items="departments"
                         v-model="department"
+                        clearable
                         item-value="id"
                         item-text="name"
                         label="Department visited"
@@ -666,7 +667,7 @@ export default {
       sex: 'NO FILTER', // default selected
       sexList: ['NO FILTER', 'Male', 'Female'],
       education: 'NO FILTER', // default selected
-      department: null,
+      department: 0,
       educationList: [
         'NO FILTER',
         'Elementary',
@@ -1129,6 +1130,7 @@ export default {
       this.to = null;
       this.sex = 'NO FILTER';
       this.education = 'NO FILTER';
+      this.department = null;
     },
     cancel() {
       this.dialog = false;
@@ -1207,6 +1209,14 @@ export default {
         this.params.education = '';
       } else {
         this.params.education = val;
+      }
+      this.updateData();
+    },
+    department: function (val) {
+      if (val == 0 || val == null) {
+        this.params.department = '';
+      } else {
+        this.params.department = val;
       }
       this.updateData();
     },
