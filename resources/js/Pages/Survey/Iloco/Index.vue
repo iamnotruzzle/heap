@@ -2655,11 +2655,11 @@
                       >
                         <v-radio
                           label="Computer Assisted"
-                          value="1"
+                          value="1-CA"
                         ></v-radio>
                         <v-radio
                           label="Papel ken ballpen"
-                          value="2"
+                          value="2-PAP"
                         ></v-radio>
                       </v-radio-group>
                       <label for="opt_q_4">
