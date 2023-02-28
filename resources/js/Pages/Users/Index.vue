@@ -158,7 +158,7 @@
                       >
                       </v-select>
                     </v-col>
-
+                    <!--
                     <v-col
                       cols="12"
                       class="py-0"
@@ -202,7 +202,7 @@
                           </span>
                         </template>
                       </v-select>
-                    </v-col>
+                    </v-col> -->
 
                     <v-col
                       cols="12"
