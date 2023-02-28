@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class AnswersController extends Controller
@@ -106,6 +108,15 @@ class AnswersController extends Controller
 
     public function destroy($id)
     {
-        //
+        // dd($id);
+
+        DB::table('survey_general_info')->where('pss_id', $id)->delete();
+        DB::table('survey_answers')->where('pss_id', $id)->delete();
+        DB::table('survey_abt_staff')->where('pss_id', $id)->delete();
+        DB::table('survey_opt_answers')->where('pss_id', $id)->delete();
+
+        // return Redirect::route('answers.index');
+
+        return redirect()->back();
     }
 }
