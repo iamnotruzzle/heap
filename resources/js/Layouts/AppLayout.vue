@@ -169,6 +169,7 @@
           </Link>
 
           <Link
+            v-if="user.roles[0] == 'super-admin'"
             href="users"
             :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
             as="v-list-item"
@@ -268,6 +269,8 @@ export default {
       this.$vuetify.theme.dark = true;
       localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString());
     }
+
+    console.log(this.user);
   },
   methods: {
     toggleTheme() {
