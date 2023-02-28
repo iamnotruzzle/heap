@@ -1417,16 +1417,10 @@ export default {
   cursor: pointer;
 }
 
-/* .v-tooltip {
-  max-width: 500px !important;
-  width: 400px !important;
-} */
 .v-tooltip__content {
-  /* font-size: 50px !important; */
   opacity: 1 !important;
   background-color: rgb(220, 220, 220);
   color: black;
-  /* max-width: 500px !important; */
   width: 20% !important;
 }
 </style>
