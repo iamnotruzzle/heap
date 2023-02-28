@@ -608,10 +608,12 @@
         right
         class="color_primary"
       >
+        <!-- :name="filename.xls" -->
         <JsonExcel
           :data="json_data"
           worksheet="DATA 1"
-          name="filename.xls"
+          :name="`${user.firstName + ' ' + user.lastName}` + '-' + `${date.toLocaleDateString()}` + '.xls'"
+          @click="processJsonData()"
         >
           <download-icon
             size="24"
@@ -667,6 +669,8 @@ export default {
   },
   data() {
     return {
+      date: new Date(),
+
       // filter menu
       from: null,
       to: null,
@@ -1048,7 +1052,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.departments);
+    // console.log(this.date.toLocaleDateString());
     this.processJsonData();
   },
   methods: {
@@ -1068,7 +1072,6 @@ export default {
         for (let i = 0; i < e.departments_visited.length; i++) {
           this.departments_visited.push(e.departments_visited[i].departments[0].name);
         }
-
         this.json_data.push({
           ID: e.pss_id,
           RESPONDENT: e.respondent,
