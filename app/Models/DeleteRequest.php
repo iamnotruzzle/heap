@@ -26,7 +26,7 @@ class DeleteRequest extends Model
         'created_at' => 'datetime:m-d-Y',
     ];
 
-    public function user()
+    public function users()
     {
         return $this->hasMany(User::class, 'id', 'user_id');
     }

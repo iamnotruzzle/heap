@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Survey\Answers\AnswersController;
+use App\Http\Controllers\Survey\DeleteRequests\DeleteRequestController;
 use App\Http\Controllers\Survey\English\EngController;
 use App\Http\Controllers\Survey\Iloco\IlocoController;
 use App\Http\Controllers\Survey\Tagalog\TagalogController;
 use App\Http\Controllers\Users\UserController;
+use App\Models\DeleteRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,3 +22,4 @@ Route::resource('eng', EngController::class)->only(['index', 'store', 'update', 
 Route::resource('iloco', IlocoController::class)->only(['index', 'store', 'update', 'destroy']);
 Route::resource('tagalog', TagalogController::class)->only(['index', 'store', 'update', 'destroy']);
 Route::resource('answers', AnswersController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('deleterequest', DeleteRequestController::class)->only(['index', 'store', 'update', 'destroy']);

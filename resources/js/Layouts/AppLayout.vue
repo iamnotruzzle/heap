@@ -269,8 +269,6 @@ export default {
       this.$vuetify.theme.dark = true;
       localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString());
     }
-
-    console.log(this.user);
   },
   methods: {
     toggleTheme() {

@@ -646,7 +646,7 @@
 
             <div
               class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'super-admin'"
+              v-if="$page.props.auth.user.roles[0] == 'super-admin' || $page.props.auth.user.roles[0] == 'admin'"
             >
               <v-icon
                 size="20"
@@ -665,7 +665,7 @@
         </v-data-table>
       </v-card>
 
-      <!-- delete user modal -->
+      <!-- delete data modal -->
       <v-dialog
         v-model="dialogDelete"
         max-width="500"
@@ -696,7 +696,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <!-- end delete user modal -->
+      <!-- end delete data modal -->
 
       <div class="my-4"></div>
 
@@ -762,6 +762,54 @@
         </v-data-table>
       </v-card>
       <!-- end data table  -->
+
+      <div class="my-4"></div>
+
+      <!-- Third card -->
+      <v-card
+        v-if="$page.props.auth.user.roles[0] == 'super-admin'"
+        text
+        :class="{
+          color_main_dark_background: $vuetify.theme.dark,
+        }"
+        elevation="20"
+      >
+        <v-card-title>DELETE REQUESTS</v-card-title>
+
+        <!-- delete request table -->
+        <v-data-table
+          fixed-header
+          dense
+          :headers="delete_request_headers"
+          :items="delete_requests.data"
+          :items-per-page="15"
+          :server-items-length="delete_requests.total"
+          class="elevation-1 row_pointer pt-4"
+          :class="{
+            color_main_dark_background: $vuetify.theme.dark,
+          }"
+        >
+          <!-- requested by -->
+          <template #item.requested_by="{ item }">
+            <span>{{ item.users[0].firstName }} {{ item.users[0].lastName }}</span>
+          </template>
+
+          <template v-slot:item.actions="{ item }">
+            <div
+              class="d-flex flex-no-wrap"
+              v-if="$page.props.auth.user.roles[0] == 'super-admin'"
+            >
+              <v-icon
+                size="20"
+                color="color_error"
+                @click.stop="deleteItem(item)"
+              >
+                mdi-delete
+              </v-icon>
+            </div>
+          </template>
+        </v-data-table>
+      </v-card>
 
       <v-btn
         fab
@@ -829,6 +877,7 @@ export default {
   props: {
     surveyAnswers: Object,
     departments: Array,
+    delete_requests: Object,
   },
   data() {
     return {
@@ -1201,13 +1250,45 @@ export default {
           class: 'color_main_dark_background',
         },
       ],
+      delete_request_headers: [
+        {
+          text: 'PSS ID',
+          value: 'pss_id',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'REQUESTED BY',
+          value: 'requested_by',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'CREATED AT',
+          value: 'created_at',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
+      ],
       form: this.$inertia.form({
         pss_id: null,
+      }),
+      formDeleteRequest: this.$inertia.form({
+        pss_id: null,
+        user_id: null,
+        status: 'pending',
       }),
     };
   },
   mounted() {
-    // console.log(this.date.toLocaleDateString());
+    console.log(this.delete_requests);
     this.processJsonData();
   },
   methods: {
@@ -1313,6 +1394,11 @@ export default {
       this.snackColor = 'color_error';
       this.snackText = 'Data deleted.';
     },
+    deleteRequestMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'Delete request submitted.';
+    },
     submit() {
       this.form.post(route('answers.store'), {
         preserveScroll: true,
@@ -1329,14 +1415,29 @@ export default {
       this.dialogDelete = true;
     },
     destroy() {
-      this.form.delete(route('answers.destroy', this.itemId), {
-        preserveScroll: true,
-        onSuccess: () => {
-          this.dialogDelete = false;
-          this.itemId = null;
-          this.deletedMsg();
-        },
-      });
+      if (this.user.roles[0] == 'super-admin') {
+        this.form.delete(route('answers.destroy', this.itemId), {
+          preserveScroll: true,
+          onSuccess: () => {
+            this.dialogDelete = false;
+            this.itemId = null;
+            this.deletedMsg();
+          },
+        });
+      } else {
+        this.formDeleteRequest.pss_id = this.itemId;
+        this.formDeleteRequest.user_id = this.user.id;
+
+        this.formDeleteRequest.post(route('deleterequest.store'), {
+          preserveScroll: true,
+          onSuccess: () => {
+            this.dialogDelete = false;
+            this.itemId = null;
+            this.formDeleteRequest.reset();
+            this.deleteRequestMsg();
+          },
+        });
+      }
     },
     can(permission) {
       // Check Permissions
@@ -1367,6 +1468,11 @@ export default {
       this.params.order_by = val.sortDesc[0] ? 'asc' : 'desc';
       this.updateData();
     },
+    // options_delete_requests: function (val) {
+    //   this.params.page = val.page;
+    //   this.params.page_size = val.itemsPerPage;
+    //   this.updateData();
+    // },
     from: function (val) {
       this.params.from = val;
       this.updateData();

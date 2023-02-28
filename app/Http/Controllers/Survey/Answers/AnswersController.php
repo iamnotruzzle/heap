@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Survey\Answers;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeleteRequest;
 use App\Models\Department;
 use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
@@ -12,11 +13,6 @@ use Inertia\Inertia;
 
 class AnswersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $searchString = $request->search;
@@ -84,13 +80,16 @@ class AnswersController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($request->page_size ?? 15);
 
-        // dd($surveyAnswers);
+        $delete_requests = DeleteRequest::with('users')
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
 
         return Inertia::render(
             'SurveyAnswers/Index',
             [
                 'surveyAnswers' => $surveyAnswers,
                 'departments' => $departments,
+                'delete_requests' => $delete_requests,
             ]
         );
     }
@@ -114,6 +113,7 @@ class AnswersController extends Controller
         DB::table('survey_answers')->where('pss_id', $id)->delete();
         DB::table('survey_abt_staff')->where('pss_id', $id)->delete();
         DB::table('survey_opt_answers')->where('pss_id', $id)->delete();
+        DB::table('delete_request')->where('pss_id', $id)->delete();
 
         // return Redirect::route('answers.index');
 
