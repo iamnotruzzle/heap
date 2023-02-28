@@ -1288,7 +1288,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.delete_requests);
+    // console.log(this.delete_requests);
     this.processJsonData();
   },
   methods: {
