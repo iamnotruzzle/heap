@@ -3138,7 +3138,7 @@ export default {
         },
         opt_q_3: {
           survey_question_id: this.survey_opt_questions[2].id,
-          comment: '357555',
+          comment: '',
         },
         opt_q_4: {
           survey_question_id: this.survey_opt_questions[3].id,
