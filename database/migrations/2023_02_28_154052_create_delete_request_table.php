@@ -15,6 +15,9 @@ class CreateDeleteRequestTable extends Migration
     {
         Schema::create('delete_request', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('pss_id');
+            $table->bigInteger('user_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
