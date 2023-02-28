@@ -323,13 +323,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[0].rating }}
 
-              <span v-if="item.survey_abt_staffs[0].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[0].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[0].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[0].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[0].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -338,13 +346,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[1].rating }}
 
-              <span v-if="item.survey_abt_staffs[1].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[1].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[1].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[1].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[1].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -353,13 +369,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[2].rating }}
 
-              <span v-if="item.survey_abt_staffs[2].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[2].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[2].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[2].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[2].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -368,13 +392,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[3].rating }}
 
-              <span v-if="item.survey_abt_staffs[3].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[3].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[3].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[3].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[3].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -383,13 +415,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[4].rating }}
 
-              <span v-if="item.survey_abt_staffs[4].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[4].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[4].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[4].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[4].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -398,13 +438,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[5].rating }}
 
-              <span v-if="item.survey_abt_staffs[5].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[5].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[5].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[5].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[5].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -413,13 +461,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[6].rating }}
 
-              <span v-if="item.survey_abt_staffs[6].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[6].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[6].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[6].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[6].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -428,13 +484,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[7].rating }}
 
-              <span v-if="item.survey_abt_staffs[7].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[7].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[7].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[7].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[7].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -443,13 +507,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[8].rating }}
 
-              <span v-if="item.survey_abt_staffs[8].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[8].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[8].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[8].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[8].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -458,13 +530,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[9].rating }}
 
-              <span v-if="item.survey_abt_staffs[9].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[9].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[9].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[9].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[9].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -473,13 +553,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[10].rating }}
 
-              <span v-if="item.survey_abt_staffs[10].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[10].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[10].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[10].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[10].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -488,13 +576,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[11].rating }}
 
-              <span v-if="item.survey_abt_staffs[11].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[11].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[11].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[11].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[11].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -503,13 +599,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[12].rating }}
 
-              <span v-if="item.survey_abt_staffs[12].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[12].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[12].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[12].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[12].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -518,13 +622,21 @@
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[13].rating }}
 
-              <span v-if="item.survey_abt_staffs[13].comment != null">,</span>
-              <span
-                class="d-inline-block text-truncate"
-                style="max-width: 120px"
-              >
-                &nbsp; {{ item.survey_abt_staffs[13].comment }}
-              </span>
+              <span v-if="item.survey_abt_staffs[13].comment != null">,&nbsp;</span>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    class="d-inline-block text-truncate"
+                    style="max-width: 120px"
+                  >
+                    {{ item.survey_abt_staffs[13].comment }}
+                  </span>
+                </template>
+                {{ item.survey_abt_staffs[13].comment }}
+              </v-tooltip>
             </div>
           </template>
 
@@ -1303,5 +1415,18 @@ export default {
 
 .row_pointer {
   cursor: pointer;
+}
+
+/* .v-tooltip {
+  max-width: 500px !important;
+  width: 400px !important;
+} */
+.v-tooltip__content {
+  /* font-size: 50px !important; */
+  opacity: 1 !important;
+  background-color: rgb(220, 220, 220);
+  color: black;
+  /* max-width: 500px !important; */
+  width: 20% !important;
 }
 </style>
