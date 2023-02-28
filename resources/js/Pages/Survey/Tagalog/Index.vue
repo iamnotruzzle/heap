@@ -114,7 +114,14 @@
               >
                 <v-row class="font-weight-black">
                   <v-col cols="12">
-                    <p>Ang sumagot ng mga katanungan na ito ay:</p>
+                    <p
+                      v-if="form.errors.respondent || form.errors.otherRespondent"
+                      class="red--text"
+                    >
+                      Ang sumagot ng mga katanungan na ito ay:
+                    </p>
+                    <p v-else>Ang sumagot ng mga katanungan na ito ay:</p>
+
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
                         v-model="form.respondent"
@@ -146,12 +153,6 @@
                           dense
                         ></v-text-field>
                       </div>
-                      <div
-                        v-if="form.errors.respondent || form.errors.otherRespondent"
-                        class="red--text mx-2"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
                   </v-col>
 
@@ -165,7 +166,20 @@
                     md="3"
                     class="font-weight-black ma-0"
                   >
-                    <label for="age">Edad:</label>
+                    <label
+                      v-if="form.errors.age"
+                      for="age"
+                      class="red--text"
+                    >
+                      Edad:
+                    </label>
+                    <label
+                      v-else
+                      for="age"
+                    >
+                      Edad:
+                    </label>
+
                     <v-text-field
                       id="age"
                       v-model="form.age"
@@ -174,12 +188,6 @@
                       outlined
                       dense
                     ></v-text-field>
-                    <div
-                      v-if="form.errors.age"
-                      class="red--text"
-                    >
-                      Kailangan.
-                    </div>
                   </v-col>
 
                   <!-- sex -->
@@ -189,10 +197,20 @@
                     class="font-weight-black"
                   >
                     <label
+                      v-if="form.errors.sex"
+                      for="sex"
+                      class="font-weight-black red--text"
+                    >
+                      Kasarian:
+                    </label>
+                    <label
+                      v-else
                       for="sex"
                       class="font-weight-black"
-                      >Kasarian:</label
                     >
+                      Kasarian:
+                    </label>
+
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="sex"
@@ -212,12 +230,6 @@
                         hide-details
                       ></v-checkbox>
                     </div>
-                    <div
-                      v-if="form.errors.sex"
-                      class="red--text"
-                    >
-                      Kailangan.
-                    </div>
                   </v-col>
 
                   <!-- religion -->
@@ -227,6 +239,14 @@
                     class="font-weight-black ma-0"
                   >
                     <label
+                      v-if="form.errors.religion"
+                      for="religion"
+                      class="font-weight-black red--text"
+                    >
+                      Relihiyon: (Mangyaring i-encode kung ang iyong relihiyon ay hindi kasama sa listahan.)
+                    </label>
+                    <label
+                      v-else
                       for="religion"
                       class="font-weight-black"
                     >
@@ -241,12 +261,6 @@
                       hide-details
                       outlined
                     ></v-combobox>
-                    <div
-                      v-if="form.errors.religion"
-                      class="red--text"
-                    >
-                      Kailangan.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -256,6 +270,14 @@
                   <!-- educational attainment -->
                   <v-col cols="12">
                     <label
+                      v-if="form.errors.educationalAttainment"
+                      for="educAt"
+                      class="font-weight-black red--text"
+                    >
+                      Antas ng Edukasyon
+                    </label>
+                    <label
+                      v-else
                       for="educAt"
                       class="font-weight-black"
                     >
@@ -329,12 +351,6 @@
                         class="mr-2"
                       ></v-checkbox>
                     </div>
-                    <div
-                      v-if="form.errors.educationalAttainment"
-                      class="red--text"
-                    >
-                      Kailangan.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -346,11 +362,20 @@
                     md="3"
                   >
                     <label
+                      v-if="form.errors.dateOfVisit"
+                      for="dateOfVisit"
+                      class="font-weight-black red--text"
+                    >
+                      Petsa ng Pagdulog/Pagbisita:
+                    </label>
+                    <label
+                      v-else
                       for="dateOfVisit"
                       class="font-weight-black"
                     >
                       Petsa ng Pagdulog/Pagbisita:
                     </label>
+
                     <v-menu
                       ref="datePickerMenu"
                       v-model="datePickerMenu"
@@ -384,12 +409,6 @@
                       >
                       </v-date-picker>
                     </v-menu>
-                    <div
-                      v-show="form.errors.dateOfVisit"
-                      class="red--text"
-                    >
-                      Kailangan.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -399,6 +418,14 @@
                   <!-- department visited -->
                   <v-col cols="12">
                     <label
+                      v-if="form.errors.departments"
+                      for="departments"
+                      class="font-weight-black red--text"
+                    >
+                      Departamentong Binisita
+                    </label>
+                    <label
+                      v-else
                       for="departments"
                       class="font-weight-black"
                     >
@@ -490,12 +517,6 @@
                         </template>
                       </v-select>
                     </div>
-                    <div
-                      v-if="form.errors.departments"
-                      class="red--text"
-                    >
-                      Kailangan.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -504,11 +525,20 @@
 
                   <v-col cols="12">
                     <label
+                      v-if="form.errors.visited_before"
+                      for="visited_before"
+                      class="font-weight-black red--text"
+                    >
+                      Nabisita mo na ba ng ospital na ito dati?
+                    </label>
+                    <label
+                      v-else
                       for="visited_before"
                       class="font-weight-black"
                     >
                       Nabisita mo na ba ng ospital na ito dati?
                     </label>
+
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="visited_before"
@@ -527,12 +557,6 @@
                         dense
                         hide-details
                       ></v-checkbox>
-                    </div>
-                    <div
-                      v-if="form.errors.visited_before"
-                      class="red--text"
-                    >
-                      Kailangan.
                     </div>
                   </v-col>
 
@@ -554,9 +578,19 @@
 
                     <!-- q1 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q1.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         1. Malinis, maayos, at kumportable ang mga lugar ng hintayan na ginamit naming.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        1. Malinis, maayos, at kumportable ang mga lugar ng hintayan na ginamit naming.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q1.rating"
                         dense
@@ -598,22 +632,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q1.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q2 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q2.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         2. Napapanatiling malinis, maayos, at may patuloy na daloy ng tubig ang mga palikuran at
                         paliguan sa loob ng pasilidad.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        2. Napapanatiling malinis, maayos, at may patuloy na daloy ng tubig ang mga palikuran at
+                        paliguan sa loob ng pasilidad.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q2.rating"
                         dense
@@ -655,21 +694,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q2.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q3 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q3.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         3. Malinis. maayos, at kumportable ang mga kuwarto ng mga pasyente.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        3. Malinis. maayos, at kumportable ang mga kuwarto ng mga pasyente.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q3.rating"
                         dense
@@ -711,12 +754,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q3.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
                   </v-col>
 
@@ -730,7 +767,19 @@
 
                     <!-- q4 -->
                     <div>
-                      <p class="font-weight-black ma-0">4. Proseso ng pagkonsulta</p>
+                      <p
+                        v-if="form.errors[`q4.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        4. Proseso ng pagkonsulta
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        4. Proseso ng pagkonsulta
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q4.rating"
                         dense
@@ -772,19 +821,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q4.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q5 -->
                     <div>
-                      <p class="font-weight-black ma-0">5. Proseso ng pagtanggap (admission)</p>
+                      <p
+                        v-if="form.errors[`q5.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        5. Proseso ng pagtanggap (admission)
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        5. Proseso ng pagtanggap (admission)
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q5.rating"
                         dense
@@ -826,19 +881,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q5.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q6 -->
                     <div>
-                      <p class="font-weight-black ma-0">6. Proseso sa loob ng Laboratoryo at Radiology</p>
+                      <p
+                        v-if="form.errors[`q6.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        6. Proseso sa loob ng Laboratoryo at Radiology
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        6. Proseso sa loob ng Laboratoryo at Radiology
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q6.rating"
                         dense
@@ -880,21 +941,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q6.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q7 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q7.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         7. Proseso ng paglabas ng pasilidad (discharge, billing at cashier)
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        7. Proseso ng paglabas ng pasilidad (discharge, billing at cashier)
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q7.rating"
                         dense
@@ -936,19 +1001,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q7.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q8 -->
                     <div>
-                      <p class="font-weight-black ma-0">8. Pagkuha ng dokumento sa pasilidad na ito</p>
+                      <p
+                        v-if="form.errors[`q8.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        8. Pagkuha ng dokumento sa pasilidad na ito
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        8. Pagkuha ng dokumento sa pasilidad na ito
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q8.rating"
                         dense
@@ -990,19 +1061,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q8.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q9 -->
                     <div>
-                      <p class="font-weight-black ma-0">9. Proseso ng pagkuha ng tulong sa Medical Social Service</p>
+                      <p
+                        v-if="form.errors[`q9.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        9. Proseso ng pagkuha ng tulong sa Medical Social Service
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        9. Proseso ng pagkuha ng tulong sa Medical Social Service
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q9.rating"
                         dense
@@ -1044,12 +1121,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q9.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
                   </v-col>
 
@@ -1067,9 +1138,19 @@
 
                     <!-- q10 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q10.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         10. Ipinaliwanag sa amin nang mabuti ang kalagayan at mga  pamamaraan ng gamutan
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        10. Ipinaliwanag sa amin nang mabuti ang kalagayan at mga  pamamaraan ng gamutan
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q10.rating"
                         dense
@@ -1115,22 +1196,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q10.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q11 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q11.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         11. Ang aming mga saloobin, kultura, at paniniwala ay pinakikinggan at isinasaalang-alang sa
                         aming gamutan.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        11. Ang aming mga saloobin, kultura, at paniniwala ay pinakikinggan at isinasaalang-alang sa
+                        aming gamutan.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q11.rating"
                         dense
@@ -1176,21 +1262,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q11.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q12 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q12.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         12. Kami ay naging bahagi ng pagdedesisyon ukol sa mga paraan ng paggagamot na gagawin.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        12. Kami ay naging bahagi ng pagdedesisyon ukol sa mga paraan ng paggagamot na gagawin.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q12.rating"
                         dense
@@ -1236,22 +1326,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q12.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q13 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q13.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         13. Ipinaliwanag sa amin nang mabuti ang mga tagubilin bago umuwi at sinabi kung kalian at saan
                         ako muling magpapakonsulta.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        13. Ipinaliwanag sa amin nang mabuti ang mga tagubilin bago umuwi at sinabi kung kalian at saan
+                        ako muling magpapakonsulta.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q13.rating"
                         dense
@@ -1297,22 +1392,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q13.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q14 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q14.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         14. Para sa mga kwalipikado sa tulong ng Malasakit Center, nasaklaw ang lahat ng aking gastusing
                         medikal sa gamutang ito.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        14. Para sa mga kwalipikado sa tulong ng Malasakit Center, nasaklaw ang lahat ng aking gastusing
+                        medikal sa gamutang ito.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q14.rating"
                         dense
@@ -1358,12 +1458,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q14.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
                   </v-col>
 
@@ -1383,9 +1477,22 @@
                         15. Ang mga kawani ng pasilidad na nakasalamuha ay magalang at matulungin
                       </p>
 
-                      <p class="ma-0 font-weight-black">Doktor</p>
+                      <p
+                        v-if="form.errors[`doctor.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Doktor
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Doktor
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.doctor.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1433,12 +1540,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`doctor.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.doctor.rating != null && form.doctor.rating != 0"
@@ -1461,9 +1562,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Nars</p>
+                      <p
+                        v-if="form.errors[`nurse.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Nars
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Nars
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.nurse.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1511,12 +1625,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`nurse.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.nurse.rating != null && form.nurse.rating != 0"
@@ -1540,9 +1648,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Komadrona</p>
+                      <p
+                        v-if="form.errors[`midwife.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Komadrona
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Komadrona
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.midwife.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1592,12 +1713,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`midwife.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.midwife.rating != null && form.midwife.rating != 0"
@@ -1620,9 +1735,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Security Guard</p>
+                      <p
+                        v-if="form.errors[`security.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Security Guard
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Security Guard
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.security.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1672,12 +1800,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`security.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.security.rating != null && form.security.rating != 0"
@@ -1700,9 +1822,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Kawani sa Radiology</p>
+                      <p
+                        v-if="form.errors[`radiology.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Kawani sa Radiology
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Kawani sa Radiology
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.radiology.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1752,12 +1887,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`radiology.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.radiology.rating != null && form.radiology.rating != 0"
@@ -1780,9 +1909,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Kawani sa Botika</p>
+                      <p
+                        v-if="form.errors[`pharmacy.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Kawani sa Botika
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Kawani sa Botika
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.pharmacy.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1832,12 +1974,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`pharmacy.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.pharmacy.rating != null && form.pharmacy.rating != 0"
@@ -1860,9 +1996,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Kawani sa Laboratoryo</p>
+                      <p
+                        v-if="form.errors[`laboratory.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Kawani sa Laboratoryo
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Kawani sa Laboratoryo
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.laboratory.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1912,12 +2061,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`laboratory.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.laboratory.rating != null && form.laboratory.rating != 0"
@@ -1940,9 +2083,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Admitting Staff</p>
+                      <p
+                        v-if="form.errors[`admitting_staff.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Admitting Staff
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Admitting Staff
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.admitting_staff.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1992,12 +2148,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`admitting_staff.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.admitting_staff.rating != null && form.admitting_staff.rating != 0"
@@ -2020,9 +2170,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Medical Records</p>
+                      <p
+                        v-if="form.errors[`medical_records.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Medical Records
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Medical Records
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.medical_records.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2072,12 +2235,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`medical_records.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.medical_records.rating != null && form.medical_records.rating != 0"
@@ -2100,9 +2257,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Billing</p>
+                      <p
+                        v-if="form.errors[`billing.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Billing
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Billing
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.billing.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2152,12 +2322,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`billing.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.billing.rating != null && form.billing.rating != 0"
@@ -2180,9 +2344,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Cashier</p>
+                      <p
+                        v-if="form.errors[`cashier.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Cashier
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Cashier
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.cashier.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2232,12 +2409,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`cashier.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.cashier.rating != null && form.cashier.rating != 0"
@@ -2260,9 +2431,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Social Worker</p>
+                      <p
+                        v-if="form.errors[`social_worker.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Social Worker
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Social Worker
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.social_worker.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2312,12 +2496,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`social_worker.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.social_worker.rating != null && form.social_worker.rating != 0"
@@ -2340,9 +2518,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Food Server</p>
+                      <p
+                        v-if="form.errors[`food_server.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Food Server
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Food Server
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.food_server.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2392,12 +2583,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`food_server.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.food_server.rating != null && form.food_server.rating != 0"
@@ -2420,9 +2605,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Janitors/Orderly</p>
+                      <p
+                        v-if="form.errors[`janitors_orderly.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Janitors/Orderly
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Janitors/Orderly
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.janitors_orderly.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2472,12 +2670,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`janitors_orderly.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
 
                       <div
                         v-if="form.janitors_orderly.rating != null && form.janitors_orderly.rating != 0"
@@ -2503,11 +2695,22 @@
 
                     <!-- q15 -->
                     <div>
-                      <p class="font-weight-black ma-0">
+                      <p
+                        v-if="form.errors[`q15.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
                         16. Napanatiling kompidensyal ang mga impormasyon ukol sa aming gamutan.
                       </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        16. Napanatiling kompidensyal ang mga impormasyon ukol sa aming gamutan.
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q15.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2551,12 +2754,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                    </div>
-                    <div
-                      v-if="form.errors[`q15.rating`]"
-                      class="red--text"
-                    >
-                      Kailangan.
                     </div>
                   </v-col>
 
@@ -2613,7 +2810,16 @@
 
                     <div class="mt-6">
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0">
+                        <span
+                          v-if="form.errors[`q16.rating`]"
+                          class="font-weight-black ma-0 red--text"
+                        >
+                          Paano mo ire-rate ang Computer Satisfaction Survey na ito?
+                        </span>
+                        <span
+                          v-else
+                          class="font-weight-black ma-0"
+                        >
                           Paano mo ire-rate ang Computer Satisfaction Survey na ito?
                         </span>
                       </label>
@@ -2624,17 +2830,22 @@
                         class="ma-0 pa-0"
                         color="orange"
                       ></v-rating>
-                      <div
-                        v-if="form.errors[`q16.rating`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
 
                     <div class="mt-6">
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0"> Aling paraan ng survey ang gusto mo? </span>
+                        <span
+                          v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
+                          class="font-weight-black ma-0 red--text"
+                        >
+                          Aling paraan ng survey ang gusto mo?
+                        </span>
+                        <span
+                          v-else
+                          class="font-weight-black ma-0"
+                        >
+                          Aling paraan ng survey ang gusto mo?
+                        </span>
                       </label>
                       <v-radio-group
                         v-model="form.opt_q_4.comment"
@@ -2653,7 +2864,18 @@
                         ></v-radio>
                       </v-radio-group>
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0"> Bakit ito ang mas gusto mo? </span>
+                        <span
+                          v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
+                          class="font-weight-black ma-0 red--text"
+                        >
+                          Bakit ito ang mas gusto mo?
+                        </span>
+                        <span
+                          v-else
+                          class="font-weight-black ma-0"
+                        >
+                          Bakit ito ang mas gusto mo?
+                        </span>
                       </label>
                       <v-textarea
                         id="opt_q_4"
@@ -2663,12 +2885,6 @@
                         height="24"
                         outlined
                       ></v-textarea>
-                      <div
-                        v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
-                        class="red--text"
-                      >
-                        Kailangan.
-                      </div>
                     </div>
                   </v-col>
 
