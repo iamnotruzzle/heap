@@ -114,7 +114,15 @@
               >
                 <v-row class="font-weight-black">
                   <v-col cols="12">
-                    <p>The Respondent of this Survey Form:</p>
+                    <div
+                      v-if="form.errors.respondent || form.errors.otherRespondent"
+                      class="red--text mx-2"
+                    >
+                      <p>The Respondent of this Survey Form:</p>
+                    </div>
+                    <div v-else>
+                      <p>The Respondent of this Survey Form:</p>
+                    </div>
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
                         v-model="form.respondent"
@@ -146,12 +154,6 @@
                           dense
                         ></v-text-field>
                       </div>
-                      <div
-                        v-if="form.errors.respondent || form.errors.otherRespondent"
-                        class="red--text mx-2"
-                      >
-                        The respondent field is required.
-                      </div>
                     </div>
                   </v-col>
 
@@ -165,7 +167,19 @@
                     md="3"
                     class="font-weight-black ma-0"
                   >
-                    <label for="age">Age</label>
+                    <label
+                      for="age"
+                      v-if="form.errors.age"
+                      class="red--text"
+                    >
+                      Age
+                    </label>
+                    <label
+                      for="age"
+                      v-else
+                    >
+                      Age
+                    </label>
                     <v-text-field
                       id="age"
                       v-model="form.age"
@@ -174,12 +188,6 @@
                       outlined
                       dense
                     ></v-text-field>
-                    <div
-                      v-if="form.errors.age"
-                      class="red--text"
-                    >
-                      {{ form.errors.age }}
-                    </div>
                   </v-col>
 
                   <!-- sex -->
@@ -190,9 +198,18 @@
                   >
                     <label
                       for="sex"
-                      class="font-weight-black"
-                      >Sex</label
+                      v-if="form.errors.sex"
+                      class="red--text"
                     >
+                      Sex
+                    </label>
+                    <label
+                      for="sex"
+                      v-else
+                    >
+                      Sex
+                    </label>
+
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="sex"
@@ -212,12 +229,6 @@
                         hide-details
                       ></v-checkbox>
                     </div>
-                    <div
-                      v-if="form.errors.sex"
-                      class="red--text"
-                    >
-                      {{ form.errors.sex }}
-                    </div>
                   </v-col>
 
                   <!-- religion -->
@@ -228,7 +239,14 @@
                   >
                     <label
                       for="religion"
-                      class="font-weight-black"
+                      v-if="form.errors.religion"
+                      class="red--text"
+                    >
+                      Religion (Please encode if your religion is not included in the list. )
+                    </label>
+                    <label
+                      for="religion"
+                      v-else
                     >
                       Religion (Please encode if your religion is not included in the list. )
                     </label>
@@ -241,12 +259,6 @@
                       hide-details
                       outlined
                     ></v-combobox>
-                    <div
-                      v-if="form.errors.religion"
-                      class="red--text"
-                    >
-                      The religion field is required.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -257,7 +269,14 @@
                   <v-col cols="12">
                     <label
                       for="educAt"
-                      class="font-weight-black"
+                      v-if="form.errors.educationalAttainment"
+                      class="red--text"
+                    >
+                      Educational Attainment
+                    </label>
+                    <label
+                      for="educAt"
+                      v-else
                     >
                       Educational Attainment
                     </label>
@@ -329,12 +348,6 @@
                         class="mr-2"
                       ></v-checkbox>
                     </div>
-                    <div
-                      v-if="form.errors.educationalAttainment"
-                      class="red--text"
-                    >
-                      {{ form.errors.educationalAttainment }}
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -347,10 +360,18 @@
                   >
                     <label
                       for="dateOfVisit"
-                      class="font-weight-black"
+                      v-if="form.errors.dateOfVisit"
+                      class="red--text"
                     >
                       Date of Consultation/Visit
                     </label>
+                    <label
+                      for="dateOfVisit"
+                      v-else
+                    >
+                      Date of Consultation/Visit
+                    </label>
+
                     <v-menu
                       ref="datePickerMenu"
                       v-model="datePickerMenu"
@@ -384,12 +405,6 @@
                       >
                       </v-date-picker>
                     </v-menu>
-                    <div
-                      v-show="form.errors.dateOfVisit"
-                      class="red--text"
-                    >
-                      The date of consultation/visit is required.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -400,7 +415,14 @@
                   <v-col cols="12">
                     <label
                       for="departments"
-                      class="font-weight-black"
+                      v-if="form.errors.departments"
+                      class="red--text"
+                    >
+                      Department Visited
+                    </label>
+                    <label
+                      for="departments"
+                      v-else
                     >
                       Department Visited
                     </label>
@@ -490,12 +512,6 @@
                         </template>
                       </v-select>
                     </div>
-                    <div
-                      v-if="form.errors.departments"
-                      class="red--text"
-                    >
-                      The department visited field is required.
-                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -505,10 +521,18 @@
                   <v-col cols="12">
                     <label
                       for="visited_before"
-                      class="font-weight-black"
+                      v-if="form.errors.visited_before"
+                      class="red--text"
                     >
                       Have you visited this hospital before?
                     </label>
+                    <label
+                      for="visited_before"
+                      v-else
+                    >
+                      Have you visited this hospital before?
+                    </label>
+
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="visited_before"
@@ -527,12 +551,6 @@
                         dense
                         hide-details
                       ></v-checkbox>
-                    </div>
-                    <div
-                      v-if="form.errors.visited_before"
-                      class="red--text"
-                    >
-                      {{ form.errors.visited_before }}
                     </div>
                   </v-col>
 
@@ -554,7 +572,19 @@
 
                     <!-- q1 -->
                     <div>
-                      <p class="font-weight-black ma-0">1. {{ survey_questions[0].desc }}</p>
+                      <p
+                        v-if="form.errors[`q1.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        1. {{ survey_questions[0].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        1. {{ survey_questions[0].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q1.rating"
                         dense
@@ -596,19 +626,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q1.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q2 -->
                     <div>
-                      <p class="font-weight-black ma-0">2. {{ survey_questions[1].desc }}</p>
+                      <p
+                        v-if="form.errors[`q2.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        2. {{ survey_questions[1].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        2. {{ survey_questions[1].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q2.rating"
                         dense
@@ -650,19 +686,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q2.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q3 -->
                     <div>
-                      <p class="font-weight-black ma-0">3. {{ survey_questions[2].desc }}</p>
+                      <p
+                        v-if="form.errors[`q3.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        3. {{ survey_questions[2].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        3. {{ survey_questions[2].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q3.rating"
                         dense
@@ -704,12 +746,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q3.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
                   </v-col>
 
@@ -721,7 +757,19 @@
 
                     <!-- q4 -->
                     <div>
-                      <p class="font-weight-black ma-0">4. {{ survey_questions[3].desc }}</p>
+                      <p
+                        v-if="form.errors[`q4.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        4. {{ survey_questions[3].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        4. {{ survey_questions[3].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q4.rating"
                         dense
@@ -763,19 +811,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q4.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q5 -->
                     <div>
-                      <p class="font-weight-black ma-0">5. {{ survey_questions[4].desc }}</p>
+                      <p
+                        v-if="form.errors[`q5.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        5. {{ survey_questions[4].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        5. {{ survey_questions[4].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q5.rating"
                         dense
@@ -817,19 +871,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q5.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q6 -->
                     <div>
-                      <p class="font-weight-black ma-0">6. {{ survey_questions[5].desc }}</p>
+                      <p
+                        v-if="form.errors[`q6.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        6. {{ survey_questions[5].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        6. {{ survey_questions[5].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q6.rating"
                         dense
@@ -871,19 +931,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q6.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q7 -->
                     <div>
-                      <p class="font-weight-black ma-0">7. {{ survey_questions[6].desc }}</p>
+                      <p
+                        v-if="form.errors[`q7.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        7. {{ survey_questions[6].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        7. {{ survey_questions[6].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q7.rating"
                         dense
@@ -925,19 +991,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q7.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q8 -->
                     <div>
-                      <p class="font-weight-black ma-0">8. {{ survey_questions[7].desc }}</p>
+                      <p
+                        v-if="form.errors[`q8.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        8. {{ survey_questions[7].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        8. {{ survey_questions[7].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q8.rating"
                         dense
@@ -979,19 +1051,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q8.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q9 -->
                     <div>
-                      <p class="font-weight-black ma-0">9. {{ survey_questions[8].desc }}</p>
+                      <p
+                        v-if="form.errors[`q9.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        9. {{ survey_questions[8].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        9. {{ survey_questions[8].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q9.rating"
                         dense
@@ -1033,12 +1111,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q9.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
                   </v-col>
 
@@ -1056,7 +1128,19 @@
 
                     <!-- q10 -->
                     <div>
-                      <p class="font-weight-black ma-0">10. {{ survey_questions[9].desc }}</p>
+                      <p
+                        v-if="form.errors[`q10.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        10. {{ survey_questions[9].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        10. {{ survey_questions[9].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q10.rating"
                         dense
@@ -1102,19 +1186,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q10.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q11 -->
                     <div>
-                      <p class="font-weight-black ma-0">11. {{ survey_questions[10].desc }}</p>
+                      <p
+                        v-if="form.errors[`q11.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        11. {{ survey_questions[10].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        11. {{ survey_questions[10].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q11.rating"
                         dense
@@ -1160,19 +1250,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q11.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q12 -->
                     <div>
-                      <p class="font-weight-black ma-0">12. {{ survey_questions[11].desc }}</p>
+                      <p
+                        v-if="form.errors[`q12.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        12. {{ survey_questions[11].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        12. {{ survey_questions[11].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q12.rating"
                         dense
@@ -1218,19 +1314,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q12.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q13 -->
                     <div>
-                      <p class="font-weight-black ma-0">13. {{ survey_questions[12].desc }}</p>
+                      <p
+                        v-if="form.errors[`q13.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        13. {{ survey_questions[12].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        13. {{ survey_questions[12].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q13.rating"
                         dense
@@ -1276,19 +1378,25 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q13.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
                     <!-- q14 -->
                     <div>
-                      <p class="font-weight-black ma-0">14. {{ survey_questions[13].desc }}</p>
+                      <p
+                        v-if="form.errors[`q14.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        14. {{ survey_questions[13].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        14. {{ survey_questions[13].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q14.rating"
                         dense
@@ -1334,12 +1442,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`q14.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
                   </v-col>
 
@@ -1359,10 +1461,23 @@
                         15. The Hospital Staff we interacted with were courteous and helpful
                       </p>
 
-                      <p class="ma-0 font-weight-black">Doctor</p>
+                      <p
+                        v-if="form.errors[`doctor.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Doctor
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Doctor
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.doctor.rating"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1409,12 +1524,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`doctor.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.doctor.rating != null && form.doctor.rating != 0"
@@ -1437,9 +1546,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Nurse</p>
+                      <p
+                        v-if="form.errors[`nurse.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Nurse
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Nurse
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.nurse.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1487,12 +1609,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`nurse.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.nurse.rating != null && form.nurse.rating != 0"
@@ -1516,9 +1632,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Midwife</p>
+                      <p
+                        v-if="form.errors[`midwife.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Midwife
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Midwife
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.midwife.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1568,12 +1697,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`midwife.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.midwife.rating != null && form.midwife.rating != 0"
@@ -1596,9 +1719,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Security</p>
+                      <p
+                        v-if="form.errors[`security.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Security
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Security
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.security.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1648,12 +1784,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`security.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.security.rating != null && form.security.rating != 0"
@@ -1676,9 +1806,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Radiology</p>
+                      <p
+                        v-if="form.errors[`radiology.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Radiology
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Radiology
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.radiology.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1728,12 +1871,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`radiology.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.radiology.rating != null && form.radiology.rating != 0"
@@ -1756,9 +1893,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Pharmacy</p>
+                      <p
+                        v-if="form.errors[`pharmacy.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Pharmacy
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Pharmacy
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.pharmacy.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1808,12 +1958,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`pharmacy.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.pharmacy.rating != null && form.pharmacy.rating != 0"
@@ -1836,9 +1980,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Laboratory</p>
+                      <p
+                        v-if="form.errors[`laboratory.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Laboratory
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Laboratory
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.laboratory.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1888,12 +2045,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`laboratory.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.laboratory.rating != null && form.laboratory.rating != 0"
@@ -1916,9 +2067,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Admitting Staff</p>
+                      <p
+                        v-if="form.errors[`admitting_staff.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Admitting Staff
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Admitting Staff
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.admitting_staff.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -1968,12 +2132,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`admitting_staff.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.admitting_staff.rating != null && form.admitting_staff.rating != 0"
@@ -1996,9 +2154,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Medical Records</p>
+                      <p
+                        v-if="form.errors[`medical_records.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Medical Records
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Medical Records
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.medical_records.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2048,12 +2219,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`medical_records.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.medical_records.rating != null && form.medical_records.rating != 0"
@@ -2076,9 +2241,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Billing</p>
+                      <p
+                        v-if="form.errors[`billing.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Billing
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Billing
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.billing.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2128,12 +2306,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`billing.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.billing.rating != null && form.billing.rating != 0"
@@ -2156,9 +2328,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Cashier</p>
+                      <p
+                        v-if="form.errors[`cashier.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Cashier
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Cashier
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.cashier.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2208,12 +2393,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`cashier.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.cashier.rating != null && form.cashier.rating != 0"
@@ -2236,9 +2415,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Social Worker</p>
+                      <p
+                        v-if="form.errors[`social_worker.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Social Worker
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Social Worker
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.social_worker.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2288,12 +2480,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`social_worker.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.social_worker.rating != null && form.social_worker.rating != 0"
@@ -2316,9 +2502,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Food Server</p>
+                      <p
+                        v-if="form.errors[`food_server.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Food Server
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Food Server
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.food_server.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2368,12 +2567,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`food_server.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.food_server.rating != null && form.food_server.rating != 0"
@@ -2396,9 +2589,22 @@
                     </div>
 
                     <div>
-                      <p class="ma-0 font-weight-black">Janitors/Orderly</p>
+                      <p
+                        v-if="form.errors[`janitors_orderly.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Janitors/Orderly
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Janitors/Orderly
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.janitors_orderly.rating"
+                        class="pb-2"
                         dense
                       >
                         <v-btn
@@ -2448,12 +2654,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                      <div
-                        v-if="form.errors[`janitors_orderly.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
 
                       <div
                         v-if="form.janitors_orderly.rating != null && form.janitors_orderly.rating != 0"
@@ -2479,7 +2679,19 @@
 
                     <!-- q15 -->
                     <div>
-                      <p class="font-weight-black ma-0">16. {{ survey_questions[14].desc }}</p>
+                      <p
+                        v-if="form.errors[`q15.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        16. {{ survey_questions[14].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        16. {{ survey_questions[14].desc }}
+                      </p>
+
                       <v-btn-toggle
                         v-model="form.q15.rating"
                         dense
@@ -2525,12 +2737,6 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-                    </div>
-                    <div
-                      v-if="form.errors[`q15.rating`]"
-                      class="red--text"
-                    >
-                      Required
                     </div>
                   </v-col>
 
@@ -2580,7 +2786,16 @@
 
                     <div class="mt-6">
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0">
+                        <span
+                          v-if="form.errors[`q16.rating`]"
+                          class="font-weight-black ma-0 red--text"
+                        >
+                          {{ survey_questions[15].desc }}
+                        </span>
+                        <span
+                          v-else
+                          class="font-weight-black ma-0"
+                        >
                           {{ survey_questions[15].desc }}
                         </span>
                       </label>
@@ -2591,20 +2806,24 @@
                         class="ma-0 pa-0"
                         color="orange"
                       ></v-rating>
-                      <div
-                        v-if="form.errors[`q16.rating`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
 
                     <div class="mt-6">
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0">
+                        <span
+                          v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
+                          class="font-weight-black ma-0 red--text"
+                        >
+                          {{ this.survey_opt_questions[3].desc }}
+                        </span>
+                        <span
+                          v-else
+                          class="font-weight-black ma-0"
+                        >
                           {{ this.survey_opt_questions[3].desc }}
                         </span>
                       </label>
+
                       <v-radio-group
                         v-model="form.opt_q_4.comment"
                         hide-details
@@ -2622,7 +2841,18 @@
                         ></v-radio>
                       </v-radio-group>
                       <label for="opt_q_4">
-                        <span class="font-weight-black ma-0"> Why? </span>
+                        <span
+                          v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
+                          class="font-weight-black ma-0 red--text"
+                        >
+                          Why?
+                        </span>
+                        <span
+                          v-else
+                          class="font-weight-black ma-0"
+                        >
+                          Why?
+                        </span>
                       </label>
                       <v-textarea
                         id="opt_q_4"
@@ -2632,12 +2862,6 @@
                         height="24"
                         outlined
                       ></v-textarea>
-                      <div
-                        v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
-                        class="red--text"
-                      >
-                        Required
-                      </div>
                     </div>
                   </v-col>
 
@@ -2914,7 +3138,7 @@ export default {
         },
         opt_q_3: {
           survey_question_id: this.survey_opt_questions[2].id,
-          comment: '',
+          comment: '357555',
         },
         opt_q_4: {
           survey_question_id: this.survey_opt_questions[3].id,
