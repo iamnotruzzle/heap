@@ -2955,6 +2955,7 @@ export default {
     outpatient_depts: Array,
     other_depts: Array,
   },
+  remember: 'form',
   data() {
     return {
       selectedTab: 2,
@@ -3153,13 +3154,6 @@ export default {
   },
   watch: {
     'form.age': function (val) {
-      // enableElementary: false,
-      // enableSecondary: false,
-      // enableVocational: false,
-      // enableCollege: false,
-      // enablePGM: false,
-      // enableNoEduc: false,
-      // console.log(this.enableElementary);
       if (val == null || val == 0) {
         this.enableElementary = false;
         this.enableSecondary = false;
