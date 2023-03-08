@@ -24,6 +24,7 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->date('date_of_visit');
             $table->string('department_visited');
             $table->string('visited_before');
+            $table->string('ward');
             $table->timestamps();
         });
     }

@@ -1206,6 +1206,13 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
+        {
+          text: 'WARD',
+          align: 'start',
+          value: 'ward',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
         { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
       secondary_answers: [
@@ -1364,6 +1371,7 @@ export default {
           'Q29-1': e.survey_abt_staffs[12].comment,
           Q30: e.survey_answers[13].rating,
           'Q30-1': e.survey_abt_staffs[13].comment,
+          WARD: e.ward,
           'MODE PREFERENCE': e.survey_opt_answers[3].comment.indexOf('1-CA') ? 2 : 1,
           'MODE PREFERENCE-1': e.survey_opt_answers[3].comment,
         });

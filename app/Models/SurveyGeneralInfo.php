@@ -26,6 +26,7 @@ class SurveyGeneralInfo extends Model
         'date_of_visit',
         'department_visited',
         'visited_before',
+        'ward'
     ];
 
     protected $casts = [

@@ -17,6 +17,7 @@ use App\Models\SurveyQuestions;
 use App\Models\SurveyRespondents;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -79,6 +80,8 @@ class TagalogController extends Controller
 
     public function store(Request $request)
     {
+        $authUsername = Auth::user()->username;
+
         $departments_visited = $request->departments;
 
         $hospital_number = HospitalNumber::where('hpercode', $request->opt_q_3['comment'])
@@ -184,6 +187,7 @@ class TagalogController extends Controller
                     'department_visited' => $pss_id,
                     // 'department_visited' => $request->department,
                     'visited_before' => $request->visited_before,
+                    'ward' => $authUsername,
                 ]);
 
                 foreach ($departments_visited as $id) {
