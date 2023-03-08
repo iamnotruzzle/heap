@@ -52,7 +52,7 @@
           <v-icon color="yellow darken-3">mdi-weather-night</v-icon>
         </v-btn>
 
-        <v-menu offset-y>
+        <!-- <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn
               icon
@@ -85,7 +85,7 @@
               </v-list-item>
             </v-list>
           </v-card>
-        </v-menu>
+        </v-menu> -->
 
         <!-- logout button -->
         <form
