@@ -87,7 +87,7 @@ class IlocoController extends Controller
         $departments_visited = $request->departments;
 
         $hospital_number = HospitalNumber::where('hpercode', $request->opt_q_3['comment'])
-            ->where('encstat', 'a')
+            // ->where('encstat', 'a')
             ->first();
 
         $record_exist = SurveyRespondents::where('hpercode', $request->opt_q_3['comment'])
