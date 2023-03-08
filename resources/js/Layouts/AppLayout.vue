@@ -191,6 +191,29 @@
               >
             </v-list-item-content>
           </Link>
+
+          <Link
+            href="iloco"
+            :class="{ 'color_primary--text': $page.component === 'Iloco/Index' }"
+            as="v-list-item"
+            @click="isGroupOpen = false"
+          >
+            <v-list-item-icon class="mr-3">
+              <file-text-icon
+                :class="[$page.component === 'Iloco/Index' ? 'color_primary--text' : 'not-active white--text']"
+                size="24"
+                stroke-width="1"
+              ></file-text-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title
+                :class="[$page.component === 'Iloco/Index' ? 'color_primary--text' : 'not-active white--text']"
+                class="text-body-1-edited font-weight-regular white--text"
+                >Questionnaire</v-list-item-title
+              >
+            </v-list-item-content>
+          </Link>
         </v-list>
       </v-navigation-drawer>
     </v-card>

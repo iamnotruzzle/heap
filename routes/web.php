@@ -18,8 +18,8 @@ Route::redirect('/', 'login');
 Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 
 
-Route::resource('eng', EngController::class)->only(['index', 'store', 'update', 'destroy']);
-Route::resource('iloco', IlocoController::class)->only(['index', 'store', 'update', 'destroy']);
-Route::resource('tagalog', TagalogController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('eng', EngController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
+Route::resource('iloco', IlocoController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
+Route::resource('tagalog', TagalogController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 Route::resource('answers', AnswersController::class)->only(['index', 'store', 'update', 'destroy']);
 Route::resource('deleterequest', DeleteRequestController::class)->only(['index', 'store', 'update', 'destroy']);
