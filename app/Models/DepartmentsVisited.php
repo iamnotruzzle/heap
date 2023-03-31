@@ -21,9 +21,9 @@ class DepartmentsVisited extends Model
         'department_id',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:m-d-Y',
-    ];
+    // protected $casts = [
+    //     'created_at' => 'datetime:m-d-Y',
+    // ];
 
     public function departments()
     {

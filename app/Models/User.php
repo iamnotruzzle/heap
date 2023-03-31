@@ -54,9 +54,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'created_at' => 'datetime:m-d-Y',
-    ];
+    // protected $casts = [
+    //     'created_at' => 'datetime:m-d-Y',
+    // ];
 
     /**
      * The accessors to append to the model's array form.

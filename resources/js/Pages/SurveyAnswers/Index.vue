@@ -19,39 +19,6 @@
 
         <v-card-text>
           <v-row class="d-flex justify-end flex-row">
-            <!-- <v-col
-              cols="12"
-              md="3"
-              lg="2"
-            >
-              <v-text-field
-                v-model="from"
-                clearable
-                dense
-                outlined
-                type="date"
-                color="color_add"
-                label="Start"
-                hide-details
-              ></v-text-field>
-            </v-col>
-            <v-col
-              cols="12"
-              md="3"
-              lg="2"
-            >
-              <v-text-field
-                v-model="to"
-                clearable
-                dense
-                outlined
-                type="date"
-                color="color_add"
-                label="End"
-                hide-details
-              ></v-text-field>
-            </v-col> -->
-
             <v-col
               cols="12"
               md="6"
@@ -199,6 +166,10 @@
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
+          <template #item.date_of_visit="{ item }">
+            <span class="text-no-wrap">{{ tzone2(item.date_of_visit) }}</span>
+          </template>
+
           <!-- departments -->
           <template #item.departments_visited="{ item }">
             <span v-for="dv in item.departments_visited"> {{ dv.departments[0].name }}, </span>
@@ -640,6 +611,10 @@
             </div>
           </template>
 
+          <template #item.created_at="{ item }">
+            <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
+          </template>
+
           <template v-slot:item.actions="{ item }">
             <!-- {{ item.roles[0].name }} -->
             <!-- $page.props.auth.user.roles[0] -->
@@ -755,6 +730,10 @@
             <span v-else>{{ item.survey_opt_answers[3].comment }}</span>
           </template>
 
+          <template #item.created_at="{ item }">
+            <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
+          </template>
+
           <!-- pagination -->
           <template #[`item.index`]="{ index }">
             {{ (options.page - 1) * options.itemsPerPage + index + 1 }}
@@ -807,6 +786,10 @@
                 mdi-delete
               </v-icon>
             </div>
+          </template>
+
+          <template #item.created_at="{ item }">
+            <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
           </template>
         </v-data-table>
       </v-card>
@@ -861,6 +844,7 @@ import { Inertia } from '@inertiajs/inertia';
 import { Head } from '@inertiajs/inertia-vue';
 import JsonExcel from 'vue-json-excel';
 import { DownloadIcon } from 'vue-feather-icons';
+import moment from 'moment';
 
 export default {
   layout: (h, page) => h(Layout, [page]),
@@ -1213,6 +1197,14 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
+        {
+          text: 'CREATED AT',
+          value: 'created_at',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
         { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
       secondary_answers: [
@@ -1251,6 +1243,14 @@ export default {
         {
           text: 'OPT. Q4/MODE PREFERENCE',
           value: 'optq4',
+          align: 'start',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'CREATED AT',
+          value: 'created_at',
           align: 'start',
           sortable: false,
           filterable: false,
@@ -1295,6 +1295,8 @@ export default {
     };
   },
   mounted() {
+    // console.log(this.surveyAnswers);
+    // console.log(this.departments);
     // console.log(this.delete_requests);
     this.processJsonData();
   },
@@ -1305,10 +1307,18 @@ export default {
         preserveState: true,
         preserveScroll: true,
         onFinish: (visit) => {
+          this.json_data = [];
           this.processJsonData();
-          //   console.log('adsad');
         },
       });
+    },
+    // timezone with timestamp
+    tzone(date) {
+      return moment.tz(date, 'Asia/Manila').format('LLL');
+    },
+    // timezone without timestamp
+    tzone2(date) {
+      return moment.tz(date, 'Asia/Manila').format('LL');
     },
     processJsonData() {
       this.surveyAnswers.data.forEach((e) => {
@@ -1322,7 +1332,7 @@ export default {
           SEX: e.sex,
           RELIGION: e.religion,
           'LEVEL OF EDUCATION': e.educational_attainment,
-          'DATE OF CONSULT/VISIT': e.date_of_visit,
+          'DATE OF CONSULT/VISIT': this.tzone2(e.date_of_visit),
           'DEPARTMENT/OFFICE VISITED': this.departments_visited.join(', ').toString(),
           'PREVIOUS VISIT': e.visited_before == 'y' ? 'YES' : 'NO',
           // general info
@@ -1374,6 +1384,7 @@ export default {
           WARD: e.ward,
           'MODE PREFERENCE': e.survey_opt_answers[3].comment.indexOf('1-CA') ? 2 : 1,
           'MODE PREFERENCE-1': e.survey_opt_answers[3].comment,
+          'SUBMITTED AT': this.tzone2(e.created_at),
         });
 
         this.departments_visited = [];

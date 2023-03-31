@@ -22,9 +22,9 @@ class DeleteRequest extends Model
         'status',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:m-d-Y',
-    ];
+    // protected $casts = [
+    //     'created_at' => 'datetime:m-d-Y',
+    // ];
 
     public function users()
     {

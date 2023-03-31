@@ -9,6 +9,9 @@ import 'vuetify/dist/vuetify.min.css';
 import { InertiaProgress } from '@inertiajs/progress';
 import JsonExcel from 'vue-json-excel';
 
+import moment from 'moment-timezone';
+
+moment.tz.setDefault('Asia/Manila');
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);

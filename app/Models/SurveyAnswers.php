@@ -22,7 +22,7 @@ class SurveyAnswers extends Model
         'rating',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:m-d-Y',
-    ];
+    // protected $casts = [
+    //     'created_at' => 'datetime:m-d-Y',
+    // ];
 }

@@ -20,7 +20,7 @@ class SurveyOptQuestions extends Model
         'desc',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:m-d-Y',
-    ];
+    // protected $casts = [
+    //     'created_at' => 'datetime:m-d-Y',
+    // ];
 }

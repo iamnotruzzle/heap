@@ -440,6 +440,10 @@
             </div>
           </template>
 
+          <template #item.created_at="{ item }">
+            <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
+          </template>
+
           <!-- pagination -->
           <template #[`item.index`]="{ index }">
             {{ (options.page - 1) * options.itemsPerPage + index + 1 }}
@@ -509,6 +513,7 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Inertia } from '@inertiajs/inertia';
 import { Head } from '@inertiajs/inertia-vue';
+import moment from 'moment';
 
 export default {
   layout: (h, page) => h(Layout, [page]),
@@ -615,6 +620,9 @@ export default {
         preserveState: true,
         preserveScroll: true,
       });
+    },
+    tzone(date) {
+      return moment.tz(date, 'Asia/Manila').format('LLL');
     },
     cancel() {
       this.dialog = false;
