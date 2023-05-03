@@ -354,6 +354,99 @@
                     <v-divider color="black"></v-divider>
                   </v-col>
 
+                  <v-col cols="12">
+                    <div
+                      v-if="form.errors.pointOfEntry || form.errors.otherPointOfEntry"
+                      class="red--text mx-2"
+                    >
+                      <p>Point of entry department visited:</p>
+                    </div>
+                    <div v-else>
+                      <p>Point of entry department visited:</p>
+                    </div>
+                    <div class="d-flex flex-column ma-0 pa-0">
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Emergency Room"
+                        value="Emergency Room"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Inpatient Services"
+                        value="Inpatient Services"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Outpatient Department"
+                        value="Outpatient Department"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Pharmacy"
+                        value="Pharmacy"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Medical Social Work Department/Malasakit Center"
+                        value="Medical Social Work Department/Malasakit Center"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Information & Admitting Section"
+                        value="Information & Admitting Section"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.pointOfEntry"
+                        label="Cashier/Accounting"
+                        value="Cashier/Accounting"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <div class="d-flex flex-row mx-2 mt-1">
+                        <v-checkbox
+                          v-model="enablePointOfEntry"
+                          dense
+                        ></v-checkbox>
+                        <v-text-field
+                          v-model="form.otherPointOfEntry"
+                          :disabled="!enablePointOfEntry"
+                          label="Other administrative office (Specify)"
+                          dense
+                        ></v-text-field>
+                      </div>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
                   <v-col
                     cols="12"
                     md="3"
@@ -2966,6 +3059,7 @@ export default {
       snackColor: '',
       snackText: '',
       enableRespondent: false,
+      enablePointOfEntry: false,
       isLoading: false,
       //   educational attainment enable checker
       enableElementary: false,
@@ -2988,6 +3082,8 @@ export default {
       form: this.$inertia.form({
         respondent: '',
         otherRespondent: '',
+        pointOfEntry: '',
+        otherPointOfEntry: '',
         age: null,
         sex: '',
         religion: '',
@@ -3202,6 +3298,17 @@ export default {
     enableRespondent: function (val) {
       if (this.enableRespondent == true) {
         this.form.respondent = '';
+      }
+    },
+    'form.pointOfEntry': function (val) {
+      if (this.form.pointOfEntry != '') {
+        this.form.otherPointOfEntry = '';
+        this.enablePointOfEntry = false;
+      }
+    },
+    enablePointOfEntry: function (val) {
+      if (this.enablePointOfEntry == true) {
+        this.form.pointOfEntry = '';
       }
     },
     partA1: function (val) {
