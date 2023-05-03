@@ -356,6 +356,130 @@
 
                   <v-col cols="12">
                     <div
+                      v-if="form.errors.serviceAvailed || form.errors.otherServiceAvailed"
+                      class="red--text mx-2"
+                    >
+                      <p>Service Availed:</p>
+                    </div>
+                    <div v-else>
+                      <p>Service Availed:</p>
+                    </div>
+                    <div class="d-flex flex-row ma-0 pa-0">
+                      <div class="mr-14">
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Consultation"
+                          value="Consultation"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Admission"
+                          value="Admission"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Laboratory"
+                          value="Laboratory"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Radiology"
+                          value="Radiology"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Discharge"
+                          value="Discharge"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Settlement of fees"
+                          value="Settlement of fees"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+
+                      <div>
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Request for Medical Records"
+                          value="Request for Medical Records"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Request for Psychosocial Assessment/Intervention"
+                          value="Request for Psychosocial Assessment/Intervention"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Request for Financial Assistance"
+                          value="Request for Financial Assistance"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Counseling (i.e Nutrition and Dietetics)"
+                          value="Counseling (i.e Nutrition and Dietetics)"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <div class="d-flex flex-row mx-2 mt-1">
+                          <v-checkbox
+                            v-model="enableServiceAvailed"
+                            dense
+                          ></v-checkbox>
+                          <v-text-field
+                            v-model="form.otherServiceAvailed"
+                            :disabled="!enableServiceAvailed"
+                            label="Others (Specify)"
+                            dense
+                          ></v-text-field>
+                        </div>
+                      </div>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <div
                       v-if="form.errors.pointOfEntry || form.errors.otherPointOfEntry"
                       class="red--text mx-2"
                     >
@@ -364,81 +488,85 @@
                     <div v-else>
                       <p>Point of entry department visited:</p>
                     </div>
-                    <div class="d-flex flex-column ma-0 pa-0">
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Emergency Room"
-                        value="Emergency Room"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Inpatient Services"
-                        value="Inpatient Services"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Outpatient Department"
-                        value="Outpatient Department"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Pharmacy"
-                        value="Pharmacy"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Medical Social Work Department/Malasakit Center"
-                        value="Medical Social Work Department/Malasakit Center"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Information & Admitting Section"
-                        value="Information & Admitting Section"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.pointOfEntry"
-                        label="Cashier/Accounting"
-                        value="Cashier/Accounting"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <div class="d-flex flex-row mx-2 mt-1">
+                    <div class="d-flex flex-row ma-0 pa-0">
+                      <div class="mr-8">
                         <v-checkbox
-                          v-model="enablePointOfEntry"
+                          v-model="form.pointOfEntry"
+                          label="Emergency Room"
+                          value="Emergency Room"
                           dense
+                          hide-details
+                          class="mx-2"
                         ></v-checkbox>
-                        <v-text-field
-                          v-model="form.otherPointOfEntry"
-                          :disabled="!enablePointOfEntry"
-                          label="Other administrative office (Specify)"
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Inpatient Services"
+                          value="Inpatient Services"
                           dense
-                        ></v-text-field>
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Outpatient Department"
+                          value="Outpatient Department"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Pharmacy"
+                          value="Pharmacy"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+
+                      <div>
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Medical Social Work Department/Malasakit Center"
+                          value="Medical Social Work Department/Malasakit Center"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Information & Admitting Section"
+                          value="Information & Admitting Section"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Cashier/Accounting"
+                          value="Cashier/Accounting"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <div class="d-flex flex-row mx-2 mt-1">
+                          <v-checkbox
+                            v-model="enablePointOfEntry"
+                            dense
+                          ></v-checkbox>
+                          <v-text-field
+                            v-model="form.otherPointOfEntry"
+                            :disabled="!enablePointOfEntry"
+                            label="Other administrative office (Specify)"
+                            dense
+                          ></v-text-field>
+                        </div>
                       </div>
                     </div>
                   </v-col>
@@ -3060,6 +3188,7 @@ export default {
       snackText: '',
       enableRespondent: false,
       enablePointOfEntry: false,
+      enableServiceAvailed: false,
       isLoading: false,
       //   educational attainment enable checker
       enableElementary: false,
@@ -3083,6 +3212,9 @@ export default {
         respondent: '',
         otherRespondent: '',
         pointOfEntry: '',
+        otherPointOfEntry: '',
+        serviceAvailed: '',
+        otherServiceAvailed: '',
         otherPointOfEntry: '',
         age: null,
         sex: '',
@@ -3309,6 +3441,17 @@ export default {
     enablePointOfEntry: function (val) {
       if (this.enablePointOfEntry == true) {
         this.form.pointOfEntry = '';
+      }
+    },
+    'form.serviceAvailed': function (val) {
+      if (this.form.serviceAvailed != '') {
+        this.form.otherServiceAvailed = '';
+        this.enableServiceAvailed = false;
+      }
+    },
+    enableServiceAvailed: function (val) {
+      if (this.enableServiceAvailed == true) {
+        this.form.serviceAvailed = '';
       }
     },
     partA1: function (val) {
