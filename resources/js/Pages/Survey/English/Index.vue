@@ -411,96 +411,28 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <div
-                      v-if="form.errors.pointOfEntry || form.errors.otherPointOfEntry"
-                      class="red--text mx-2"
+                    <label
+                      for="pointOfEntry"
+                      v-if="form.errors.pointOfEntry"
+                      class="red--text"
                     >
-                      <p>Point of entry department visited:</p>
-                    </div>
-                    <div v-else>
-                      <p>Point of entry department visited:</p>
-                    </div>
-                    <div class="d-flex flex-row ma-0 pa-0">
-                      <div class="mr-8">
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Emergency Room"
-                          value="Emergency Room"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
+                      Point of entry (Please encode if not on the list.)
+                    </label>
+                    <label
+                      for="pointOfEntry"
+                      v-else
+                    >
+                      Point of entry (Please encode if not on the list.)
+                    </label>
 
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Inpatient Services"
-                          value="Inpatient Services"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Outpatient Department"
-                          value="Outpatient Department"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Pharmacy"
-                          value="Pharmacy"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-                      </div>
-
-                      <div>
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Medical Social Work Department/Malasakit Center"
-                          value="Medical Social Work Department/Malasakit Center"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Information & Admitting Section"
-                          value="Information & Admitting Section"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Cashier/Accounting"
-                          value="Cashier/Accounting"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <div class="d-flex flex-row mx-2 mt-1">
-                          <v-checkbox
-                            v-model="enablePointOfEntry"
-                            dense
-                          ></v-checkbox>
-                          <v-text-field
-                            v-model="form.otherPointOfEntry"
-                            :disabled="!enablePointOfEntry"
-                            label="Other administrative office (Specify)"
-                            dense
-                          ></v-text-field>
-                        </div>
-                      </div>
-                    </div>
+                    <v-combobox
+                      id="deppartments"
+                      v-model="form.pointOfEntry"
+                      :items="departments"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-combobox>
                   </v-col>
 
                   <v-col cols="12">
@@ -3244,7 +3176,6 @@ export default {
       snackColor: '',
       snackText: '',
       enableRespondent: false,
-      enablePointOfEntry: false,
       enableServiceAvailed: false,
       isLoading: false,
       //   educational attainment enable checker
@@ -3265,10 +3196,33 @@ export default {
         'Born Again',
         'Evangelicals',
       ].sort(),
+      departments: [
+        'Clinics',
+        'Surgery',
+        'Family Medicine',
+        'Internal Medicine',
+        'Pedia',
+        'Ob gyne',
+        'ENT',
+        'Ophthalmology',
+        'Dental',
+        'Rehabilitation',
+        'Orthopaedic',
+        'Emergency Room',
+        'Inpatient/Ward',
+        'Laboratory',
+        'Radiology',
+        'Medical Record',
+        'Billing',
+        'Cashier/Accounting',
+        'Medical Social Work Department/Malasakit Center',
+        'Outpatient Department',
+        'Pharmacy',
+        'Information & Admitting Section',
+      ],
       form: this.$inertia.form({
         respondent: '',
         pointOfEntry: '',
-        otherPointOfEntry: '',
         serviceAvailed: '',
         otherServiceAvailed: '',
         frequentlyVisit: '',
@@ -3475,17 +3429,6 @@ export default {
         this.enableNoEduc = true;
       } else {
         this.enableNoEduc = false;
-      }
-    },
-    'form.pointOfEntry': function (val) {
-      if (this.form.pointOfEntry != '') {
-        this.form.otherPointOfEntry = '';
-        this.enablePointOfEntry = false;
-      }
-    },
-    enablePointOfEntry: function (val) {
-      if (this.enablePointOfEntry == true) {
-        this.form.pointOfEntry = '';
       }
     },
     'form.serviceAvailed': function (val) {
