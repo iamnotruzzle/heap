@@ -102,12 +102,27 @@ class DepartmentsSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Cashier',
+                'name' => 'Cashier/Accounting',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Medical Social Services',
+                'name' => 'Medical Social Work Department/Malasakit Center',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Outpatient Department',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Pharmacy',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Information & Admitting Section',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
