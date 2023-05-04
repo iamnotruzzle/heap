@@ -114,13 +114,7 @@
               >
                 <v-row class="font-weight-black">
                   <v-col cols="12">
-                    <div
-                      v-if="form.errors.respondent || form.errors.otherRespondent"
-                      class="red--text mx-2"
-                    >
-                      <p>The Respondent of this Survey Form:</p>
-                    </div>
-                    <div v-else>
+                    <div>
                       <p>The Respondent of this Survey Form:</p>
                     </div>
                     <div class="d-flex flex-column ma-0 pa-0">
@@ -142,18 +136,23 @@
                         class="mx-2"
                       ></v-checkbox>
 
-                      <div class="d-flex flex-row mx-2 mt-1">
-                        <v-checkbox
-                          v-model="enableRespondent"
-                          dense
-                        ></v-checkbox>
-                        <v-text-field
-                          v-model="form.otherRespondent"
-                          :disabled="!enableRespondent"
-                          label="Others (Specify)"
-                          dense
-                        ></v-text-field>
-                      </div>
+                      <v-checkbox
+                        v-model="form.respondent"
+                        label="Business(Visited for business purposes)"
+                        value="Business"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="form.respondent"
+                        label="Employee"
+                        value="Employee"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
                     </div>
                   </v-col>
 
@@ -3210,7 +3209,6 @@ export default {
       ].sort(),
       form: this.$inertia.form({
         respondent: '',
-        otherRespondent: '',
         pointOfEntry: '',
         otherPointOfEntry: '',
         serviceAvailed: '',
@@ -3419,17 +3417,6 @@ export default {
         this.enableNoEduc = true;
       } else {
         this.enableNoEduc = false;
-      }
-    },
-    'form.respondent': function (val) {
-      if (this.form.respondent != '') {
-        this.form.otherRespondent = '';
-        this.enableRespondent = false;
-      }
-    },
-    enableRespondent: function (val) {
-      if (this.enableRespondent == true) {
-        this.form.respondent = '';
       }
     },
     'form.pointOfEntry': function (val) {
