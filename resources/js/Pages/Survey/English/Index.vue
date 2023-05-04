@@ -353,6 +353,160 @@
                     <v-divider color="black"></v-divider>
                   </v-col>
 
+                  <v-col
+                    cols="12"
+                    md="3"
+                  >
+                    <label
+                      for="dateOfVisit"
+                      v-if="form.errors.dateOfVisit"
+                      class="red--text"
+                    >
+                      Date of Consultation/Visit
+                    </label>
+                    <label
+                      for="dateOfVisit"
+                      v-else
+                    >
+                      Date of Consultation/Visit
+                    </label>
+
+                    <v-menu
+                      ref="datePickerMenu"
+                      v-model="datePickerMenu"
+                      :close-on-content-click="false"
+                      return-value.sync="form.dateOfVisit"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="form.dateOfVisit"
+                          append-outer-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          outlined
+                          dense
+                          hide-details
+                          id="dateOfVisit"
+                          class="change-width"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="form.dateOfVisit"
+                        min="2022-01-01"
+                        :max="maxDate"
+                        no-title
+                        scrollable
+                        @input="datePickerMenu = false"
+                      >
+                      </v-date-picker>
+                    </v-menu>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <div
+                      v-if="form.errors.pointOfEntry || form.errors.otherPointOfEntry"
+                      class="red--text mx-2"
+                    >
+                      <p>Point of entry department visited:</p>
+                    </div>
+                    <div v-else>
+                      <p>Point of entry department visited:</p>
+                    </div>
+                    <div class="d-flex flex-row ma-0 pa-0">
+                      <div class="mr-8">
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Emergency Room"
+                          value="Emergency Room"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Inpatient Services"
+                          value="Inpatient Services"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Outpatient Department"
+                          value="Outpatient Department"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Pharmacy"
+                          value="Pharmacy"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+
+                      <div>
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Medical Social Work Department/Malasakit Center"
+                          value="Medical Social Work Department/Malasakit Center"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Information & Admitting Section"
+                          value="Information & Admitting Section"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.pointOfEntry"
+                          label="Cashier/Accounting"
+                          value="Cashier/Accounting"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <div class="d-flex flex-row mx-2 mt-1">
+                          <v-checkbox
+                            v-model="enablePointOfEntry"
+                            dense
+                          ></v-checkbox>
+                          <v-text-field
+                            v-model="form.otherPointOfEntry"
+                            :disabled="!enablePointOfEntry"
+                            label="Other administrative office (Specify)"
+                            dense
+                          ></v-text-field>
+                        </div>
+                      </div>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
                   <v-col cols="12">
                     <div
                       v-if="form.errors.serviceAvailed || form.errors.otherServiceAvailed"
@@ -478,153 +632,57 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <div
-                      v-if="form.errors.pointOfEntry || form.errors.otherPointOfEntry"
-                      class="red--text mx-2"
-                    >
-                      <p>Point of entry department visited:</p>
-                    </div>
-                    <div v-else>
-                      <p>Point of entry department visited:</p>
+                    <div>
+                      <p>How frequent do you visit this facility?</p>
                     </div>
                     <div class="d-flex flex-row ma-0 pa-0">
-                      <div class="mr-8">
+                      <div class="mr-14 d-flex flex-row">
                         <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Emergency Room"
-                          value="Emergency Room"
+                          v-model="form.frequentlyVisit"
+                          label="First time"
+                          value="First time"
                           dense
                           hide-details
                           class="mx-2"
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Inpatient Services"
-                          value="Inpatient Services"
+                          v-model="form.frequentlyVisit"
+                          label="1-3x a year"
+                          value="1-3x a year"
                           dense
                           hide-details
                           class="mx-2"
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Outpatient Department"
-                          value="Outpatient Department"
+                          v-model="form.frequentlyVisit"
+                          label="4-6x a year"
+                          value="4-6x a year"
                           dense
                           hide-details
                           class="mx-2"
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Pharmacy"
-                          value="Pharmacy"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-                      </div>
-
-                      <div>
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Medical Social Work Department/Malasakit Center"
-                          value="Medical Social Work Department/Malasakit Center"
+                          v-model="form.frequentlyVisit"
+                          label="7-11x a year"
+                          value="7-11x a year"
                           dense
                           hide-details
                           class="mx-2"
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Information & Admitting Section"
-                          value="Information & Admitting Section"
+                          v-model="form.frequentlyVisit"
+                          label=">12x a year"
+                          value=">12x a year"
                           dense
                           hide-details
                           class="mx-2"
                         ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.pointOfEntry"
-                          label="Cashier/Accounting"
-                          value="Cashier/Accounting"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <div class="d-flex flex-row mx-2 mt-1">
-                          <v-checkbox
-                            v-model="enablePointOfEntry"
-                            dense
-                          ></v-checkbox>
-                          <v-text-field
-                            v-model="form.otherPointOfEntry"
-                            :disabled="!enablePointOfEntry"
-                            label="Other administrative office (Specify)"
-                            dense
-                          ></v-text-field>
-                        </div>
                       </div>
                     </div>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <v-divider color="black"></v-divider>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    md="3"
-                  >
-                    <label
-                      for="dateOfVisit"
-                      v-if="form.errors.dateOfVisit"
-                      class="red--text"
-                    >
-                      Date of Consultation/Visit
-                    </label>
-                    <label
-                      for="dateOfVisit"
-                      v-else
-                    >
-                      Date of Consultation/Visit
-                    </label>
-
-                    <v-menu
-                      ref="datePickerMenu"
-                      v-model="datePickerMenu"
-                      :close-on-content-click="false"
-                      return-value.sync="form.dateOfVisit"
-                      transition="scale-transition"
-                      offset-y
-                      min-width="auto"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          v-model="form.dateOfVisit"
-                          append-outer-icon="mdi-calendar"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                          outlined
-                          dense
-                          hide-details
-                          id="dateOfVisit"
-                          class="change-width"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker
-                        v-model="form.dateOfVisit"
-                        min="2022-01-01"
-                        :max="maxDate"
-                        no-title
-                        scrollable
-                        @input="datePickerMenu = false"
-                      >
-                      </v-date-picker>
-                    </v-menu>
                   </v-col>
 
                   <v-col cols="12">
@@ -3213,7 +3271,7 @@ export default {
         otherPointOfEntry: '',
         serviceAvailed: '',
         otherServiceAvailed: '',
-        otherPointOfEntry: '',
+        frequentlyVisit: '',
         age: null,
         sex: '',
         religion: '',
