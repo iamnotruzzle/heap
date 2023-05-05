@@ -76,6 +76,16 @@ class QuestionSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'desc' => 'I was treated fairly, or "walang palakasan" during my transaction.(SQD6)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'desc' => 'I am satisfied with the service that I availed.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
         foreach ($survey_questions as $sq) {
