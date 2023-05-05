@@ -622,6 +622,170 @@
                   </v-col>
 
                   <v-col cols="12">
+                    <h5 class="text-h5-edited font-weight-black text-center display-1">
+                      The Citizen’s Charter is an official document that reflects the services of a government
+                      agency/office including its requirements, fees, and processing times among others.
+                    </h5>
+
+                    <p class="my-6 title">
+                      <span class="font-weight-black">INSTRUCTIONS:</span>
+                      Put a check mark (✔) your answer to the Citizen’s Charter (CC) questions.
+                    </p>
+
+                    <!-- cc1 -->
+                    <div>
+                      <p class="font-weight-black ma-0 subtitle-1">
+                        Which of the following best describes your awareness of a CC?
+                      </p>
+                      <div>
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="I know what a CC is and I saw this office's CC."
+                          :value="1"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="I know what a CC is but I did NOT see this office's CC."
+                          :value="2"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="I learned of the CC only when I saw this office's CC."
+                          :value="3"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="I do not know what a CC is and I did not see one in this office."
+                          :value="4"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+                    </div>
+
+                    <!-- cc2 -->
+                    <div class="mt-2">
+                      <p class="font-weight-black ma-0 subtitle-1">
+                        If aware of CC, would you say that the CC of this office was …?
+                      </p>
+                      <div>
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Easy to see"
+                          :value="1"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Somewhat easy to see"
+                          :value="2"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Difficult to see"
+                          :value="3"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Not visible at all"
+                          :value="4"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="N/A"
+                          :value="5"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+                    </div>
+
+                    <!-- cc3 -->
+                    <div class="mt-2">
+                      <p class="font-weight-black ma-0 subtitle-1">
+                        If aware of CC, how much did the CC help you in your transaction?
+                      </p>
+                      <div>
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="Helped very much"
+                          :value="1"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="Somewhat helped"
+                          :value="2"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="Did not help"
+                          :value="3"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="N/A"
+                          :value="4"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <v-col cols="12">
                     <h5 class="text-h5-edited font-weight-black">How would you rate our service?</h5>
                     <p>
                       <span class="font-weight-black">Direction:</span>
@@ -2751,6 +2915,10 @@ export default {
         dateOfVisit: new Date().toISOString().slice(0, -14),
         departments: [],
         visited_before: '',
+        cc1: null,
+        cc2: null,
+        cc3: null,
+        disableCC: false,
         q1: {
           id: 1,
           rating: undefined,
@@ -2958,6 +3126,17 @@ export default {
     enableServiceAvailed: function (val) {
       if (this.enableServiceAvailed == true) {
         this.form.serviceAvailed = '';
+      }
+    },
+    'form.cc1': function (val) {
+      if (val == 4) {
+        this.disableCC = true;
+        this.form.cc2 = 5; // N/A
+        this.form.cc3 = 4; // N/A
+      } else {
+        this.disableCC = false;
+        this.form.cc2 = null;
+        this.form.cc3 = null;
       }
     },
     partA1: function (val) {
