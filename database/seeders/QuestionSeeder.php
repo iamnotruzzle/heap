@@ -17,7 +17,7 @@ class QuestionSeeder extends Seeder
     {
         $survey_questions = [
             [
-                'desc' => 'The waiting areas we used were clean, orderly, and comfortable.',
+                'desc' => 'The waiting areas were clean, orderly, and comfortable.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -32,37 +32,27 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Consultation process.',
+                'desc' => 'The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Admission process.',
+                'desc' => 'The office followed the transaction’s requirements and steps based on the information provided.(SQD2).',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Laboratory and radiology processes.',
+                'desc' => 'I easily found information about my transaction from the office or its website.(SQD4).',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Discharge Process (Discharging, Billing, and Cashier).',
+                'desc' => 'I spent a reasonable amount of time for my transaction.(SQD1).',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Request of Documents from this Facility',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'desc' => 'Process of Request for Assistance from Medical Social Service.',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'desc' => 'The medical condition and procedure were discussed clearly.',
+                'desc' => 'The medical condition, procedures and instructions were discussed clearly.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -77,22 +67,12 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'The discharged instructions were discussed to us clearly before we were allowed to go home, including the time/date and site of the follow-up consultation.',
+                'desc' => 'I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'For those eligible for assistance from Malasakit Center. All my medical costs were covered for this particular medical treatment/admission.',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'desc' => 'The information with regard to our medical treatment was kept confidential',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'desc' => "How would you rate this computer assisted Patient Satisfaction Survey?",
+                'desc' => 'I paid a reasonable amount of fees for my transaction.(SQD5)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
