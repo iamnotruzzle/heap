@@ -84,27 +84,19 @@
                   class="text-center word-break"
                 >
                   <h6 class="text-h6-edited ma-0 pa-0">Mariano Marcos Memorial Hospital And Medical Center</h6>
-                  <h4 class="text-h4-edited ma-0 pa-0">PATIENT SATISFACTION QUESTIONNAIRE</h4>
+                  <h4 class="text-h4-edited ma-0 pa-0">HOSPITAL CLIENT EXPERIENCE SURVEY (HCES)</h4>
                 </v-col>
               </v-row>
             </v-card-title>
 
             <v-card-text>
-              <v-row class="font-weight-black">
+              <v-row class="font-weight-black mb-4">
                 <v-col cols="12">
-                  <p>Dear Patient/Client,</p>
-                  <div class="indent">
-                    The following questions talk about your overall experience in this hospital. We wish to improve the
-                    level of service we deliver our clients because you are important to us. Any comments or suggestions
-                    you provide through this survey will be highly-appreciated and will be treated with utmost
-                    confidentiality.
+                  <div class="font-italic text-center">
+                    This survey will serve as a basis to help us to improve our services for you to have a better
+                    experience in the facility because you are important to us. Any comments or suggestions you provide
+                    through this survey will be highly-appreciated and will be treated with utmost confidentiality.
                   </div>
-                </v-col>
-              </v-row>
-
-              <v-row class="font-weight-black">
-                <v-col cols="12">
-                  <p>Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:</p>
                 </v-col>
               </v-row>
 
@@ -112,6 +104,12 @@
                 ref="form"
                 class="no-wrap"
               >
+                <div class="grey lighten-1 mb-4">
+                  <p class="text-h6-edited mx-2 py-1">
+                    Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:
+                  </p>
+                </div>
+
                 <v-row class="font-weight-black">
                   <v-col cols="12">
                     <div>
@@ -3135,8 +3133,8 @@ export default {
         this.form.cc3 = 4; // N/A
       } else {
         this.disableCC = false;
-        this.form.cc2 = null;
-        this.form.cc3 = null;
+        this.form.cc2 = null; // N/A
+        this.form.cc3 = null; // N/A
       }
     },
     partA1: function (val) {
