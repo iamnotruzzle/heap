@@ -801,13 +801,13 @@
                         v-if="form.errors[`q1.rating`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        1. {{ survey_questions[1].desc }}
+                        1. {{ survey_questions[0].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        1. {{ survey_questions[1].desc }}
+                        1. {{ survey_questions[0].desc }}
                       </p>
 
                       <v-btn-toggle
@@ -843,6 +843,366 @@
                           active-class="red accent-2"
                         >
                           <v-icon :color="form.q1.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q2 -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q2.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        2. {{ survey_questions[1].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        2. {{ survey_questions[1].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q2.rating"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q2.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q2.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q2.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q2.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q2.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q3 -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q3.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        3. {{ survey_questions[2].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        3. {{ survey_questions[2].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q3.rating"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q3.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q3.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q3.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q3.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q3.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q4 -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q4.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        4. {{ survey_questions[3].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        4. {{ survey_questions[3].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q4.rating"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q4.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q4.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q4.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q4.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q4.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q5 -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q5.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        5. {{ survey_questions[4].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        5. {{ survey_questions[4].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q5.rating"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q5.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q5.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q5.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q5.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q5.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q6 -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q6.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        6. {{ survey_questions[5].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        6. {{ survey_questions[5].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q6.rating"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q6.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q6.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q6.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q6.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q6.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q7 -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q7.rating`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        7. {{ survey_questions[6].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        7. {{ survey_questions[6].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q7.rating"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q7.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q7.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q7.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q7.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q7.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2555,14 +2915,6 @@ export default {
         },
         q14: {
           id: 14,
-          rating: undefined,
-        },
-        q15: {
-          id: 15,
-          rating: undefined,
-        },
-        q16: {
-          id: 16,
           rating: undefined,
         },
         doctor: {
