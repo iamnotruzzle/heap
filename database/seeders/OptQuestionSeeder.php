@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\SurveyOptQuestions;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class OptQuestionSeeder extends Seeder
 {
@@ -15,24 +16,21 @@ class OptQuestionSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('survey_opt_questions')->truncate();
+
         $survey_opt_questions = [
             [
-                'desc' => 'Aside from above mentioned, do you have anything else you would like to share about your experience with this hospital?',
+                'desc' => 'Suggestions on how we can further improve our services? (Optional)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Are there any remarkable hospital staff you would like to commend? If yes, please write their name in the space provided below, as well as your reason.',
+                'desc' => 'If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'desc' => "Patient's hospital number",
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'desc' => "Which mode of survey do you prefer?",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

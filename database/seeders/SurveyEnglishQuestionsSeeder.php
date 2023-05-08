@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\SurveyQuestions;
+use App\Models\SurveyEnglishQuestions;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class QuestionSeeder extends Seeder
+class SurveyEnglishQuestionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,9 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('survey_questions')->truncate();
+        DB::table('survey_english_questions')->truncate();
 
-        $survey_questions = [
+        $survey_english_questions = [
             [
                 'desc' => 'The waiting areas were clean, orderly, and comfortable.',
                 'created_at' => Carbon::now(),
@@ -85,29 +85,34 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'I am satisfied with the service that I availed.',
+                'desc' => 'I am satisfied with the service that I availed. (SQD0)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'I am satisfied with the service that I availed.',
+                'desc' => 'Suggestions on how we can further improve our services? (Optional)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Suggestions on how we can further improve our services (optional).',
+                'desc' => 'If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'If applicable, please the name of any remarkable hospital staff you would like to commend, as well as your reason.',
+                'desc' => 'HOSPITAL NUMBER',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'desc' => 'How would you rate our Computer assisted satisfaction survey?',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ];
 
-        foreach ($survey_questions as $sq) {
-            SurveyQuestions::create($sq);
+        foreach ($survey_english_questions as $sq) {
+            SurveyEnglishQuestions::create($sq);
         }
     }
 }

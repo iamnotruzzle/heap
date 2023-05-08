@@ -13,7 +13,7 @@ use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
 use App\Models\SurveyOptAnswers;
 use App\Models\SurveyOptQuestions;
-use App\Models\SurveyQuestions;
+// use App\Models\SurveyQuestions;
 use App\Models\SurveyRespondents;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class IlocoController extends Controller
     {
         $hospital_staffs = HospitalStaff::all('id', 'type');
 
-        $survey_questions = SurveyQuestions::all('id', 'desc');
+        // $survey_questions = SurveyQuestions::all('id', 'desc');
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
@@ -69,7 +69,7 @@ class IlocoController extends Controller
             'Survey/Iloco/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
-                'survey_questions' => $survey_questions,
+                // 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
                 'er_inpatient' => $er_inpatient,
                 'outpatient_depts' => $outpatient_depts,

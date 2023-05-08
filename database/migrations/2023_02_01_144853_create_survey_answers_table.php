@@ -17,7 +17,7 @@ class CreateSurveyAnswersTable extends Migration
             $table->id();
             $table->string('pss_id');
             $table->bigInteger('survey_question_id');
-            $table->integer('rating');
+            $table->string('answer');
             $table->timestamps();
         });
     }

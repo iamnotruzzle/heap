@@ -10,10 +10,10 @@ use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
+use App\Models\SurveyEnglishQuestions;
 use App\Models\SurveyGeneralInfo;
 use App\Models\SurveyOptAnswers;
 use App\Models\SurveyOptQuestions;
-use App\Models\SurveyQuestions;
 use App\Models\SurveyRespondents;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class EngController extends Controller
     {
         $hospital_staffs = HospitalStaff::all('id', 'type');
 
-        $survey_questions = SurveyQuestions::all('id', 'desc');
+        $survey_questions = SurveyEnglishQuestions::all('id', 'desc');
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
@@ -80,6 +80,8 @@ class EngController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
+
         $authUsername = Auth::user()->username;
 
         $departments_visited = $request->departments;

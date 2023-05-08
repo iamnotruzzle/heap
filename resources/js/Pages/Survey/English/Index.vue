@@ -798,7 +798,7 @@
                     <!-- q1 The waiting areas were clean, orderly, and comfortable. -->
                     <div>
                       <p
-                        v-if="form.errors[`q1.rating`]"
+                        v-if="form.errors[`q1.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         1. {{ survey_questions[0].desc }}
@@ -811,38 +811,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q1.rating"
+                        v-model="form.q1.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q1.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q1.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q1.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q1.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q1.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -858,7 +858,7 @@
                     <!-- q2 The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.-->
                     <div>
                       <p
-                        v-if="form.errors[`q2.rating`]"
+                        v-if="form.errors[`q2.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         2. {{ survey_questions[1].desc }}
@@ -871,38 +871,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q2.rating"
+                        v-model="form.q2.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q2.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q2.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q2.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q2.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q2.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -918,7 +918,7 @@
                     <!-- q3 The patients' rooms were kept clean, tidy, and comfortable.-->
                     <div>
                       <p
-                        v-if="form.errors[`q3.rating`]"
+                        v-if="form.errors[`q3.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         3. {{ survey_questions[2].desc }}
@@ -931,38 +931,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q3.rating"
+                        v-model="form.q3.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q3.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q3.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q3.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q3.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q3.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -978,7 +978,7 @@
                     <!-- q4 The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).-->
                     <div>
                       <p
-                        v-if="form.errors[`q4.rating`]"
+                        v-if="form.errors[`q4.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         4. {{ survey_questions[3].desc }}
@@ -991,38 +991,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q4.rating"
+                        v-model="form.q4.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q4.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q4.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q4.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q4.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q4.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q4.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q4.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q4.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q4.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q4.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1038,7 +1038,7 @@
                     <!-- q5 The office followed the transaction’s requirements and steps based on the information provided.(SQD2).-->
                     <div>
                       <p
-                        v-if="form.errors[`q5.rating`]"
+                        v-if="form.errors[`q5.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         5. {{ survey_questions[4].desc }}
@@ -1051,38 +1051,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q5.rating"
+                        v-model="form.q5.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q5.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q5.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q5.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q5.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q5.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q5.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q5.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q5.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q5.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q5.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1098,7 +1098,7 @@
                     <!-- q6 I easily found information about my transaction from the office or its website.(SQD4).-->
                     <div>
                       <p
-                        v-if="form.errors[`q6.rating`]"
+                        v-if="form.errors[`q6.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         6. {{ survey_questions[5].desc }}
@@ -1111,38 +1111,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q6.rating"
+                        v-model="form.q6.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q6.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q6.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q6.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q6.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q6.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q6.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q6.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q6.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q6.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q6.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1158,7 +1158,7 @@
                     <!-- q7 I spent a reasonable amount of time for my transaction.(SQD1).-->
                     <div>
                       <p
-                        v-if="form.errors[`q7.rating`]"
+                        v-if="form.errors[`q7.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         7. {{ survey_questions[6].desc }}
@@ -1171,38 +1171,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q7.rating"
+                        v-model="form.q7.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q7.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q7.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q7.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q7.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q7.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q7.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q7.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q7.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q7.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q7.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1224,7 +1224,7 @@
                     <!-- q8 The medical condition, procedures and instructions were discussed clearly.-->
                     <div>
                       <p
-                        v-if="form.errors[`q8.rating`]"
+                        v-if="form.errors[`q8.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         8. {{ survey_questions[7].desc }}
@@ -1237,38 +1237,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q8.rating"
+                        v-model="form.q8.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q8.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q8.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q8.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q8.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q8.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1284,7 +1284,7 @@
                     <!-- q9 Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.-->
                     <div>
                       <p
-                        v-if="form.errors[`q9.rating`]"
+                        v-if="form.errors[`q9.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         9. {{ survey_questions[8].desc }}
@@ -1297,38 +1297,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q9.rating"
+                        v-model="form.q9.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q9.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q9.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q9.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q9.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q9.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1344,7 +1344,7 @@
                     <!-- q10 We were given the chance to decide which treatment procedure shall be performed.-->
                     <div>
                       <p
-                        v-if="form.errors[`q10.rating`]"
+                        v-if="form.errors[`q10.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         10. {{ survey_questions[9].desc }}
@@ -1357,14 +1357,14 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q10.rating"
+                        v-model="form.q10.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q10.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q10.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1372,13 +1372,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q10.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q10.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q10.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q10.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1386,13 +1386,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q10.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q10.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q10.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q10.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1408,7 +1408,7 @@
                     <!-- q11 I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)-->
                     <div>
                       <p
-                        v-if="form.errors[`q11.rating`]"
+                        v-if="form.errors[`q11.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         11. {{ survey_questions[10].desc }}
@@ -1421,14 +1421,14 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q11.rating"
+                        v-model="form.q11.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q11.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q11.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1436,13 +1436,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q11.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q11.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q11.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q11.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1450,13 +1450,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q11.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q11.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q11.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q11.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1472,7 +1472,7 @@
                     <!-- q12 I paid a reasonable amount of fees for my transaction.(SQD5)-->
                     <div>
                       <p
-                        v-if="form.errors[`q12.rating`]"
+                        v-if="form.errors[`q12.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         12. {{ survey_questions[11].desc }}
@@ -1485,14 +1485,14 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q12.rating"
+                        v-model="form.q12.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q12.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q12.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1500,13 +1500,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q12.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q12.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q12.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q12.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1514,13 +1514,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q12.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q12.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q12.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q12.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2512,7 +2512,7 @@
                     <!-- q13 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
                     <div>
                       <p
-                        v-if="form.errors[`q13.rating`]"
+                        v-if="form.errors[`q13.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         13. {{ survey_questions[12].desc }}
@@ -2525,14 +2525,14 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q13.rating"
+                        v-model="form.q13.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q13.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q13.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2540,13 +2540,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q13.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q13.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q13.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q13.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2554,13 +2554,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q13.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q13.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q13.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q13.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2632,6 +2632,48 @@
                         </v-btn>
                       </v-btn-toggle>
                     </div>
+
+                    <!-- q15 Suggestions on how we can further improve our services? (Optional) -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q15.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        {{ survey_questions[14].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        {{ survey_questions[14].desc }}
+                      </p>
+                      <v-textarea
+                        filled
+                        auto-grow
+                        v-model="form.q15.answer"
+                      ></v-textarea>
+                    </div>
+
+                    <!-- q16 If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason. -->
+                    <div>
+                      <p
+                        v-if="form.errors[`q16.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        {{ survey_questions[15].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        {{ survey_questions[15].desc }}
+                      </p>
+                      <v-textarea
+                        filled
+                        auto-grow
+                        v-model="form.q16.answer"
+                      ></v-textarea>
+                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -2639,14 +2681,15 @@
                   </v-col>
 
                   <v-col cols="12">
+                    <!-- q17 HOSPITAL NUMBER-->
                     <label for="hospital_number">
                       <span class="font-weight-black ma-0">
-                        Hospital number <span class="red--text">(Required)</span>
+                        {{ survey_questions[16].desc }} <span class="red--text">(Required)</span>
                       </span>
                     </label>
                     <v-text-field
                       id="hospital_number"
-                      v-model="form.hospital_number"
+                      v-model="form.q17.answer"
                       hide-details
                       dense
                       outlined
@@ -2658,15 +2701,27 @@
                       {{ $page.props.errors[0] }}
                     </div>
 
+                    <!-- q18 How would you rate our Computer assisted satisfaction survey?-->
                     <div class="mt-6">
                       <label for="survey_rating">
                         <span class="font-weight-black ma-0">
-                          How would you rate our Computer assisted satisfaction survey?
+                          <p
+                            v-if="form.errors[`survey_rating`]"
+                            class="font-weight-black ma-0 red--text"
+                          >
+                            {{ survey_questions[17].desc }}
+                          </p>
+                          <p
+                            v-else
+                            class="font-weight-black ma-0"
+                          >
+                            {{ survey_questions[17].desc }}
+                          </p>
                         </span>
                       </label>
                       <v-rating
                         id="survey_rating"
-                        v-model="form.survey_rating"
+                        v-model="form.q18.answer"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
                         color="orange"
@@ -2837,60 +2892,60 @@ export default {
         cc2: null,
         cc3: null,
         q1: {
-          id: 1,
-          rating: undefined,
+          id: this.survey_questions[0].id,
+          answer: undefined,
         },
         q2: {
-          id: 2,
-          rating: undefined,
+          id: this.survey_questions[1].id,
+          answer: undefined,
         },
         q3: {
-          id: 3,
-          rating: undefined,
+          id: this.survey_questions[2].id,
+          answer: undefined,
         },
         q4: {
-          id: 4,
-          rating: undefined,
+          id: this.survey_questions[3].id,
+          answer: undefined,
         },
         q5: {
-          id: 5,
-          rating: undefined,
+          id: this.survey_questions[4].id,
+          answer: undefined,
         },
         q6: {
-          id: 6,
-          rating: undefined,
+          id: this.survey_questions[5].id,
+          answer: undefined,
         },
         q7: {
-          id: 7,
-          rating: undefined,
+          id: this.survey_questions[6].id,
+          answer: undefined,
         },
         q8: {
-          id: 8,
-          rating: undefined,
+          id: this.survey_questions[7].id,
+          answer: undefined,
         },
         q9: {
-          id: 9,
-          rating: undefined,
+          id: this.survey_questions[8].id,
+          answer: undefined,
         },
         q10: {
-          id: 10,
-          rating: undefined,
+          id: this.survey_questions[9].id,
+          answer: undefined,
         },
         q11: {
-          id: 11,
-          rating: undefined,
+          id: this.survey_questions[10].id,
+          answer: undefined,
         },
         q12: {
-          id: 12,
-          rating: undefined,
+          id: this.survey_questions[11].id,
+          answer: undefined,
         },
         q13: {
-          id: 13,
-          rating: undefined,
+          id: this.survey_questions[12].id,
+          answer: undefined,
         },
         q14: {
-          id: 14,
-          rating: undefined,
+          id: this.survey_questions[13].id,
+          answer: undefined,
         },
         doctor: {
           id: this.hospital_staffs[0].id,
@@ -2948,28 +3003,51 @@ export default {
           id: this.hospital_staffs[13].id,
           rating: undefined,
         },
-        opt_q_1: {
-          survey_question_id: this.survey_opt_questions[0].id,
-          comment: '',
+        q15: {
+          id: this.survey_questions[14].id,
+          answer: undefined,
         },
-        opt_q_2: {
-          survey_question_id: this.survey_opt_questions[1].id,
-          comment: '',
+        q16: {
+          id: this.survey_questions[15].id,
+          answer: undefined,
         },
-        opt_q_3: {
-          survey_question_id: this.survey_opt_questions[2].id,
-          comment: '',
+        q17: {
+          id: this.survey_questions[16].id,
+          answer: undefined,
         },
-        opt_q_4: {
-          survey_question_id: this.survey_opt_questions[3].id,
-          comment: '',
-          why: '',
+        q18: {
+          id: this.survey_questions[17].id,
+          answer: undefined,
         },
       }),
     };
   },
   mounted() {
     // console.log(this.survey_questions);
+  },
+  methods: {
+    submit() {
+      this.form.post(route('eng.store'), {
+        onSuccess: () => {
+          this.isLoading = true;
+          this.form.reset();
+          this.createdMsg();
+        },
+        onError: (errors) => {
+          this.errorExistsMsg();
+        },
+      });
+    },
+    createdMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'Survey saved.';
+    },
+    errorExistsMsg() {
+      this.snack = true;
+      this.snackColor = 'color_error';
+      this.snackText = 'Failed to save survey, please answer the required questions.';
+    },
   },
   watch: {
     'form.age': function (val) {
@@ -3033,113 +3111,6 @@ export default {
         this.form.cc2 = null; // N/A
         this.form.cc3 = null; // N/A
       }
-    },
-    // partA1: function (val) {
-    //   if (this.partA1 == false) {
-    //     this.form.q4.rating = undefined;
-    //     this.form.q5.rating = undefined;
-    //     this.form.q6.rating = undefined;
-    //     this.form.q7.rating = undefined;
-    //     this.form.q8.rating = undefined;
-    //     this.form.q9.rating = undefined;
-    //   }
-    // },
-    'form.doctor.rating': function (val) {
-      if (this.form.doctor.rating == 0) {
-        this.form.doctor.comment = '';
-      }
-    },
-    'form.nurse.rating': function (val) {
-      if (this.form.nurse.rating == 0) {
-        this.form.nurse.comment = '';
-      }
-    },
-    'form.midwife.rating': function (val) {
-      if (this.form.midwife.rating == 0) {
-        this.form.midwife.comment = '';
-      }
-    },
-    'form.security.rating': function (val) {
-      if (this.form.security.rating == 0) {
-        this.form.security.comment = '';
-      }
-    },
-    'form.radiology.rating': function (val) {
-      if (this.form.radiology.rating == 0) {
-        this.form.radiology.comment = '';
-      }
-    },
-    'form.pharmacy.rating': function (val) {
-      if (this.form.pharmacy.rating == 0) {
-        this.form.pharmacy.comment = '';
-      }
-    },
-    'form.laboratory.rating': function (val) {
-      if (this.form.laboratory.rating == 0) {
-        this.form.laboratory.comment = '';
-      }
-    },
-    'form.admitting_staff.rating': function (val) {
-      if (this.form.admitting_staff.rating == 0) {
-        this.form.admitting_staff.comment = '';
-      }
-    },
-    'form.medical_records.rating': function (val) {
-      if (this.form.medical_records.rating == 0) {
-        this.form.medical_records.comment = '';
-      }
-    },
-    'form.billing.rating': function (val) {
-      if (this.form.billing.rating == 0) {
-        this.form.billing.comment = '';
-      }
-    },
-    'form.cashier.rating': function (val) {
-      if (this.form.cashier.rating == 0) {
-        this.form.cashier.comment = '';
-      }
-    },
-    'form.social_worker.rating': function (val) {
-      if (this.form.social_worker.rating == 0) {
-        this.form.social_worker.comment = '';
-      }
-    },
-    'form.food_server.rating': function (val) {
-      if (this.form.food_server.rating == 0) {
-        this.form.food_server.comment = '';
-      }
-    },
-    'form.janitors_orderly.rating': function (val) {
-      if (this.form.janitors_orderly.rating == 0) {
-        this.form.janitors_orderly.comment = '';
-      }
-    },
-  },
-  methods: {
-    submit() {
-      this.form.post(route('eng.store'), {
-        onSuccess: () => {
-          this.isLoading = true;
-          this.form.reset();
-          this.enableRespondent = false;
-          this.enableOtherDepartment = false;
-          this.partA1 = false;
-          this.createdMsg();
-        },
-        onError: (errors) => {
-          this.errorExistsMsg();
-        },
-      });
-    },
-    createdMsg() {
-      this.snack = true;
-      this.snackColor = 'color_primary';
-      this.snackText = 'Survey saved.';
-    },
-    errorExistsMsg() {
-      this.snack = true;
-      this.snackColor = 'color_error';
-      this.snackText = 'Failed to save survey, please answer the required questions.';
     },
   },
 };

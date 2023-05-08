@@ -27,7 +27,7 @@ class TagalogController extends Controller
     {
         $hospital_staffs = HospitalStaff::all('id', 'type');
 
-        $survey_questions = SurveyQuestions::all('id', 'desc');
+        // $survey_questions = SurveyQuestions::all('id', 'desc');
 
         $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
@@ -69,7 +69,7 @@ class TagalogController extends Controller
             'Survey/Tagalog/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
-                'survey_questions' => $survey_questions,
+                // 'survey_questions' => $survey_questions,
                 'survey_opt_questions' => $survey_opt_questions,
                 'er_inpatient' => $er_inpatient,
                 'outpatient_depts' => $outpatient_depts,

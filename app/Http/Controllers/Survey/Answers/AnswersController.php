@@ -66,11 +66,11 @@ class AnswersController extends Controller
                     $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
                 }
             )
-            ->WhereHas('departmentsVisited', function ($query) use ($request) {
-                $query->when($request->department, function ($query) use ($request) {
-                    return $query->where('department_id', '=', $request->department);
-                });
-            })
+            // ->WhereHas('departmentsVisited', function ($query) use ($request) {
+            //     $query->when($request->department, function ($query) use ($request) {
+            //         return $query->where('department_id', '=', $request->department);
+            //     });
+            // })
             ->when(
                 $request->sex,
                 function ($query, $value) {

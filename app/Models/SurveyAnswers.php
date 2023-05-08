@@ -19,7 +19,7 @@ class SurveyAnswers extends Model
         'id',
         'pss_id',
         'survey_question_id',
-        'rating',
+        'answer',
     ];
 
     // protected $casts = [
