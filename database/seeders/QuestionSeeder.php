@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\SurveyQuestions;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class QuestionSeeder extends Seeder
 {
@@ -15,6 +16,8 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('survey_questions')->truncate();
+
         $survey_questions = [
             [
                 'desc' => 'The waiting areas were clean, orderly, and comfortable.',
@@ -83,6 +86,21 @@ class QuestionSeeder extends Seeder
             ],
             [
                 'desc' => 'I am satisfied with the service that I availed.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'desc' => 'I am satisfied with the service that I availed.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'desc' => 'Suggestions on how we can further improve our services (optional).',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'desc' => 'If applicable, please the name of any remarkable hospital staff you would like to commend, as well as your reason.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

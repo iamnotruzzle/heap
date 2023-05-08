@@ -795,7 +795,7 @@
                       <span class="text-h6-edited mx-2">A. Infrastructure and Process</span>
                     </div>
 
-                    <!-- q1 -->
+                    <!-- q1 The waiting areas were clean, orderly, and comfortable. -->
                     <div>
                       <p
                         v-if="form.errors[`q1.rating`]"
@@ -855,7 +855,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q2 -->
+                    <!-- q2 The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.-->
                     <div>
                       <p
                         v-if="form.errors[`q2.rating`]"
@@ -915,7 +915,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q3 -->
+                    <!-- q3 The patients' rooms were kept clean, tidy, and comfortable.-->
                     <div>
                       <p
                         v-if="form.errors[`q3.rating`]"
@@ -975,7 +975,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q4 -->
+                    <!-- q4 The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).-->
                     <div>
                       <p
                         v-if="form.errors[`q4.rating`]"
@@ -1035,7 +1035,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q5 -->
+                    <!-- q5 The office followed the transaction’s requirements and steps based on the information provided.(SQD2).-->
                     <div>
                       <p
                         v-if="form.errors[`q5.rating`]"
@@ -1095,7 +1095,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q6 -->
+                    <!-- q6 I easily found information about my transaction from the office or its website.(SQD4).-->
                     <div>
                       <p
                         v-if="form.errors[`q6.rating`]"
@@ -1155,7 +1155,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q7 -->
+                    <!-- q7 I spent a reasonable amount of time for my transaction.(SQD1).-->
                     <div>
                       <p
                         v-if="form.errors[`q7.rating`]"
@@ -1221,7 +1221,7 @@
                       <span class="text-h6-edited mx-2">B. Client Engagement and Empowerment</span>
                     </div>
 
-                    <!-- q8 -->
+                    <!-- q8 The medical condition, procedures and instructions were discussed clearly.-->
                     <div>
                       <p
                         v-if="form.errors[`q8.rating`]"
@@ -1281,7 +1281,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q9 -->
+                    <!-- q9 Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.-->
                     <div>
                       <p
                         v-if="form.errors[`q9.rating`]"
@@ -1341,7 +1341,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q10 -->
+                    <!-- q10 We were given the chance to decide which treatment procedure shall be performed.-->
                     <div>
                       <p
                         v-if="form.errors[`q10.rating`]"
@@ -1405,7 +1405,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q11 -->
+                    <!-- q11 I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)-->
                     <div>
                       <p
                         v-if="form.errors[`q11.rating`]"
@@ -1469,7 +1469,7 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q12 -->
+                    <!-- q12 I paid a reasonable amount of fees for my transaction.(SQD5)-->
                     <div>
                       <p
                         v-if="form.errors[`q12.rating`]"
@@ -1540,11 +1540,10 @@
                       <span class="text-h6-edited mx-2"> C. Culture of Responsiveness </span>
                     </div>
 
-                    <!-- survey staff -->
+                    <!-- staff survey -->
                     <div>
                       <p class="my-2 font-weight-black">
-                        13. I was treated courteously by the staff, and (if asked for help) the staff was helpful.
-                        (SQD7)
+                        I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
                       </p>
 
                       <p
@@ -1614,13 +1613,13 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q13 -->
+                    <!-- q13 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
                     <div>
                       <p
                         v-if="form.errors[`q13.rating`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        14. {{ survey_questions[12].desc }}
+                        13. {{ survey_questions[12].desc }}
                       </p>
                       <p
                         v-else
@@ -1676,19 +1675,19 @@
                       </v-btn-toggle>
                     </div>
 
-                    <!-- q14 -->
+                    <!-- q14 I am satisfied with the service that I availed.-->
                     <div class="my-4">
                       <p
                         v-if="form.errors[`q14.rating`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        15. {{ survey_questions[13].desc }}
+                        14. {{ survey_questions[13].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        15. {{ survey_questions[13].desc }}
+                        14. {{ survey_questions[13].desc }}
                       </p>
 
                       <v-btn-toggle
