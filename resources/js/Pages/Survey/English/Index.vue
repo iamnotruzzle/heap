@@ -439,7 +439,7 @@
 
                   <v-col cols="12">
                     <div
-                      v-if="form.errors.serviceAvailed || form.errors.otherServiceAvailed"
+                      v-if="form.errors.serviceAvailed"
                       class="red--text mx-2"
                     >
                       <p>Service Availed:</p>
@@ -542,13 +542,8 @@
                         ></v-checkbox>
 
                         <div class="d-flex flex-row mx-2 mt-1">
-                          <v-checkbox
-                            v-model="enableServiceAvailed"
-                            dense
-                          ></v-checkbox>
                           <v-text-field
                             v-model="form.otherServiceAvailed"
-                            :disabled="!enableServiceAvailed"
                             label="Others (Specify)"
                             dense
                           ></v-text-field>
@@ -2830,7 +2825,6 @@ export default {
       snackColor: '',
       snackText: '',
       enableRespondent: false,
-      enableServiceAvailed: false,
       isLoading: false,
       //   educational attainment enable checker
       enableElementary: false,
@@ -2878,7 +2872,7 @@ export default {
       form: this.$inertia.form({
         respondent: '',
         pointOfEntry: '',
-        serviceAvailed: '',
+        serviceAvailed: [],
         otherServiceAvailed: '',
         frequentlyVisit: '',
         age: null,
@@ -2886,8 +2880,6 @@ export default {
         religion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
-        departments: [],
-        visited_before: '',
         cc1: null,
         cc2: null,
         cc3: null,
@@ -3088,17 +3080,6 @@ export default {
         this.enableNoEduc = true;
       } else {
         this.enableNoEduc = false;
-      }
-    },
-    'form.serviceAvailed': function (val) {
-      if (this.form.serviceAvailed != '') {
-        this.form.otherServiceAvailed = '';
-        this.enableServiceAvailed = false;
-      }
-    },
-    enableServiceAvailed: function (val) {
-      if (this.enableServiceAvailed == true) {
-        this.form.serviceAvailed = '';
       }
     },
     'form.cc1': function (val) {

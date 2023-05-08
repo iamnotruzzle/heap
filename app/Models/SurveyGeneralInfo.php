@@ -19,13 +19,16 @@ class SurveyGeneralInfo extends Model
         'id',
         'pss_id',
         'respondent',
-        'educational_attainment',
         'age',
         'sex',
         'religion',
+        'educational_attainment',
         'date_of_visit',
-        'department_visited',
-        'visited_before',
+        'pointOfEntry',
+        'frequentlyVisit',
+        'cc1',
+        'cc2',
+        'cc3',
         'ward'
     ];
 

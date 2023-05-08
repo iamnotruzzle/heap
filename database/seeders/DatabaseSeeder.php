@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             RoleAndPermissionSeeder::class,
             HospitalStaffSeeder::class,
             SurveyEnglishQuestionsSeeder::class,
-            OptQuestionSeeder::class,
             DepartmentsSeeder::class,
         ]);
     }
