@@ -1541,11 +1541,12 @@
                     </div>
 
                     <!-- staff survey -->
-                    <div>
-                      <p class="my-2 font-weight-black">
-                        I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
-                      </p>
+                    <h3 class="my-2 font-weight-black">
+                      I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
+                    </h3>
 
+                    <!-- doctor -->
+                    <div>
                       <p
                         v-if="form.errors[`doctor.rating`]"
                         class="ma-0 font-weight-black red--text"
@@ -1611,6 +1612,901 @@
                       </v-btn-toggle>
                     </div>
 
+                    <!-- nurse -->
+                    <div>
+                      <p
+                        v-if="form.errors[`nurse.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Nurse
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Nurse
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.nurse.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.nurse.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.nurse.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.nurse.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.nurse.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.nurse.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- midwife -->
+                    <div>
+                      <p
+                        v-if="form.errors[`midwife.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Midwife
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Midwife
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.midwife.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.midwife.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.midwife.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.midwife.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.midwife.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.midwife.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- security -->
+                    <div>
+                      <p
+                        v-if="form.errors[`security.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Security
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Security
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.security.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.security.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.security.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.security.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.security.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.security.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- radiology -->
+                    <div>
+                      <p
+                        v-if="form.errors[`radiology.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Radiology
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Radiology
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.radiology.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.radiology.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.radiology.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.radiology.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.radiology.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.radiology.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- pharmacy -->
+                    <div>
+                      <p
+                        v-if="form.errors[`pharmacy.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Pharmacy
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Pharmacy
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.pharmacy.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.pharmacy.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.pharmacy.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.pharmacy.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.pharmacy.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.pharmacy.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- laboratory -->
+                    <div>
+                      <p
+                        v-if="form.errors[`laboratory.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Laboratory
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Laboratory
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.laboratory.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.laboratory.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.laboratory.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.laboratory.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.laboratory.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.laboratory.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- admitting_staff -->
+                    <div>
+                      <p
+                        v-if="form.errors[`admitting_staff.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Admitting staff
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Admitting staff
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.admitting_staff.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.admitting_staff.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.admitting_staff.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.admitting_staff.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.admitting_staff.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.admitting_staff.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- medical_records -->
+                    <div>
+                      <p
+                        v-if="form.errors[`medical_records.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Medical records
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Medical records
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.medical_records.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.medical_records.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.medical_records.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.medical_records.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.medical_records.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.medical_records.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- billing -->
+                    <div>
+                      <p
+                        v-if="form.errors[`billing.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Billing
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Billing
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.billing.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.billing.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.billing.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.billing.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.billing.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.billing.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- cashier -->
+                    <div>
+                      <p
+                        v-if="form.errors[`cashier.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Cashier
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Cashier
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.cashier.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.cashier.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.cashier.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.cashier.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.cashier.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.cashier.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- social_worker -->
+                    <div>
+                      <p
+                        v-if="form.errors[`social_worker.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Social worker
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Social worker
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.social_worker.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.social_worker.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.social_worker.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.social_worker.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.social_worker.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.social_worker.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- food_server -->
+                    <div>
+                      <p
+                        v-if="form.errors[`food_server.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Food server
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Food server
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.food_server.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.food_server.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.food_server.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.food_server.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.food_server.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.food_server.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- janitors_orderly -->
+                    <div>
+                      <p
+                        v-if="form.errors[`janitors_orderly.rating`]"
+                        class="ma-0 font-weight-black red--text"
+                      >
+                        Janitors / Orderly
+                      </p>
+                      <p
+                        v-else
+                        class="ma-0 font-weight-black"
+                      >
+                        Janitors / Orderly
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.janitors_orderly.rating"
+                        dense
+                        class="pb-2"
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.janitors_orderly.rating == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.janitors_orderly.rating == 4 ? 'white' : 'black'"
+                            >mdi-emoticon-happy-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.janitors_orderly.rating == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.janitors_orderly.rating == 2 ? 'white' : 'black'"
+                            >mdi-emoticon-sad-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.janitors_orderly.rating == 1 ? 'white' : 'black'"
+                            >mdi-emoticon-angry-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
                     <div class="my-4"></div>
 
                     <!-- q13 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
@@ -1625,7 +2521,7 @@
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        14. {{ survey_questions[12].desc }}
+                        13. {{ survey_questions[12].desc }}
                       </p>
 
                       <v-btn-toggle
@@ -1999,72 +2895,58 @@ export default {
         doctor: {
           id: this.hospital_staffs[0].id,
           rating: null,
-          comment: '',
         },
         nurse: {
           id: this.hospital_staffs[1].id,
           rating: undefined,
-          comment: '',
         },
         midwife: {
           id: this.hospital_staffs[2].id,
           rating: undefined,
-          comment: '',
         },
         security: {
           id: this.hospital_staffs[3].id,
           rating: undefined,
-          comment: '',
         },
         radiology: {
           id: this.hospital_staffs[4].id,
           rating: undefined,
-          comment: '',
         },
         pharmacy: {
           id: this.hospital_staffs[5].id,
           rating: undefined,
-          comment: '',
         },
         laboratory: {
           id: this.hospital_staffs[6].id,
           rating: undefined,
-          comment: '',
         },
         admitting_staff: {
           id: this.hospital_staffs[7].id,
           rating: undefined,
-          comment: '',
         },
         medical_records: {
           id: this.hospital_staffs[8].id,
           rating: undefined,
-          comment: '',
         },
         billing: {
           id: this.hospital_staffs[9].id,
           rating: undefined,
-          comment: '',
         },
         cashier: {
           id: this.hospital_staffs[10].id,
           rating: undefined,
-          comment: '',
         },
         social_worker: {
           id: this.hospital_staffs[11].id,
           rating: undefined,
-          comment: '',
         },
         food_server: {
           id: this.hospital_staffs[12].id,
           rating: undefined,
-          comment: '',
         },
         janitors_orderly: {
           id: this.hospital_staffs[13].id,
           rating: undefined,
-          comment: '',
         },
         opt_q_1: {
           survey_question_id: this.survey_opt_questions[0].id,
