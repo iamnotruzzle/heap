@@ -3051,12 +3051,12 @@ export default {
         // Suggestions on how we can further improve our services? (Optional)
         q15: {
           id: this.survey_questions[14].id,
-          answer: undefined,
+          answer: null,
         },
         // If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason.
         q16: {
           id: this.survey_questions[15].id,
-          answer: undefined,
+          answer: null,
         },
         // HOSPITAL NUMBER
         q17: {

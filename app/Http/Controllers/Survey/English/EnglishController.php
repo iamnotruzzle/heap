@@ -77,6 +77,8 @@ class EnglishController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->q15);
+
         $authUsername = Auth::user()->username;
 
         // get hospital number
@@ -272,7 +274,6 @@ class EnglishController extends Controller
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
-                        // fixing
                         [
                             'pss_id' => $pss_id,
                             'survey_question_id' => $request->q15['id'],
@@ -287,7 +288,6 @@ class EnglishController extends Controller
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
-                        // end fixing
                         [
                             'pss_id' => $pss_id,
                             'survey_question_id' => $request->q17['id'],
