@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Survey\Answers;
 
 use App\Http\Controllers\Controller;
 use App\Models\DeleteRequest;
-use App\Models\Department;
 use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +53,12 @@ class AnswersController extends Controller
                     $query->where('sex', $value);
                 }
             )
+            ->when(
+                $request->search,
+                function ($query, $value) {
+                    $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                }
+            )
             ->orderBy('created_at', 'desc')
             ->paginate($request->page_size ?? 15);
 
@@ -88,7 +93,6 @@ class AnswersController extends Controller
         DB::table('survey_general_info')->where('pss_id', $id)->delete();
         DB::table('survey_answers')->where('pss_id', $id)->delete();
         DB::table('survey_abt_staff')->where('pss_id', $id)->delete();
-        DB::table('survey_opt_answers')->where('pss_id', $id)->delete();
         DB::table('delete_request')->where('pss_id', $id)->delete();
 
         // return Redirect::route('answers.index');

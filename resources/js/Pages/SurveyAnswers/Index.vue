@@ -95,19 +95,6 @@
                         outlined
                       ></v-select>
 
-                      <v-select
-                        :items="departments"
-                        v-model="department"
-                        clearable
-                        item-value="id"
-                        item-text="name"
-                        label="Department visited"
-                        color="color_primary"
-                        class="ma-0 pa-0"
-                        dense
-                        outlined
-                      ></v-select>
-
                       <v-text-field
                         v-model="from"
                         clearable
@@ -168,11 +155,6 @@
         >
           <template #item.date_of_visit="{ item }">
             <span class="text-no-wrap">{{ tzone2(item.date_of_visit) }}</span>
-          </template>
-
-          <!-- departments -->
-          <template #item.departments_visited="{ item }">
-            <span v-for="dv in item.departments_visited"> {{ dv.departments[0].name }}, </span>
           </template>
 
           <!-- previous_visit -->
@@ -272,18 +254,13 @@
             <span>{{ item.survey_answers[15].answer }}</span>
           </template>
 
-          <!-- Q17/HOSPITAL # -->
+          <!-- Q17/PSS RATING -->
           <template #item.q17="{ item }">
-            <span>{{ item.survey_answers[16].answer }}</span>
-          </template>
-
-          <!-- Q18/PSS RATING -->
-          <template #item.q18="{ item }">
             <span
-              v-if="item.survey_answers[17].answer <= 2"
+              v-if="item.survey_answers[16].answer <= 2"
               class="red--text"
             >
-              {{ item.survey_answers[17].answer }}
+              {{ item.survey_answers[16].answer }}
             </span>
             <span
               v-else-if="item.survey_answers[17].answer == 3"
@@ -805,7 +782,6 @@ export default {
   },
   props: {
     surveyAnswers: Object,
-    departments: Array,
     delete_requests: Object,
   },
   data() {
@@ -831,7 +807,6 @@ export default {
       // end filter menu
 
       // excel
-      departments_visited: [],
       json_data: [],
       // end excel
 
@@ -923,6 +898,13 @@ export default {
           text: 'VISIT PER YEAR',
           align: 'start',
           value: 'frequently_visit',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Hosp. #',
+          align: 'start',
+          value: 'hospital_number',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1060,14 +1042,7 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'Q17/H. #',
-          align: 'start',
-          value: 'q17',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q18/PSS RATING',
+          text: 'Q17/PSS RATING',
           align: 'start',
           value: 'q18',
           sortable: false,
@@ -1232,7 +1207,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.surveyAnswers);
+    // console.log(this.surveyAnswers);
     // console.log(this.departments);
     // console.log(this.delete_requests);
     this.processJsonData();
@@ -1270,6 +1245,7 @@ export default {
           'POINT OF ENTRY': e.point_of_entry,
           'SERVICES AVAILED': e.service_availed,
           'VISIT PER YEAR': e.frequently_visit,
+          'HOSPITAL #': e.hospital_number,
           // general info
           Q1: e.survey_answers[0].answer,
           Q2: e.survey_answers[1].answer,
@@ -1287,8 +1263,7 @@ export default {
           Q14: e.survey_answers[13].answer,
           Q15: e.survey_answers[14].answer,
           Q16: e.survey_answers[15].answer,
-          'Q17/HOSP #': e.survey_answers[16].answer,
-          'Q18/PSS RATING': e.survey_answers[17].answer,
+          'Q17/PSS RATING': e.survey_answers[16].answer,
           // about staff
           DOCTOR: e.survey_abt_staffs[0].rating, // doctor
           NURSE: e.survey_abt_staffs[1].rating, // nurse
@@ -1436,14 +1411,6 @@ export default {
         this.params.education = '';
       } else {
         this.params.education = val;
-      }
-      this.updateData();
-    },
-    department: function (val) {
-      if (val == 0 || val == null) {
-        this.params.department = '';
-      } else {
-        this.params.department = val;
       }
       this.updateData();
     },

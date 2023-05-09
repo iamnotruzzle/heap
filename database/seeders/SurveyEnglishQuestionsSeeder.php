@@ -100,11 +100,6 @@ class SurveyEnglishQuestionsSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'HOSPITAL NUMBER',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
                 'desc' => 'How would you rate our Computer assisted satisfaction survey?',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

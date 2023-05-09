@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Survey\English;
 
 use App\Http\Controllers\Controller;
-use App\Models\Department;
 use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
@@ -26,51 +25,11 @@ class EnglishController extends Controller
 
         $survey_questions = SurveyEnglishQuestions::all('id', 'desc');
 
-        // $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
-
-        // er and inpatient/wards
-        $er_inpatient = Department::orderBy('name')
-            ->where('id', 12)
-            ->orWhere('id', 13)
-            ->get(['id', 'name']);
-
-        $outpatient_depts = Department::orderBy('name')
-            ->where('id', '!=', 12)
-            ->where('id', '!=', 13)
-            ->where('id', '!=', 14)
-            ->where('id', '!=', 15)
-            ->where('id', '!=', 16)
-            ->where('id', '!=', 17)
-            ->where('id', '!=', 18)
-            ->where('id', '!=', 19)
-            ->get(['id', 'name']);
-
-        // other depts
-        $other_depts = Department::orderBy('name')
-            ->where('id', '!=', 1)
-            ->where('id', '!=', 2)
-            ->where('id', '!=', 3)
-            ->where('id', '!=', 4)
-            ->where('id', '!=', 5)
-            ->where('id', '!=', 6)
-            ->where('id', '!=', 7)
-            ->where('id', '!=', 8)
-            ->where('id', '!=', 9)
-            ->where('id', '!=', 10)
-            ->where('id', '!=', 11)
-            ->where('id', '!=', 12)
-            ->where('id', '!=', 13)
-            ->get(['id', 'name']);
-
         return Inertia::render(
             'Survey/English/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,
-                // 'survey_opt_questions' => $survey_opt_questions,
-                'er_inpatient' => $er_inpatient,
-                'outpatient_depts' => $outpatient_depts,
-                'other_depts' => $other_depts,
             ]
         );
     }
@@ -95,13 +54,13 @@ class EnglishController extends Controller
         $authUsername = Auth::user()->username;
 
         // get hospital number
-        $hospital_number = HospitalNumber::where('hpercode', $request->q17['answer'])
+        $hospital_number = HospitalNumber::where('hpercode', $request->hospital_number)
             // ->where('encstat', 'a')
             ->first();
 
         // check if record already exist today with the
         // hospital number recorded
-        $record_exist = SurveyRespondents::where('hpercode', $request->q17['answer'])
+        $record_exist = SurveyRespondents::where('hpercode', $request->hospital_number)
             ->whereDate('created_at', Carbon::now())
             ->first();
 
@@ -124,6 +83,7 @@ class EnglishController extends Controller
                     'cc1' => 'required',
                     'cc2' => 'required',
                     'cc3' => 'required',
+                    'hospital_number' => 'required',
                     'q1.answer' => 'required',
                     'q2.answer' => 'required',
                     'q3.answer' => 'required',
@@ -141,7 +101,6 @@ class EnglishController extends Controller
                     // 'q15.answer' => 'required',
                     // 'q16.answer' => 'required',
                     'q17.answer' => 'required',
-                    'q18.answer' => 'required',
                     'doctor.rating' => 'required',
                     'nurse.rating' => 'required',
                     'midwife.rating' => 'required',
@@ -181,6 +140,8 @@ class EnglishController extends Controller
                     'cc1' => $request->cc1,
                     'cc2' => $request->cc2,
                     'cc3' => $request->cc3,
+                    'cc3' => $request->cc3,
+                    'hospital_number' => $request->hospital_number,
                     'ward' => $authUsername,
                 ]);
 
@@ -306,13 +267,6 @@ class EnglishController extends Controller
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
-                        [
-                            'pss_id' => $pss_id,
-                            'survey_question_id' => $request->q18['id'],
-                            'answer' => (string)$request->q18['answer'],
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now(),
-                        ],
                     ]
                 );
 
@@ -419,7 +373,7 @@ class EnglishController extends Controller
 
                 $survey_respondents = SurveyRespondents::insert([
                     [
-                        'hpercode' => $request->q17['answer'],
+                        'hpercode' => $request->hospital_number,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],

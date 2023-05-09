@@ -2716,15 +2716,15 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <!-- q17 HOSPITAL NUMBER-->
+                    <!-- HOSPITAL NUMBER-->
                     <label for="hospital_number">
                       <span class="font-weight-black ma-0">
-                        {{ survey_questions[16].desc }} <span class="red--text">(Required)</span>
+                        HOSPITAL NUMBER <span class="red--text">(Required)</span>
                       </span>
                     </label>
                     <v-text-field
                       id="hospital_number"
-                      v-model="form.q17.answer"
+                      v-model="form.hospital_number"
                       hide-details
                       dense
                       outlined
@@ -2736,27 +2736,27 @@
                       {{ $page.props.errors[0] }}
                     </div>
 
-                    <!-- q18 How would you rate our Computer assisted satisfaction survey?-->
+                    <!-- q17 How would you rate our Computer assisted satisfaction survey?-->
                     <div class="mt-6">
-                      <label for="q18">
+                      <label for="q17">
                         <span class="font-weight-black ma-0">
                           <p
-                            v-if="form.errors[`q18.answer`]"
+                            v-if="form.errors[`q17.answer`]"
                             class="font-weight-black ma-0 red--text"
                           >
-                            {{ survey_questions[17].desc }}
+                            {{ survey_questions[16].desc }}
                           </p>
                           <p
                             v-else
                             class="font-weight-black ma-0"
                           >
-                            {{ survey_questions[17].desc }}
+                            {{ survey_questions[16].desc }}
                           </p>
                         </span>
                       </label>
                       <v-rating
-                        id="q18"
-                        v-model="form.q18.answer"
+                        id="q17"
+                        v-model="form.q17.answer"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
                         color="orange"
@@ -2850,9 +2850,9 @@ export default {
     hospital_staffs: Array,
     survey_questions: Array,
     survey_opt_questions: Array,
-    er_inpatient: Array,
-    outpatient_depts: Array,
-    other_depts: Array,
+    // er_inpatient: Array,
+    // outpatient_depts: Array,
+    // other_depts: Array,
   },
   remember: 'form',
   data() {
@@ -2922,6 +2922,7 @@ export default {
         cc1: null,
         cc2: null,
         cc3: null,
+        hospital_number: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
           id: this.survey_questions[0].id,
@@ -3058,15 +3059,9 @@ export default {
           id: this.survey_questions[15].id,
           answer: null,
         },
-        // HOSPITAL NUMBER
+        // How would you rate our Computer assisted satisfaction survey?
         q17: {
           id: this.survey_questions[16].id,
-          //   answer: undefined,
-          answer: 315143,
-        },
-        // How would you rate our Computer assisted satisfaction survey?
-        q18: {
-          id: this.survey_questions[17].id,
           answer: undefined,
         },
       }),
