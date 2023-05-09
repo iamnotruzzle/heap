@@ -16,32 +16,14 @@ class AnswersController extends Controller
     public function index(Request $request)
     {
         $searchString = $request->search;
-        $searchDepartment = $request->department;
-
-        $departments = Department::orderBy('name')->get();
 
         $surveyAnswers = SurveyGeneralInfo::with(
-            'departmentsVisited',
-            'departmentsVisited.departments',
             'surveyAnswers',
-            'surveyAbtStaffs.hospitalStaffs',
-            'surveyOptAnswers',
+            'surveyAbtStaffs'
         )
             ->when($request->sort_by, function ($query, $value) {
                 $query->orderBy($value, request('order_by', 'asc'));
             })
-            ->when(
-                $request->search,
-                function ($query, $value) use ($request) {
-                    $query->where('pss_id', 'LIKE', '%' . $value . '%')
-                        ->orWhereHas(
-                            'surveyOptAnswers',
-                            function ($q) use ($request) {
-                                $q->where('comment', 'LIKE', '%' . $request->search . '%');
-                            }
-                        );
-                }
-            )
             ->when(
                 $request->sex,
                 function ($query, $value) {
@@ -66,11 +48,6 @@ class AnswersController extends Controller
                     $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
                 }
             )
-            // ->WhereHas('departmentsVisited', function ($query) use ($request) {
-            //     $query->when($request->department, function ($query) use ($request) {
-            //         return $query->where('department_id', '=', $request->department);
-            //     });
-            // })
             ->when(
                 $request->sex,
                 function ($query, $value) {
@@ -88,7 +65,6 @@ class AnswersController extends Controller
             'SurveyAnswers/Index',
             [
                 'surveyAnswers' => $surveyAnswers,
-                'departments' => $departments,
                 'delete_requests' => $delete_requests,
             ]
         );

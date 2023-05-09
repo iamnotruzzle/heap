@@ -194,98 +194,108 @@
 
           <!-- Q1 -->
           <template #item.q1="{ item }">
-            <span>{{ item.survey_answers[0].rating }}</span>
+            <span>{{ item.survey_answers[0].answer }}</span>
           </template>
 
           <!-- Q2 -->
           <template #item.q2="{ item }">
-            <span>{{ item.survey_answers[1].rating }}</span>
+            <span>{{ item.survey_answers[1].answer }}</span>
           </template>
 
           <!-- Q3 -->
           <template #item.q3="{ item }">
-            <span>{{ item.survey_answers[2].rating }}</span>
+            <span>{{ item.survey_answers[2].answer }}</span>
           </template>
 
           <!-- Q4 -->
           <template #item.q4="{ item }">
-            <span>{{ item.survey_answers[3].rating }}</span>
+            <span>{{ item.survey_answers[3].answer }}</span>
           </template>
 
           <!-- Q5 -->
           <template #item.q5="{ item }">
-            <span>{{ item.survey_answers[4].rating }}</span>
+            <span>{{ item.survey_answers[4].answer }}</span>
           </template>
 
           <!-- Q6 -->
           <template #item.q6="{ item }">
-            <span>{{ item.survey_answers[5].rating }}</span>
+            <span>{{ item.survey_answers[5].answer }}</span>
           </template>
 
           <!-- Q7 -->
           <template #item.q7="{ item }">
-            <span>{{ item.survey_answers[6].rating }}</span>
+            <span>{{ item.survey_answers[6].answer }}</span>
           </template>
 
           <!-- Q8 -->
           <template #item.q8="{ item }">
-            <span>{{ item.survey_answers[7].rating }}</span>
+            <span>{{ item.survey_answers[7].answer }}</span>
           </template>
 
           <!-- Q9 -->
           <template #item.q9="{ item }">
-            <span>{{ item.survey_answers[8].rating }}</span>
+            <span>{{ item.survey_answers[8].answer }}</span>
           </template>
 
           <!-- Q10 -->
           <template #item.q10="{ item }">
-            <span>{{ item.survey_answers[9].rating }}</span>
+            <span>{{ item.survey_answers[9].answer }}</span>
           </template>
 
           <!-- Q11 -->
           <template #item.q11="{ item }">
-            <span>{{ item.survey_answers[10].rating }}</span>
+            <span>{{ item.survey_answers[10].answer }}</span>
           </template>
 
           <!-- Q12 -->
           <template #item.q12="{ item }">
-            <span>{{ item.survey_answers[11].rating }}</span>
+            <span>{{ item.survey_answers[11].answer }}</span>
           </template>
 
           <!-- Q13 -->
           <template #item.q13="{ item }">
-            <span>{{ item.survey_answers[12].rating }}</span>
+            <span>{{ item.survey_answers[12].answer }}</span>
           </template>
 
           <!-- Q14 -->
           <template #item.q14="{ item }">
-            <span>{{ item.survey_answers[13].rating }}</span>
+            <span>{{ item.survey_answers[13].answer }}</span>
           </template>
 
           <!-- Q15 -->
           <template #item.q15="{ item }">
-            <span>{{ item.survey_answers[14].rating }}</span>
+            <span>{{ item.survey_answers[14].answer }}</span>
           </template>
 
-          <!-- Q16/RATING -->
+          <!-- Q16 -->
           <template #item.q16="{ item }">
+            <span>{{ item.survey_answers[15].answer }}</span>
+          </template>
+
+          <!-- Q17/HOSPITAL # -->
+          <template #item.q17="{ item }">
+            <span>{{ item.survey_answers[16].answer }}</span>
+          </template>
+
+          <!-- Q18/PSS RATING -->
+          <template #item.q18="{ item }">
             <span
-              v-if="item.survey_answers[15].rating <= 2"
+              v-if="item.survey_answers[17].answer <= 2"
               class="red--text"
             >
-              {{ item.survey_answers[15].rating }}
+              {{ item.survey_answers[17].answer }}
             </span>
             <span
-              v-else-if="item.survey_answers[15].rating == 3"
+              v-else-if="item.survey_answers[17].answer == 3"
               class="amber--text darken-3"
             >
-              {{ item.survey_answers[15].rating }}
+              {{ item.survey_answers[17].answer }}
             </span>
             <span
               v-else
               class="green--text"
             >
-              {{ item.survey_answers[15].rating }}
+              {{ item.survey_answers[17].answer }}
             </span>
           </template>
 
@@ -675,71 +685,6 @@
 
       <div class="my-4"></div>
 
-      <!-- secondary card -->
-      <v-card
-        text
-        :class="{
-          color_main_dark_background: $vuetify.theme.dark,
-        }"
-        elevation="20"
-      >
-        <v-card-title>OPTIONAL</v-card-title>
-
-        <!-- Secondary answers -->
-        <v-data-table
-          fixed-header
-          dense
-          :search="search"
-          :headers="secondary_answers"
-          :items="surveyAnswers.data"
-          :items-per-page="15"
-          :options.sync="options"
-          :server-items-length="surveyAnswers.total"
-          class="elevation-1 row_pointer pt-4"
-          :class="{
-            color_main_dark_background: $vuetify.theme.dark,
-          }"
-        >
-          <!-- optional q1 -->
-          <template #item.optq1="{ item }">
-            <span v-if="item.survey_opt_answers[0].comment == null">NA</span>
-            <span v-else>{{ item.survey_opt_answers[0].comment }}</span>
-          </template>
-
-          <!-- optional q2 -->
-          <template #item.optq2="{ item }">
-            <span v-if="item.survey_opt_answers[1].comment == null">NA</span>
-            <span v-else>{{ item.survey_opt_answers[1].comment }}</span>
-          </template>
-
-          <!-- optional q3 -->
-          <template #item.optq3="{ item }">
-            <span v-if="item.survey_opt_answers[2].comment == null">NA</span>
-            <span v-else>{{ item.survey_opt_answers[2].comment }}</span>
-          </template>
-
-          <!-- optional q4 -->
-          <template #item.optq4="{ item }">
-            <span v-if="item.survey_opt_answers[3].comment.indexOf('1-CA') !== -1">
-              Computer assisted {{ item.survey_opt_answers[3].comment.replace('1-CA', '---') }}
-            </span>
-            <!-- <span v-if="item.survey_opt_answers[3].comment == null">NA</span> -->
-            <span v-else-if="item.survey_opt_answers[3].comment.indexOf('2-PAP') !== -1">
-              Paper & Pen {{ item.survey_opt_answers[3].comment.replace('2-PAP', '---') }}
-            </span>
-            <span v-else>{{ item.survey_opt_answers[3].comment }}</span>
-          </template>
-
-          <template #item.created_at="{ item }">
-            <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
-          </template>
-
-          <!-- pagination -->
-          <template #[`item.index`]="{ index }">
-            {{ (options.page - 1) * options.itemsPerPage + index + 1 }}
-          </template>
-        </v-data-table>
-      </v-card>
       <!-- end data table  -->
 
       <div class="my-4"></div>
@@ -961,16 +906,44 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'DEPARTMENTS/OFFICE VISITED',
+          text: 'POINT OF ENTRY',
           align: 'start',
-          value: 'departments_visited',
+          value: 'point_of_entry',
           sortable: false,
           class: 'color_main_dark_background',
         },
         {
-          text: 'PREVIOUS VISIT',
+          text: 'SERVICES AVAILED',
           align: 'start',
-          value: 'previous_visit',
+          value: 'service_availed',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'VISIT PER YEAR',
+          align: 'start',
+          value: 'frequently_visit',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'CC1',
+          align: 'start',
+          value: 'cc1',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'CC2',
+          align: 'start',
+          value: 'cc2',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'CC3',
+          align: 'start',
+          value: 'cc3',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1080,9 +1053,23 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'Q16/PSS RATING',
+          text: 'Q16',
           align: 'start',
           value: 'q16',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q17/H. #',
+          align: 'start',
+          value: 'q17',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Q18/PSS RATING',
+          align: 'start',
+          value: 'q18',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1207,56 +1194,6 @@ export default {
         },
         { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
-      secondary_answers: [
-        {
-          text: 'PSS ID',
-          value: 'pss_id',
-          align: 'start',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'OPT. Q1',
-          value: 'optq1',
-          align: 'start',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'OPT. Q2',
-          value: 'optq2',
-          align: 'start',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'OPT. Q3/HOSPITAL NUMBER',
-          value: 'optq3',
-          align: 'start',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'OPT. Q4/MODE PREFERENCE',
-          value: 'optq4',
-          align: 'start',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CREATED AT',
-          value: 'created_at',
-          align: 'start',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-      ],
       delete_request_headers: [
         {
           text: 'PSS ID',
@@ -1295,7 +1232,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.surveyAnswers);
+    console.log(this.surveyAnswers);
     // console.log(this.departments);
     // console.log(this.delete_requests);
     this.processJsonData();
@@ -1322,9 +1259,6 @@ export default {
     },
     processJsonData() {
       this.surveyAnswers.data.forEach((e) => {
-        for (let i = 0; i < e.departments_visited.length; i++) {
-          this.departments_visited.push(e.departments_visited[i].departments[0].name);
-        }
         this.json_data.push({
           ID: e.pss_id,
           RESPONDENT: e.respondent,
@@ -1333,61 +1267,45 @@ export default {
           RELIGION: e.religion,
           'LEVEL OF EDUCATION': e.educational_attainment,
           'DATE OF CONSULT/VISIT': this.tzone2(e.date_of_visit),
-          'DEPARTMENT/OFFICE VISITED': this.departments_visited.join(', ').toString(),
-          'PREVIOUS VISIT': e.visited_before == 'y' ? 'YES' : 'NO',
+          'POINT OF ENTRY': e.point_of_entry,
+          'SERVICES AVAILED': e.service_availed,
+          'VISIT PER YEAR': e.frequently_visit,
           // general info
-          Q1: e.survey_answers[0].rating,
-          Q2: e.survey_answers[1].rating,
-          Q3: e.survey_answers[2].rating,
-          Q4: e.survey_answers[3].rating,
-          Q5: e.survey_answers[4].rating,
-          Q6: e.survey_answers[5].rating,
-          Q7: e.survey_answers[6].rating,
-          Q8: e.survey_answers[7].rating,
-          Q9: e.survey_answers[8].rating,
-          Q10: e.survey_answers[9].rating,
-          Q11: e.survey_answers[10].rating,
-          Q12: e.survey_answers[11].rating,
-          Q13: e.survey_answers[12].rating,
-          Q14: e.survey_answers[13].rating,
-          Q15: e.survey_answers[14].rating,
-          'Q16/PSS RATING': e.survey_answers[15].rating,
+          Q1: e.survey_answers[0].answer,
+          Q2: e.survey_answers[1].answer,
+          Q3: e.survey_answers[2].answer,
+          Q4: e.survey_answers[3].answer,
+          Q5: e.survey_answers[4].answer,
+          Q6: e.survey_answers[5].answer,
+          Q7: e.survey_answers[6].answer,
+          Q8: e.survey_answers[7].answer,
+          Q9: e.survey_answers[8].answer,
+          Q10: e.survey_answers[9].answer,
+          Q11: e.survey_answers[10].answer,
+          Q12: e.survey_answers[11].answer,
+          Q13: e.survey_answers[12].answer,
+          Q14: e.survey_answers[13].answer,
+          Q15: e.survey_answers[14].answer,
+          Q16: e.survey_answers[15].answer,
+          'Q17/HOSP #': e.survey_answers[16].answer,
+          'Q18/PSS RATING': e.survey_answers[17].answer,
           // about staff
-          Q17: e.survey_abt_staffs[0].rating,
-          'Q17-1': e.survey_abt_staffs[0].comment,
-          Q18: e.survey_answers[1].rating,
-          'Q18-1': e.survey_abt_staffs[1].comment,
-          Q19: e.survey_answers[2].rating,
-          'Q19-1': e.survey_abt_staffs[2].comment,
-          Q20: e.survey_answers[3].rating,
-          'Q20-1': e.survey_abt_staffs[3].comment,
-          Q21: e.survey_answers[4].rating,
-          'Q21-1': e.survey_abt_staffs[4].comment,
-          Q22: e.survey_answers[5].rating,
-          'Q22-1': e.survey_abt_staffs[5].comment,
-          Q23: e.survey_answers[6].rating,
-          'Q23-1': e.survey_abt_staffs[6].comment,
-          Q24: e.survey_answers[7].rating,
-          'Q24-1': e.survey_abt_staffs[7].comment,
-          Q25: e.survey_answers[8].rating,
-          'Q25-1': e.survey_abt_staffs[8].comment,
-          Q26: e.survey_answers[9].rating,
-          'Q26-1': e.survey_abt_staffs[9].comment,
-          Q27: e.survey_answers[10].rating,
-          'Q27-1': e.survey_abt_staffs[10].comment,
-          Q28: e.survey_answers[11].rating,
-          'Q28-1': e.survey_abt_staffs[11].comment,
-          Q29: e.survey_answers[12].rating,
-          'Q29-1': e.survey_abt_staffs[12].comment,
-          Q30: e.survey_answers[13].rating,
-          'Q30-1': e.survey_abt_staffs[13].comment,
+          DOCTOR: e.survey_abt_staffs[0].rating, // doctor
+          NURSE: e.survey_abt_staffs[1].rating, // nurse
+          MIDWIFE: e.survey_abt_staffs[2].rating, // midwife
+          SECURITY: e.survey_abt_staffs[3].rating, // security
+          RADIOLOGY: e.survey_abt_staffs[4].rating, // radiology
+          PHARMACY: e.survey_abt_staffs[5].rating, // pharmacy
+          'ADMITTING STAFF': e.survey_abt_staffs[6].rating, // admitting staff
+          'MED. RECORDS': e.survey_abt_staffs[7].rating, // medical records
+          BILLING: e.survey_abt_staffs[8].rating, // billing
+          CASHIER: e.survey_abt_staffs[9].rating, // cashier
+          'SOCIAL WORKER': e.survey_abt_staffs[10].rating, // social worker
+          'FOOD SERVER': e.survey_abt_staffs[11].rating, // food server
+          'JANITORS/ORDERLY': e.survey_abt_staffs[12].rating, // janitors/orderly
           WARD: e.ward,
-          'MODE PREFERENCE': e.survey_opt_answers[3].comment.indexOf('1-CA') ? 2 : 1,
-          'MODE PREFERENCE-1': e.survey_opt_answers[3].comment,
           'SUBMITTED AT': this.tzone2(e.created_at),
         });
-
-        this.departments_visited = [];
       });
     },
     clearDateFilter() {

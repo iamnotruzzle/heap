@@ -16,6 +16,8 @@ class HospitalStaffSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('hospital_staff')->truncate();
+
         $hospital_staffs = [
             [
                 'type' => 'Doctor',

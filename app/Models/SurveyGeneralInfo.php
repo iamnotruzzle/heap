@@ -37,11 +37,6 @@ class SurveyGeneralInfo extends Model
     //     'created_at' => 'datetime:m-d-Y',
     // ];
 
-    public function departmentsVisited()
-    {
-        return $this->hasMany(DepartmentsVisited::class, 'pss_id', 'pss_id');
-    }
-
     public function surveyAnswers()
     {
         return $this->hasMany(SurveyAnswers::class, 'pss_id', 'pss_id');
@@ -50,10 +45,5 @@ class SurveyGeneralInfo extends Model
     public function surveyAbtStaffs()
     {
         return $this->hasMany(SurveyAbtStaff::class, 'pss_id', 'pss_id');
-    }
-
-    public function surveyOptAnswers()
-    {
-        return $this->hasMany(SurveyOptAnswers::class, 'pss_id', 'pss_id');
     }
 }
