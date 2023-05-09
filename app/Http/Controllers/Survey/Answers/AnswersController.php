@@ -48,15 +48,9 @@ class AnswersController extends Controller
                 }
             )
             ->when(
-                $request->sex,
-                function ($query, $value) {
-                    $query->where('sex', $value);
-                }
-            )
-            ->when(
                 $request->search,
                 function ($query, $value) {
-                    $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                    $query->where('hospital_number', 'LIKE', '%' . $value . '%');
                 }
             )
             ->orderBy('created_at', 'desc')
@@ -90,6 +84,7 @@ class AnswersController extends Controller
     {
         // dd($id);
 
+        DB::table('survey_respondents')->where('pss_id', $id)->delete();
         DB::table('survey_general_info')->where('pss_id', $id)->delete();
         DB::table('survey_answers')->where('pss_id', $id)->delete();
         DB::table('survey_abt_staff')->where('pss_id', $id)->delete();

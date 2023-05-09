@@ -15,6 +15,7 @@ class CreateSurveyRespondentsTable extends Migration
     {
         Schema::connection('sqlsrv2')->create('survey_respondents', function (Blueprint $table) {
             $table->id();
+            $table->string('pss_id');
             $table->string('hpercode');
             $table->timestamps();
         });

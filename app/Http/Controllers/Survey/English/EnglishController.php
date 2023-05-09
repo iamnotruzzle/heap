@@ -373,6 +373,7 @@ class EnglishController extends Controller
 
                 $survey_respondents = SurveyRespondents::insert([
                     [
+                        'pss_id' => $pss_id,
                         'hpercode' => $request->hospital_number,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
