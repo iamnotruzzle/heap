@@ -20,7 +20,6 @@ class SurveyAbtStaff extends Model
         'pss_id',
         'staff_type',
         'rating',
-        'comment',
     ];
 
     // protected $casts = [

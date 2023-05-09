@@ -2569,7 +2569,7 @@
                     <!-- q14 I am satisfied with the service that I availed.-->
                     <div class="my-4">
                       <p
-                        v-if="form.errors[`q14.rating`]"
+                        v-if="form.errors[`q14.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         14. {{ survey_questions[13].desc }}
@@ -2582,14 +2582,14 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q14.rating"
+                        v-model="form.q14.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q14.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q14.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2597,13 +2597,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q14.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q14.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q14.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q14.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2611,13 +2611,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q14.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q14.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q14.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q14.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2824,7 +2824,6 @@ export default {
       snack: '',
       snackColor: '',
       snackText: '',
-      enableRespondent: false,
       isLoading: false,
       //   educational attainment enable checker
       enableElementary: false,
@@ -2883,58 +2882,72 @@ export default {
         cc1: null,
         cc2: null,
         cc3: null,
+        // The waiting areas were clean, orderly, and comfortable.
         q1: {
           id: this.survey_questions[0].id,
           answer: undefined,
         },
+        // The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.
         q2: {
           id: this.survey_questions[1].id,
           answer: undefined,
         },
+        // The patients' rooms were kept clean, tidy, and comfortable.
         q3: {
           id: this.survey_questions[2].id,
           answer: undefined,
         },
+        // The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).
         q4: {
           id: this.survey_questions[3].id,
           answer: undefined,
         },
+        // The office followed the transaction’s requirements and steps based on the information provided.(SQD2).
         q5: {
           id: this.survey_questions[4].id,
           answer: undefined,
         },
+        // I easily found information about my transaction from the office or its website.(SQD4).
         q6: {
           id: this.survey_questions[5].id,
           answer: undefined,
         },
+        // I spent a reasonable amount of time for my transaction.(SQD1).
         q7: {
           id: this.survey_questions[6].id,
           answer: undefined,
         },
+        // The medical condition, procedures and instructions were discussed clearly.
         q8: {
           id: this.survey_questions[7].id,
           answer: undefined,
         },
+        // Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.
         q9: {
           id: this.survey_questions[8].id,
           answer: undefined,
         },
+        // We were given the chance to decide which treatment procedure shall be performed.
         q10: {
           id: this.survey_questions[9].id,
           answer: undefined,
         },
+        // I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)
         q11: {
           id: this.survey_questions[10].id,
           answer: undefined,
         },
+        // I paid a reasonable amount of fees for my transaction.(SQD5)
         q12: {
           id: this.survey_questions[11].id,
           answer: undefined,
         },
+        // I was treated fairly, or "walang palakasan" during my transaction.(SQD6)
         q13: {
           id: this.survey_questions[12].id,
           answer: undefined,
         },
+        // I am satisfied with the service that I availed. (SQD0)
         q14: {
           id: this.survey_questions[13].id,
           answer: undefined,
@@ -2995,18 +3008,23 @@ export default {
           id: this.hospital_staffs[13].id,
           rating: undefined,
         },
+        // Suggestions on how we can further improve our services? (Optional)
         q15: {
           id: this.survey_questions[14].id,
           answer: undefined,
         },
+        // If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason.
         q16: {
           id: this.survey_questions[15].id,
           answer: undefined,
         },
+        // HOSPITAL NUMBER
         q17: {
           id: this.survey_questions[16].id,
-          answer: undefined,
+          //   answer: undefined,
+          answer: 315143,
         },
+        // How would you rate our Computer assisted satisfaction survey?
         q18: {
           id: this.survey_questions[17].id,
           answer: undefined,

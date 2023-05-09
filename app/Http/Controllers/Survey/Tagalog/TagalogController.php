@@ -29,7 +29,7 @@ class TagalogController extends Controller
 
         // $survey_questions = SurveyQuestions::all('id', 'desc');
 
-        $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
+        // $survey_opt_questions = SurveyOptQuestions::all('id', 'desc');
 
         // er and inpatient/wards
         $er_inpatient = Department::orderBy('name')
@@ -70,7 +70,7 @@ class TagalogController extends Controller
             [
                 'hospital_staffs' => $hospital_staffs,
                 // 'survey_questions' => $survey_questions,
-                'survey_opt_questions' => $survey_opt_questions,
+                // 'survey_opt_questions' => $survey_opt_questions,
                 'er_inpatient' => $er_inpatient,
                 'outpatient_depts' => $outpatient_depts,
                 'other_depts' => $other_depts,
