@@ -77,11 +77,7 @@ class EnglishController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->q13);
-
         $authUsername = Auth::user()->username;
-
-        $departments_visited = $request->departments;
 
         // get hospital number
         $hospital_number = HospitalNumber::where('hpercode', $request->q17['answer'])
@@ -113,21 +109,20 @@ class EnglishController extends Controller
                     'cc1' => 'required',
                     'cc2' => 'required',
                     'cc3' => 'required',
-                    // 'q1.answer' => 'required',
-                    // 'q2.answer' => 'required',
-                    // 'q3.answer' => 'required',
-                    // 'q4.answer' => 'required',
-                    // 'q5.answer' => 'required',
-                    // 'q6.answer' => 'required',
-                    // 'q7.answer' => 'required',
-                    // 'q8.answer' => 'required',
-                    // 'q9.answer' => 'required',
-                    // 'q10.answer' => 'required',
-                    // 'q11.answer' => 'required',
-                    // 'q12.answer' => 'required',
-                    // 'q13.answer' => 'required',
-                    // 'q14.answer' => 'required',
-
+                    'q1.answer' => 'required',
+                    'q2.answer' => 'required',
+                    'q3.answer' => 'required',
+                    'q4.answer' => 'required',
+                    'q5.answer' => 'required',
+                    'q6.answer' => 'required',
+                    'q7.answer' => 'required',
+                    'q8.answer' => 'required',
+                    'q9.answer' => 'required',
+                    'q10.answer' => 'required',
+                    'q11.answer' => 'required',
+                    'q12.answer' => 'required',
+                    'q13.answer' => 'required',
+                    'q14.answer' => 'required',
                     // 'q15.answer' => 'required',
                     // 'q16.answer' => 'required',
                     'q17.answer' => 'required',

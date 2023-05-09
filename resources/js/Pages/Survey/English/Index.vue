@@ -112,7 +112,13 @@
 
                 <v-row class="font-weight-black">
                   <v-col cols="12">
-                    <div>
+                    <div
+                      v-if="form.errors.respondent"
+                      class="red--text mx-2"
+                    >
+                      <p>The Respondent of this Survey Form:</p>
+                    </div>
+                    <div v-else>
                       <p>The Respondent of this Survey Form:</p>
                     </div>
                     <div class="d-flex flex-column ma-0 pa-0">
@@ -557,7 +563,13 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <div>
+                    <div
+                      v-if="form.errors.pointOfEntry"
+                      class="red--text mx-2"
+                    >
+                      <p>How frequent do you visit this facility?</p>
+                    </div>
+                    <div v-else>
                       <p>How frequent do you visit this facility?</p>
                     </div>
                     <div class="d-flex flex-row ma-0 pa-0">
@@ -627,9 +639,19 @@
 
                     <!-- cc1 -->
                     <div>
-                      <p class="font-weight-black ma-0 subtitle-1">
+                      <p
+                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        v-if="form.errors.cc1"
+                      >
                         Which of the following best describes your awareness of a CC?
                       </p>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1"
+                        v-else
+                      >
+                        Which of the following best describes your awareness of a CC?
+                      </p>
+
                       <div>
                         <v-checkbox
                           v-model="form.cc1"
@@ -671,7 +693,16 @@
 
                     <!-- cc2 -->
                     <div class="mt-2">
-                      <p class="font-weight-black ma-0 subtitle-1">
+                      <p
+                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        v-if="form.errors.cc1"
+                      >
+                        If aware of CC, would you say that the CC of this office was …?
+                      </p>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1"
+                        v-else
+                      >
                         If aware of CC, would you say that the CC of this office was …?
                       </p>
                       <div>
@@ -728,7 +759,16 @@
 
                     <!-- cc3 -->
                     <div class="mt-2">
-                      <p class="font-weight-black ma-0 subtitle-1">
+                      <p
+                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        v-if="form.errors.cc1"
+                      >
+                        If aware of CC, how much did the CC help you in your transaction?
+                      </p>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1"
+                        v-else
+                      >
                         If aware of CC, how much did the CC help you in your transaction?
                       </p>
                       <div>
@@ -2698,10 +2738,10 @@
 
                     <!-- q18 How would you rate our Computer assisted satisfaction survey?-->
                     <div class="mt-6">
-                      <label for="survey_rating">
+                      <label for="q18">
                         <span class="font-weight-black ma-0">
                           <p
-                            v-if="form.errors[`survey_rating`]"
+                            v-if="form.errors[`q18.answer`]"
                             class="font-weight-black ma-0 red--text"
                           >
                             {{ survey_questions[17].desc }}
@@ -2715,7 +2755,7 @@
                         </span>
                       </label>
                       <v-rating
-                        id="survey_rating"
+                        id="q18"
                         v-model="form.q18.answer"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
