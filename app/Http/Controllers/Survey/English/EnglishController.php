@@ -77,7 +77,20 @@ class EnglishController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->q15);
+        $servicesAvailed = $request->serviceAvailed;
+        $convertedArrToStr = '';
+        // array_push($servicesAvailed, $request->otherServiceAvailed);
+
+        // dd($servicesAvailed);
+
+
+        if ($request->otherServiceAvailed != '' || $request->otherServiceAvailed != null) {
+            // $serviceAvailed = implode(", ", $request->serviceAvailed);
+            array_push($servicesAvailed, $request->otherServiceAvailed);
+        }
+
+        // convert array to string when inserting in database
+        $convertedArrToStr = implode(", ", $servicesAvailed);
 
         $authUsername = Auth::user()->username;
 
@@ -154,8 +167,6 @@ class EnglishController extends Controller
                 // PSS = Patient satisfaction survey
                 $pss_id = 'PSS' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
 
-                $serviceAvailed = implode(", ", $request->serviceAvailed);
-
                 $surveyGeneralInfo = SurveyGeneralInfo::create([
                     'pss_id' => $pss_id,
                     'respondent' => $request->respondent,
@@ -165,7 +176,7 @@ class EnglishController extends Controller
                     'religion' => $request->religion,
                     'date_of_visit' => $request->dateOfVisit,
                     'point_of_entry' => $request->pointOfEntry,
-                    'service_availed' => $serviceAvailed,
+                    'service_availed' => $convertedArrToStr,
                     'frequently_visit' => $request->frequentlyVisit,
                     'cc1' => $request->cc1,
                     'cc2' => $request->cc2,
