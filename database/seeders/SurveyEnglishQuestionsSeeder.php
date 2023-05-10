@@ -99,11 +99,6 @@ class SurveyEnglishQuestionsSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            [
-                'desc' => 'How would you rate our Computer assisted satisfaction survey?',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
         ];
 
         foreach ($survey_english_questions as $sq) {

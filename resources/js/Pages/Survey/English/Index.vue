@@ -2736,27 +2736,27 @@
                       {{ $page.props.errors[0] }}
                     </div>
 
-                    <!-- q17 How would you rate our Computer assisted satisfaction survey?-->
+                    <!-- pss rating-->
                     <div class="mt-6">
-                      <label for="q17">
+                      <label for="pss_rating">
                         <span class="font-weight-black ma-0">
                           <p
-                            v-if="form.errors[`q17.answer`]"
+                            v-if="form.errors[`pss_rating`]"
                             class="font-weight-black ma-0 red--text"
                           >
-                            {{ survey_questions[16].desc }}
+                            How would you rate our Computer assisted satisfaction survey?
                           </p>
                           <p
                             v-else
                             class="font-weight-black ma-0"
                           >
-                            {{ survey_questions[16].desc }}
+                            How would you rate our Computer assisted satisfaction survey?
                           </p>
                         </span>
                       </label>
                       <v-rating
-                        id="q17"
-                        v-model="form.q17.answer"
+                        id="pss_rating"
+                        v-model="form.pss_rating"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
                         color="orange"
@@ -2923,6 +2923,7 @@ export default {
         cc2: null,
         cc3: null,
         hospital_number: null,
+        pss_rating: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
           id: this.survey_questions[0].id,
@@ -3058,11 +3059,6 @@ export default {
         q16: {
           id: this.survey_questions[15].id,
           answer: null,
-        },
-        // How would you rate our Computer assisted satisfaction survey?
-        q17: {
-          id: this.survey_questions[16].id,
-          answer: undefined,
         },
       }),
     };

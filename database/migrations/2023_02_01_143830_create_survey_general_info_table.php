@@ -29,6 +29,7 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->string('cc2')->nullable();
             $table->string('cc3')->nullable();
             $table->string('hospital_number')->nullable();
+            $table->string('pss_rating')->nullable();
             $table->string('ward')->nullable();
             $table->timestamps();
         });

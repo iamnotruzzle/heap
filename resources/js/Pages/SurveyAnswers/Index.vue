@@ -15,7 +15,7 @@
         }"
         elevation="20"
       >
-        <v-card-title>REQUIRED</v-card-title>
+        <!-- <v-card-title>Survey </v-card-title> -->
 
         <v-card-text>
           <v-row class="d-flex justify-end flex-row">
@@ -254,29 +254,29 @@
             <span>{{ item.survey_answers[15].answer }}</span>
           </template>
 
-          <!-- Q17/PSS RATING -->
-          <template #item.q17="{ item }">
+          <!-- PSS RATING -->
+          <template #item.pss_rating="{ item }">
             <span
-              v-if="item.survey_answers[16].answer <= 2"
+              v-if="item.pss_rating <= 2"
               class="red--text"
             >
-              {{ item.survey_answers[16].answer }}
+              {{ item.pss_rating }}
             </span>
             <span
-              v-else-if="item.survey_answers[17].answer == 3"
+              v-else-if="item.pss_rating == 3"
               class="amber--text darken-3"
             >
-              {{ item.survey_answers[17].answer }}
+              {{ item.pss_rating }}
             </span>
             <span
               v-else
               class="green--text"
             >
-              {{ item.survey_answers[17].answer }}
+              {{ item.pss_rating }}
             </span>
           </template>
 
-          <!-- Q17/DOCTOR -->
+          <!-- DOCTOR -->
           <template #item.doctor="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[0].rating }}
@@ -299,7 +299,7 @@
             </div>
           </template>
 
-          <!-- Q18/NURSE -->
+          <!-- NURSE -->
           <template #item.nurse="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[1].rating }}
@@ -322,7 +322,7 @@
             </div>
           </template>
 
-          <!-- Q19/MIDWIFE -->
+          <!-- MIDWIFE -->
           <template #item.midwife="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[2].rating }}
@@ -345,7 +345,7 @@
             </div>
           </template>
 
-          <!-- Q20/SECURITY -->
+          <!-- SECURITY -->
           <template #item.security="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[3].rating }}
@@ -368,7 +368,7 @@
             </div>
           </template>
 
-          <!-- Q21/RADIOLOGY -->
+          <!-- RADIOLOGY -->
           <template #item.radiology="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[4].rating }}
@@ -391,7 +391,7 @@
             </div>
           </template>
 
-          <!-- Q22/PHARMACY -->
+          <!-- PHARMACY -->
           <template #item.pharmacy="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[5].rating }}
@@ -414,7 +414,7 @@
             </div>
           </template>
 
-          <!-- Q23/LABORATORY -->
+          <!-- LABORATORY -->
           <template #item.laboratory="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[6].rating }}
@@ -437,7 +437,7 @@
             </div>
           </template>
 
-          <!-- Q24/ADMITTING STAFF -->
+          <!-- ADMITTING STAFF -->
           <template #item.admitting="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[7].rating }}
@@ -460,7 +460,7 @@
             </div>
           </template>
 
-          <!-- Q25/MEDICAL RECORDS -->
+          <!-- MEDICAL RECORDS -->
           <template #item.medical_records="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[8].rating }}
@@ -483,7 +483,7 @@
             </div>
           </template>
 
-          <!-- Q26/BILLING -->
+          <!-- BILLING -->
           <template #item.billing="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[9].rating }}
@@ -506,7 +506,7 @@
             </div>
           </template>
 
-          <!-- Q27/CASHIER -->
+          <!-- CASHIER -->
           <template #item.cashier="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[10].rating }}
@@ -529,7 +529,7 @@
             </div>
           </template>
 
-          <!-- Q28/SOCIAL WORKER -->
+          <!-- SOCIAL WORKER -->
           <template #item.social_worker="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[11].rating }}
@@ -552,7 +552,7 @@
             </div>
           </template>
 
-          <!-- Q29/FOOD SERVER -->
+          <!-- FOOD SERVER -->
           <template #item.food_server="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[12].rating }}
@@ -575,7 +575,7 @@
             </div>
           </template>
 
-          <!-- Q30/JANITORS/ORDERLY -->
+          <!-- JANITORS/ORDERLY -->
           <template #item.janitors_orderly="{ item }">
             <div class="d-flex flex-row">
               {{ item.survey_abt_staffs[13].rating }}
@@ -909,6 +909,13 @@ export default {
           class: 'color_main_dark_background',
         },
         {
+          text: 'PSS RATING',
+          align: 'start',
+          value: 'pss_rating',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
           text: 'CC1',
           align: 'start',
           value: 'cc1',
@@ -1041,16 +1048,9 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
-        {
-          text: 'Q17/PSS RATING',
-          align: 'start',
-          value: 'q18',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
         // DOCTOR
         {
-          text: 'Q17/DOCTOR',
+          text: 'DOCTOR',
           align: 'start',
           value: 'doctor',
           sortable: false,
@@ -1058,7 +1058,7 @@ export default {
         },
         // NURSE
         {
-          text: 'Q18/NURSE',
+          text: 'NURSE',
           align: 'start',
           value: 'nurse',
           sortable: false,
@@ -1066,7 +1066,7 @@ export default {
         },
         // MIDWIFE
         {
-          text: 'Q19/MIDWIFE',
+          text: 'MIDWIFE',
           align: 'start',
           value: 'midwife',
           sortable: false,
@@ -1074,7 +1074,7 @@ export default {
         },
         // SECURITY
         {
-          text: 'Q20/SECURITY',
+          text: 'SECURITY',
           align: 'start',
           value: 'security',
           sortable: false,
@@ -1082,7 +1082,7 @@ export default {
         },
         // RADIOLOGY
         {
-          text: 'Q21/RADIOLOGY',
+          text: 'RADIOLOGY',
           align: 'start',
           value: 'radiology',
           sortable: false,
@@ -1090,7 +1090,7 @@ export default {
         },
         // PHARMACY
         {
-          text: 'Q22/PHARMACY',
+          text: 'PHARMACY',
           align: 'start',
           value: 'pharmacy',
           sortable: false,
@@ -1098,7 +1098,7 @@ export default {
         },
         // ADMITTING STAFF
         {
-          text: 'Q24/ADMITTING STAFF',
+          text: 'ADMITTING STAFF',
           align: 'start',
           value: 'admitting',
           sortable: false,
@@ -1106,7 +1106,7 @@ export default {
         },
         // MEDICAL RECORDS
         {
-          text: 'Q25/MEDICAL RECORDS',
+          text: 'MEDICAL RECORDS',
           align: 'start',
           value: 'medical_records',
           sortable: false,
@@ -1114,7 +1114,7 @@ export default {
         },
         // BILLING
         {
-          text: 'Q26/BILLING',
+          text: 'BILLING',
           align: 'start',
           value: 'billing',
           sortable: false,
@@ -1122,7 +1122,7 @@ export default {
         },
         // CASHIER
         {
-          text: 'Q27/CASHIER',
+          text: 'CASHIER',
           align: 'start',
           value: 'cashier',
           sortable: false,
@@ -1130,7 +1130,7 @@ export default {
         },
         // SOCIAL WORKER
         {
-          text: 'Q28/SOCIAL WORKER',
+          text: 'SOCIAL WORKER',
           align: 'start',
           value: 'social_worker',
           sortable: false,
@@ -1138,7 +1138,7 @@ export default {
         },
         // FOOD SERVER
         {
-          text: 'Q29/FOOD SERVER',
+          text: 'FOOD SERVER',
           align: 'start',
           value: 'food_server',
           sortable: false,
@@ -1146,7 +1146,7 @@ export default {
         },
         // JANITORS/ORDERLY
         {
-          text: 'Q30/JANITORS/ORDERLY',
+          text: 'JANITORS/ORDERLY',
           align: 'start',
           value: 'janitors_orderly',
           sortable: false,
@@ -1246,6 +1246,7 @@ export default {
           'SERVICES AVAILED': e.service_availed,
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,
+          'PSS RATING': e.pss_rating,
           // general info
           Q1: e.survey_answers[0].answer,
           Q2: e.survey_answers[1].answer,
@@ -1263,7 +1264,6 @@ export default {
           Q14: e.survey_answers[13].answer,
           Q15: e.survey_answers[14].answer,
           Q16: e.survey_answers[15].answer,
-          'Q17/PSS RATING': e.survey_answers[16].answer,
           // about staff
           DOCTOR: e.survey_abt_staffs[0].rating, // doctor
           NURSE: e.survey_abt_staffs[1].rating, // nurse
