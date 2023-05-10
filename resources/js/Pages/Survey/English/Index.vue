@@ -21,13 +21,13 @@
               <Link
                 as="v-tab"
                 key="0"
-                href="iloco"
+                href="#"
                 >Iloco</Link
               >
               <Link
                 as="v-tab"
                 key="1"
-                href="tagalog"
+                href="#"
                 >Tagalog</Link
               >
               <Link
