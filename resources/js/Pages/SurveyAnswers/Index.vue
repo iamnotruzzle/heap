@@ -29,7 +29,7 @@
                   v-model="search"
                   append-icon="mdi-magnify"
                   color="color_primary"
-                  label="Search"
+                  label="Search hospital #"
                   outlined
                   dense
                 ></v-text-field>
