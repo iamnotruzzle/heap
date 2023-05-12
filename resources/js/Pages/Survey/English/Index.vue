@@ -104,14 +104,17 @@
                 ref="form"
                 class="no-wrap"
               >
-                <div class="grey lighten-1 mb-4">
+                <!-- <div class="grey lighten-1 mb-4">
                   <p class="text-h6-edited mx-2 py-1">
                     Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:
                   </p>
-                </div>
+                </div> -->
 
                 <v-row class="font-weight-black">
                   <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+                  <!-- <v-col cols="12">
                     <div
                       v-if="form.errors.respondent"
                       class="red--text mx-2"
@@ -162,7 +165,7 @@
 
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
-                  </v-col>
+                  </v-col> -->
 
                   <!-- age -->
                   <v-col
@@ -439,11 +442,11 @@
                     ></v-combobox>
                   </v-col>
 
-                  <v-col cols="12">
+                  <!-- <v-col cols="12">
                     <v-divider color="black"></v-divider>
-                  </v-col>
+                  </v-col> -->
 
-                  <v-col cols="12">
+                  <!-- <v-col cols="12">
                     <div
                       v-if="form.errors.serviceAvailed"
                       class="red--text mx-2"
@@ -560,7 +563,7 @@
                         </div>
                       </div>
                     </div>
-                  </v-col>
+                  </v-col> -->
 
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
@@ -2917,10 +2920,10 @@ export default {
         'Information & Admitting Section',
       ],
       form: this.$inertia.form({
-        respondent: '',
+        // respondent: '',
         pointOfEntry: '',
-        serviceAvailed: [],
-        otherServiceAvailed: '',
+        // serviceAvailed: [],
+        // otherServiceAvailed: '',
         frequentlyVisit: '',
         age: null,
         sex: '',
