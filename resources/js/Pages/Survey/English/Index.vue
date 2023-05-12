@@ -453,7 +453,11 @@
                     <div v-else>
                       <p>Service Availed:</p>
                     </div>
-                    <div class="d-flex flex-row ma-0 pa-0">
+                    <div
+                      :class="
+                        $vuetify.breakpoint.mdAndUp ? 'd-flex flex-row ma-0 pa-0' : 'd-flex flex-column ma-0 pa-0'
+                      "
+                    >
                       <div class="mr-14">
                         <v-checkbox
                           v-model="form.serviceAvailed"
@@ -572,8 +576,12 @@
                     <div v-else>
                       <p>How frequent do you visit this facility?</p>
                     </div>
-                    <div class="d-flex flex-row ma-0 pa-0">
-                      <div class="mr-14 d-flex flex-row">
+                    <div class="ma-0 pa-0">
+                      <div
+                        :class="
+                          $vuetify.breakpoint.mdAndUp ? 'd-flex flex-row ma-0 pa-0' : 'd-flex flex-column ma-0 pa-0'
+                        "
+                      >
                         <v-checkbox
                           v-model="form.frequentlyVisit"
                           label="First time"
@@ -627,15 +635,15 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <h5 class="text-h5-edited font-weight-black text-center display-1">
+                    <h4 class="font-weight-black text-center title">
                       The Citizen’s Charter is an official document that reflects the services of a government
                       agency/office including its requirements, fees, and processing times among others.
-                    </h5>
+                    </h4>
 
-                    <p class="my-6 title">
+                    <h4 class="my-6">
                       <span class="font-weight-black">INSTRUCTIONS:</span>
                       Put a check mark (✔) your answer to the Citizen’s Charter (CC) questions.
-                    </p>
+                    </h4>
 
                     <!-- cc1 -->
                     <div>
