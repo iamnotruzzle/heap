@@ -909,6 +909,13 @@ export default {
           class: 'color_main_dark_background',
         },
         {
+          text: 'PREFERENCE',
+          align: 'start',
+          value: 'preference',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
           text: 'PSS RATING',
           align: 'start',
           value: 'pss_rating',
@@ -1246,6 +1253,7 @@ export default {
           'SERVICES AVAILED': e.service_availed,
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,
+          PREFERENCE: e.preference,
           'PSS RATING': e.pss_rating,
           // general info
           Q1: e.survey_answers[0].answer,

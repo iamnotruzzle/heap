@@ -136,6 +136,7 @@ class EnglishController extends Controller
                     'cc3' => $request->cc3,
                     'cc3' => $request->cc3,
                     'hospital_number' => $request->hospital_number,
+                    'preference' => $request->preference,
                     'pss_rating' => $request->pss_rating,
                     'ward' => $authUsername,
                 ]);

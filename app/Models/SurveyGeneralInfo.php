@@ -31,6 +31,7 @@ class SurveyGeneralInfo extends Model
         'cc2',
         'cc3',
         'hospital_number',
+        'preference',
         'pss_rating',
         'ward'
     ];

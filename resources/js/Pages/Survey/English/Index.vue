@@ -2747,6 +2747,45 @@
                       {{ $page.props.errors[0] }}
                     </div>
 
+                    <!-- preference-->
+                    <div class="mt-6">
+                      <label for="preference">
+                        <span class="font-weight-black ma-0">
+                          <p
+                            v-if="form.errors[`preference`]"
+                            class="font-weight-black ma-0 red--text"
+                          >
+                            In the future, I prefer to answer using:
+                          </p>
+                          <p
+                            v-else
+                            class="font-weight-black ma-0"
+                          >
+                            In the future, I prefer to answer using:
+                          </p>
+                        </span>
+                      </label>
+
+                      <div class="d-flex flex-row">
+                        <v-checkbox
+                          v-model="form.preference"
+                          label="Computer Assisted Survey"
+                          value="Computer Assisted Survey"
+                          dense
+                          hide-details
+                          class="mr-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.preference"
+                          label="Pen and Paper Survey"
+                          value="Pen and Paper Survey"
+                          dense
+                          hide-details
+                        ></v-checkbox>
+                      </div>
+                    </div>
+
                     <!-- pss rating-->
                     <div class="mt-6">
                       <label for="pss_rating">
@@ -2934,6 +2973,7 @@ export default {
         cc2: null,
         cc3: null,
         hospital_number: null,
+        preference: null,
         pss_rating: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
