@@ -90,12 +90,12 @@ class SurveyEnglishQuestionsSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'Suggestions on how we can further improve our services? (Optional)',
+                'desc' => 'Suggestions on how we can further improve our services. (Optional)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'desc' => 'If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason.',
+                'desc' => 'If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

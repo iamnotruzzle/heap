@@ -104,17 +104,17 @@
                 ref="form"
                 class="no-wrap"
               >
-                <!-- <div class="grey lighten-1 mb-4">
+                <div class="grey lighten-1 mb-4">
                   <p class="text-h6-edited mx-2 py-1">
                     Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:
                   </p>
-                </div> -->
+                </div>
 
                 <v-row class="font-weight-black">
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
-                  <!-- <v-col cols="12">
+                  <v-col cols="12">
                     <div
                       v-if="form.errors.respondent"
                       class="red--text mx-2"
@@ -142,30 +142,12 @@
                         hide-details
                         class="mx-2"
                       ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.respondent"
-                        label="Business(Visited for business purposes)"
-                        value="Business"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        v-model="form.respondent"
-                        label="Employee"
-                        value="Employee"
-                        dense
-                        hide-details
-                        class="mx-2"
-                      ></v-checkbox>
                     </div>
                   </v-col>
 
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
-                  </v-col> -->
+                  </v-col>
 
                   <!-- age -->
                   <v-col
@@ -413,7 +395,7 @@
                     </v-menu>
                   </v-col>
 
-                  <v-col cols="12">
+                  <!-- <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
 
@@ -440,7 +422,7 @@
                       hide-details
                       outlined
                     ></v-combobox>
-                  </v-col>
+                  </v-col> -->
 
                   <!-- <v-col cols="12">
                     <v-divider color="black"></v-divider>
@@ -571,7 +553,7 @@
 
                   <v-col cols="12">
                     <div
-                      v-if="form.errors.pointOfEntry"
+                      v-if="form.errors.frequentlyVisit"
                       class="red--text mx-2"
                     >
                       <p>How frequent do you visit this facility?</p>
@@ -1588,7 +1570,13 @@
 
                     <!-- staff survey -->
                     <h3 class="my-2 font-weight-black">
-                      I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
+                      <p>
+                        13. I was treated courteously by the staff, and (if asked for help) the staff was helpful.
+                        (SQD7)
+                      </p>
+                      <p class="text-h6-edited">
+                        ***NOTE: Put a check mark (&check;) on N/A if you did not interact with the staff.
+                      </p>
                     </h3>
 
                     <!-- doctor -->
@@ -2685,13 +2673,13 @@
                         v-if="form.errors[`q15.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        {{ survey_questions[14].desc }}
+                        15. {{ survey_questions[14].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        {{ survey_questions[14].desc }}
+                        15. {{ survey_questions[14].desc }}
                       </p>
                       <v-textarea
                         filled
@@ -2700,7 +2688,7 @@
                       ></v-textarea>
                     </div>
 
-                    <!-- q16 If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason. -->
+                    <!-- q16 If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason. -->
                     <div>
                       <p
                         v-if="form.errors[`q16.answer`]"
@@ -2959,7 +2947,7 @@ export default {
         'Information & Admitting Section',
       ],
       form: this.$inertia.form({
-        // respondent: '',
+        respondent: '',
         pointOfEntry: '',
         // serviceAvailed: [],
         // otherServiceAvailed: '',

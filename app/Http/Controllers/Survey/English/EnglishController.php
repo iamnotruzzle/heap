@@ -67,8 +67,8 @@ class EnglishController extends Controller
                 return Redirect::back()->withErrors(["Patient's hospital number is already recorded today."]);
             } else {
                 $request->validate([
-                    // 'respondent' => "required",
-                    'pointOfEntry' => "required",
+                    'respondent' => "required",
+                    // 'pointOfEntry' => "required",
                     'age' => 'required|numeric|max:120',
                     'sex' => 'required',
                     'religion' => 'required',
@@ -122,13 +122,13 @@ class EnglishController extends Controller
 
                 $surveyGeneralInfo = SurveyGeneralInfo::create([
                     'pss_id' => $pss_id,
-                    'respondent' => 'Patient',
+                    'respondent' => $request->respondent,
                     'educational_attainment' => $request->educationalAttainment,
                     'age' => $request->age,
                     'sex' => $request->sex,
                     'religion' => $request->religion,
                     'date_of_visit' => $request->dateOfVisit,
-                    'point_of_entry' => $request->pointOfEntry,
+                    'point_of_entry' => 'IN-PATIENT',
                     'service_availed' => 'Admission',
                     'frequently_visit' => $request->frequentlyVisit,
                     'cc1' => $request->cc1,
