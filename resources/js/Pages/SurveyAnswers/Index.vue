@@ -1027,13 +1027,13 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
-        {
-          text: 'Q13',
-          align: 'start',
-          value: 'q13',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
+        // {
+        //   text: 'Q13',
+        //   align: 'start',
+        //   value: 'q13',
+        //   sortable: false,
+        //   class: 'color_main_dark_background',
+        // },
         {
           text: 'Q14',
           align: 'start',
@@ -1214,7 +1214,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.surveyAnswers);
+    console.log(this.surveyAnswers);
     // console.log(this.departments);
     // console.log(this.delete_requests);
     this.processJsonData();
@@ -1255,7 +1255,6 @@ export default {
           'HOSPITAL #': e.hospital_number,
           PREFERENCE: e.preference,
           'PSS RATING': e.pss_rating,
-          // general info
           Q1: e.survey_answers[0].answer,
           Q2: e.survey_answers[1].answer,
           Q3: e.survey_answers[2].answer,

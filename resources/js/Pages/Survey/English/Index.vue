@@ -1570,10 +1570,8 @@
 
                     <!-- staff survey -->
                     <h3 class="my-2 font-weight-black">
-                      <p>
-                        13. I was treated courteously by the staff, and (if asked for help) the staff was helpful.
-                        (SQD7)
-                      </p>
+                      <!-- q13 I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7) -->
+                      <p class="font-weight-black">13. {{ survey_questions[12].desc }}</p>
                       <p class="text-h6-edited">
                         ***NOTE: Put a check mark (&check;) on N/A if you did not interact with the staff.
                       </p>
@@ -2543,70 +2541,8 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q13 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
+                    <!-- q14 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
                     <div>
-                      <p
-                        v-if="form.errors[`q13.answer`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        13. {{ survey_questions[12].desc }}
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        13. {{ survey_questions[12].desc }}
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q13.answer"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q13.answer == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q13.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q13.answer == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q13.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q13.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-
-                    <!-- q14 I am satisfied with the service that I availed.-->
-                    <div class="my-4">
                       <p
                         v-if="form.errors[`q14.answer`]"
                         class="font-weight-black ma-0 red--text"
@@ -2667,8 +2603,8 @@
                       </v-btn-toggle>
                     </div>
 
-                    <!-- q15 Suggestions on how we can further improve our services? (Optional) -->
-                    <div>
+                    <!-- q15 I am satisfied with the service that I availed.-->
+                    <div class="my-4">
                       <p
                         v-if="form.errors[`q15.answer`]"
                         class="font-weight-black ma-0 red--text"
@@ -2681,17 +2617,58 @@
                       >
                         15. {{ survey_questions[14].desc }}
                       </p>
-                      <v-textarea
-                        filled
-                        auto-grow
+
+                      <v-btn-toggle
                         v-model="form.q15.answer"
-                      ></v-textarea>
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q15.answer == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q15.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q15.answer == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q15.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q15.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
                     </div>
 
-                    <!-- q16 If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason. -->
+                    <!-- not_numbered1 Suggestions on how we can further improve our services? (Optional) -->
                     <div>
                       <p
-                        v-if="form.errors[`q16.answer`]"
+                        v-if="form.errors[`not_numbered1.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
                         {{ survey_questions[15].desc }}
@@ -2705,7 +2682,28 @@
                       <v-textarea
                         filled
                         auto-grow
-                        v-model="form.q16.answer"
+                        v-model="form.not_numbered1.answer"
+                      ></v-textarea>
+                    </div>
+
+                    <!-- not_numbered2 If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason. -->
+                    <div>
+                      <p
+                        v-if="form.errors[`not_numbered2.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        {{ survey_questions[16].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        {{ survey_questions[16].desc }}
+                      </p>
+                      <v-textarea
+                        filled
+                        auto-grow
+                        v-model="form.not_numbered2.answer"
                       ></v-textarea>
                     </div>
                   </v-col>
@@ -3023,12 +3021,12 @@ export default {
           id: this.survey_questions[11].id,
           answer: undefined,
         },
+        // I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
+        // q13: {
+        //   id: this.survey_questions[12].id,
+        //   answer: undefined,
+        // },
         // I was treated fairly, or "walang palakasan" during my transaction.(SQD6)
-        q13: {
-          id: this.survey_questions[12].id,
-          answer: undefined,
-        },
-        // I am satisfied with the service that I availed. (SQD0)
         q14: {
           id: this.survey_questions[13].id,
           answer: undefined,
@@ -3089,14 +3087,19 @@ export default {
           id: this.hospital_staffs[13].id,
           rating: undefined,
         },
-        // Suggestions on how we can further improve our services? (Optional)
+        // I am satisfied with the service that I availed
         q15: {
           id: this.survey_questions[14].id,
+          answer: undefined,
+        },
+        // Suggestions on how we can further improve our services? (Optional)
+        not_numbered1: {
+          id: this.survey_questions[15].id,
           answer: null,
         },
-        // If applicable, please the name of any remarkable hospital staff you would like to commend, as well as reason.
-        q16: {
-          id: this.survey_questions[15].id,
+        // If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason.
+        not_numbered2: {
+          id: this.survey_questions[16].id,
           answer: null,
         },
       }),
