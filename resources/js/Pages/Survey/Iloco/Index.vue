@@ -22,23 +22,20 @@
                 as="v-tab"
                 key="0"
                 href="iloco"
+                >Iloco</Link
               >
-                Iloco
-              </Link>
               <Link
                 as="v-tab"
                 key="1"
-                href="tagalog"
+                href="#"
+                >Tagalog</Link
               >
-                Tagalog
-              </Link>
               <Link
                 as="v-tab"
                 key="2"
                 href="eng"
+                >English</Link
               >
-                English
-              </Link>
             </v-tabs>
 
             <v-card-title>
@@ -87,27 +84,21 @@
                   class="text-center word-break"
                 >
                   <h6 class="text-h6-edited ma-0 pa-0">Mariano Marcos Memorial Hospital And Medical Center</h6>
-                  <h4 class="text-h4-edited ma-0 pa-0">PATIENT SATISFACTION QUESTIONNAIRE</h4>
+                  <h4 class="text-h4-edited ma-0 pa-0">HOSPITAL CLIENT EXPERIENCE SURVEY (HCES)</h4>
                 </v-col>
               </v-row>
             </v-card-title>
 
             <v-card-text>
-              <v-row class="font-weight-black">
+              <v-row class="font-weight-black mb-4">
                 <v-col cols="12">
-                  <p>Patpatgenmi a kliente ti MMMHMC,</p>
-                  <div class="indent">
-                    Dagiti sumaganad a saludsod ket pakaseknan iti pannakapnekyo iti servisio ti MMMHMC a naipaay
+                  <div class="font-italic text-center">
+                    Dagiti sumaganad a saludsod ket pakaseknan iti pannakapnekyo iti serbisio ti MMMHC a naipaay
                     kadakayo. Iti gagemmi nga ad-adda pay a mapasayaat ti serbisiomi, dawatenmi iti naan-anay a
-                    panangsungbatyo a saludsod basar iti kapadasanyo. Mangnamnamakayo a sungbat key agserbi iti
-                    pannakapasayaat ti serbisio ti ospital ken agtalinaed a palimed iti siasinnoman.
+                    panangsungbatyo kadagiti sumaganad a saludsod basar iti kapadasanyo. Mangnamnamakayo nga aniaman a
+                    sungbat ket agserbi iti pannakapasayaat ti serbisio ti ospital ken agtalinaed a palimed iti
+                    siasinnoman.
                   </div>
-                </v-col>
-              </v-row>
-
-              <v-row class="font-weight-black">
-                <v-col cols="12">
-                  <p>Tsekan (<v-icon>mdi-check</v-icon>) ti sungbat kadagiti sumaganad a saludsod.</p>
                 </v-col>
               </v-row>
 
@@ -115,16 +106,26 @@
                 ref="form"
                 class="no-wrap"
               >
+                <div class="grey lighten-1 mb-4">
+                  <p class="text-h6-edited mx-2 py-1">
+                    Direksyon: Ikkan ti tsek (<v-icon>mdi-check</v-icon>) ti umno a sungbat:
+                  </p>
+                </div>
+
                 <v-row class="font-weight-black">
                   <v-col cols="12">
-                    <p
-                      v-if="form.errors.respondent || form.errors.otherRespondent"
-                      class="red--text"
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+                  <v-col cols="12">
+                    <div
+                      v-if="form.errors.respondent"
+                      class="red--text mx-2"
                     >
-                      Tay nagresponde kadaytoy a porma:
-                    </p>
-                    <p v-else>Tay nagresponde kadaytoy a porma:</p>
-
+                      <p>Nagresponde kadaytoy a porma:</p>
+                    </div>
+                    <div v-else>
+                      <p>Nagresponde kadaytoy a porma:</p>
+                    </div>
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
                         v-model="form.respondent"
@@ -137,25 +138,12 @@
 
                       <v-checkbox
                         v-model="form.respondent"
-                        label="Nangkadua(Kabagian)"
+                        label="Nangkadua (Kabagian)"
                         value="Companion"
                         dense
                         hide-details
                         class="mx-2"
                       ></v-checkbox>
-
-                      <div class="d-flex flex-row mx-2 mt-1">
-                        <v-checkbox
-                          v-model="enableRespondent"
-                          dense
-                        ></v-checkbox>
-                        <v-text-field
-                          v-model="form.otherRespondent"
-                          :disabled="!enableRespondent"
-                          label="Daduma pay, (Ilanad)"
-                          dense
-                        ></v-text-field>
-                      </div>
                     </div>
                   </v-col>
 
@@ -167,22 +155,21 @@
                   <v-col
                     cols="12"
                     md="3"
-                    class="font-weight-black"
+                    class="font-weight-black ma-0 pb-0"
                   >
                     <label
-                      v-if="form.errors.age"
                       for="age"
+                      v-if="form.errors.age"
                       class="red--text"
                     >
                       Tawen
                     </label>
                     <label
-                      v-else
                       for="age"
+                      v-else
                     >
                       Tawen
                     </label>
-
                     <v-text-field
                       id="age"
                       v-model="form.age"
@@ -190,7 +177,6 @@
                       hide-spin-buttons
                       outlined
                       dense
-                      class="ma-0 pa-0"
                     ></v-text-field>
                   </v-col>
 
@@ -202,14 +188,13 @@
                   >
                     <label
                       for="sex"
-                      class="font-weight-black red--text"
                       v-if="form.errors.sex"
+                      class="red--text"
                     >
                       Katatao
                     </label>
                     <label
                       for="sex"
-                      class="font-weight-black"
                       v-else
                     >
                       Katatao
@@ -219,7 +204,7 @@
                       <v-checkbox
                         id="sex"
                         v-model="form.sex"
-                        label="Lalaki"
+                        label="Babai"
                         value="Male"
                         dense
                         hide-details
@@ -228,7 +213,7 @@
                       <v-checkbox
                         id="sex"
                         v-model="form.sex"
-                        label="Babai"
+                        label="Lalaki"
                         value="Female"
                         dense
                         hide-details
@@ -244,17 +229,16 @@
                   >
                     <label
                       for="religion"
-                      class="font-weight-black red--text"
                       v-if="form.errors.religion"
+                      class="red--text"
                     >
-                      Relihion (No awan dita listahan ket ilanad.)
+                      Relihion (Daduma pay, ilanad)
                     </label>
                     <label
                       for="religion"
-                      class="font-weight-black"
                       v-else
                     >
-                      Relihion (No awan dita listahan ket ilanad.)
+                      Relihion (Daduma pay, ilanad)
                     </label>
 
                     <v-combobox
@@ -275,17 +259,16 @@
                   <v-col cols="12">
                     <label
                       for="educAt"
-                      class="font-weight-black red--text"
                       v-if="form.errors.educationalAttainment"
+                      class="red--text"
                     >
-                      Naturpos nga adal
+                      Naturpos nga adal:
                     </label>
                     <label
                       for="educAt"
-                      class="font-weight-black"
                       v-else
                     >
-                      Naturpos nga adal
+                      Naturpos nga adal:
                     </label>
 
                     <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
@@ -337,7 +320,7 @@
                         id="educAt"
                         :disabled="!enablePGM"
                         v-model="form.educationalAttainment"
-                        label="Nainayon nga adal wenno nagun-od kalpasan ti kolehio"
+                        label="Nainayon nga adal wenno nagun-od kalpasan ti kolehiio"
                         value="Postgraduate/Masters"
                         dense
                         hide-details
@@ -367,17 +350,16 @@
                   >
                     <label
                       for="dateOfVisit"
-                      class="font-weight-black red--text"
                       v-if="form.errors.dateOfVisit"
+                      class="red--text"
                     >
-                      Aldaw nga nagpa-konsolta
+                      Petsa ti Konsultasyon:
                     </label>
                     <label
                       for="dateOfVisit"
-                      class="font-weight-black"
                       v-else
                     >
-                      Aldaw nga nagpa-konsolta
+                      Petsa ti Konsultasyon:
                     </label>
 
                     <v-menu
@@ -415,111 +397,223 @@
                     </v-menu>
                   </v-col>
 
+                  <!-- <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <label
+                      for="pointOfEntry"
+                      v-if="form.errors.pointOfEntry"
+                      class="red--text"
+                    >
+                      Point of entry (Please encode if not on the list.)
+                    </label>
+                    <label
+                      for="pointOfEntry"
+                      v-else
+                    >
+                      Point of entry (Please encode if not on the list.)
+                    </label>
+
+                    <v-combobox
+                      id="departments"
+                      v-model="form.pointOfEntry"
+                      :items="departments"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-combobox>
+                  </v-col> -->
+
+                  <!-- <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col> -->
+
+                  <!-- <v-col cols="12">
+                    <div
+                      v-if="form.errors.serviceAvailed"
+                      class="red--text mx-2"
+                    >
+                      <p>Service Availed:</p>
+                    </div>
+                    <div v-else>
+                      <p>Service Availed:</p>
+                    </div>
+                    <div
+                      :class="
+                        $vuetify.breakpoint.mdAndUp ? 'd-flex flex-row ma-0 pa-0' : 'd-flex flex-column ma-0 pa-0'
+                      "
+                    >
+                      <div class="mr-14">
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Consultation"
+                          value="Consultation"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Admission"
+                          value="Admission"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Laboratory"
+                          value="Laboratory"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Radiology"
+                          value="Radiology"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Discharge"
+                          value="Discharge"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Settlement of fees"
+                          value="Settlement of fees"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+
+                      <div>
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Request for Medical Records"
+                          value="Request for Medical Records"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Request for Psychosocial Assessment/Intervention"
+                          value="Request for Psychosocial Assessment/Intervention"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Request for Financial Assistance"
+                          value="Request for Financial Assistance"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.serviceAvailed"
+                          label="Counseling (i.e Nutrition and Dietetics)"
+                          value="Counseling (i.e Nutrition and Dietetics)"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <div class="d-flex flex-row mx-2 mt-1">
+                          <v-text-field
+                            v-model="form.otherServiceAvailed"
+                            label="Others (Specify)"
+                            dense
+                          ></v-text-field>
+                        </div>
+                      </div>
+                    </div>
+                  </v-col> -->
+
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
 
-                  <!-- department visited -->
                   <v-col cols="12">
-                    <label
-                      for="departments"
-                      class="font-weight-black red--text"
-                      v-if="form.errors.departments"
-                    >
-                      Napanan a Departamento
-                    </label>
-                    <label
-                      for="departments"
-                      class="font-weight-black"
-                      v-else
-                    >
-                      Napanan a Departamento
-                    </label>
-
                     <div
-                      :class="
-                        $vuetify.breakpoint.smAndDown == true
-                          ? 'd-flex flex-column justify-center '
-                          : 'd-flex flex-row justify-center align-center'
-                      "
+                      v-if="form.errors.frequentlyVisit"
+                      class="red--text mx-2"
                     >
-                      <v-checkbox
-                        id="departments"
-                        v-model="form.departments"
-                        label="Emergency Room"
-                        :value="er_inpatient[0].id"
-                        dense
-                        hide-details
-                        class="ma-2"
-                      ></v-checkbox>
-
-                      <v-checkbox
-                        id="departments"
-                        v-model="form.departments"
-                        label="Inpatient/Ward"
-                        :value="er_inpatient[1].id"
-                        dense
-                        hide-details
-                        class="ma-2"
-                      ></v-checkbox>
-
-                      <v-select
-                        id="departments"
-                        v-model="form.departments"
-                        :items="outpatient_depts"
-                        item-value="id"
-                        item-text="name"
-                        label="Outpatient Department"
-                        multiple
-                        outlined
-                        dense
-                        hide-details
-                        class="ma-2"
+                      <p>Kasano ti kaadu a mabisita daytoy a pasilidad?</p>
+                    </div>
+                    <div v-else>
+                      <p>Kasano ti kaadu a mabisita daytoy a pasilidad?</p>
+                    </div>
+                    <div class="ma-0 pa-0">
+                      <div
+                        :class="
+                          $vuetify.breakpoint.mdAndUp ? 'd-flex flex-row ma-0 pa-0' : 'd-flex flex-column ma-0 pa-0'
+                        "
                       >
-                        <template v-slot:selection="{ item, index }">
-                          <v-chip
-                            v-if="index < 2"
-                            class="ma-1"
-                          >
-                            <span>{{ item.name }}</span>
-                          </v-chip>
-                          <span
-                            v-if="index === 2"
-                            class="text-grey text-caption align-self-center"
-                          >
-                            (+{{ form.departments.length - 2 }} others)
-                          </span>
-                        </template>
-                      </v-select>
+                        <v-checkbox
+                          v-model="form.frequentlyVisit"
+                          label="Damdamo"
+                          value="First time"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
 
-                      <v-select
-                        id="departments"
-                        v-model="form.departments"
-                        :items="other_depts"
-                        item-value="id"
-                        item-text="name"
-                        label="Dadduma pay nga opisina, ilanad"
-                        multiple
-                        outlined
-                        dense
-                        hide-details
-                        class="ma-2"
-                      >
-                        <template v-slot:selection="{ item, index }">
-                          <v-chip
-                            v-if="index < 2"
-                            class="ma-1"
-                          >
-                            <span class="ma-0 pa-0">{{ item.name }}</span>
-                          </v-chip>
-                          <span
-                            v-if="index === 2"
-                            class="text-grey text-caption align-self-center"
-                          >
-                            (+{{ form.departments.length - 2 }} others)
-                          </span>
-                        </template>
-                      </v-select>
+                        <v-checkbox
+                          v-model="form.frequentlyVisit"
+                          label="1-3x kada tawen"
+                          value="1-3x a year"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.frequentlyVisit"
+                          label="4-6x kada tawen"
+                          value="4-6x a year"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.frequentlyVisit"
+                          label="7-11x kada tawen"
+                          value="7-11x a year"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.frequentlyVisit"
+                          label="Nasurok 12x kada tawen"
+                          value=">12x a year"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
                     </div>
                   </v-col>
 
@@ -528,39 +622,193 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <label
-                      for="visited_before"
-                      class="font-weight-black red--text"
-                      v-if="form.errors.visited_before"
-                    >
-                      Nabisitam kadin ti ospital idi napalabas nga aldaw?
-                    </label>
-                    <label
-                      for="visited_before"
-                      class="font-weight-black"
-                      v-else
-                    >
-                      Nabisitam kadin ti ospital idi napalabas nga aldaw?
-                    </label>
+                    <h4 class="font-weight-black text-center title">
+                      Daytoy Citizen’s Charter wenno CC ket opisyal a dokyumento nga mangipasimudaag ti serbisyo iti
+                      ahensiya ti gobyerno, pakaramanan kadagiti kasapulan, pagbayad ken ti pannakaproseso kadagiti amin
+                      nga nailanad.
+                    </h4>
 
-                    <div class="d-flex flex-row">
-                      <v-checkbox
-                        id="visited_before"
-                        v-model="form.visited_before"
-                        label="Wen"
-                        value="y"
-                        dense
-                        hide-details
-                        class="mr-2"
-                      ></v-checkbox>
-                      <v-checkbox
-                        id="visited_before"
-                        v-model="form.visited_before"
-                        label="Saan"
-                        value="n"
-                        dense
-                        hide-details
-                      ></v-checkbox>
+                    <h4 class="my-6">
+                      <span class="font-weight-black">INSTRAKSYON:</span>
+                      Ikkan ti tsek (✔) ti umno a sungbat.
+                    </h4>
+
+                    <!-- cc1 -->
+                    <div>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        v-if="form.errors.cc1"
+                      >
+                        Ana kadagitoy sumaganad tay pannakailadawan iti pannakaawatyo ti Citizen’s Charter?
+                      </p>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1"
+                        v-else
+                      >
+                        Ana kadagitoy sumaganad tay pannakailadawan iti pannakaawatyo ti Citizen’s Charter?
+                      </p>
+
+                      <div>
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="Ammok ti CC ket nakitak kadagiti opisina."
+                          :value="1"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="Ammok ti CC ngem awan nakitak kadagiti opisina."
+                          :value="2"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="Naamuak lang ti CC apaman a nakitak ditoy nga opisina."
+                          :value="3"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc1"
+                          label="Awan ammok ti CC ken awan nakitak kadigitoy nga opisina."
+                          :value="4"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+                    </div>
+
+                    <!-- cc2 -->
+                    <div class="mt-2">
+                      <p
+                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        v-if="form.errors.cc1"
+                      >
+                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagamnga ti CC ditoy nga opisan ket?
+                      </p>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1"
+                        v-else
+                      >
+                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagamnga ti CC ditoy nga opisan ket?
+                      </p>
+                      <div>
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Nalaka a makita"
+                          :value="1"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Medio nalaka a Makita"
+                          :value="2"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Narigat a makita"
+                          :value="3"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="Haan pulos a makita"
+                          :value="4"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc2"
+                          label="N/A"
+                          :value="5"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
+                    </div>
+
+                    <!-- cc3 -->
+                    <div class="mt-2">
+                      <p
+                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        v-if="form.errors.cc1"
+                      >
+                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), kasano kaadu iti naitulungan kenka iti
+                        transakyon mo?
+                      </p>
+                      <p
+                        class="font-weight-black ma-0 subtitle-1"
+                        v-else
+                      >
+                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), kasano kaadu iti naitulungan kenka iti
+                        transakyon mo?
+                      </p>
+                      <div>
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="Nakatulong unay"
+                          :value="1"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="Nakatulong lang"
+                          :value="2"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="Awan naitulong na"
+                          :value="3"
+                          dense
+                          hide-details
+                          :disabled="disableCC"
+                          class="mx-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.cc3"
+                          label="N/A"
+                          :value="4"
+                          dense
+                          hide-details
+                          class="mx-2"
+                        ></v-checkbox>
+                      </div>
                     </div>
                   </v-col>
 
@@ -572,7 +820,7 @@
                     <h5 class="text-h5-edited font-weight-black">Pannakapnek iti naipaay a serbisio</h5>
                     <p>
                       <span class="font-weight-black">Direksyon:</span>
-                      I-click ti rupa a kasayaatan a katupag ti rating mo para iti sumaganad a saludsod.
+                      Pilyen ti umno a rupa nga mangi-pakita ti rating mo ti kada damag.
                     </p>
 
                     <!-- partA -->
@@ -580,54 +828,54 @@
                       <span class="text-h6-edited mx-2">A. Maaramat a Pasilidad</span>
                     </div>
 
-                    <!-- q1 -->
+                    <!-- q1 The waiting areas were clean, orderly, and comfortable. -->
                     <div>
                       <p
-                        v-if="form.errors[`q1.rating`]"
+                        v-if="form.errors[`q1.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        1. Nadalus, naurnos, ken komportable dagiti naipaay a pagurayan dagiti pasiente.
+                        1. {{ survey_questions[0].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        1. Nadalus, naurnos, ken komportable dagiti naipaay a pagurayan dagiti pasiente.
+                        1. {{ survey_questions[0].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q1.rating"
+                        v-model="form.q1.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q1.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q1.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q1.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q1.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q1.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q1.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -640,56 +888,54 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q2 -->
+                    <!-- q2 The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.-->
                     <div>
                       <p
-                        v-if="form.errors[`q2.rating`]"
+                        v-if="form.errors[`q2.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        2. Nadalus, naurnos, len umdas ti danum a maaramat kadagiti kasilia ken pagdigosan iti uneg ti
-                        pasilidad.
+                        2. {{ survey_questions[1].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        2. Nadalus, naurnos, len umdas ti danum a maaramat kadagiti kasilia ken pagdigosan iti uneg ti
-                        pasilidad.
+                        2. {{ survey_questions[1].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q2.rating"
+                        v-model="form.q2.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q2.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q2.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q2.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q2.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q2.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q2.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -702,56 +948,54 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q3 -->
+                    <!-- q3 The patients' rooms were kept clean, tidy, and comfortable.-->
                     <div>
                       <p
-                        v-if="form.errors[`q3.rating`]"
+                        v-if="form.errors[`q3.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        3. Kanayon a nadalus ken naurnos dagiti siled ken komportable dagiti pasiente nga agyan
-                        kadigitoy.
+                        3. {{ survey_questions[2].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        3. Kanayon a nadalus ken naurnos dagiti siled ken komportable dagiti pasiente nga agyan
-                        kadigitoy.
+                        3. {{ survey_questions[2].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q3.rating"
+                        v-model="form.q3.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q3.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q3.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q3.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q3.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q3.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q3.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -761,64 +1005,306 @@
                         </v-btn>
                       </v-btn-toggle>
                     </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q4 The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).-->
+                    <div>
+                      <p
+                        v-if="form.errors[`q4.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        4. {{ survey_questions[3].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        4. {{ survey_questions[3].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q4.answer"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q4.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q4.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q4.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q4.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q4.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q5 The office followed the transaction’s requirements and steps based on the information provided.(SQD2).-->
+                    <div>
+                      <p
+                        v-if="form.errors[`q5.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        5. {{ survey_questions[4].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        5. {{ survey_questions[4].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q5.answer"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q5.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q5.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q5.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q5.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q5.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q6 I easily found information about my transaction from the office or its website.(SQD4).-->
+                    <div>
+                      <p
+                        v-if="form.errors[`q6.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        6. {{ survey_questions[5].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        6. {{ survey_questions[5].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q6.answer"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q6.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q6.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q6.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q6.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q6.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
+
+                    <!-- q7 I spent a reasonable amount of time for my transaction.(SQD1).-->
+                    <div>
+                      <p
+                        v-if="form.errors[`q7.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        7. {{ survey_questions[6].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        7. {{ survey_questions[6].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q7.answer"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q7.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q7.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q7.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q7.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q7.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <div class="my-4"></div>
                   </v-col>
 
-                  <!-- partA1 -->
                   <v-col cols="12 my-0 py-0">
                     <div class="grey lighten-1 mb-4">
-                      <span class="text-h6-edited mx-2">
-                        Alisto, napaspas ken nalawag a masurutan ti pannakaisayangkat dagiti sumaganad a proseso.
-                      </span>
+                      <span class="text-h6-edited mx-2"
+                        >B. Pannakilangen dagiti empleado ti ospital kadagiti pasiente, kabagian ken nangkadua
+                        kadagitoy</span
+                      >
                     </div>
 
-                    <!-- q4 -->
+                    <!-- q8 The medical condition, procedures and instructions were discussed clearly.-->
                     <div>
                       <p
-                        v-if="form.errors[`q4.rating`]"
+                        v-if="form.errors[`q8.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        4. Konsultasion
+                        8. {{ survey_questions[7].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        4. Konsultasion
+                        8. {{ survey_questions[7].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q4.rating"
+                        v-model="form.q8.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q4.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q4.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q4.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q4.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q4.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q8.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -831,54 +1317,54 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q5 -->
+                    <!-- q9 Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.-->
                     <div>
                       <p
-                        v-if="form.errors[`q5.rating`]"
+                        v-if="form.errors[`q9.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        5. Pannaka admit iti ospital
+                        9. {{ survey_questions[8].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        5. Pannaka admit iti ospital
+                        9. {{ survey_questions[8].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q5.rating"
+                        v-model="form.q9.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q5.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q5.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q5.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q5.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q5.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q9.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -891,281 +1377,30 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q6 -->
+                    <!-- q10 We were given the chance to decide which treatment procedure shall be performed.-->
                     <div>
                       <p
-                        v-if="form.errors[`q6.rating`]"
+                        v-if="form.errors[`q10.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        6. Pannakalaboratorio ken "radiology" (x-ray)
+                        10. {{ survey_questions[9].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        6. Pannakalaboratorio ken "radiology" (x-ray)
+                        10. {{ survey_questions[9].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q6.rating"
+                        v-model="form.q10.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q6.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q6.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q6.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q6.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q6.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-
-                    <div class="my-4"></div>
-
-                    <!-- q7 -->
-                    <div>
-                      <p
-                        v-if="form.errors[`q7.rating`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        7. Pannakakuenta, panagbayad ken pannakadischarge (pannakapalubos a rumuar ti pasiente)
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        7. Pannakakuenta, panagbayad ken pannakadischarge (pannakapalubos a rumuar ti pasiente)
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q7.rating"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q7.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q7.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q7.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q7.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q7.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-
-                    <div class="my-4"></div>
-
-                    <!-- q8 -->
-                    <div>
-                      <p
-                        v-if="form.errors[`q8.rating`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        8. Pannakaipaay dagiti dokumento a kasapulan manipud iti ospital
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        8. Pannakaipaay dagiti dokumento a kasapulan manipud iti ospital
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q8.rating"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q8.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q8.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q8.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q8.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q8.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-
-                    <div class="my-4"></div>
-
-                    <!-- q9 -->
-                    <div>
-                      <p
-                        v-if="form.errors[`q9.rating`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        9. Pannakaipaay ti tulong manipud iti "Medical Social Service"
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        9. Pannakaipaay ti tulong manipud iti "Medical Social Service"
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q9.rating"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q9.rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q9.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q9.rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q9.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q9.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <v-divider color="black"></v-divider>
-                  </v-col>
-
-                  <!-- partB -->
-                  <v-col cols="12">
-                    <div class="grey lighten-1 mb-4">
-                      <span class="text-h6-edited mx-2">
-                        B. Pannakilangen dagiti empleado ti ospital kadagiti pasiente, kabagian ken nangkadua kadagitoy.
-                      </span>
-                    </div>
-
-                    <!-- q10 -->
-                    <div>
-                      <p
-                        v-if="form.errors[`q10.rating`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        10. Napintas ti pannakailawlawag ti proseso ken medikal a kondision ti pasiente.
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        10. Napintas ti pannakailawlawag ti proseso ken medikal a kondision ti pasiente.
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q10.rating"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q10.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q10.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1173,13 +1408,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q10.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q10.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q10.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q10.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1187,13 +1422,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q10.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q10.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q10.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q10.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1206,32 +1441,30 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q11 -->
+                    <!-- q11 I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)-->
                     <div>
                       <p
-                        v-if="form.errors[`q11.rating`]"
+                        v-if="form.errors[`q11.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        11. Dagiti sentimyentomi, kultura ken pammatimi ket naipangag ken naikkan ti konsiderasyon iti
-                        proseso a panagagas.
+                        11. {{ survey_questions[10].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        11. Dagiti sentimyentomi, kultura ken pammatimi ket naipangag ken naikkan ti konsiderasyon iti
-                        proseso a panagagas.
+                        11. {{ survey_questions[10].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q11.rating"
+                        v-model="form.q11.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q11.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q11.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1239,13 +1472,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q11.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q11.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q11.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q11.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1253,13 +1486,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q11.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q11.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q11.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q11.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1272,32 +1505,30 @@
 
                     <div class="my-4"></div>
 
-                    <!-- q12 -->
+                    <!-- q12 I paid a reasonable amount of fees for my transaction.(SQD5)-->
                     <div>
                       <p
-                        v-if="form.errors[`q12.rating`]"
+                        v-if="form.errors[`q12.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        12. Naikkan kami ti gundaway nga nagdisidir no ana nga wagas ti maisayangkat a proseso ti
-                        panagagas.
+                        12. {{ survey_questions[11].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        12. Naikkan kami ti gundaway nga nagdisidir no ana nga wagas ti maisayangkat a proseso ti
-                        panagagas.
+                        12. {{ survey_questions[11].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q12.rating"
+                        v-model="form.q12.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q12.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q12.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1305,13 +1536,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q12.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q12.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q12.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q12.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1319,13 +1550,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q12.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q12.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q12.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q12.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1337,154 +1568,27 @@
                     </div>
 
                     <div class="my-4"></div>
-
-                    <!-- q13 -->
-                    <div>
-                      <p
-                        v-if="form.errors[`q13.rating`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        13. Nailawlawag a nasayaat dagiti rumbeng nga aramiden kasangwanan a mapagawid.
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        13. Nailawlawag a nasayaat dagiti rumbeng nga aramiden kasangwanan a mapagawid.
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q13.rating"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q13.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q13.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q13.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q13.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q13.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-
-                    <div class="my-4"></div>
-
-                    <!-- q14 -->
-                    <div>
-                      <p
-                        v-if="form.errors[`q14.rating`]"
-                        class="font-weight-black ma-0 red--text"
-                      >
-                        14. Naipaayan iti naan-anay a tulong, manipud iti pannakaadmit, ken pannakaagas manipud iti
-                        "Malasakit Center".
-                      </p>
-                      <p
-                        v-else
-                        class="font-weight-black ma-0"
-                      >
-                        14. Naipaayan iti naan-anay a tulong, manipud iti pannakaadmit, ken pannakaagas manipud iti
-                        "Malasakit Center".
-                      </p>
-
-                      <v-btn-toggle
-                        v-model="form.q14.rating"
-                        dense
-                      >
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                        >
-                          <v-icon :color="form.q14.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                        >
-                          <v-icon :color="form.q14.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                        >
-                          <v-icon :color="form.q14.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                        >
-                          <v-icon :color="form.q14.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                        >
-                          <v-icon :color="form.q14.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                        >
-                          N/A
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <v-divider color="black"></v-divider>
                   </v-col>
 
                   <!-- partC -->
                   <v-col cols="12">
                     <div class="grey lighten-1 mb-4">
                       <span class="text-h6-edited mx-2">
-                        C. Pannakapnek kadagiti serbisio a naipaay babaen kadagiti empleado
+                        C. Pannakapnek kadagiti serbisio a naipaay babaen kadagiti empleyado
                       </span>
                     </div>
 
-                    <!-- survey staff -->
-                    <div>
-                      <p class="my-2 font-weight-black">
-                        15. Nadayaw ken managtulong dagiti empleado ti ospital a nangtaming kadakami.
+                    <!-- staff survey -->
+                    <h3 class="my-2 font-weight-black">
+                      <!-- q13 I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7) -->
+                      <p class="font-weight-black">13. {{ survey_questions[12].desc }}</p>
+                      <p class="text-h6-edited">
+                        ***NOTE: Tsekan (✔) wenno isurat ti N/A no saanyo a nakalangen dagiti empleyado.
                       </p>
+                    </h3>
 
+                    <!-- doctor -->
+                    <div>
                       <p
                         v-if="form.errors[`doctor.rating`]"
                         class="ma-0 font-weight-black red--text"
@@ -1500,8 +1604,8 @@
 
                       <v-btn-toggle
                         v-model="form.doctor.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1548,27 +1652,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.doctor.rating != null && form.doctor.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="doctor"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="doctor"
-                          v-model="form.doctor.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`doctor.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- nurse -->
                     <div>
                       <p
                         v-if="form.errors[`nurse.rating`]"
@@ -1585,8 +1671,8 @@
 
                       <v-btn-toggle
                         v-model="form.nurse.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1633,28 +1719,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.nurse.rating != null && form.nurse.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="nurse"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          class="ma-0 pa-0"
-                          id="nurse"
-                          v-model="form.nurse.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`nurse.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- midwife -->
                     <div>
                       <p
                         v-if="form.errors[`midwife.rating`]"
@@ -1671,8 +1738,8 @@
 
                       <v-btn-toggle
                         v-model="form.midwife.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1721,27 +1788,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.midwife.rating != null && form.midwife.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="midwife"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="midwife"
-                          v-model="form.midwife.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`midwife.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- security -->
                     <div>
                       <p
                         v-if="form.errors[`security.rating`]"
@@ -1758,8 +1807,8 @@
 
                       <v-btn-toggle
                         v-model="form.security.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1808,27 +1857,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.security.rating != null && form.security.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="security"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="security"
-                          v-model="form.security.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`security.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- radiology -->
                     <div>
                       <p
                         v-if="form.errors[`radiology.rating`]"
@@ -1845,8 +1876,8 @@
 
                       <v-btn-toggle
                         v-model="form.radiology.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1895,27 +1926,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.radiology.rating != null && form.radiology.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="radiology"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="radiology"
-                          v-model="form.radiology.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`radiology.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- pharmacy -->
                     <div>
                       <p
                         v-if="form.errors[`pharmacy.rating`]"
@@ -1932,8 +1945,8 @@
 
                       <v-btn-toggle
                         v-model="form.pharmacy.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -1982,27 +1995,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.pharmacy.rating != null && form.pharmacy.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="pharmacy"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="pharmacy"
-                          v-model="form.pharmacy.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`pharmacy.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- laboratory -->
                     <div>
                       <p
                         v-if="form.errors[`laboratory.rating`]"
@@ -2019,8 +2014,8 @@
 
                       <v-btn-toggle
                         v-model="form.laboratory.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2069,45 +2064,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.laboratory.rating != null && form.laboratory.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="laboratory"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="laboratory"
-                          v-model="form.laboratory.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`laboratory.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- admitting_staff -->
                     <div>
                       <p
                         v-if="form.errors[`admitting_staff.rating`]"
                         class="ma-0 font-weight-black red--text"
                       >
-                        Admitting Staff
+                        Admitting staff
                       </p>
                       <p
                         v-else
                         class="ma-0 font-weight-black"
                       >
-                        Admitting Staff
+                        Admitting staff
                       </p>
 
                       <v-btn-toggle
                         v-model="form.admitting_staff.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2156,45 +2133,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.admitting_staff.rating != null && form.admitting_staff.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="admitting_staff"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="admitting_staff"
-                          v-model="form.admitting_staff.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`admitting_staff.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- medical_records -->
                     <div>
                       <p
                         v-if="form.errors[`medical_records.rating`]"
                         class="ma-0 font-weight-black red--text"
                       >
-                        Medical Records
+                        Medical records
                       </p>
                       <p
                         v-else
                         class="ma-0 font-weight-black"
                       >
-                        Medical Records
+                        Medical records
                       </p>
 
                       <v-btn-toggle
                         v-model="form.medical_records.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2243,27 +2202,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.medical_records.rating != null && form.medical_records.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="medical_records"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="medical_records"
-                          v-model="form.medical_records.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`medical_records.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- billing -->
                     <div>
                       <p
                         v-if="form.errors[`billing.rating`]"
@@ -2280,8 +2221,8 @@
 
                       <v-btn-toggle
                         v-model="form.billing.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2330,27 +2271,9 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.billing.rating != null && form.billing.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="billing"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="billing"
-                          v-model="form.billing.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`billing.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- cashier -->
                     <div>
                       <p
                         v-if="form.errors[`cashier.rating`]"
@@ -2367,8 +2290,8 @@
 
                       <v-btn-toggle
                         v-model="form.cashier.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2417,45 +2340,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.cashier.rating != null && form.cashier.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="cashier"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="cashier"
-                          v-model="form.cashier.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`cashier.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- social_worker -->
                     <div>
                       <p
                         v-if="form.errors[`social_worker.rating`]"
                         class="ma-0 font-weight-black red--text"
                       >
-                        Social Worker
+                        Social worker
                       </p>
                       <p
                         v-else
                         class="ma-0 font-weight-black"
                       >
-                        Social Worker
+                        Social worker
                       </p>
 
                       <v-btn-toggle
                         v-model="form.social_worker.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2504,45 +2409,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.social_worker.rating != null && form.social_worker.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="social_worker"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="social_worker"
-                          v-model="form.social_worker.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`social_worker.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- food_server -->
                     <div>
                       <p
                         v-if="form.errors[`food_server.rating`]"
                         class="ma-0 font-weight-black red--text"
                       >
-                        Food Server
+                        Food server
                       </p>
                       <p
                         v-else
                         class="ma-0 font-weight-black"
                       >
-                        Food Server
+                        Food server
                       </p>
 
                       <v-btn-toggle
                         v-model="form.food_server.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2591,45 +2478,27 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.food_server.rating != null && form.food_server.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="food_server"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="food_server"
-                          v-model="form.food_server.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`food_server.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
+                    <!-- janitors_orderly -->
                     <div>
                       <p
                         v-if="form.errors[`janitors_orderly.rating`]"
                         class="ma-0 font-weight-black red--text"
                       >
-                        Janitors/Orderly
+                        Janitors / Orderly
                       </p>
                       <p
                         v-else
                         class="ma-0 font-weight-black"
                       >
-                        Janitors/Orderly
+                        Janitors / Orderly
                       </p>
 
                       <v-btn-toggle
                         v-model="form.janitors_orderly.rating"
-                        class="pb-2"
                         dense
+                        class="pb-2"
                       >
                         <v-btn
                           value="5"
@@ -2678,53 +2547,34 @@
                           N/A
                         </v-btn>
                       </v-btn-toggle>
-
-                      <div
-                        v-if="form.janitors_orderly.rating != null && form.janitors_orderly.rating != 0"
-                        class="mt-1"
-                      >
-                        <label for="janitors_orderly"> Komento/Singangsing (Opsional) </label>
-                        <v-textarea
-                          id="janitors_orderly"
-                          v-model="form.janitors_orderly.comment"
-                          height="24"
-                          outlined
-                        ></v-textarea>
-                        <div
-                          v-if="form.errors[`janitors_orderly.comment`]"
-                          class="red--text"
-                        >
-                          Kabisiten ti komento.
-                        </div>
-                      </div>
                     </div>
 
                     <div class="my-4"></div>
 
-                    <!-- q15 -->
+                    <!-- q14 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
                     <div>
                       <p
-                        v-if="form.errors[`q15.rating`]"
+                        v-if="form.errors[`q14.answer`]"
                         class="font-weight-black ma-0 red--text"
                       >
-                        16. Agtalinaed a palimed dagiti impormasion pakaseknan ti pannakaagasmi.
+                        14. {{ survey_questions[13].desc }}
                       </p>
                       <p
                         v-else
                         class="font-weight-black ma-0"
                       >
-                        16. Agtalinaed a palimed dagiti impormasion pakaseknan ti pannakaagasmi.
+                        14. {{ survey_questions[13].desc }}
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q15.rating"
+                        v-model="form.q14.answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q15.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="form.q14.answer == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2732,13 +2582,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q15.rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="form.q14.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q15.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="form.q14.answer == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2746,13 +2596,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q15.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="form.q14.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q15.rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="form.q14.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2762,6 +2612,110 @@
                         </v-btn>
                       </v-btn-toggle>
                     </div>
+
+                    <!-- q15 I am satisfied with the service that I availed.-->
+                    <div class="my-4">
+                      <p
+                        v-if="form.errors[`q15.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        15. {{ survey_questions[14].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        15. {{ survey_questions[14].desc }}
+                      </p>
+
+                      <v-btn-toggle
+                        v-model="form.q15.answer"
+                        dense
+                      >
+                        <v-btn
+                          value="5"
+                          active-class="green darken-2"
+                        >
+                          <v-icon :color="form.q15.answer == 5 ? 'white' : 'black'"
+                            >mdi-emoticon-excited-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="4"
+                          active-class="light-green accent-4"
+                        >
+                          <v-icon :color="form.q15.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="3"
+                          active-class="yellow"
+                        >
+                          <v-icon :color="form.q15.answer == 3 ? 'white' : 'black'"
+                            >mdi-emoticon-neutral-outline</v-icon
+                          >
+                        </v-btn>
+                        <v-btn
+                          value="2"
+                          active-class="amber darken-2"
+                        >
+                          <v-icon :color="form.q15.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="1"
+                          active-class="red accent-2"
+                        >
+                          <v-icon :color="form.q15.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                        </v-btn>
+                        <v-btn
+                          value="0"
+                          active-class="blue white--text"
+                        >
+                          N/A
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+
+                    <!-- not_numbered1 Suggestions on how we can further improve our services? (Optional) -->
+                    <div>
+                      <p
+                        v-if="form.errors[`not_numbered1.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        {{ survey_questions[15].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        {{ survey_questions[15].desc }}
+                      </p>
+                      <v-textarea
+                        filled
+                        auto-grow
+                        v-model="form.not_numbered1.answer"
+                      ></v-textarea>
+                    </div>
+
+                    <!-- not_numbered2 If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason. -->
+                    <div>
+                      <p
+                        v-if="form.errors[`not_numbered2.answer`]"
+                        class="font-weight-black ma-0 red--text"
+                      >
+                        {{ survey_questions[16].desc }}
+                      </p>
+                      <p
+                        v-else
+                        class="font-weight-black ma-0"
+                      >
+                        {{ survey_questions[16].desc }}
+                      </p>
+                      <v-textarea
+                        filled
+                        auto-grow
+                        v-model="form.not_numbered2.answer"
+                      ></v-textarea>
+                    </div>
                   </v-col>
 
                   <v-col cols="12">
@@ -2769,40 +2723,15 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <label for="opt_q_1">
+                    <!-- HOSPITAL NUMBER-->
+                    <label for="hospital_number">
                       <span class="font-weight-black ma-0">
-                        Malaksid kadagiti nadakamat nga impormasion, addada kadi pay sabali a kapadasan a kayatyo nga
-                        idanon? (Opsional)
-                      </span>
-                    </label>
-                    <v-textarea
-                      id="opt_q_1"
-                      v-model="form.opt_q_1.comment"
-                      height="24"
-                      outlined
-                    ></v-textarea>
-
-                    <label for="opt_q_2">
-                      <span class="font-weight-black ma-0">
-                        Adda kadi dagiti empleado ti ospital a kayatmo a mapadayawan? No adda, pakisurat ti nagan iti
-                        nailannad nga espasio. (Opsional)
-                      </span>
-                    </label>
-                    <v-textarea
-                      id="opt_q_2"
-                      v-model="form.opt_q_2.comment"
-                      height="24"
-                      outlined
-                    ></v-textarea>
-
-                    <label for="opt_q_3">
-                      <span class="font-weight-black ma-0">
-                        Hospital number ti pasiente <span class="red--text">(Kasapulan.)</span>
+                        HOSPITAL NUMBER <span class="red--text">(Masapol)</span>
                       </span>
                     </label>
                     <v-text-field
-                      id="opt_q_3"
-                      v-model="form.opt_q_3.comment"
+                      id="hospital_number"
+                      v-model="form.hospital_number"
                       hide-details
                       dense
                       outlined
@@ -2811,86 +2740,73 @@
                       v-if="$page.props.errors[0]"
                       class="red--text"
                     >
-                      Saan a nasarakan ti ospital number ti pasiente.
+                      {{ $page.props.errors[0] }}
                     </div>
 
+                    <!-- preference-->
                     <div class="mt-6">
-                      <label for="opt_q_4">
-                        <span
-                          v-if="form.errors[`q16.rating`]"
-                          class="font-weight-black ma-0 red--text"
-                        >
-                          Kasano ti panangi-rate mo iti daytoy computer assisted Patient Satisfaction Survey?
+                      <label for="preference">
+                        <span class="font-weight-black ma-0">
+                          <p
+                            v-if="form.errors[`preference`]"
+                            class="font-weight-black ma-0 red--text"
+                          >
+                            Intuno maminsan, kayat ko usaren ket:
+                          </p>
+                          <p
+                            v-else
+                            class="font-weight-black ma-0"
+                          >
+                            Intuno maminsan, kayat ko usaren ket:
+                          </p>
                         </span>
-                        <span
-                          v-else
-                          class="font-weight-black ma-0"
-                        >
-                          Kasano ti panangi-rate mo iti daytoy computer assisted Patient Satisfaction Survey?
+                      </label>
+
+                      <div class="d-flex flex-row">
+                        <v-checkbox
+                          v-model="form.preference"
+                          label="Computer Assisted Survey"
+                          value="Computer Assisted Survey"
+                          dense
+                          hide-details
+                          class="mr-2"
+                        ></v-checkbox>
+
+                        <v-checkbox
+                          v-model="form.preference"
+                          label="Pen and Paper Survey"
+                          value="Pen and Paper Survey"
+                          dense
+                          hide-details
+                        ></v-checkbox>
+                      </div>
+                    </div>
+
+                    <!-- pss rating-->
+                    <div class="mt-6">
+                      <label for="pss_rating">
+                        <span class="font-weight-black ma-0">
+                          <p
+                            v-if="form.errors[`pss_rating`]"
+                            class="font-weight-black ma-0 red--text"
+                          >
+                            Kasanum i-rate iti Computer assisted satisfaction survey?
+                          </p>
+                          <p
+                            v-else
+                            class="font-weight-black ma-0"
+                          >
+                            Kasanum i-rate iti Computer assisted satisfaction survey?
+                          </p>
                         </span>
                       </label>
                       <v-rating
-                        id="opt_q_4"
-                        v-model="form.q16.rating"
+                        id="pss_rating"
+                        v-model="form.pss_rating"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
                         color="orange"
                       ></v-rating>
-                    </div>
-
-                    <div class="mt-6">
-                      <label for="opt_q_4">
-                        <span
-                          v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
-                          class="font-weight-black ma-0 red--text"
-                        >
-                          Ania a wagas ti surbey ti kaykayatyo?
-                        </span>
-                        <span
-                          v-else
-                          class="font-weight-black ma-0"
-                        >
-                          Ania a wagas ti surbey ti kaykayatyo?
-                        </span>
-                      </label>
-                      <v-radio-group
-                        v-model="form.opt_q_4.comment"
-                        hide-details
-                        dense
-                        row
-                        class="mt-1 pa-0"
-                      >
-                        <v-radio
-                          label="Computer Assisted"
-                          value="1-CA"
-                        ></v-radio>
-                        <v-radio
-                          label="Papel ken ballpen"
-                          value="2-PAP"
-                        ></v-radio>
-                      </v-radio-group>
-                      <label for="opt_q_4">
-                        <span
-                          v-if="form.errors[`opt_q_4.comment`] || form.errors[`opt_q_4.why`]"
-                          class="font-weight-black ma-0 red--text"
-                        >
-                          Apay?
-                        </span>
-                        <span
-                          v-else
-                          class="font-weight-black ma-0"
-                        >
-                          Apay?
-                        </span>
-                      </label>
-                      <v-textarea
-                        id="opt_q_4"
-                        v-model="form.opt_q_4.why"
-                        hide-details
-                        dense
-                        height="24"
-                        outlined
-                      ></v-textarea>
                     </div>
                   </v-col>
 
@@ -2981,10 +2897,11 @@ export default {
     hospital_staffs: Array,
     survey_questions: Array,
     survey_opt_questions: Array,
-    er_inpatient: Array,
-    outpatient_depts: Array,
-    other_depts: Array,
+    // er_inpatient: Array,
+    // outpatient_depts: Array,
+    // other_depts: Array,
   },
+  remember: 'form',
   data() {
     return {
       selectedTab: 0,
@@ -2994,7 +2911,6 @@ export default {
       snack: '',
       snackColor: '',
       snackText: '',
-      enableRespondent: false,
       isLoading: false,
       //   educational attainment enable checker
       enableElementary: false,
@@ -3003,6 +2919,7 @@ export default {
       enableCollege: false,
       enablePGM: false,
       enableNoEduc: false,
+      disableCC: false,
       religions: [
         'Aglipayan',
         'Roman Catholic',
@@ -3014,182 +2931,220 @@ export default {
         'Born Again',
         'Evangelicals',
       ].sort(),
+      departments: [
+        'Clinics',
+        'Surgery',
+        'Family Medicine',
+        'Internal Medicine',
+        'Pedia',
+        'Ob gyne',
+        'ENT',
+        'Ophthalmology',
+        'Dental',
+        'Rehabilitation',
+        'Orthopaedic',
+        'Emergency Room',
+        'Inpatient/Ward',
+        'Laboratory',
+        'Radiology',
+        'Medical Record',
+        'Billing',
+        'Cashier/Accounting',
+        'Medical Social Work Department/Malasakit Center',
+        'Outpatient Department',
+        'Pharmacy',
+        'Information & Admitting Section',
+      ],
       form: this.$inertia.form({
         respondent: '',
-        otherRespondent: '',
+        pointOfEntry: '',
+        // serviceAvailed: [],
+        // otherServiceAvailed: '',
+        frequentlyVisit: '',
         age: null,
         sex: '',
         religion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
-        departments: [],
-        visited_before: '',
+        cc1: null,
+        cc2: null,
+        cc3: null,
+        hospital_number: null,
+        preference: null,
+        pss_rating: null,
+        // The waiting areas were clean, orderly, and comfortable.
         q1: {
-          id: 1,
-          rating: undefined,
+          id: this.survey_questions[0].id,
+          answer: undefined,
         },
+        // The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.
         q2: {
-          id: 2,
-          rating: undefined,
+          id: this.survey_questions[1].id,
+          answer: undefined,
         },
+        // The patients' rooms were kept clean, tidy, and comfortable.
         q3: {
-          id: 3,
-          rating: undefined,
+          id: this.survey_questions[2].id,
+          answer: undefined,
         },
+        // The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).
         q4: {
-          id: 4,
-          rating: undefined,
+          id: this.survey_questions[3].id,
+          answer: undefined,
         },
+        // The office followed the transaction’s requirements and steps based on the information provided.(SQD2).
         q5: {
-          id: 5,
-          rating: undefined,
+          id: this.survey_questions[4].id,
+          answer: undefined,
         },
+        // I easily found information about my transaction from the office or its website.(SQD4).
         q6: {
-          id: 6,
-          rating: undefined,
+          id: this.survey_questions[5].id,
+          answer: undefined,
         },
+        // I spent a reasonable amount of time for my transaction.(SQD1).
         q7: {
-          id: 7,
-          rating: undefined,
+          id: this.survey_questions[6].id,
+          answer: undefined,
         },
+        // The medical condition, procedures and instructions were discussed clearly.
         q8: {
-          id: 8,
-          rating: undefined,
+          id: this.survey_questions[7].id,
+          answer: undefined,
         },
+        // Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.
         q9: {
-          id: 9,
-          rating: undefined,
+          id: this.survey_questions[8].id,
+          answer: undefined,
         },
+        // We were given the chance to decide which treatment procedure shall be performed.
         q10: {
-          id: 10,
-          rating: undefined,
+          id: this.survey_questions[9].id,
+          answer: undefined,
         },
+        // I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)
         q11: {
-          id: 11,
-          rating: undefined,
+          id: this.survey_questions[10].id,
+          answer: undefined,
         },
+        // I paid a reasonable amount of fees for my transaction.(SQD5)
         q12: {
-          id: 12,
-          rating: undefined,
+          id: this.survey_questions[11].id,
+          answer: undefined,
         },
-        q13: {
-          id: 13,
-          rating: undefined,
-        },
+        // I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
+        // q13: {
+        //   id: this.survey_questions[12].id,
+        //   answer: undefined,
+        // },
+        // I was treated fairly, or "walang palakasan" during my transaction.(SQD6)
         q14: {
-          id: 14,
-          rating: undefined,
-        },
-        q15: {
-          id: 15,
-          rating: undefined,
-        },
-        q16: {
-          id: 16,
-          rating: undefined,
+          id: this.survey_questions[13].id,
+          answer: undefined,
         },
         doctor: {
           id: this.hospital_staffs[0].id,
           rating: null,
-          comment: '',
         },
         nurse: {
           id: this.hospital_staffs[1].id,
           rating: undefined,
-          comment: '',
         },
         midwife: {
           id: this.hospital_staffs[2].id,
           rating: undefined,
-          comment: '',
         },
         security: {
           id: this.hospital_staffs[3].id,
           rating: undefined,
-          comment: '',
         },
         radiology: {
           id: this.hospital_staffs[4].id,
           rating: undefined,
-          comment: '',
         },
         pharmacy: {
           id: this.hospital_staffs[5].id,
           rating: undefined,
-          comment: '',
         },
         laboratory: {
           id: this.hospital_staffs[6].id,
           rating: undefined,
-          comment: '',
         },
         admitting_staff: {
           id: this.hospital_staffs[7].id,
           rating: undefined,
-          comment: '',
         },
         medical_records: {
           id: this.hospital_staffs[8].id,
           rating: undefined,
-          comment: '',
         },
         billing: {
           id: this.hospital_staffs[9].id,
           rating: undefined,
-          comment: '',
         },
         cashier: {
           id: this.hospital_staffs[10].id,
           rating: undefined,
-          comment: '',
         },
         social_worker: {
           id: this.hospital_staffs[11].id,
           rating: undefined,
-          comment: '',
         },
         food_server: {
           id: this.hospital_staffs[12].id,
           rating: undefined,
-          comment: '',
         },
         janitors_orderly: {
           id: this.hospital_staffs[13].id,
           rating: undefined,
-          comment: '',
         },
-        opt_q_1: {
-          survey_question_id: this.survey_opt_questions[0].id,
-          comment: '',
+        // I am satisfied with the service that I availed
+        q15: {
+          id: this.survey_questions[14].id,
+          answer: undefined,
         },
-        opt_q_2: {
-          survey_question_id: this.survey_opt_questions[1].id,
-          comment: '',
+        // Suggestions on how we can further improve our services? (Optional)
+        not_numbered1: {
+          id: this.survey_questions[15].id,
+          answer: null,
         },
-        opt_q_3: {
-          survey_question_id: this.survey_opt_questions[2].id,
-          comment: '',
-        },
-        opt_q_4: {
-          survey_question_id: this.survey_opt_questions[3].id,
-          comment: '',
-          why: '',
+        // If applicable, please indicate the name of any remarkable hospital staff you would like to commend, as well as reason.
+        not_numbered2: {
+          id: this.survey_questions[16].id,
+          answer: null,
         },
       }),
     };
   },
   mounted() {
-    // console.log('hospital staffs', this.hospital_staffs);
+    // console.log(this.survey_questions);
+  },
+  methods: {
+    submit() {
+      this.form.post(route('iloco.store'), {
+        onSuccess: () => {
+          this.isLoading = true;
+          this.form.reset();
+          this.createdMsg();
+        },
+        onError: (errors) => {
+          this.errorExistsMsg();
+        },
+      });
+    },
+    createdMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'Survey saved.';
+    },
+    errorExistsMsg() {
+      this.snack = true;
+      this.snackColor = 'color_error';
+      this.snackText = 'Failed to save survey, please answer the required questions.';
+    },
   },
   watch: {
     'form.age': function (val) {
-      // enableElementary: false,
-      // enableSecondary: false,
-      // enableVocational: false,
-      // enableCollege: false,
-      // enablePGM: false,
-      // enableNoEduc: false,
-      // console.log(this.enableElementary);
       if (val == null || val == 0) {
         this.enableElementary = false;
         this.enableSecondary = false;
@@ -3229,123 +3184,16 @@ export default {
         this.enableNoEduc = false;
       }
     },
-    'form.respondent': function (val) {
-      if (this.form.respondent != '') {
-        this.form.otherRespondent = '';
-        this.enableRespondent = false;
+    'form.cc1': function (val) {
+      if (val == 4) {
+        this.disableCC = true;
+        this.form.cc2 = 5; // N/A
+        this.form.cc3 = 4; // N/A
+      } else {
+        this.disableCC = false;
+        this.form.cc2 = null; // N/A
+        this.form.cc3 = null; // N/A
       }
-    },
-    enableRespondent: function (val) {
-      if (this.enableRespondent == true) {
-        this.form.respondent = '';
-      }
-    },
-    partA1: function (val) {
-      if (this.partA1 == false) {
-        this.form.q4.rating = undefined;
-        this.form.q5.rating = undefined;
-        this.form.q6.rating = undefined;
-        this.form.q7.rating = undefined;
-        this.form.q8.rating = undefined;
-        this.form.q9.rating = undefined;
-      }
-    },
-    'form.doctor.rating': function (val) {
-      if (this.form.doctor.rating == 0) {
-        this.form.doctor.comment = '';
-      }
-    },
-    'form.nurse.rating': function (val) {
-      if (this.form.nurse.rating == 0) {
-        this.form.nurse.comment = '';
-      }
-    },
-    'form.midwife.rating': function (val) {
-      if (this.form.midwife.rating == 0) {
-        this.form.midwife.comment = '';
-      }
-    },
-    'form.security.rating': function (val) {
-      if (this.form.security.rating == 0) {
-        this.form.security.comment = '';
-      }
-    },
-    'form.radiology.rating': function (val) {
-      if (this.form.radiology.rating == 0) {
-        this.form.radiology.comment = '';
-      }
-    },
-    'form.pharmacy.rating': function (val) {
-      if (this.form.pharmacy.rating == 0) {
-        this.form.pharmacy.comment = '';
-      }
-    },
-    'form.laboratory.rating': function (val) {
-      if (this.form.laboratory.rating == 0) {
-        this.form.laboratory.comment = '';
-      }
-    },
-    'form.admitting_staff.rating': function (val) {
-      if (this.form.admitting_staff.rating == 0) {
-        this.form.admitting_staff.comment = '';
-      }
-    },
-    'form.medical_records.rating': function (val) {
-      if (this.form.medical_records.rating == 0) {
-        this.form.medical_records.comment = '';
-      }
-    },
-    'form.billing.rating': function (val) {
-      if (this.form.billing.rating == 0) {
-        this.form.billing.comment = '';
-      }
-    },
-    'form.cashier.rating': function (val) {
-      if (this.form.cashier.rating == 0) {
-        this.form.cashier.comment = '';
-      }
-    },
-    'form.social_worker.rating': function (val) {
-      if (this.form.social_worker.rating == 0) {
-        this.form.social_worker.comment = '';
-      }
-    },
-    'form.food_server.rating': function (val) {
-      if (this.form.food_server.rating == 0) {
-        this.form.food_server.comment = '';
-      }
-    },
-    'form.janitors_orderly.rating': function (val) {
-      if (this.form.janitors_orderly.rating == 0) {
-        this.form.janitors_orderly.comment = '';
-      }
-    },
-  },
-  methods: {
-    submit() {
-      this.form.post(route('iloco.store'), {
-        onSuccess: () => {
-          this.isLoading = true;
-          this.form.reset();
-          this.enableRespondent = false;
-          this.enableOtherDepartment = false;
-          this.partA1 = false;
-          this.createdMsg();
-        },
-        onError: (errors) => {
-          this.errorExistsMsg();
-        },
-      });
-    },
-    createdMsg() {
-      this.snack = true;
-      this.snackColor = 'color_primary';
-      this.snackText = 'Survey saved.';
-    },
-    errorExistsMsg() {
-      this.snack = true;
-      this.snackColor = 'color_error';
-      this.snackText = 'Napaay a mangisalakan iti surbey, pangngaasiyo ta sungbatanyo dagiti kasapulan a saludsod.';
     },
   },
 };

@@ -21,7 +21,7 @@
               <Link
                 as="v-tab"
                 key="0"
-                href="#"
+                href="iloco"
                 >Iloco</Link
               >
               <Link
