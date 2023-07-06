@@ -57,6 +57,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email|max:40',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
+            'status' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -74,6 +75,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'image' => $image,
+            'status' => $request->status,
         ]);
 
         // assign role
@@ -112,7 +114,8 @@ class UserController extends Controller
                     'max:14',
                     Rule::unique('users')->ignore($user->id)
                 ],
-                'password' => 'required|min:8'
+                'password' => 'required|min:8',
+                'status' => 'required',
             ]);
 
             if ($request->hasFile('image')) {
@@ -128,7 +131,8 @@ class UserController extends Controller
                 'email' => $request->email,
                 'username' => $request->username,
                 'password' => bcrypt($request->password),
-                'image' => $image
+                'image' => $image,
+                'status' => $request->status,
             ]);
         } else {
             $request->validate([
@@ -150,6 +154,7 @@ class UserController extends Controller
                     'max:14',
                     Rule::unique('users')->ignore($user->id)
                 ],
+                'status' => 'required',
             ]);
 
             if ($request->hasFile('image')) {
@@ -164,7 +169,8 @@ class UserController extends Controller
                 'suffix' => $request->suffix,
                 'email' => $request->email,
                 'username' => $request->username,
-                'image' => $image
+                'image' => $image,
+                'status' => $request->status,
             ]);
         }
 

@@ -248,6 +248,21 @@
                         @keyup.enter="submit"
                       ></v-text-field>
                     </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                      v-if="$page.props.auth.user.roles[0] === 'super-admin'"
+                    >
+                      <v-select
+                        v-model="form.status"
+                        :error-messages="form.errors.status"
+                        color="color_primary"
+                        :items="status"
+                        label="Status"
+                      >
+                      </v-select>
+                    </v-col>
                   </v-row>
                 </v-form>
               </v-card-text>
@@ -392,6 +407,27 @@
             </v-chip>
           </template>
 
+          <template v-slot:item.status="{ item }">
+            <v-chip
+              v-if="item.status == 'activated'"
+              class="pa-2 green--text darken-4 text-uppercase"
+              label
+              small
+              input-value="true"
+            >
+              {{ item.status }}
+            </v-chip>
+            <v-chip
+              v-else
+              class="pa-2 pink--text darken-4 text-uppercase"
+              label
+              small
+              input-value="true"
+            >
+              {{ item.status }}
+            </v-chip>
+          </template>
+
           <template v-slot:item.actions="{ item }">
             <!-- {{ item.roles[0].name }} -->
             <!-- $page.props.auth.user.roles[0] -->
@@ -530,6 +566,7 @@ export default {
   },
   data() {
     return {
+      status: ['activated', 'deactivated'],
       roles: ['super-admin', 'admin', 'user'],
       rolesIfAdmin: ['admin', 'user'],
       selectedPermissions: [],
@@ -591,6 +628,12 @@ export default {
           class: 'color_main_dark_background',
         },
         {
+          text: 'STATUS',
+          align: 'start',
+          value: 'status',
+          class: 'color_main_dark_background',
+        },
+        {
           text: 'CREATED AT',
           align: 'start',
           value: 'created_at',
@@ -610,6 +653,7 @@ export default {
         username: null,
         password: null,
         image: null,
+        status: null,
       }),
     };
   },
@@ -657,6 +701,7 @@ export default {
             username: this.form.username,
             password: this.form.password,
             image: this.form.image,
+            status: this.form.status,
           },
           {
             onSuccess: () => {
@@ -698,6 +743,7 @@ export default {
       this.form.email = item.email;
       this.form.username = item.username;
       this.form.password = item.password;
+      this.form.status = item.status;
       this.isUpdate = true;
       this.itemId = item.id;
       this.dialog = true;
