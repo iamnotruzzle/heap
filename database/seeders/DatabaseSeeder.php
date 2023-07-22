@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             HospitalStaffSeeder::class,
             SurveyEnglishQuestionsSeeder::class,
             SurveyIlocoQuestionsSeeder::class,
+            LocationsSeeder::class,
         ]);
     }
 }

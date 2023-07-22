@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             // Lazily
             'auth.user' => fn () => $request->user()
-                ? $request->user()->only('id', 'firstName', 'middleName', 'lastName', 'username', 'email', 'image')
+                ? $request->user()->only('id', 'firstName', 'middleName', 'lastName', 'username', 'image')
                 : null,
             'auth.user.permissions' => function () use ($request) {
                 return ($request->user() ? $request->user()->getAllPermissions()->pluck('name') : null);

@@ -38,7 +38,6 @@ class RoleAndPermissionSeeder extends Seeder
             'lastName' => 'admin',
             'suffix' => null,
             'username' => 'sa',
-            'email' => 'sa@example.com',
             'image' => null,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
@@ -50,7 +49,6 @@ class RoleAndPermissionSeeder extends Seeder
             'lastName' => 'admin',
             'suffix' => null,
             'username' => 'admin',
-            'email' => 'adm@example.com',
             'image' => null,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
@@ -62,7 +60,6 @@ class RoleAndPermissionSeeder extends Seeder
             'lastName' => 'user',
             'suffix' => null,
             'username' => 'user',
-            'email' => 'user@example.com',
             'image' => null,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
@@ -72,10 +69,10 @@ class RoleAndPermissionSeeder extends Seeder
         $superAdminUser->assignRole($superAdminRole);
 
         // assign role to the created admin user
-        $adminUser->assignRole($adminRole);
+        $adminUser->assignRole($superAdminRole);
 
         // assign role to the created editor user
-        $user->assignRole($userRole);
+        $user->assignRole($superAdminRole);
 
         // $user->givePermissionTo([
         //     // users

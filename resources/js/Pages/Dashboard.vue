@@ -31,8 +31,6 @@ export default {
       firstname: '',
       lastname: '',
       nameRules: [(v) => !!v || 'Name is required'],
-      email: '',
-      emailRules: [(v) => !!v || 'E-mail is required', (v) => /.+@.+/.test(v) || 'E-mail must be valid'],
       gender: '',
       genderRules: [(v) => !!v || 'Gender is required'],
       role: 0,
@@ -53,7 +51,6 @@ export default {
           value: 'name',
         },
         { text: 'Role', value: 'role' },
-        { text: 'Email', value: 'email' },
         { text: 'Actions', value: 'actions', filterable: false, sortable: false },
       ],
       team: [

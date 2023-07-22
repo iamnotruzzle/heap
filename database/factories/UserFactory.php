@@ -20,7 +20,6 @@ class UserFactory extends Factory
             'lastName' => 'admin',
             'suffix' => null,
             'username' => 'admin',
-            'email' => 'admin@example.com',
             'image' => null,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'status' => 'activated',

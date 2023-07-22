@@ -33,8 +33,7 @@ class UserController extends Controller
                 $query->where('firstName', 'LIKE', '%' . $value . '%')
                     ->orWhere('middleName', 'LIKE', '%' . $value . '%')
                     ->orWhere('lastName', 'LIKE', '%' . $value . '%')
-                    ->orWhere('username', 'LIKE', '%' . $value . '%')
-                    ->orWhere('email', 'LIKE', '%' . $value . '%');
+                    ->orWhere('username', 'LIKE', '%' . $value . '%');
             })
             ->paginate($request->page_size ?? 15);
 
@@ -54,7 +53,6 @@ class UserController extends Controller
             'suffix' => 'string|nullable',
             'role' => 'required|string',
             // 'permissions' => 'required',
-            'email' => 'required|email|unique:users,email|max:40',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
             'status' => 'required',
@@ -71,7 +69,6 @@ class UserController extends Controller
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
             'suffix' => $request->suffix,
-            'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'image' => $image,
@@ -103,11 +100,6 @@ class UserController extends Controller
                 'suffix' => 'string|nullable',
                 'role' => 'required|string',
                 // 'permissions' => 'required',
-                'email' => [
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($user->id)
-                ],
                 'username' => [
                     'required',
                     'string',
@@ -128,7 +120,6 @@ class UserController extends Controller
                 'middleName' => $request->middleName,
                 'lastName' => $request->lastName,
                 'suffix' => $request->suffix,
-                'email' => $request->email,
                 'username' => $request->username,
                 'password' => bcrypt($request->password),
                 'image' => $image,
@@ -143,11 +134,6 @@ class UserController extends Controller
                 'suffix' => 'string|nullable',
                 'role' => 'required|string',
                 // 'permissions' => 'required',
-                'email' => [
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($user->id)
-                ],
                 'username' => [
                     'required',
                     'string',
@@ -167,7 +153,6 @@ class UserController extends Controller
                 'middleName' => $request->middleName,
                 'lastName' => $request->lastName,
                 'suffix' => $request->suffix,
-                'email' => $request->email,
                 'username' => $request->username,
                 'image' => $image,
                 'status' => $request->status,

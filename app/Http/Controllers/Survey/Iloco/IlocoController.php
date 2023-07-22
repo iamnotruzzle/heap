@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Survey\Iloco;
 
 use App\Http\Controllers\Controller;
-use App\Models\Department;
 use App\Models\DepartmentsVisited;
 use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;

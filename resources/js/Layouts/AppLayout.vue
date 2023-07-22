@@ -134,7 +134,6 @@
               <v-list-item-title class="text-h6-edited white--text">
                 {{ user.firstName }} {{ user.middleName }} {{ user.lastName }}
               </v-list-item-title>
-              <v-list-item-subtitle class="white--text">{{ user.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>

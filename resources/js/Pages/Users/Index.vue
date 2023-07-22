@@ -209,21 +209,6 @@
                       class="py-0"
                     >
                       <v-text-field
-                        v-model="form.email"
-                        :error-messages="form.errors.email"
-                        color="color_primary"
-                        clearable
-                        label="E-mail"
-                        required
-                        @keyup.enter="submit"
-                      ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                    >
-                      <v-text-field
                         v-model="form.username"
                         :error-messages="form.errors.username"
                         color="color_primary"
@@ -622,12 +607,6 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'EMAIL',
-          align: 'start',
-          value: 'email',
-          class: 'color_main_dark_background',
-        },
-        {
           text: 'STATUS',
           align: 'start',
           value: 'status',
@@ -649,7 +628,6 @@ export default {
         suffix: null,
         role: null,
         permissions: [],
-        email: null,
         username: null,
         password: null,
         image: null,
@@ -697,7 +675,6 @@ export default {
             suffix: this.form.suffix,
             role: this.form.role,
             permissions: this.form.permissions,
-            email: this.form.email,
             username: this.form.username,
             password: this.form.password,
             image: this.form.image,
@@ -740,7 +717,6 @@ export default {
       this.form.suffix = item.suffix;
       this.form.role = item.roles[0].name;
       this.form.permissions = permissionsCopy.slice(0);
-      this.form.email = item.email;
       this.form.username = item.username;
       this.form.password = item.password;
       this.form.status = item.status;
