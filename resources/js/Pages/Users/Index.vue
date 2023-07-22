@@ -133,27 +133,11 @@
                     <v-col
                       cols="12"
                       class="py-0"
-                      v-if="$page.props.auth.user.roles[0] === 'super-admin'"
                     >
                       <v-select
                         v-model="form.role"
-                        :error-messages="form.errors.role"
                         color="color_primary"
                         :items="roles"
-                        label="Role"
-                      >
-                      </v-select>
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                      v-else
-                    >
-                      <v-select
-                        v-model="form.role"
-                        :error-messages="form.errors.role"
-                        color="color_primary"
-                        :items="rolesIfAdmin"
                         label="Role"
                       >
                       </v-select>
@@ -192,7 +176,6 @@
                     <v-col
                       cols="12"
                       class="py-0"
-                      v-if="$page.props.auth.user.roles[0] === 'super-admin'"
                     >
                       <v-select
                         v-model="form.status"
@@ -310,11 +293,6 @@
             <span v-if="item.suffix != null">{{ item.suffix }}</span>
           </template>
 
-          <!-- role -->
-          <template #item.role="{ item }">
-            {{ item.roles[0].name }}
-          </template>
-
           <template v-slot:item.status="{ item }">
             <v-chip
               v-if="item.status == 'activated'"
@@ -337,34 +315,7 @@
           </template>
 
           <template v-slot:item.actions="{ item }">
-            <!-- {{ item.roles[0].name }} -->
-            <!-- $page.props.auth.user.roles[0] -->
-            <div
-              class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'admin' && item.roles[0].name != 'super-admin'"
-            >
-              <v-icon
-                size="20"
-                class="mr-1"
-                color="color_secondary"
-                @click="editItem(item)"
-              >
-                mdi-pencil
-              </v-icon>
-
-              <v-icon
-                size="20"
-                color="color_error"
-                @click.stop="deleteItem(item)"
-              >
-                mdi-delete
-              </v-icon>
-            </div>
-
-            <div
-              class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'super-admin'"
-            >
+            <div class="d-flex flex-no-wrap">
               <v-icon
                 size="20"
                 class="mr-1"
@@ -476,7 +427,6 @@ export default {
     return {
       status: ['activated', 'deactivated'],
       roles: ['super-admin', 'admin', 'user'],
-      rolesIfAdmin: ['admin', 'user'],
       snack: '',
       snackColor: '',
       snackText: '',
@@ -507,13 +457,6 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'ROLE',
-          align: 'start',
-          value: 'role',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
           text: 'USERNAME',
           align: 'start',
           value: 'username',
@@ -539,7 +482,6 @@ export default {
         middleName: null,
         lastName: null,
         suffix: null,
-        role: null,
         permissions: [],
         username: null,
         password: null,
@@ -586,7 +528,6 @@ export default {
             middleName: this.form.middleName,
             lastName: this.form.lastName,
             suffix: this.form.suffix,
-            role: this.form.role,
             username: this.form.username,
             password: this.form.password,
             image: this.form.image,
@@ -620,7 +561,6 @@ export default {
       this.form.middleName = item.middleName;
       this.form.lastName = item.lastName;
       this.form.suffix = item.suffix;
-      this.form.role = item.roles[0].name;
       this.form.username = item.username;
       this.form.password = item.password;
       this.form.status = item.status;

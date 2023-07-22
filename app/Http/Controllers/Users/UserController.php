@@ -12,18 +12,9 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    // restrict controller based on the users role
-    public function __construct()
-    {
-        // this will disable routes for users that is not super-admin or admin
-        $this->middleware(['role:super-admin']);
-        // $this->middleware(['role_or_permission:super-admin|admin|edit-users']);
-        // $this->middleware(['permission:create-users']);
-    }
-
     public function index(Request $request)
     {
-        $users = User::with(['roles', 'permissions'])->when($request->sort_by, function ($query, $value) {
+        $users = User::when($request->sort_by, function ($query, $value) {
             $query->orderBy($value, request('order_by', 'asc'));
         })
             // ->when(!isset($request->sort_by), function ($query) {
@@ -51,7 +42,6 @@ class UserController extends Controller
             'middleName' => 'string|nullable',
             'lastName' => 'required|string',
             'suffix' => 'string|nullable',
-            'role' => 'required|string',
             // 'permissions' => 'required',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
@@ -76,7 +66,7 @@ class UserController extends Controller
         ]);
 
         // assign role
-        $user->assignRole($request->role);
+        $user->assignRole('super-admin');
 
         // return redirect()->back();
         return Redirect::route('users.index');
@@ -95,7 +85,6 @@ class UserController extends Controller
                 'middleName' => 'string|nullable',
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
-                'role' => 'required|string',
                 // 'permissions' => 'required',
                 'username' => [
                     'required',
@@ -129,7 +118,6 @@ class UserController extends Controller
                 'middleName' => 'string|nullable',
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
-                'role' => 'required|string',
                 // 'permissions' => 'required',
                 'username' => [
                     'required',
@@ -157,7 +145,7 @@ class UserController extends Controller
         }
 
         // update user role
-        $user->syncRoles($request->role);
+        $user->syncRoles('super-admin');
 
 
         // return redirect()->back();
