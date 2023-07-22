@@ -812,9 +812,6 @@ export default {
 
       roles: ['super-admin', 'admin', 'user'],
       rolesIfAdmin: ['admin', 'user'],
-      selectedPermissions: [],
-      userPermissionList: [],
-      permissions: ['create-users', 'edit-users', 'delete-users'],
       snack: '',
       snackColor: '',
       snackText: '',

@@ -78,9 +78,6 @@ class UserController extends Controller
         // assign role
         $user->assignRole($request->role);
 
-        // assign permissions
-        $user->givePermissionTo($request->permissions);
-
         // return redirect()->back();
         return Redirect::route('users.index');
     }
@@ -162,8 +159,6 @@ class UserController extends Controller
         // update user role
         $user->syncRoles($request->role);
 
-        // update user permissions
-        $user->syncPermissions([$request->permissions]);
 
         // return redirect()->back();
         return Redirect::route('users.index');
@@ -177,9 +172,6 @@ class UserController extends Controller
 
         // remove user role
         $user->roles()->detach();
-
-        // remove user role
-        $user->permissions()->detach();
 
         // return redirect()->back();
         return Redirect::route('users.index');

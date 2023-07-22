@@ -158,51 +158,6 @@
                       >
                       </v-select>
                     </v-col>
-                    <!--
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                      v-if="form.role === 'user'"
-                    >
-                      <v-select
-                        v-model="form.permissions"
-                        :items="permissions"
-                        :menu-props="{ maxHeight: '300' }"
-                        label="Authorization"
-                        multiple
-                        color="color_primary"
-                      >
-                        <template v-slot:prepend-item>
-                          <v-list-item
-                            ripple
-                            @mousedown.prevent
-                            @click="toggle"
-                          >
-                            <v-list-item-action>
-                              <v-icon :color="selectedPermissions.length > 0 ? 'indigo darken-4' : ''">
-                                {{ icon }}
-                              </v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                              <v-list-item-title> Select All </v-list-item-title>
-                            </v-list-item-content>
-                          </v-list-item>
-                          <v-divider class="mt-2"></v-divider>
-                        </template>
-
-                        <template v-slot:selection="{ item, index }">
-                          <v-chip v-if="index === 0">
-                            <span>{{ item }}</span>
-                          </v-chip>
-                          <span
-                            v-if="index === 1"
-                            class="grey--text text-caption"
-                          >
-                            (+{{ form.permissions.length - 1 }} others)
-                          </span>
-                        </template>
-                      </v-select>
-                    </v-col> -->
 
                     <v-col
                       cols="12"
@@ -358,38 +313,6 @@
           <!-- role -->
           <template #item.role="{ item }">
             {{ item.roles[0].name }}
-          </template>
-
-          <!-- permissions -->
-          <template v-slot:item.permissions="{ item }">
-            <v-chip
-              v-if="item.roles[0].name === 'user' && item.permissions.length > 0"
-              class="pa-2 pink--text darken-4"
-              label
-              small
-              input-value="true"
-              @click="editItem(item)"
-            >
-              List
-            </v-chip>
-            <v-chip
-              v-else-if="item.roles[0].name === 'user'"
-              class="pa-2 cyan--text"
-              label
-              small
-              input-value="true"
-            >
-              Dashboards only
-            </v-chip>
-            <v-chip
-              v-else
-              class="pa-2 green--text"
-              label
-              small
-              input-value="true"
-            >
-              Max authorization
-            </v-chip>
           </template>
 
           <template v-slot:item.status="{ item }">
@@ -554,9 +477,6 @@ export default {
       status: ['activated', 'deactivated'],
       roles: ['super-admin', 'admin', 'user'],
       rolesIfAdmin: ['admin', 'user'],
-      selectedPermissions: [],
-      userPermissionList: [],
-      permissions: ['create-users', 'edit-users', 'delete-users'],
       snack: '',
       snackColor: '',
       snackText: '',
@@ -590,13 +510,6 @@ export default {
           text: 'ROLE',
           align: 'start',
           value: 'role',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'AUTHORIZATION',
-          align: 'start',
-          value: 'permissions',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -674,7 +587,6 @@ export default {
             lastName: this.form.lastName,
             suffix: this.form.suffix,
             role: this.form.role,
-            permissions: this.form.permissions,
             username: this.form.username,
             password: this.form.password,
             image: this.form.image,
@@ -704,19 +616,11 @@ export default {
       }
     },
     editItem(item) {
-      // get the users permissions
-      let permissionsCopy = [];
-      item.permissions.forEach((e) => {
-        permissionsCopy.push(e.name);
-      });
-      // end get the users permissions
-
       this.form.firstName = item.firstName;
       this.form.middleName = item.middleName;
       this.form.lastName = item.lastName;
       this.form.suffix = item.suffix;
       this.form.role = item.roles[0].name;
-      this.form.permissions = permissionsCopy.slice(0);
       this.form.username = item.username;
       this.form.password = item.password;
       this.form.status = item.status;
@@ -753,29 +657,6 @@ export default {
       this.snackColor = 'color_error';
       this.snackText = 'Account deleted.';
     },
-    toggle() {
-      this.$nextTick(() => {
-        if (this.selectedAllPermissions) {
-          this.form.permissions = [];
-        } else {
-          this.form.permissions = this.permissions.slice();
-        }
-      });
-    },
-    can(permission) {
-      // Check Permissions
-      //   let data = this.$page.props.auth.user.permissions.filter((ability) => ability === permission);
-
-      if (
-        this.$page.props.auth.user.roles[0] === 'super-admin' ||
-        this.$page.props.auth.user.roles[0] === 'admin' ||
-        data.length > 0
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
   },
   computed: {
     user() {
@@ -783,17 +664,6 @@ export default {
     },
     formTitle() {
       return this.isUpdate ? 'Edit User' : 'Create User';
-    },
-    selectedAllPermissions() {
-      return this.form.permissions.length === this.permissions.length;
-    },
-    selectedSomePermissions() {
-      return this.form.permissions.length > 0 && !this.selectedAllPermissions;
-    },
-    icon() {
-      if (this.selectedAllPermissions) return 'mdi-close-box';
-      if (this.selectedSomePermissions) return 'mdi-minus-box';
-      return 'mdi-checkbox-blank-outline';
     },
   },
   watch: {
