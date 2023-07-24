@@ -24,8 +24,8 @@ class LocationsSeeder extends Seeder
                 'wardname' => 'Office of the medical center chief',
             ],
             [
-                'wardcode' => 'petru',
-                'wardname' => 'Petru',
+                'wardcode' => 'petro',
+                'wardname' => 'Professional education, training and research office',
             ],
         ];
 
