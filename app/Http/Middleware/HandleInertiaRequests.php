@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\PssLocation;
+use App\Models\Ward;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -47,6 +49,16 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'message' => fn () => $request->session()->get('message')
             ],
+            'pss_location' => function () {
+                return PssLocation::get(['wardcode', 'wardname']);
+            },
+            'ward_location' => function () {
+                return
+                    Ward::where('wardstat', 'A')
+                    ->where('wardcode', '!=', 'ADMIN')
+                    ->where('wardcode', '!=', 'CSR')
+                    ->get(['wardcode', 'wardname']);
+            },
         ]);
     }
 }
