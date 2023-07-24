@@ -185,7 +185,6 @@
                         item-value="wardcode"
                         label="Location"
                         persistent-hint
-                        return-object
                         single-line
                         multiple
                         chips
