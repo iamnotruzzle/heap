@@ -91,7 +91,6 @@
                 ></v-text-field>
 
                 <v-card-actions :class="{ 'pa-3': $vuetify.breakpoint.smAndUp }">
-                  <a href="register">Not yet registered?</a>
                   <v-spacer></v-spacer>
                   <v-btn
                     color="color_primary white--text pa-0"
