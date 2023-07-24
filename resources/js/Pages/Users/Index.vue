@@ -186,6 +186,26 @@
                       >
                       </v-select>
                     </v-col>
+
+                    <v-col
+                      cols="12"
+                      class="py-0"
+                    >
+                      <v-select
+                        v-model="form.locations"
+                        :items="locationList"
+                        item-text="wardname"
+                        item-value="wardcode"
+                        label="Location"
+                        persistent-hint
+                        return-object
+                        single-line
+                        multiple
+                        chips
+                        :error-messages="form.errors.locations"
+                      >
+                      </v-select>
+                    </v-col>
                   </v-row>
                 </v-form>
               </v-card-text>
@@ -425,6 +445,7 @@ export default {
   },
   data() {
     return {
+      locationList: [],
       status: ['activated', 'deactivated'],
       roles: ['super-admin', 'admin', 'user'],
       snack: '',
@@ -482,16 +503,33 @@ export default {
         middleName: null,
         lastName: null,
         suffix: null,
-        permissions: [],
         username: null,
         password: null,
         image: null,
         status: null,
+        locations: [],
       }),
     };
   },
-  mounted() {},
+  mounted() {
+    this.storeLocationInContainer();
+  },
   methods: {
+    storeLocationInContainer() {
+      this.$page.props.pss_location.forEach((e) => {
+        this.locationList.push({
+          wardcode: e.wardcode,
+          wardname: e.wardname,
+        });
+      });
+
+      this.$page.props.ward_location.forEach((e) => {
+        this.locationList.push({
+          wardcode: e.wardcode,
+          wardname: e.wardname,
+        });
+      });
+    },
     updateData() {
       this.$inertia.get('users', this.params, {
         preserveState: true,

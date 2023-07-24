@@ -47,6 +47,7 @@ class UserController extends Controller
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
             'status' => 'required',
+            'locations' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
