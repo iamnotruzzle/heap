@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserLocations;
 use App\Models\Ward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -15,9 +17,10 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::when($request->sort_by, function ($query, $value) {
-            $query->orderBy($value, request('order_by', 'asc'));
-        })
+        $users = User::with('userLocations')
+            ->when($request->sort_by, function ($query, $value) {
+                $query->orderBy($value, request('order_by', 'asc'));
+            })
             // ->when(!isset($request->sort_by), function ($query) {
             //     $query->latest();
             // })
@@ -34,7 +37,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request->locations);
 
         $image = '';
 
@@ -44,7 +47,6 @@ class UserController extends Controller
             'middleName' => 'string|nullable',
             'lastName' => 'required|string',
             'suffix' => 'string|nullable',
-            // 'permissions' => 'required',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
             'status' => 'required',
@@ -68,6 +70,13 @@ class UserController extends Controller
             'status' => $request->status,
         ]);
 
+        foreach ($request->locations as $x) {
+            UserLocations::create([
+                'wardcode' => $x,
+                'user_id' => $user->id,
+            ]);
+        }
+
         // assign role
         $user->assignRole('super-admin');
 
@@ -77,7 +86,7 @@ class UserController extends Controller
 
     public function update(User $user, Request $request)
     {
-        // dd($request->image);
+        // dd($request->locations);
 
         $image = $user->image;
 
@@ -114,6 +123,15 @@ class UserController extends Controller
                 'image' => $image,
                 'status' => $request->status,
             ]);
+
+            // delete then assign locations
+            UserLocations::where('user_id', $user->id)->delete();
+            foreach ($request->locations as $x) {
+                UserLocations::create([
+                    'wardcode' => $x['wardcode'],
+                    'user_id' => $user->id,
+                ]);
+            }
         } else {
             $request->validate([
                 'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
@@ -145,6 +163,15 @@ class UserController extends Controller
                 'image' => $image,
                 'status' => $request->status,
             ]);
+
+            // delete then assign locations
+            UserLocations::where('user_id', $user->id)->delete();
+            foreach ($request->locations as $x) {
+                UserLocations::create([
+                    'wardcode' => $x,
+                    'user_id' => $user->id,
+                ]);
+            }
         }
 
         // update user role
@@ -163,6 +190,8 @@ class UserController extends Controller
 
         // remove user role
         $user->roles()->detach();
+
+        UserLocations::where('user_id', $user->id)->delete();
 
         // return redirect()->back();
         return Redirect::route('users.index');

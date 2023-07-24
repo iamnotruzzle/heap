@@ -497,6 +497,8 @@ export default {
     };
   },
   mounted() {
+    // console.log(this.users.data);
+
     this.storeLocationInContainer();
   },
   methods: {
@@ -555,6 +557,7 @@ export default {
             password: this.form.password,
             image: this.form.image,
             status: this.form.status,
+            locations: this.form.locations,
           },
           {
             onSuccess: () => {
@@ -580,6 +583,26 @@ export default {
       }
     },
     editItem(item) {
+      // get the users locations
+      let userLocationsCopy = [];
+      if (item.user_locations.length != 0) {
+        // console.log('test');
+        item.user_locations.forEach((e) => {
+          //   console.log('e', e);
+          if (e.pss_location_detail != null) {
+            userLocationsCopy.push({
+              wardcode: e.pss_location_detail.wardcode,
+            });
+          }
+          if (e.ward_location_detail != null) {
+            userLocationsCopy.push({
+              wardcode: e.ward_location_detail.wardcode,
+            });
+          }
+        });
+      }
+      // end get the users locations
+
       this.form.firstName = item.firstName;
       this.form.middleName = item.middleName;
       this.form.lastName = item.lastName;
@@ -587,6 +610,7 @@ export default {
       this.form.username = item.username;
       this.form.password = item.password;
       this.form.status = item.status;
+      this.form.locations = userLocationsCopy.slice(0);
       this.isUpdate = true;
       this.itemId = item.id;
       this.dialog = true;

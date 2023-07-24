@@ -15,8 +15,8 @@ class CreateUserLocationsTable extends Migration
     {
         Schema::connection('sqlsrv2')->create('user_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('wardcode');
-            $table->bigInteger('user_id');
+            $table->string('wardcode')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
