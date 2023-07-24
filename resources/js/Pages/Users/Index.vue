@@ -321,7 +321,10 @@
           </template>
 
           <template v-slot:item.actions="{ item }">
-            <div class="d-flex flex-no-wrap">
+            <div
+              v-if="item.user_locations[0].wardcode != 'admin'"
+              class="d-flex flex-no-wrap"
+            >
               <v-icon
                 size="20"
                 class="mr-1"
