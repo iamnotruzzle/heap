@@ -7,6 +7,7 @@ use App\Models\DepartmentsVisited;
 use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
+use App\Models\LoginHistory;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
@@ -40,18 +41,7 @@ class IlocoController extends Controller
 
     public function store(Request $request)
     {
-        // $servicesAvailed = $request->serviceAvailed;
-        // $convertedArrToStr = '';
-
-        // if ($request->otherServiceAvailed != '' || $request->otherServiceAvailed != null) {
-        //     // $serviceAvailed = implode(", ", $request->serviceAvailed);
-        //     array_push($servicesAvailed, $request->otherServiceAvailed);
-        // }
-
-        // // convert array to string when inserting in database
-        // $convertedArrToStr = implode(", ", $servicesAvailed);
-
-        $authUsername = Auth::user()->username;
+        $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
 
         // get hospital number
         $hospital_number = HospitalNumber::where('hpercode', $request->hospital_number)
@@ -145,7 +135,7 @@ class IlocoController extends Controller
                     'hospital_number' => $request->hospital_number,
                     'preference' => $request->preference,
                     'pss_rating' => $request->pss_rating,
-                    'ward' => $authUsername,
+                    'ward' => $authCurrentLocation->wardcode,
                 ]);
 
                 // reason why some $request is converted to string https://github.com/laravel/framework/issues/28923

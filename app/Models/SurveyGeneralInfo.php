@@ -49,4 +49,14 @@ class SurveyGeneralInfo extends Model
     {
         return $this->hasMany(SurveyAbtStaff::class, 'pss_id', 'pss_id');
     }
+
+    public function pssLocationDetail()
+    {
+        return $this->hasOne(PssLocation::class, 'wardcode', 'wardcode');
+    }
+
+    public function wardLocationDetail()
+    {
+        return $this->hasOne(Ward::class, 'wardcode', 'wardcode');
+    }
 }
