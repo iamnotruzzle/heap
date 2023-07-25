@@ -614,10 +614,7 @@
             <!-- {{ item.roles[0].name }} -->
             <!-- $page.props.auth.user.roles[0] -->
 
-            <div
-              class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'super-admin' || $page.props.auth.user.roles[0] == 'admin'"
-            >
+            <div class="d-flex flex-no-wrap">
               <v-icon
                 size="20"
                 color="color_error"
@@ -676,7 +673,7 @@
 
       <!-- Third card -->
       <v-card
-        v-if="$page.props.auth.user.roles[0] == 'super-admin'"
+        v-if="$page.props.user.role == 'super-admin' || $page.props.user.role == 'admin'"
         text
         :class="{
           color_main_dark_background: $vuetify.theme.dark,
@@ -1336,7 +1333,7 @@ export default {
       this.dialogDelete = true;
     },
     destroy() {
-      if (this.user.roles[0] == 'super-admin') {
+      if (this.$page.props.user.role == 'super-admin' || this.$page.props.user.role == 'admin') {
         this.form.delete(route('answers.destroy', this.itemId), {
           preserveScroll: true,
           onSuccess: () => {

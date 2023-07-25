@@ -301,7 +301,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$page.props);
+    // console.log(this.$page.props);
 
     const theme = localStorage.getItem('darkTheme');
     // Check if the user has set the theme state before
