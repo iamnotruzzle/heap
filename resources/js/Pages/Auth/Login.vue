@@ -59,10 +59,8 @@
                 v-if="hasErrors"
                 class="text-center red--text ma-2"
               >
-                <div class="mb-2 font-weight-black">Whoops! Something went wrong.</div>
-
                 <p
-                  class="ma-0 pa-0"
+                  class="font-weight-black test-h6 ma-0 pa-0"
                   v-for="(error, key) in errors"
                   :key="key"
                 >

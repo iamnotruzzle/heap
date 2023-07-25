@@ -63,7 +63,6 @@ class HandleInertiaRequests extends Middleware
             },
             'auth.user.currentLocation' => function () use ($request) {
                 return ($request->user() ? LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first() : null);
-                // return LoginHistory::with('locationName')->where('employeeid', Auth::user()->employeeid)->orderBy('created_at', 'DESC')->first();
             },
         ]);
     }

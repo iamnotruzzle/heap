@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -25,10 +26,10 @@ class StoreUserLoginHistory
      */
     public function handle($event)
     {
-        // $user = User::where('employeeid', $this->request->login)->first();
+        // $user = User::where('username', $this->request->login)->first();
 
         // StoreUserLoginHistory::create([
-        //     'employeeid' => $this->request->login,
+        //     'user_id' => $user->id,
         //     'wardcode' => $this->request->wardcode
         // ]);
     }
