@@ -50,7 +50,7 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message')
             ],
             'pss_location' => function () {
-                return PssLocation::get(['wardcode', 'wardname']);
+                return PssLocation::where('wardcode', '!=', 'admin')->get(['wardcode', 'wardname']);
             },
             'ward_location' => function () {
                 return

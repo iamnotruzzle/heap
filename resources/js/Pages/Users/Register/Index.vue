@@ -55,50 +55,57 @@
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text>
-              <div
-                v-if="hasErrors"
-                class="text-center red--text ma-2"
-              >
-                <div class="mb-2 font-weight-black">Whoops! Something went wrong.</div>
-
-                <p
-                  class="ma-0 pa-0"
-                  v-for="(error, key) in errors"
-                  :key="key"
-                >
-                  {{ error }}
-                </p>
-              </div>
-
-              <p>Sign in with your username and password:</p>
+              <p>Register Account</p>
               <v-form @submit.prevent="submit">
                 <v-text-field
-                  v-model="form.login"
-                  prepend-icon="mdi-account"
+                  v-model="form.firstName"
                   color="color_primary"
-                  name="login"
+                  label="First name"
+                  :error-messages="form.errors.firstName"
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.middleName"
+                  color="color_primary"
+                  label="Middle name"
+                  :error-messages="form.errors.middleName"
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.lastName"
+                  color="color_primary"
+                  label="Last name"
+                  :error-messages="form.errors.lastName"
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.suffix"
+                  color="color_primary"
+                  label="Suffix"
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.username"
+                  color="color_primary"
                   label="Username"
-                  type="login"
+                  :error-messages="form.errors.username"
                 ></v-text-field>
                 <v-text-field
                   v-model="form.password"
                   id="password"
-                  prepend-icon="mdi-lock"
                   color="color_primary"
-                  name="password"
                   label="Password"
                   type="password"
+                  :error-messages="form.errors.password"
                 ></v-text-field>
 
                 <v-card-actions :class="{ 'pa-3': $vuetify.breakpoint.smAndUp }">
+                  <a href="/">Sign in</a>
                   <v-spacer></v-spacer>
                   <v-btn
-                    color="color_primary white--text pa-0"
+                    color="blue darken-1 white--text pa-0"
                     :large="$vuetify.breakpoint.smAndUp"
-                    type="submit"
+                    @click="submit"
+                    @keyup.enter="submit"
                     x-small
                   >
-                    Login
+                    Register
                   </v-btn>
                 </v-card-actions>
               </v-form>
@@ -108,6 +115,25 @@
         </v-flex>
       </v-layout>
     </v-container>
+
+    <!-- snackbar -->
+    <v-snackbar
+      v-model="snack"
+      :timeout="50000"
+      :color="snackColor"
+    >
+      <span class="text-body-1">{{ snackText }}</span>
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          v-bind="attrs"
+          text
+          @click="snack = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -138,6 +164,10 @@ export default {
 
   data() {
     return {
+      loading: null,
+      snack: false,
+      snackColor: null,
+      snackText: '',
       form: this.$inertia.form({
         firstName: null,
         middleName: null,
@@ -150,7 +180,24 @@ export default {
   },
 
   methods: {
-    submit() {},
+    submit() {
+      //   console.log(this.$page.props);
+
+      this.form.post(route('register.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+          this.isLoading = true;
+          this.dialog = false;
+          this.form.reset();
+          this.registeredMsg();
+        },
+      });
+    },
+    registeredMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'Registered successfully, your account is being reviewed for approval.';
+    },
   },
 };
 </script>
