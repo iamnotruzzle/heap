@@ -69,6 +69,20 @@
 
                     <v-col
                       cols="12"
+                      class="py-0"
+                    >
+                      <v-select
+                        v-model="form.role"
+                        :error-messages="form.errors.role"
+                        color="color_primary"
+                        :items="roles"
+                        label="Role"
+                      >
+                      </v-select>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
                       md="6"
                       class="py-0"
                     >
@@ -434,7 +448,7 @@ export default {
     return {
       locationList: [],
       status: ['activated', 'deactivated'],
-      roles: ['super-admin', 'admin', 'user'],
+      roles: ['admin', 'user'],
       snack: '',
       snackColor: '',
       snackText: '',
@@ -455,6 +469,13 @@ export default {
           value: 'image',
           sortable: false,
           filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'ROLE',
+          align: 'start',
+          value: 'role',
+          sortable: false,
           class: 'color_main_dark_background',
         },
         {
