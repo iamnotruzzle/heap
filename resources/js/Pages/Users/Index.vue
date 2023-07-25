@@ -189,6 +189,7 @@
                         multiple
                         chips
                         :error-messages="form.errors.locations"
+                        color="color_primary"
                       >
                       </v-select>
                     </v-col>
