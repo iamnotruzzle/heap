@@ -66,7 +66,9 @@ class AnswersController extends Controller
         } else {
             $surveyAnswers = SurveyGeneralInfo::with(
                 'surveyAnswers',
-                'surveyAbtStaffs'
+                'surveyAbtStaffs',
+                'pssLocationDetail',
+                'wardLocationDetail'
             )
                 ->when($request->sort_by, function ($query, $value) {
                     $query->orderBy($value, request('order_by', 'asc'));

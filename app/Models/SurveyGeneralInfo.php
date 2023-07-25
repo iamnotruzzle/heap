@@ -52,11 +52,11 @@ class SurveyGeneralInfo extends Model
 
     public function pssLocationDetail()
     {
-        return $this->hasOne(PssLocation::class, 'wardcode', 'wardcode');
+        return $this->hasOne(PssLocation::class, 'wardcode', 'ward');
     }
 
     public function wardLocationDetail()
     {
-        return $this->hasOne(Ward::class, 'wardcode', 'wardcode');
+        return $this->hasOne(Ward::class, 'wardcode', 'ward');
     }
 }

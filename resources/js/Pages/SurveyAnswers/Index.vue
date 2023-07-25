@@ -598,6 +598,14 @@
             </div>
           </template>
 
+          <!-- location -->
+          <template #item.location="{ item }">
+            <div class="d-flex flex-row">
+              <span v-if="item.pss_location_detail != null"> {{ item.pss_location_detail.wardname }}</span>
+              <span v-if="item.ward_location_detail != null"> {{ item.pss_location_detail.wadrname }}</span>
+            </div>
+          </template>
+
           <template #item.created_at="{ item }">
             <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
           </template>
@@ -1157,9 +1165,9 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'WARD',
+          text: 'LOCATION',
           align: 'start',
-          value: 'ward',
+          value: 'location',
           sortable: false,
           class: 'color_main_dark_background',
         },
