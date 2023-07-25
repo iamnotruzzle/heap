@@ -70,6 +70,19 @@
 
               <p>Sign in with your username and password:</p>
               <v-form @submit.prevent="submit">
+                <v-select
+                  v-model="form.locations"
+                  :items="locationList"
+                  item-text="wardname"
+                  item-value="wardcode"
+                  label="Location"
+                  persistent-hint
+                  single-line
+                  chips
+                  prepend-icon="mdi-map"
+                  color="color_primary"
+                >
+                </v-select>
                 <v-text-field
                   v-model="form.login"
                   prepend-icon="mdi-account"
@@ -137,6 +150,7 @@ export default {
 
   data() {
     return {
+      locationList: [],
       form: this.$inertia.form({
         login: '',
         password: '',
@@ -144,8 +158,25 @@ export default {
       }),
     };
   },
-
+  mounted() {
+    this.storeLocationInContainer();
+  },
   methods: {
+    storeLocationInContainer() {
+      this.$page.props.pss_location.forEach((e) => {
+        this.locationList.push({
+          wardcode: e.wardcode,
+          wardname: e.wardname,
+        });
+      });
+
+      this.$page.props.ward_location.forEach((e) => {
+        this.locationList.push({
+          wardcode: e.wardcode,
+          wardname: e.wardname,
+        });
+      });
+    },
     submit() {
       this.form
         .transform((data) => ({
@@ -170,6 +201,10 @@ export default {
 </script>
 
 <style scoped>
+.v-select .v-select__selections > input {
+  display: none !important;
+}
+
 .prevent-wrap {
   /* white-space: pre-wrap; */
   word-break: keep-all;

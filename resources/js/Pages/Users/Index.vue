@@ -504,10 +504,12 @@ export default {
   methods: {
     storeLocationInContainer() {
       this.$page.props.pss_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
+        if (e.wardcode != 'admin') {
+          this.locationList.push({
+            wardcode: e.wardcode,
+            wardname: e.wardname,
+          });
+        }
       });
 
       this.$page.props.ward_location.forEach((e) => {
