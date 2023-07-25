@@ -40,6 +40,7 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
             'image' => null,
             'status' => 'deactivated',
+            'role' => 'user',
         ]);
 
         // assign role

@@ -54,6 +54,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'status' => 'required',
             'locations' => 'required',
+            'role' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -71,6 +72,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'image' => $image,
             'status' => $request->status,
+            'role' => $request->role,
         ]);
 
         foreach ($request->locations as $x) {
@@ -108,6 +110,7 @@ class UserController extends Controller
                 ],
                 'password' => 'required|min:8',
                 'status' => 'required',
+                'role' => 'required',
             ]);
 
             if ($request->hasFile('image')) {
@@ -124,6 +127,7 @@ class UserController extends Controller
                 'password' => bcrypt($request->password),
                 'image' => $image,
                 'status' => $request->status,
+                'role' => $request->role,
             ]);
 
             // delete then assign locations
@@ -149,6 +153,7 @@ class UserController extends Controller
                     Rule::unique('users')->ignore($user->id)
                 ],
                 'status' => 'required',
+                'role' => 'required',
             ]);
 
             if ($request->hasFile('image')) {
@@ -164,6 +169,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'image' => $image,
                 'status' => $request->status,
+                'role' => $request->role,
             ]);
 
             // delete then assign locations

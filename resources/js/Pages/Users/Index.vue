@@ -434,6 +434,7 @@ export default {
     return {
       locationList: [],
       status: ['activated', 'deactivated'],
+      roles: ['super-admin', 'admin', 'user'],
       snack: '',
       snackColor: '',
       snackText: '',
@@ -493,6 +494,7 @@ export default {
         password: null,
         image: null,
         status: null,
+        role: null,
         locations: [],
       }),
     };
@@ -561,6 +563,7 @@ export default {
             image: this.form.image,
             status: this.form.status,
             locations: this.form.locations,
+            role: this.form.role,
           },
           {
             onSuccess: () => {
@@ -609,6 +612,7 @@ export default {
       this.form.username = item.username;
       this.form.password = item.password;
       this.form.status = item.status;
+      this.form.role = item.role;
       this.form.locations = userLocationsCopy.slice(0);
       this.isUpdate = true;
       this.itemId = item.id;
