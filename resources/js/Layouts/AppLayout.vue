@@ -168,6 +168,7 @@
           </Link>
 
           <Link
+            v-if="$page.props.user.role != 'user'"
             href="users"
             :class="{ 'color_primary--text': $page.component === 'Users/Index' }"
             as="v-list-item"
@@ -300,6 +301,8 @@ export default {
     };
   },
   mounted() {
+    console.log(this.$page.props);
+
     const theme = localStorage.getItem('darkTheme');
     // Check if the user has set the theme state before
     if (theme) {
