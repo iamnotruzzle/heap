@@ -41,20 +41,16 @@ class JetstreamServiceProvider extends ServiceProvider
                 array_push($userLocation, $e->wardcode);
             }
 
-            // dd($userLocation);
-
-            if ($user->status != 'activated') {
-                throw ValidationException::withMessages(["Your account is not activated yet."]);
-            } else {
-                if (in_array($request->location, $userLocation)) {
-                    return $user;
-                } else {
-                    throw ValidationException::withMessages(["You don't have permission to login on this location."]);
-                }
-            }
-
             if ($user && Hash::check($request->password, $user->password)) {
-                return $user;
+                if ($user->status != 'activated') {
+                    throw ValidationException::withMessages(["Your account is not activated yet."]);
+                } else {
+                    if (in_array($request->location, $userLocation)) {
+                        return $user;
+                    } else {
+                        throw ValidationException::withMessages(["You don't have permission to login on this location."]);
+                    }
+                }
             }
         });
     }

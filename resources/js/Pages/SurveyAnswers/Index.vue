@@ -1243,7 +1243,6 @@ export default {
     },
     processJsonData() {
       this.surveyAnswers.data.forEach((e) => {
-        console.log(e);
         this.json_data.push({
           ID: e.pss_id,
           RESPONDENT: e.respondent,

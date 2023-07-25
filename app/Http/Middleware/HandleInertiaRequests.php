@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\LoginHistory;
 use App\Models\PssLocation;
+use App\Models\User;
 use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,9 @@ class HandleInertiaRequests extends Middleware
             },
             'auth.user.currentLocation' => function () use ($request) {
                 return ($request->user() ? LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first() : null);
+            },
+            'auth.approved_location' => function () use ($request) {
+                return ($request->user() ? User::with('userLocations')->where('id', Auth::user()->id)->first() : null);
             },
         ]);
     }
