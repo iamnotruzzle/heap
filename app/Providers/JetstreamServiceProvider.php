@@ -36,11 +36,21 @@ class JetstreamServiceProvider extends ServiceProvider
 
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::with('userLocations')->where('username', $request->login)->first();
+            $userLocation = array();
+            foreach ($user->userLocations as $e) {
+                array_push($userLocation, $e->wardcode);
+            }
+
+            // dd($userLocation);
 
             if ($user->status != 'activated') {
                 throw ValidationException::withMessages(["Your account is not activated yet."]);
             } else {
-                return $user;
+                if (in_array($request->location, $userLocation)) {
+                    return $user;
+                } else {
+                    throw ValidationException::withMessages(["You don't have permission to login on this location."]);
+                }
             }
 
             if ($user && Hash::check($request->password, $user->password)) {

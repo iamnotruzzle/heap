@@ -100,7 +100,6 @@ class UserController extends Controller
                 'middleName' => 'string|nullable',
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
-                // 'permissions' => 'required',
                 'username' => [
                     'required',
                     'string',
@@ -129,9 +128,10 @@ class UserController extends Controller
 
             // delete then assign locations
             UserLocations::where('user_id', $user->id)->delete();
+            dd($$request->locations);
             foreach ($request->locations as $x) {
                 UserLocations::create([
-                    'wardcode' => $x['wardcode'],
+                    'wardcode' => $x,
                     'user_id' => $user->id,
                 ]);
             }
@@ -142,7 +142,6 @@ class UserController extends Controller
                 'middleName' => 'string|nullable',
                 'lastName' => 'required|string',
                 'suffix' => 'string|nullable',
-                // 'permissions' => 'required',
                 'username' => [
                     'required',
                     'string',

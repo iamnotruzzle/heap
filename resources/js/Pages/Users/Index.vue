@@ -592,14 +592,10 @@ export default {
         item.user_locations.forEach((e) => {
           //   console.log('e', e);
           if (e.pss_location_detail != null) {
-            userLocationsCopy.push({
-              wardcode: e.pss_location_detail.wardcode,
-            });
+            userLocationsCopy.push(e.pss_location_detail.wardcode);
           }
           if (e.ward_location_detail != null) {
-            userLocationsCopy.push({
-              wardcode: e.ward_location_detail.wardcode,
-            });
+            userLocationsCopy.push(e.ward_location_detail.wardcode);
           }
         });
       }
