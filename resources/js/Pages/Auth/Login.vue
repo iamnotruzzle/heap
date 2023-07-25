@@ -71,14 +71,13 @@
               <p>Sign in with your username and password:</p>
               <v-form @submit.prevent="submit">
                 <v-select
-                  v-model="form.locations"
+                  v-model="form.location"
                   :items="locationList"
                   item-text="wardname"
                   item-value="wardcode"
                   label="Location"
                   persistent-hint
                   single-line
-                  chips
                   prepend-icon="mdi-map"
                   color="color_primary"
                 >
@@ -152,6 +151,7 @@ export default {
     return {
       locationList: [],
       form: this.$inertia.form({
+        location: '',
         login: '',
         password: '',
         remember: false,
