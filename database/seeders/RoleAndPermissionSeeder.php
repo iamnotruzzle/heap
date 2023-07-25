@@ -39,18 +39,36 @@ class RoleAndPermissionSeeder extends Seeder
             'username' => 'sa',
             'image' => null,
             'role' => 'super-admin',
+            'password' => '$2y$10$DNZVs1Gvd/nZKXzktIij2Obcm4ghT/.GKp3ltd2K3dKpgsEwwDFjS', // pinakb3t
+            'remember_token' => Str::random(10),
+        ]);
+
+        $adminUser = User::factory()->create([
+            'firstName' => 'Charo',
+            'middleName' => null,
+            'lastName' => 'Galang',
+            'suffix' => null,
+            'username' => 'cgg8',
+            'image' => null,
+            'role' => 'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ]);
 
-        UserLocations::create([
+        $sa = UserLocations::create([
             'wardcode' => 'admin',
             'user_id' => $superAdminUser->id,
+        ]);
+
+        $admin = UserLocations::create([
+            'wardcode' => 'petro',
+            'user_id' => $adminUser->id,
         ]);
 
 
         // assign role to the created super-admin user
         $superAdminUser->assignRole($superAdminRole);
+        $adminUser->assignRole($superAdminRole);
 
         // $user->givePermissionTo([
         //     // users
