@@ -30,9 +30,12 @@ class UserController extends Controller
                     ->orWhere('lastName', 'LIKE', '%' . $value . '%')
                     ->orWhere('username', 'LIKE', '%' . $value . '%');
             })
+            ->where('username', '!=', 'sa')
             ->paginate($request->page_size ?? 15);
 
-        return Inertia::render('Users/Index', ['users' => $users]);
+        return Inertia::render('Users/Index', [
+            'users' => $users,
+        ]);
     }
 
     public function store(Request $request)

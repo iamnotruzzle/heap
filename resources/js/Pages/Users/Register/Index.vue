@@ -139,33 +139,18 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        login: '',
-        password: '',
-        remember: false,
+        firstName: null,
+        middleName: null,
+        lastName: null,
+        suffix: null,
+        username: null,
+        password: null,
       }),
     };
   },
 
   methods: {
-    submit() {
-      this.form
-        .transform((data) => ({
-          ...data,
-          remember: this.form.remember ? 'on' : '',
-        }))
-        .post(this.route('login'), {
-          onFinish: () => this.form.reset('password'),
-        });
-    },
-  },
-
-  computed: {
-    errors() {
-      return this.$page.props.errors;
-    },
-    hasErrors() {
-      return Object.keys(this.errors).length > 0;
-    },
+    submit() {},
   },
 };
 </script>

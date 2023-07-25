@@ -23,14 +23,12 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
             'firstName' => 'required|string',
             'middleName' => 'string|nullable',
             'lastName' => 'required|string',
             'suffix' => 'string|nullable',
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
-            'status' => 'required',
         ]);
 
         $user = User::create([
@@ -41,7 +39,7 @@ class RegisterController extends Controller
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'image' => null,
-            'status' => $request->status,
+            'status' => 'deactivated',
         ]);
 
         // assign role
