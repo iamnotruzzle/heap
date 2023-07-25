@@ -1219,9 +1219,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.surveyAnswers);
-    // console.log(this.departments);
-    // console.log(this.delete_requests);
     this.processJsonData();
   },
   methods: {
@@ -1246,6 +1243,7 @@ export default {
     },
     processJsonData() {
       this.surveyAnswers.data.forEach((e) => {
+        console.log(e);
         this.json_data.push({
           ID: e.pss_id,
           RESPONDENT: e.respondent,
@@ -1290,7 +1288,7 @@ export default {
           'SOCIAL WORKER': e.survey_abt_staffs[10].rating, // social worker
           'FOOD SERVER': e.survey_abt_staffs[11].rating, // food server
           'JANITORS/ORDERLY': e.survey_abt_staffs[12].rating, // janitors/orderly
-          WARD: e.ward,
+          LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardcode,
           'SUBMITTED AT': this.tzone2(e.created_at),
         });
       });
