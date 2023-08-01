@@ -34,7 +34,7 @@
                       class="mr-4 mb-2"
                     />
 
-                    <h4 class="text-h4-edited text-center prevent-wrap">PATIENT SATISFACTION SURVEY</h4>
+                    <h4 class="text-h4-edited text-center prevent-wrap">HOSPITAL CLIENT EXPERIENCE SURVEY</h4>
                   </v-col>
 
                   <v-col
@@ -48,7 +48,7 @@
                       class="mr-4 mb-2"
                     />
 
-                    <h4 class="text-h4-edited text-center prevent-wrap">PATIENT SATISFACTION SURVEY</h4>
+                    <h4 class="text-h4-edited text-center prevent-wrap">HOSPITAL CLIENT EXPERIENCE SURVEY</h4>
                   </v-col>
                 </v-row>
               </v-layout>
