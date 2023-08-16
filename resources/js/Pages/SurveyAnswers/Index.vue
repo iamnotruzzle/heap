@@ -602,7 +602,7 @@
           <template #item.location="{ item }">
             <div class="d-flex flex-row">
               <span v-if="item.pss_location_detail != null"> {{ item.pss_location_detail.wardname }}</span>
-              <span v-if="item.ward_location_detail != null"> {{ item.pss_location_detail.wadrname }}</span>
+              <span v-else> {{ item.ward_location_detail.wardname }}</span>
             </div>
           </template>
 
@@ -1284,7 +1284,7 @@ export default {
           'SOCIAL WORKER': e.survey_abt_staffs[10].rating, // social worker
           'FOOD SERVER': e.survey_abt_staffs[11].rating, // food server
           'JANITORS/ORDERLY': e.survey_abt_staffs[12].rating, // janitors/orderly
-          LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardcode,
+          LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardname,
           'SUBMITTED AT': this.tzone2(e.created_at),
         });
       });
