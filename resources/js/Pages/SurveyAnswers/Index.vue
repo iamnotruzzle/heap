@@ -1216,6 +1216,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.surveyAnswers.data);
     this.processJsonData();
   },
   methods: {
@@ -1254,6 +1255,9 @@ export default {
           'HOSPITAL #': e.hospital_number,
           PREFERENCE: e.preference,
           'PSS RATING': e.pss_rating,
+          CC1: e.cc1,
+          CC2: e.cc2,
+          CC3: e.cc3,
           Q1: e.survey_answers[0].answer,
           Q2: e.survey_answers[1].answer,
           Q3: e.survey_answers[2].answer,
