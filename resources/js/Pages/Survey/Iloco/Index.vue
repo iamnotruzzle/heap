@@ -2726,7 +2726,7 @@
                     <!-- HOSPITAL NUMBER-->
                     <label for="hospital_number">
                       <span class="font-weight-black ma-0">
-                        HOSPITAL NUMBER <span class="red--text">(Masapol)</span>
+                        HOSPITAL NUMBER TI PASIENTE <span class="red--text">(Masapol)</span>
                       </span>
                     </label>
                     <v-text-field

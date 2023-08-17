@@ -2716,7 +2716,7 @@
                     <!-- HOSPITAL NUMBER-->
                     <label for="hospital_number">
                       <span class="font-weight-black ma-0">
-                        HOSPITAL NUMBER <span class="red--text">(Required)</span>
+                        PATIENT'S HOSPITAL NUMBER <span class="red--text">(Required)</span>
                       </span>
                     </label>
                     <v-text-field
