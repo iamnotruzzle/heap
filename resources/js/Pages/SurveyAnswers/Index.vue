@@ -246,12 +246,80 @@
 
           <!-- Q15 -->
           <template #item.q15="{ item }">
-            <span>{{ item.survey_answers[14].answer }}</span>
+            <!-- <span>{{ item.survey_answers[14].answer }}</span> -->
+            <v-dialog max-width="600">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="purple lighten-2 white--text"
+                  v-bind="attrs"
+                  v-on="on"
+                  text
+                  icon
+                >
+                  <v-icon dark> mdi-eye-outline </v-icon>
+                </v-btn>
+              </template>
+              <template v-slot:default="dialog">
+                <v-card>
+                  <v-toolbar
+                    color="purple lighten-2"
+                    dark
+                  >
+                    Suggestions on how we can further improve our services.
+                  </v-toolbar>
+                  <v-card-text>
+                    <div class="mt-4 font-weight-bold">{{ item.survey_answers[14].answer }}</div>
+                  </v-card-text>
+                  <v-card-actions class="justify-end">
+                    <v-btn
+                      text
+                      @click="dialog.value = false"
+                    >
+                      Close
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
           </template>
 
           <!-- Q16 -->
           <template #item.q16="{ item }">
-            <span>{{ item.survey_answers[15].answer }}</span>
+            <!-- <span>{{ item.survey_answers[15].answer }}</span> -->
+            <v-dialog max-width="600">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="indigo lighten-2 white--text"
+                  v-bind="attrs"
+                  v-on="on"
+                  text
+                  icon
+                >
+                  <v-icon dark> mdi-eye-outline </v-icon>
+                </v-btn>
+              </template>
+              <template v-slot:default="dialog">
+                <v-card>
+                  <v-toolbar
+                    color="indigo lighten-2"
+                    dark
+                  >
+                    Commendation
+                  </v-toolbar>
+                  <v-card-text>
+                    <div class="mt-4 font-weight-bold">{{ item.survey_answers[15].answer }}</div>
+                  </v-card-text>
+                  <v-card-actions class="justify-end">
+                    <v-btn
+                      text
+                      @click="dialog.value = false"
+                    >
+                      Close
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
           </template>
 
           <!-- PSS RATING -->
