@@ -676,9 +676,10 @@
 
           <!-- assisted_by -->
           <template #item.assisted_by="{ item }">
-            <span>
+            <span v-if="item.assisted_by != null">
               ({{ item.assisted_by.username }}) {{ item.assisted_by.firstName }} {{ item.assisted_by.lastName }}
             </span>
+            <span v-else></span>
           </template>
 
           <template #item.created_at="{ item }">
@@ -1371,7 +1372,7 @@ export default {
           'FOOD SERVER': e.survey_abt_staffs[11].rating, // food server
           'JANITORS/ORDERLY': e.survey_abt_staffs[12].rating, // janitors/orderly
           LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardname,
-          'ASSISTED BY': e.assisted_by.username,
+          'ASSISTED BY': e.assisted_by == null ? null : e.assisted_by.username,
           'SUBMITTED AT': this.tzone2(e.created_at),
         });
       });
