@@ -1371,6 +1371,7 @@ export default {
           'FOOD SERVER': e.survey_abt_staffs[11].rating, // food server
           'JANITORS/ORDERLY': e.survey_abt_staffs[12].rating, // janitors/orderly
           LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardname,
+          'ASSISTED BY': e.assisted_by.username,
           'SUBMITTED AT': this.tzone2(e.created_at),
         });
       });
