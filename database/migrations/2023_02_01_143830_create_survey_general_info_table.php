@@ -32,6 +32,7 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->string('preference')->nullable();
             $table->string('pss_rating')->nullable();
             $table->string('ward')->nullable();
+            $table->string('assisted_by')->nullable();
             $table->timestamps();
         });
     }

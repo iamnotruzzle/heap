@@ -33,7 +33,8 @@ class SurveyGeneralInfo extends Model
         'hospital_number',
         'preference',
         'pss_rating',
-        'ward'
+        'ward',
+        'assisted_by',
     ];
 
     // protected $casts = [
@@ -58,5 +59,10 @@ class SurveyGeneralInfo extends Model
     public function wardLocationDetail()
     {
         return $this->hasOne(Ward::class, 'wardcode', 'ward');
+    }
+
+    public function assistedBy()
+    {
+        return $this->hasOne(User::class, 'username', 'assisted_by');
     }
 }

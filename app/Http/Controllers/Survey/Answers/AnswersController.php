@@ -26,7 +26,8 @@ class AnswersController extends Controller
                 'surveyAnswers',
                 'surveyAbtStaffs',
                 'pssLocationDetail',
-                'wardLocationDetail'
+                'wardLocationDetail',
+                'assistedBy:id,username,firstName,lastName',
             )
                 ->when($request->sort_by, function ($query, $value) {
                     $query->orderBy($value, request('order_by', 'asc'));
@@ -68,7 +69,8 @@ class AnswersController extends Controller
                 'surveyAnswers',
                 'surveyAbtStaffs',
                 'pssLocationDetail',
-                'wardLocationDetail'
+                'wardLocationDetail',
+                'assistedBy:id,username,firstName,lastName',
             )
                 ->when($request->sort_by, function ($query, $value) {
                     $query->orderBy($value, request('order_by', 'asc'));

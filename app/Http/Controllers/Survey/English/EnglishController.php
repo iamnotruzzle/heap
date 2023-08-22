@@ -132,6 +132,7 @@ class EnglishController extends Controller
                     'preference' => $request->preference,
                     'pss_rating' => $request->pss_rating,
                     'ward' => $authCurrentLocation->wardcode,
+                    'assisted_by' => Auth::user()->username,
                 ]);
 
                 // reason why some $request is converted to string https://github.com/laravel/framework/issues/28923

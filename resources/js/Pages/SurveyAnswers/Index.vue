@@ -674,6 +674,13 @@
             </div>
           </template>
 
+          <!-- assisted_by -->
+          <template #item.assisted_by="{ item }">
+            <span>
+              ({{ item.assisted_by.username }}) {{ item.assisted_by.firstName }} {{ item.assisted_by.lastName }}
+            </span>
+          </template>
+
           <template #item.created_at="{ item }">
             <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
           </template>
@@ -1233,6 +1240,13 @@ export default {
           text: 'LOCATION',
           align: 'start',
           value: 'location',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'ASSISTED BY',
+          align: 'start',
+          value: 'assisted_by',
           sortable: false,
           class: 'color_main_dark_background',
         },
