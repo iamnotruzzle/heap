@@ -27,6 +27,34 @@ class LocationsSeeder extends Seeder
                 'wardcode' => 'petro',
                 'wardname' => 'Professional education, training and research office',
             ],
+            [
+                'wardcode' => 'ipcc',
+                'wardname' => 'Infection prevention control',
+            ],
+            [
+                'wardcode' => 'hlk',
+                'wardname' => 'Heart lung kidney',
+            ],
+            [
+                'wardcode' => 'er',
+                'wardname' => 'Emergency room',
+            ],
+            [
+                'wardcode' => 'cendu',
+                'wardname' => 'Central endoscopy unit',
+            ],
+            [
+                'wardcode' => 'or',
+                'wardname' => 'Operating room',
+            ],
+            [
+                'wardcode' => '3fmhr',
+                'wardname' => '3rd floor main (High Risk)',
+            ],
+            [
+                'wardcode' => 'gfew',
+                'wardname' => 'Ground floor eastern ward',
+            ],
         ];
 
         PssLocation::insert($location);
