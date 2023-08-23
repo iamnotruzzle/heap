@@ -29,7 +29,7 @@ class LocationsSeeder extends Seeder
             ],
             [
                 'wardcode' => 'ipcc',
-                'wardname' => 'Infection prevention control',
+                'wardname' => 'Infection prevention control committee',
             ],
             [
                 'wardcode' => 'hlk',
