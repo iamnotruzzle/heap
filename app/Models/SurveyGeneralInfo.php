@@ -35,6 +35,7 @@ class SurveyGeneralInfo extends Model
         'pss_rating',
         'ward',
         'assisted_by',
+        'attachment',
     ];
 
     // protected $casts = [
