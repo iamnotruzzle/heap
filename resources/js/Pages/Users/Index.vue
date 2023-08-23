@@ -164,12 +164,14 @@
                     >
                       <v-text-field
                         v-model="form.password"
-                        :error-messages="form.errors.password"
+                        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="showPassword ? 'text' : 'password'"
+                        @click:append="showPassword = !showPassword"
+                        id="password"
                         color="color_primary"
-                        clearable
+                        name="password"
                         label="Password"
-                        type="password"
-                        required
+                        :error-messages="form.errors.password"
                         @keyup.enter="submit"
                       ></v-text-field>
                     </v-col>
@@ -446,6 +448,7 @@ export default {
   },
   data() {
     return {
+      showPassword: false,
       locationList: [],
       status: ['activated', 'deactivated'],
       roles: ['admin', 'user'],
