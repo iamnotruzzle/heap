@@ -27,7 +27,7 @@
 
         <!-- header nav title -->
         <v-toolbar-title class="text-uppercase">
-          <span>Hospital Client Experience and Analysis</span>
+          <span>Hospital Client Experience Survey</span>
         </v-toolbar-title>
 
         <!-- add space BETWEEN title and signout -->
