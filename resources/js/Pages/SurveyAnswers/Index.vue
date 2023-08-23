@@ -676,9 +676,7 @@
 
           <!-- assisted_by -->
           <template #item.assisted_by="{ item }">
-            <span v-if="item.assisted_by != null">
-              ({{ item.assisted_by.username }}) {{ item.assisted_by.firstName }} {{ item.assisted_by.lastName }}
-            </span>
+            <span v-if="item.assisted_by != null"> ({{ item.assisted_by.username }}) </span>
             <span v-else></span>
           </template>
 
