@@ -693,13 +693,13 @@
                         class="font-weight-black ma-0 subtitle-1 red--text mx-2"
                         v-if="form.errors.cc1"
                       >
-                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagamnga ti CC ditoy nga opisan ket?
+                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagam nga ti CC ditoy nga opisan ket?
                       </p>
                       <p
                         class="font-weight-black ma-0 subtitle-1"
                         v-else
                       >
-                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagamnga ti CC ditoy nga opisan ket?
+                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagam nga ti CC ditoy nga opisan ket?
                       </p>
                       <div>
                         <v-checkbox
