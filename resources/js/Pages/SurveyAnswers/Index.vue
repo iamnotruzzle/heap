@@ -713,7 +713,7 @@
                     @click="setFormFileId(item)"
                     size="20"
                   >
-                    mdi-paperclip-plus
+                    mdi-paperclip
                   </v-icon>
                   <v-icon
                     v-else
