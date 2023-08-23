@@ -573,7 +573,7 @@ export default {
         Inertia.post(
           route('users.update', this.itemId),
           {
-            _method: 'put',
+            _method: 'PUT',
             preserveScroll: true,
             firstName: this.form.firstName,
             middleName: this.form.middleName,

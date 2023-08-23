@@ -8,6 +8,7 @@ use App\Models\UserLocations;
 use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -124,7 +125,7 @@ class UserController extends Controller
                 'lastName' => $request->lastName,
                 'suffix' => $request->suffix,
                 'username' => $request->username,
-                'password' => bcrypt($request->password),
+                'password' => Hash::make($request->password),
                 'image' => $image,
                 'status' => $request->status,
                 'role' => $request->role,
@@ -132,7 +133,7 @@ class UserController extends Controller
 
             // delete then assign locations
             UserLocations::where('user_id', $user->id)->delete();
-            dd($$request->locations);
+            // dd($$request->locations);
             foreach ($request->locations as $x) {
                 UserLocations::create([
                     'wardcode' => $x,
