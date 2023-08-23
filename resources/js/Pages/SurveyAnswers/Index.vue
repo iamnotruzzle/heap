@@ -346,12 +346,14 @@
 
           <template #item.attachment="{ item }">
             <a
+              v-if="item.attachment != null"
               :href="'/storage/' + item.attachment"
               target="_blank"
               download
             >
               <v-icon color="blue darken-2">mdi-download-box-outline</v-icon>
             </a>
+            <span v-else></span>
           </template>
 
           <!-- DOCTOR -->
@@ -704,7 +706,18 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
+                    v-if="item.attachment == null"
                     color="color_primary white--text"
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="setFormFileId(item)"
+                    size="20"
+                  >
+                    mdi-paperclip-plus
+                  </v-icon>
+                  <v-icon
+                    v-else
+                    color="yellow darken-2 white--text"
                     v-bind="attrs"
                     v-on="on"
                     @click="setFormFileId(item)"
