@@ -344,6 +344,16 @@
             </span>
           </template>
 
+          <template #item.attachment="{ item }">
+            <a
+              :href="'/storage/' + item.attachment"
+              target="_blank"
+              download
+            >
+              <v-icon color="blue darken-2">mdi-download-box-outline</v-icon>
+            </a>
+          </template>
+
           <!-- DOCTOR -->
           <template #item.doctor="{ item }">
             <div class="d-flex flex-row">
@@ -685,17 +695,112 @@
           </template>
 
           <template v-slot:item.actions="{ item }">
-            <!-- {{ item.roles[0].name }} -->
-            <!-- $page.props.auth.user.roles[0] -->
-
-            <div class="d-flex flex-no-wrap">
-              <v-icon
-                size="20"
-                color="color_error"
-                @click.stop="deleteItem(item)"
+            <div class="d-flex flex-row">
+              <v-dialog
+                v-model="dialogAttachment"
+                @keydown.esc="cancel"
+                @click:outside="cancel"
+                width="500"
               >
-                mdi-delete
-              </v-icon>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    color="color_primary white--text"
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="setFormFileId(item)"
+                    size="20"
+                  >
+                    mdi-paperclip
+                  </v-icon>
+                </template>
+
+                <v-card>
+                  <v-card-title
+                    class="text-h6-edited color_primary white--text"
+                    v-if="isUpdate != true"
+                  >
+                    Attach file
+                  </v-card-title>
+                  <v-card-title
+                    class="text-h6-edited color_secondary white--text d-flex justify-space-between"
+                    v-else
+                  >
+                    Update attached file
+                  </v-card-title>
+
+                  <v-card-text class="mt-8">
+                    <v-form ref="form">
+                      <v-row>
+                        <v-col
+                          cols="12"
+                          class="py-0"
+                        >
+                          <v-file-input
+                            v-model="formFile.attachment"
+                            @input="formFile.attachment = $event.target.files[0]"
+                            :error-messages="formFile.errors.attachment"
+                            color="color_primary"
+                            chips
+                            show-size
+                            small-chips
+                            label="File"
+                            prepend-icon=""
+                            truncate-length="15"
+                          ></v-file-input>
+                        </v-col>
+                      </v-row>
+                    </v-form>
+                  </v-card-text>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <div>
+                      <v-btn
+                        color="color_error"
+                        text
+                        :disabled="formFile.processing"
+                        @click="cancel"
+                      >
+                        Cancel
+                      </v-btn>
+
+                      <v-btn
+                        v-if="isUpdate == false"
+                        color="color_primary white--text"
+                        :loading="formFile.processing"
+                        @click="submitFile"
+                        @keyup.enter="submitFile"
+                      >
+                        Save
+                      </v-btn>
+
+                      <v-btn
+                        v-else
+                        color="color_secondary white--text"
+                        :loading="formFile.processing"
+                        @click="submitFile"
+                        @keyup.enter="submitFile"
+                      >
+                        Update
+                      </v-btn>
+                    </div>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+              <div class="mr-2"></div>
+
+              <div>
+                <v-icon
+                  size="20"
+                  color="color_error"
+                  @click.stop="deleteItem(item)"
+                >
+                  mdi-delete
+                </v-icon>
+              </div>
             </div>
           </template>
 
@@ -896,6 +1001,7 @@ export default {
       snackText: '',
       dialog: false,
       dialogDelete: false,
+      dialogAttachment: false,
       itemId: null,
       valid: true,
       url: null,
@@ -1131,6 +1237,13 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
+        {
+          text: 'CORRECTIVE ACTION',
+          align: 'start',
+          value: 'attachment',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
         // DOCTOR
         {
           text: 'DOCTOR',
@@ -1294,6 +1407,10 @@ export default {
         user_id: null,
         status: 'pending',
       }),
+      formFile: this.$inertia.form({
+        id: null,
+        attachment: null,
+      }),
     };
   },
   mounted() {
@@ -1355,6 +1472,7 @@ export default {
           Q14: e.survey_answers[13].answer,
           Q15: e.survey_answers[14].answer,
           Q16: e.survey_answers[15].answer,
+          'CORRECTIVE ACTION': e.attachment,
           // about staff
           DOCTOR: e.survey_abt_staffs[0].rating, // doctor
           NURSE: e.survey_abt_staffs[1].rating, // nurse
@@ -1382,16 +1500,27 @@ export default {
       this.education = 'NO FILTER';
       this.department = null;
     },
+    setFormFileId(item) {
+      this.formFile.id = item.id;
+    },
     cancel() {
       this.dialog = false;
+      this.dialogAttachment = false;
       this.isUpdate = false;
       this.form.reset();
       this.form.clearErrors();
+      this.formFile.reset();
+      this.formFile.clearErrors();
     },
     create() {
       this.dialog = true;
       this.form.reset();
       this.form.clearErrors();
+    },
+    createdMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'File attached.';
     },
     deletedMsg() {
       this.snack = true;
@@ -1403,16 +1532,57 @@ export default {
       this.snackColor = 'color_primary';
       this.snackText = 'Delete request submitted.';
     },
-    submit() {
-      this.form.post(route('answers.store'), {
-        preserveScroll: true,
-        onSuccess: () => {
-          this.isLoading = true;
-          this.dialog = false;
-          this.form.reset();
-          this.createdMsg();
-        },
-      });
+    // submit() {
+    //   this.form.post(route('answers.store'), {
+    //     preserveScroll: true,
+    //     onSuccess: () => {
+    //       this.isLoading = true;
+    //       this.dialog = false;
+    //       this.form.reset();
+    //       this.createdMsg();
+    //     },
+    //   });
+    // },
+    submitFile() {
+      if (this.isUpdate) {
+        // Inertia.post(
+        //   route('users.update', this.itemId),
+        //   {
+        //     _method: 'PUT',
+        //     preserveScroll: true,
+        //     firstName: this.form.firstName,
+        //     middleName: this.form.middleName,
+        //     lastName: this.form.lastName,
+        //     suffix: this.form.suffix,
+        //     username: this.form.username,
+        //     password: this.form.password,
+        //     image: this.form.image,
+        //     status: this.form.status,
+        //     locations: this.form.locations,
+        //     role: this.form.role,
+        //   },
+        //   {
+        //     onSuccess: () => {
+        //       this.isLoading = false;
+        //       this.dialog = false;
+        //       this.isUpdate = false;
+        //       this.itemId = null;
+        //       this.form.reset();
+        //       this.updatedMsg();
+        //     },
+        //   }
+        // );
+      } else {
+        this.formFile.post(route('answers.store'), {
+          preserveScroll: true,
+          onSuccess: () => {
+            this.isLoading = true;
+            this.dialogAttachment = false;
+            this.formFile.reset();
+            this.createdMsg();
+          },
+        });
+      }
     },
     deleteItem(item) {
       this.itemId = item.pss_id;

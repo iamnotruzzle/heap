@@ -125,7 +125,25 @@ class AnswersController extends Controller
 
     public function store(Request $request)
     {
-        //
+        // dd($request->id);
+
+        $attachment = '';
+        $request->validate([
+            'attachment' => 'nullable|mimes:jpeg,jpg,png,gif,svg|max:20000',
+        ]);
+
+        if ($request->hasFile('attachment')) {
+            $attachment = $request->file('attachment')->store('attachment', 'public');
+        } else {
+            $attachment = null;
+        }
+
+        SurveyGeneralInfo::where('id', $request->id)
+            ->update([
+                'attachment' => $attachment,
+            ]);
+
+        return Redirect::route('answers.index');
     }
 
 
