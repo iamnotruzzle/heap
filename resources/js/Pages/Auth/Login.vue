@@ -92,12 +92,14 @@
                 ></v-text-field>
                 <v-text-field
                   v-model="form.password"
+                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="showPassword ? 'text' : 'password'"
+                  @click:append="showPassword = !showPassword"
                   id="password"
                   prepend-icon="mdi-lock"
                   color="color_primary"
                   name="password"
                   label="Password"
-                  type="password"
                 ></v-text-field>
 
                 <v-card-actions :class="{ 'pa-3': $vuetify.breakpoint.smAndUp }">
@@ -149,6 +151,7 @@ export default {
 
   data() {
     return {
+      showPassword: false,
       locationList: [],
       form: this.$inertia.form({
         location: '',

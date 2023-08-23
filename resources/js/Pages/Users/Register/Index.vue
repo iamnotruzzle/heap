@@ -102,10 +102,13 @@
                 ></v-text-field>
                 <v-text-field
                   v-model="form.password"
+                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="showPassword ? 'text' : 'password'"
+                  @click:append="showPassword = !showPassword"
                   id="password"
                   color="color_primary"
+                  name="password"
                   label="Password"
-                  type="password"
                   :error-messages="form.errors.password"
                 ></v-text-field>
 
@@ -178,6 +181,7 @@ export default {
 
   data() {
     return {
+      showPassword: false,
       loading: null,
       snack: false,
       snackColor: null,
