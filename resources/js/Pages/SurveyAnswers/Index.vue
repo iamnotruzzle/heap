@@ -720,7 +720,7 @@
                     color="yellow darken-2 white--text"
                     v-bind="attrs"
                     v-on="on"
-                    @click="setFormFileId(item)"
+                    @click="updateAttachment(item)"
                     size="20"
                   >
                     mdi-paperclip
@@ -788,7 +788,6 @@
                       >
                         Save
                       </v-btn>
-
                       <v-btn
                         v-else
                         color="color_secondary white--text"
@@ -1427,7 +1426,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.surveyAnswers.data);
+    // console.log(this.surveyAnswers.data);
     this.processJsonData();
   },
   methods: {
@@ -1485,7 +1484,7 @@ export default {
           Q14: e.survey_answers[13].answer,
           Q15: e.survey_answers[14].answer,
           Q16: e.survey_answers[15].answer,
-          'CORRECTIVE ACTION': e.attachment,
+          'CORRECTIVE ACTION': e.attachment == null ? null : e.attachment,
           // about staff
           DOCTOR: e.survey_abt_staffs[0].rating, // doctor
           NURSE: e.survey_abt_staffs[1].rating, // nurse
@@ -1516,6 +1515,10 @@ export default {
     setFormFileId(item) {
       this.formFile.id = item.id;
     },
+    updateAttachment(item) {
+      this.isUpdate = true;
+      this.formFile.id = item.id;
+    },
     cancel() {
       this.dialog = false;
       this.dialogAttachment = false;
@@ -1535,6 +1538,11 @@ export default {
       this.snackColor = 'color_primary';
       this.snackText = 'File attached.';
     },
+    updatedMsg() {
+      this.snack = true;
+      this.snackColor = 'color_primary';
+      this.snackText = 'Attached file updated.';
+    },
     deletedMsg() {
       this.snack = true;
       this.snackColor = 'color_error';
@@ -1545,46 +1553,25 @@ export default {
       this.snackColor = 'color_primary';
       this.snackText = 'Delete request submitted.';
     },
-    // submit() {
-    //   this.form.post(route('answers.store'), {
-    //     preserveScroll: true,
-    //     onSuccess: () => {
-    //       this.isLoading = true;
-    //       this.dialog = false;
-    //       this.form.reset();
-    //       this.createdMsg();
-    //     },
-    //   });
-    // },
     submitFile() {
       if (this.isUpdate) {
-        // Inertia.post(
-        //   route('users.update', this.itemId),
-        //   {
-        //     _method: 'PUT',
-        //     preserveScroll: true,
-        //     firstName: this.form.firstName,
-        //     middleName: this.form.middleName,
-        //     lastName: this.form.lastName,
-        //     suffix: this.form.suffix,
-        //     username: this.form.username,
-        //     password: this.form.password,
-        //     image: this.form.image,
-        //     status: this.form.status,
-        //     locations: this.form.locations,
-        //     role: this.form.role,
-        //   },
-        //   {
-        //     onSuccess: () => {
-        //       this.isLoading = false;
-        //       this.dialog = false;
-        //       this.isUpdate = false;
-        //       this.itemId = null;
-        //       this.form.reset();
-        //       this.updatedMsg();
-        //     },
-        //   }
-        // );
+        Inertia.post(
+          route('answers.update', this.formFile.id),
+          {
+            _method: 'PUT',
+            preserveScroll: true,
+            attachment: this.formFile.attachment,
+          },
+          {
+            onSuccess: () => {
+              this.isLoading = false;
+              this.dialogAttachment = false;
+              this.isUpdate = false;
+              this.formFile.reset();
+              this.updatedMsg();
+            },
+          }
+        );
       } else {
         this.formFile.post(route('answers.store'), {
           preserveScroll: true,

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class AnswersController extends Controller
@@ -149,7 +150,29 @@ class AnswersController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        $file = SurveyGeneralInfo::where('id', $id)->first();
+
+        // dd($id);
+
+        $attachment = '';
+        $request->validate([
+            'attachment' => 'nullable|mimes:doc,docx,pdf,jpeg,jpg,png,gif,svg|max:20000',
+        ]);
+
+
+        if ($request->hasFile('attachment')) {
+            Storage::delete('public/' . $file->attachment);
+            $attachment = $request->file('attachment')->store('attachment', 'public');
+        }
+
+        SurveyGeneralInfo::where('id', $id)
+            ->update([
+                'attachment' => $attachment,
+            ]);
+
+        return Redirect::route('answers.index');
     }
 
     public function destroy($id)
