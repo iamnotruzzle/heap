@@ -83,7 +83,7 @@ class TagalogController extends Controller
                     'cc1' => 'required',
                     'cc2' => 'required',
                     'cc3' => 'required',
-                    'hospital_number' => 'required',
+                    'hospital_number' => 'required|min:6|max:7|',
                     'pss_rating' => 'required',
                     'q1.answer' => 'required',
                     'q2.answer' => 'required',
