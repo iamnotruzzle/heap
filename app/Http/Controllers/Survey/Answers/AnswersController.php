@@ -33,12 +33,12 @@ class AnswersController extends Controller
                 ->when($request->sort_by, function ($query, $value) {
                     $query->orderBy($value, request('order_by', 'asc'));
                 })
-                ->when(
-                    $request->sex,
-                    function ($query, $value) {
-                        $query->where('sex', $value);
-                    }
-                )
+                // ->when(
+                //     $request->sex,
+                //     function ($query, $value) {
+                //         $query->where('sex', $value);
+                //     }
+                // )
                 ->when(
                     $request->from,
                     function ($query, $value) {
@@ -49,6 +49,18 @@ class AnswersController extends Controller
                     $request->to,
                     function ($query, $value) {
                         $query->whereDate('created_at', '<=', $value);
+                    }
+                )
+                ->when(
+                    $request->employee_id,
+                    function ($query, $value) {
+                        $query->where('assisted_by', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $request->pss_id,
+                    function ($query, $value) {
+                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->when(

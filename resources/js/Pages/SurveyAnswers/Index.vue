@@ -51,7 +51,7 @@
                     <v-card-title class="ma-0 pa-0"> Filter </v-card-title>
                     <v-divider></v-divider>
                     <div class="d-flex flex-column mt-1 pa-0">
-                      <v-radio-group
+                      <!-- <v-radio-group
                         v-model="sex"
                         class="ma-0"
                         dense
@@ -83,7 +83,29 @@
                             <div>No Filter</div>
                           </template>
                         </v-radio>
-                      </v-radio-group>
+                      </v-radio-group> -->
+
+                      <v-text-field
+                        v-model="employee_id"
+                        clearable
+                        dense
+                        outlined
+                        type="text"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        label="Employee ID"
+                      ></v-text-field>
+
+                      <v-text-field
+                        v-model="pss_id"
+                        clearable
+                        dense
+                        outlined
+                        type="text"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        label="PSS ID"
+                      ></v-text-field>
 
                       <v-select
                         :items="educationList"
@@ -984,10 +1006,12 @@ export default {
     return {
       date: new Date(),
 
+      employee_id: '',
+      pss_id: '',
       // filter menu
       from: null,
       to: null,
-      sex: 'NO FILTER', // default selected
+      //   sex: 'NO FILTER', // default selected
       sexList: ['NO FILTER', 'Male', 'Female'],
       education: 'NO FILTER', // default selected
       department: 0,
@@ -1647,6 +1671,14 @@ export default {
     //   this.params.page_size = val.itemsPerPage;
     //   this.updateData();
     // },
+    employee_id: function (val) {
+      this.params.employee_id = val;
+      this.updateData();
+    },
+    pss_id: function (val) {
+      this.params.pss_id = val;
+      this.updateData();
+    },
     from: function (val) {
       this.params.from = val;
       this.updateData();
@@ -1660,14 +1692,14 @@ export default {
       this.params.page = 1;
       this.updateData();
     },
-    sex: function (val) {
-      if (val == 'NO FILTER') {
-        this.params.sex = '';
-      } else {
-        this.params.sex = val;
-      }
-      this.updateData();
-    },
+    // sex: function (val) {
+    //   if (val == 'NO FILTER') {
+    //     this.params.sex = '';
+    //   } else {
+    //     this.params.sex = val;
+    //   }
+    //   this.updateData();
+    // },
     education: function (val) {
       if (val == 'NO FILTER') {
         this.params.education = '';
