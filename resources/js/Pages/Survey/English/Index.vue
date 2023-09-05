@@ -24,12 +24,13 @@
                 href="iloco"
                 >Iloco</Link
               >
-              <!-- <Link
+              <Link
                 as="v-tab"
                 key="1"
                 href="#"
+                v-show="false"
                 >Tagalog</Link
-              > -->
+              >
               <Link
                 as="v-tab"
                 key="2"
