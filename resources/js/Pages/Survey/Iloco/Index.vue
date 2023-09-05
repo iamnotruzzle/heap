@@ -24,12 +24,12 @@
                 href="iloco"
                 >Iloco</Link
               >
-              <Link
+              <!-- <Link
                 as="v-tab"
                 key="1"
                 href="#"
                 >Tagalog</Link
-              >
+              > -->
               <Link
                 as="v-tab"
                 key="2"
@@ -119,11 +119,14 @@
                   <v-col cols="12">
                     <div
                       v-if="form.errors.respondent"
-                      class="red--text mx-2"
+                      class="red--text my-2 mb-0 text-h6-edited font-weight-bold"
                     >
                       <p>Nagresponde kadaytoy a porma:</p>
                     </div>
-                    <div v-else>
+                    <div
+                      v-else
+                      class="my-2 mb-0 text-h6-edited font-weight-bold"
+                    >
                       <p>Nagresponde kadaytoy a porma:</p>
                     </div>
                     <div class="d-flex flex-column ma-0 pa-0">
@@ -636,13 +639,13 @@
                     <!-- cc1 -->
                     <div>
                       <p
-                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
                         v-if="form.errors.cc1"
                       >
                         Ana kadagitoy sumaganad tay pannakailadawan iti pannakaawatyo ti Citizen’s Charter?
                       </p>
                       <p
-                        class="font-weight-black ma-0 subtitle-1"
+                        class="text-h6-edited ma-0 questions-font-style font-weight-bold"
                         v-else
                       >
                         Ana kadagitoy sumaganad tay pannakailadawan iti pannakaawatyo ti Citizen’s Charter?
@@ -690,13 +693,13 @@
                     <!-- cc2 -->
                     <div class="mt-2">
                       <p
-                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
                         v-if="form.errors.cc1"
                       >
                         No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagam nga ti CC ditoy nga opisan ket?
                       </p>
                       <p
-                        class="font-weight-black ma-0 subtitle-1"
+                        class="text-h6-edited ma-0 questions-font-style font-weight-bold"
                         v-else
                       >
                         No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagam nga ti CC ditoy nga opisan ket?
@@ -756,14 +759,14 @@
                     <!-- cc3 -->
                     <div class="mt-2">
                       <p
-                        class="font-weight-black ma-0 subtitle-1 red--text mx-2"
+                        class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
                         v-if="form.errors.cc1"
                       >
                         No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), kasano kaadu iti naitulungan kenka iti
                         transakyon mo?
                       </p>
                       <p
-                        class="font-weight-black ma-0 subtitle-1"
+                        class="text-h6-edited ma-0 questions-font-style font-weight-bold"
                         v-else
                       >
                         No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), kasano kaadu iti naitulungan kenka iti
