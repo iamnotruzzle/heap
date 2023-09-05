@@ -83,8 +83,8 @@
                   cols="12"
                   class="text-center word-break"
                 >
-                  <h6 class="text-h6-edited ma-0 pa-0">Mariano Marcos Memorial Hospital And Medical Center</h6>
-                  <h4 class="text-h4-edited ma-0 pa-0">HOSPITAL CLIENT EXPERIENCE SURVEY</h4>
+                  <h6 class="text-h4-edited ma-0 pa-0">Mariano Marcos Memorial Hospital And Medical Center</h6>
+                  <h4 class="text-h6-edited ma-0 pa-0">HOSPITAL CLIENT EXPERIENCE SURVEY (HCES)</h4>
                 </v-col>
               </v-row>
             </v-card-title>
