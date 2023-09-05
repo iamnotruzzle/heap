@@ -1530,6 +1530,8 @@ export default {
       });
     },
     clearDateFilter() {
+      this.employee_id = null;
+      this.pss_id = null;
       this.from = null;
       this.to = null;
       this.sex = 'NO FILTER';
