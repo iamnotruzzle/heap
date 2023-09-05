@@ -832,13 +832,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q1.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         1. {{ survey_questions[0].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         1. {{ survey_questions[0].desc }}
                       </p>
@@ -892,13 +892,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q2.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         2. {{ survey_questions[1].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         2. {{ survey_questions[1].desc }}
                       </p>
@@ -952,13 +952,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q3.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         3. {{ survey_questions[2].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         3. {{ survey_questions[2].desc }}
                       </p>
@@ -1012,13 +1012,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q4.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         4. {{ survey_questions[3].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         4. {{ survey_questions[3].desc }}
                       </p>
@@ -1072,13 +1072,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q5.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         5. {{ survey_questions[4].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         5. {{ survey_questions[4].desc }}
                       </p>
@@ -1132,13 +1132,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q6.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         6. {{ survey_questions[5].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         6. {{ survey_questions[5].desc }}
                       </p>
@@ -1192,13 +1192,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q7.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         7. {{ survey_questions[6].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         7. {{ survey_questions[6].desc }}
                       </p>
@@ -1261,13 +1261,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q8.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         8. {{ survey_questions[7].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         8. {{ survey_questions[7].desc }}
                       </p>
@@ -1321,13 +1321,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q9.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         9. {{ survey_questions[8].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         9. {{ survey_questions[8].desc }}
                       </p>
@@ -1381,13 +1381,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q10.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         10. {{ survey_questions[9].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         10. {{ survey_questions[9].desc }}
                       </p>
@@ -1445,13 +1445,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q11.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         11. {{ survey_questions[10].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         11. {{ survey_questions[10].desc }}
                       </p>
@@ -1509,13 +1509,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q12.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         12. {{ survey_questions[11].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         12. {{ survey_questions[11].desc }}
                       </p>
@@ -1581,7 +1581,9 @@
                     <!-- staff survey -->
                     <h3 class="my-2 font-weight-black">
                       <!-- q13 I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7) -->
-                      <p class="font-weight-black">13. {{ survey_questions[12].desc }}</p>
+                      <p class="font-weight-black text-h6-edited questions-font-style">
+                        13. {{ survey_questions[12].desc }}
+                      </p>
                       <p class="text-h6-edited">
                         ***NOTE: Tsekan (✔) wenno isurat ti N/A no saanyo a nakalangen dagiti empleyado.
                       </p>
@@ -1591,13 +1593,13 @@
                     <div>
                       <p
                         v-if="form.errors[`doctor.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Doctor
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Doctor
                       </p>
@@ -1658,13 +1660,13 @@
                     <div>
                       <p
                         v-if="form.errors[`nurse.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Nurse
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Nurse
                       </p>
@@ -1725,13 +1727,13 @@
                     <div>
                       <p
                         v-if="form.errors[`midwife.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Midwife
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Midwife
                       </p>
@@ -1794,13 +1796,13 @@
                     <div>
                       <p
                         v-if="form.errors[`security.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Security
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Security
                       </p>
@@ -1863,13 +1865,13 @@
                     <div>
                       <p
                         v-if="form.errors[`radiology.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Radiology
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Radiology
                       </p>
@@ -1932,13 +1934,13 @@
                     <div>
                       <p
                         v-if="form.errors[`pharmacy.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Pharmacy
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Pharmacy
                       </p>
@@ -2001,13 +2003,13 @@
                     <div>
                       <p
                         v-if="form.errors[`laboratory.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Laboratory
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Laboratory
                       </p>
@@ -2070,13 +2072,13 @@
                     <div>
                       <p
                         v-if="form.errors[`admitting_staff.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Admitting staff
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Admitting staff
                       </p>
@@ -2139,13 +2141,13 @@
                     <div>
                       <p
                         v-if="form.errors[`medical_records.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Medical records
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Medical records
                       </p>
@@ -2208,13 +2210,13 @@
                     <div>
                       <p
                         v-if="form.errors[`billing.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Billing
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Billing
                       </p>
@@ -2277,13 +2279,13 @@
                     <div>
                       <p
                         v-if="form.errors[`cashier.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Cashier
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Cashier
                       </p>
@@ -2346,13 +2348,13 @@
                     <div>
                       <p
                         v-if="form.errors[`social_worker.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Social worker
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Social worker
                       </p>
@@ -2415,13 +2417,13 @@
                     <div>
                       <p
                         v-if="form.errors[`food_server.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Food server
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Food server
                       </p>
@@ -2484,13 +2486,13 @@
                     <div>
                       <p
                         v-if="form.errors[`janitors_orderly.rating`]"
-                        class="ma-0 font-weight-black red--text"
+                        class="ma-0 red--text text-h6-edited"
                       >
                         Janitors / Orderly
                       </p>
                       <p
                         v-else
-                        class="ma-0 font-weight-black"
+                        class="ma-0 text-h6-edited"
                       >
                         Janitors / Orderly
                       </p>
@@ -2555,13 +2557,13 @@
                     <div>
                       <p
                         v-if="form.errors[`q14.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         14. {{ survey_questions[13].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         14. {{ survey_questions[13].desc }}
                       </p>
@@ -2617,13 +2619,13 @@
                     <div class="my-4">
                       <p
                         v-if="form.errors[`q15.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         15. {{ survey_questions[14].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         15. {{ survey_questions[14].desc }}
                       </p>
@@ -2679,13 +2681,13 @@
                     <div>
                       <p
                         v-if="form.errors[`not_numbered1.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         {{ survey_questions[15].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         {{ survey_questions[15].desc }}
                       </p>
@@ -2700,13 +2702,13 @@
                     <div>
                       <p
                         v-if="form.errors[`not_numbered2.answer`]"
-                        class="font-weight-black ma-0 red--text"
+                        class="ma-0 red--text text-h6-edited questions-font-style"
                       >
                         {{ survey_questions[16].desc }}
                       </p>
                       <p
                         v-else
-                        class="font-weight-black ma-0"
+                        class="ma-0 text-h6-edited questions-font-style"
                       >
                         {{ survey_questions[16].desc }}
                       </p>
@@ -3246,5 +3248,9 @@ export default {
 
 .change-width {
   width: 200px;
+}
+
+.questions-font-style {
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
