@@ -213,6 +213,30 @@
               >
             </v-list-item-content>
           </Link> -->
+
+          <Link
+            href="profile"
+            :class="{ 'color_primary--text': $page.component === 'Users/Profile/Index' }"
+            as="v-list-item"
+            @click="isGroupOpen = false"
+          >
+            <v-list-item-icon class="mr-3">
+              <user-icon
+                :class="[$page.component === 'Users/Profile/Index' ? 'color_primar' : 'not-active white--text']"
+                size="24"
+                stroke-width="1"
+              ></user-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title
+                :class="[$page.component === 'Users/Profile/Index' ? 'color_primary--text' : 'not-active white--text']"
+                class="text-body-1-edited font-weight-regular white--text"
+                >Profile</v-list-item-title
+              >
+            </v-list-item-content>
+          </Link>
+
           <Link
             href="eng"
             :class="{ 'color_primary--text': $page.component === 'English/Index' }"

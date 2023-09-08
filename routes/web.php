@@ -5,6 +5,7 @@ use App\Http\Controllers\Survey\DeleteRequests\DeleteRequestController;
 use App\Http\Controllers\Survey\English\EnglishController;
 use App\Http\Controllers\Survey\Iloco\IlocoController;
 use App\Http\Controllers\Survey\Tagalog\TagalogController;
+use App\Http\Controllers\Users\Profile\ProfileController;
 use App\Http\Controllers\Users\Register\RegisterController;
 use App\Http\Controllers\Users\UserController;
 use App\Models\DeleteRequest;
@@ -17,6 +18,7 @@ Route::redirect('/', 'login');
 
 
 Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified', 'role_restriction'])->only(['index', 'store', 'update', 'destroy']);
+Route::resource('profile', ProfileController::class)->middleware(['auth:sanctum', 'verified', 'role_restriction'])->only(['index', 'store', 'update', 'destroy']);
 Route::resource('register', RegisterController::class)->only(['index', 'store']);
 
 
