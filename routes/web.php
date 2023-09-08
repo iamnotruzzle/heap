@@ -18,7 +18,7 @@ Route::redirect('/', 'login');
 
 
 Route::resource('users', UserController::class)->middleware(['auth:sanctum', 'verified', 'role_restriction'])->only(['index', 'store', 'update', 'destroy']);
-Route::resource('profile', ProfileController::class)->middleware(['auth:sanctum', 'verified', 'role_restriction'])->only(['index', 'store', 'update', 'destroy']);
+Route::resource('profile', ProfileController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 Route::resource('register', RegisterController::class)->only(['index', 'store']);
 
 
