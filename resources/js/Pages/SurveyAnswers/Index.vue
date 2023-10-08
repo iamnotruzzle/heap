@@ -1328,6 +1328,14 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
+        // PHARMACY
+        {
+          text: 'LABORATORY',
+          align: 'start',
+          value: 'laboratory',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
         // ADMITTING STAFF
         {
           text: 'ADMITTING STAFF',
@@ -1450,7 +1458,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.surveyAnswers.data);
+    console.log(this.surveyAnswers.data);
     this.processJsonData();
   },
   methods: {
@@ -1516,13 +1524,14 @@ export default {
           SECURITY: e.survey_abt_staffs[3].rating, // security
           RADIOLOGY: e.survey_abt_staffs[4].rating, // radiology
           PHARMACY: e.survey_abt_staffs[5].rating, // pharmacy
-          'ADMITTING STAFF': e.survey_abt_staffs[6].rating, // admitting staff
-          'MED. RECORDS': e.survey_abt_staffs[7].rating, // medical records
-          BILLING: e.survey_abt_staffs[8].rating, // billing
-          CASHIER: e.survey_abt_staffs[9].rating, // cashier
-          'SOCIAL WORKER': e.survey_abt_staffs[10].rating, // social worker
-          'FOOD SERVER': e.survey_abt_staffs[11].rating, // food server
-          'JANITORS/ORDERLY': e.survey_abt_staffs[12].rating, // janitors/orderly
+          LABORATORY: e.survey_abt_staffs[6].rating, // laboratory
+          'ADMITTING STAFF': e.survey_abt_staffs[7].rating, // admitting staff
+          'MEDICAL RECORDS': e.survey_abt_staffs[8].rating, // medical records
+          BILLING: e.survey_abt_staffs[9].rating, // billing
+          CASHIER: e.survey_abt_staffs[10].rating, // cashier
+          'SOCIAL WORKER': e.survey_abt_staffs[11].rating, // social worker
+          'FOOD SERVER': e.survey_abt_staffs[12].rating, // food server
+          'JANITORS/ORDERLY': e.survey_abt_staffs[13].rating, // janitors/orderly
           LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardname,
           'ASSISTED BY': e.assisted_by == null ? null : e.assisted_by.username,
           'SUBMITTED AT': this.tzone2(e.created_at),
