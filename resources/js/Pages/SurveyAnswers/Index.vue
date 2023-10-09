@@ -935,6 +935,7 @@
       </v-card>
 
       <v-btn
+        v-if="from == null || to == null"
         fab
         dark
         fixed
@@ -942,18 +943,29 @@
         right
         class="color_primary"
       >
-        <!-- :name="filename.xls" -->
-        <JsonExcel
-          :data="json_data"
-          worksheet="DATA 1"
-          :name="`${user.firstName + ' ' + user.lastName}` + '-' + `${date.toLocaleDateString()}` + '.xls'"
-          @click="processJsonData()"
+        <download-icon
+          size="24"
+          as="v-icon"
+        ></download-icon>
+      </v-btn>
+      <v-btn
+        v-else
+        fab
+        dark
+        fixed
+        bottom
+        right
+        class="color_primary"
+      >
+        <a
+          :href="`answers/export?page=1&page_size=15&order_by=desc&employee_id=${params.employee_id}&pss_id=${params.pss_id}&education=${params.education}&from=${params.from}&to=${params.to}`"
+          target="_blank"
         >
           <download-icon
             size="24"
             as="v-icon"
           ></download-icon>
-        </JsonExcel>
+        </a>
       </v-btn>
     </v-container>
 
@@ -1458,7 +1470,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.surveyAnswers.data);
+    // console.log(this.surveyAnswers.data);
     this.processJsonData();
   },
   methods: {
@@ -1468,10 +1480,14 @@ export default {
         preserveState: true,
         preserveScroll: true,
         onFinish: (visit) => {
-          this.json_data = [];
-          this.processJsonData();
+          //   this.json_data = [];
+          //   this.processJsonData();
+          //   console.log(this.surveyAnswers);
         },
       });
+      this.json_data = [];
+      this.processJsonData();
+      console.log('e', this.surveyAnswers.data);
     },
     // timezone with timestamp
     tzone(date) {
@@ -1691,11 +1707,25 @@ export default {
       this.updateData();
     },
     from: function (val) {
-      this.params.from = val;
+      if (val != null) {
+        let from = moment(val).format('YYYY-MM-DD 12:00:00');
+        // console.log('from', from);
+        this.params.from = from;
+      } else {
+        this.params.from = null;
+        this.from = null;
+      }
       this.updateData();
     },
     to: function (val) {
-      this.params.to = val;
+      if (val != null) {
+        let to = moment(val).format('YYYY-MM-DD 11:59:59');
+        // console.log('to', to);
+        this.params.to = to;
+      } else {
+        this.params.to = null;
+        this.to = null;
+      }
       this.updateData();
     },
     search: function (val) {
