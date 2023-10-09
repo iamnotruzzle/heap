@@ -946,6 +946,7 @@
         <download-icon
           size="24"
           as="v-icon"
+          color="white"
         ></download-icon>
       </v-btn>
       <v-btn
@@ -958,12 +959,13 @@
         class="color_primary"
       >
         <a
-          :href="`answers/export?page=1&page_size=15&order_by=desc&employee_id=${params.employee_id}&pss_id=${params.pss_id}&education=${params.education}&from=${params.from}&to=${params.to}`"
+          :href="`answers/export?page=1&page_size=15&order_by=desc&from=${params.from}&to=${params.to}`"
           target="_blank"
         >
           <download-icon
             size="24"
             as="v-icon"
+            color="white"
           ></download-icon>
         </a>
       </v-btn>
@@ -1487,7 +1489,7 @@ export default {
       });
       this.json_data = [];
       this.processJsonData();
-      console.log('e', this.surveyAnswers.data);
+      //   console.log('e', this.surveyAnswers.data);
     },
     // timezone with timestamp
     tzone(date) {

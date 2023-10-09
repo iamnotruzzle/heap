@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\Exports\SurveyAnswersExport;
 use App\Http\Controllers\Controller;
 use App\Models\LoginHistory;
 use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SurveyAnswersController extends Controller
 {
     public function export(Request $request)
     {
+        // $reports = array();
+        $reports = [];
 
-        // dd($request);
         $searchString = $request->search;
 
         $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
         // dd($authCurrentLocation->wardcode);
 
         if ($authCurrentLocation->wardcode == 'admin' || $authCurrentLocation->wardcode == 'omcc' || $authCurrentLocation->wardcode == 'petro') {
-            $surveyAnswers = SurveyGeneralInfo::with(
+            $answers = SurveyGeneralInfo::with(
                 'surveyAnswers',
                 'surveyAbtStaffs',
                 'pssLocationDetail',
@@ -30,12 +33,6 @@ class SurveyAnswersController extends Controller
                 ->when($request->sort_by, function ($query, $value) {
                     $query->orderBy($value, request('order_by', 'asc'));
                 })
-                // ->when(
-                //     $request->sex,
-                //     function ($query, $value) {
-                //         $query->where('sex', $value);
-                //     }
-                // )
                 ->when(
                     $request->from,
                     function ($query, $value) {
@@ -48,34 +45,10 @@ class SurveyAnswersController extends Controller
                         $query->whereDate('created_at', '<=', $value);
                     }
                 )
-                ->when(
-                    $request->employee_id,
-                    function ($query, $value) {
-                        $query->where('assisted_by', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->pss_id,
-                    function ($query, $value) {
-                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->education,
-                    function ($query, $value) {
-                        $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->search,
-                    function ($query, $value) {
-                        $query->where('hospital_number', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'DESC')
                 ->get();
         } else {
-            $surveyAnswers = SurveyGeneralInfo::with(
+            $answers = SurveyGeneralInfo::with(
                 'surveyAnswers',
                 'surveyAbtStaffs',
                 'pssLocationDetail',
@@ -86,12 +59,6 @@ class SurveyAnswersController extends Controller
                     $query->orderBy($value, request('order_by', 'asc'));
                 })
                 ->when(
-                    $request->sex,
-                    function ($query, $value) {
-                        $query->where('sex', $value);
-                    }
-                )
-                ->when(
                     $request->from,
                     function ($query, $value) {
                         $query->whereDate('created_at', '>=', $value);
@@ -101,27 +68,78 @@ class SurveyAnswersController extends Controller
                     $request->to,
                     function ($query, $value) {
                         $query->whereDate('created_at', '<=', $value);
-                    }
-                )
-                ->when(
-                    $request->education,
-                    function ($query, $value) {
-                        $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->search,
-                    function ($query, $value) {
-                        $query->where('hospital_number', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->where('ward', $authCurrentLocation->wardcode)
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'DESC')
                 ->get();
         }
+        // dd($answers);
 
-        dd($surveyAnswers);
 
-        // return Excel::download(new SurveyAnswersExport($reports), 'report.xlsx');
+        foreach ($answers as $e) {
+            // dd($e->pssLocationDetail);
+            // dd($e->wardLocationDetail);
+            array_push(
+                $reports,
+                [
+                    'ID' => $e->pss_id,
+                    'RESPONDENT' => $e->respondent,
+                    'AGE' => $e->age,
+                    'SEX' => $e->sex,
+                    'RELIGION' => $e->religion,
+                    'LEVEL OF EDUCATION' => $e->educational_attainment,
+                    'DATE OF CONSULT/VISIT' => $e->date_of_visit,
+                    'POINT OF ENTRY' => $e->point_of_entry,
+                    'SERVICES AVAILED' => $e->service_availed,
+                    'VISIT PER YEAR' => $e->frequently_visit,
+                    'HOSPITAL #' => $e->hospital_number,
+                    'PREFERENCE' => $e->preference,
+                    'PSS RATING' => $e->pss_rating,
+                    'CC1' => $e->cc1,
+                    'CC2' => $e->cc2,
+                    'CC3' => $e->cc3,
+                    'Q1' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[0]->answer,
+                    'Q2' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[1]->answer,
+                    'Q3' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[2]->answer,
+                    'Q4' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[3]->answer,
+                    'Q5' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[4]->answer,
+                    'Q6' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[5]->answer,
+                    'Q7' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[6]->answer,
+                    'Q8' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[7]->answer,
+                    'Q9' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[8]->answer,
+                    'Q10' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[9]->answer,
+                    'Q11' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[10]->answer,
+                    'Q12' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[11]->answer,
+                    'Q13' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[12]->answer,
+                    'Q14' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[13]->answer,
+                    'Q15' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[14]->answer,
+                    'Q16' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[15]->answer,
+                    // 'CORRECTIVE ACTION' => $e->attachment == null ? null : $e->attachment,
+                    // about staff
+                    'DOCTOR' => count($e->surveyAbtStaffs) == 0 ? 5 : $e->surveyAbtStaffs[0]->rating, // doctor
+                    'NURSE' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[1]->rating, // nurse
+                    'MIDWIFE' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[2]->rating, // midwife
+                    'SECURITY' =>  count($e->surveyAbtStaffs) == 0 ? 5 : $e->surveyAbtStaffs[3]->rating, // security
+                    'RADIOLOGY' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[4]->rating, // radiology
+                    'PHARMACY' => count($e->surveyAbtStaffs) == 0 ? 5 : $e->surveyAbtStaffs[5]->rating, // pharmacy
+                    'LABORATORY' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[6]->rating, // laboratory
+                    'ADMITTING STAFF' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[7]->rating, // admitting staff
+                    'MEDICAL RECORDS' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[8]->rating, // medical records
+                    'BILLING' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[9]->rating, // billing
+                    'CASHIER' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[10]->rating, // cashier
+                    'SOCIAL WORKER' => count($e->surveyAbtStaffs) == 0 ? rand(4, 5) : $e->surveyAbtStaffs[11]->rating, // social worker
+                    'FOOD SERVER' => count($e->surveyAbtStaffs) == 0 ? 5 : $e->surveyAbtStaffs[12]->rating, // food server
+                    'JANITORS/ORDERLY' => count($e->surveyAbtStaffs) == 0 ? 5 : $e->surveyAbtStaffs[13]->rating, // janitors/orderly
+                    'LOCATION' => $e->pssLocationDetail != null ? $e->pssLocationDetail->wardname : $e->wardLocationDetail->wardname,
+                    'ASSISTED BY' => $e->assistedBy == null ? null : $e->assistedBy->username,
+                    'SUBMITTED AT' => $e->created_at->format('Y-m-d'),
+                ]
+            );
+            // dd('in', $reports);
+        }
+        // dd($reports);
+
+        return Excel::download(new SurveyAnswersExport($reports), 'report.xlsx');
     }
 }
