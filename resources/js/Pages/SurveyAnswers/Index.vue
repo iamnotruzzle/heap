@@ -1015,6 +1015,7 @@ export default {
   props: {
     surveyAnswers: Object,
     delete_requests: Object,
+    locations: Array,
   },
   data() {
     return {
@@ -1474,6 +1475,8 @@ export default {
   mounted() {
     // console.log(this.surveyAnswers.data);
     this.processJsonData();
+
+    console.log(this.locations);
   },
   methods: {
     updateData() {

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Survey\Answers;
 use App\Http\Controllers\Controller;
 use App\Models\DeleteRequest;
 use App\Models\LoginHistory;
+use App\Models\PssLocation;
 use App\Models\SurveyGeneralInfo;
+use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +23,26 @@ class AnswersController extends Controller
 
         $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
         // dd($authCurrentLocation->wardcode);
+
+        $pssLocation = PssLocation::get(['wardcode', 'wardname']);
+        $wardLocation = Ward::get(['wardcode', 'wardname']);
+        $locations = array();
+
+        foreach ($pssLocation as $e) {
+            $locations[] = (object)[
+                'wardcode' => $e->wardcode,
+                'wardname' => $e->wardname,
+            ];
+        }
+        foreach ($wardLocation as $e) {
+            $locations[] = (object)[
+                'wardcode' => $e->wardcode,
+                'wardname' => $e->wardname,
+            ];
+        }
+        usort($locations, function ($a, $b) {
+            return strcmp($a->wardname, $b->wardname);
+        });
 
         if ($authCurrentLocation->wardcode == 'admin' || $authCurrentLocation->wardcode == 'omcc' || $authCurrentLocation->wardcode == 'petro') {
             $surveyAnswers = SurveyGeneralInfo::with(
@@ -134,6 +156,7 @@ class AnswersController extends Controller
             [
                 'surveyAnswers' => $surveyAnswers,
                 'delete_requests' => $delete_requests,
+                'locations' =>  $locations
             ]
         );
     }
