@@ -117,6 +117,18 @@
                         outlined
                       ></v-select>
 
+                      <v-select
+                        :items="locations"
+                        v-model="location"
+                        item-text="wardname"
+                        item-value="wardcode"
+                        label="Location"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        dense
+                        outlined
+                      ></v-select>
+
                       <v-text-field
                         v-model="from"
                         clearable
@@ -1059,6 +1071,7 @@ export default {
       isUpdate: false,
       isLoading: false,
       search: '',
+      location: '',
       options: {},
       params: {},
       primary_answers: [
@@ -1567,6 +1580,7 @@ export default {
       this.sex = 'NO FILTER';
       this.education = 'NO FILTER';
       this.department = null;
+      this.location = null;
     },
     setFormFileId(item) {
       this.formFile.id = item.id;
@@ -1703,6 +1717,10 @@ export default {
     //   this.params.page_size = val.itemsPerPage;
     //   this.updateData();
     // },
+    location: function (val) {
+      this.params.location = val;
+      this.updateData();
+    },
     employee_id: function (val) {
       this.params.employee_id = val;
       this.updateData();

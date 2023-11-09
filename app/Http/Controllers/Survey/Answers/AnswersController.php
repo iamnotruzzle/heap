@@ -25,7 +25,7 @@ class AnswersController extends Controller
         // dd($authCurrentLocation->wardcode);
 
         $pssLocation = PssLocation::get(['wardcode', 'wardname']);
-        $wardLocation = Ward::get(['wardcode', 'wardname']);
+        $wardLocation = Ward::where('wardstat', 'A')->get(['wardcode', 'wardname']);
         $locations = array();
 
         foreach ($pssLocation as $e) {
@@ -89,6 +89,12 @@ class AnswersController extends Controller
                     $request->education,
                     function ($query, $value) {
                         $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $request->location,
+                    function ($query, $value) {
+                        $query->where('ward', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->when(
