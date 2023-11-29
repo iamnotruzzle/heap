@@ -928,7 +928,7 @@
           <template v-slot:item.actions="{ item }">
             <div
               class="d-flex flex-no-wrap"
-              v-if="$page.props.auth.user.roles[0] == 'super-admin'"
+              v-if="$page.props.auth.user.roles[0] == 'super-admin' || $page.props.auth.user.roles[0] == 'admin'"
             >
               <v-icon
                 size="20"
