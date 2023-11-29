@@ -296,7 +296,6 @@
                     outlined
                     label="Status"
                     clearable
-                    dense
                   >
                   </v-select>
 
@@ -308,7 +307,6 @@
                     label="Location"
                     color="color_primary"
                     class="ma-0 pa-0"
-                    dense
                     outlined
                     clearable
                   ></v-select>
@@ -611,14 +609,9 @@ export default {
       return moment.tz(date, 'Asia/Manila').format('LLL');
     },
     clearFilter() {
-      this.employee_id = null;
-      this.pss_id = null;
-      this.from = null;
-      this.to = null;
-      this.sex = 'NO FILTER';
-      this.education = 'NO FILTER';
-      this.department = null;
-      this.location = null;
+      this.search = null;
+      this.filterLocation = null;
+      this.filterStatus = null;
     },
     cancel() {
       this.dialog = false;
