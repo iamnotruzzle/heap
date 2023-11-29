@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\PssLocation;
 use App\Models\User;
 use App\Models\UserLocations;
 use App\Models\Ward;
@@ -18,24 +19,50 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+        $pssLocation = PssLocation::get(['wardcode', 'wardname']);
+        $wardLocation = Ward::where('wardstat', 'A')->get(['wardcode', 'wardname']);
+        $locations = array();
+
+        $filterLocation = $request->location;
+
+        foreach ($pssLocation as $e) {
+            $locations[] = (object)[
+                'wardcode' => $e->wardcode,
+                'wardname' => $e->wardname,
+            ];
+        }
+        foreach ($wardLocation as $e) {
+            $locations[] = (object)[
+                'wardcode' => $e->wardcode,
+                'wardname' => $e->wardname,
+            ];
+        }
+        usort($locations, function ($a, $b) {
+            return strcmp($a->wardname, $b->wardname);
+        });
+
         $users = User::with('userLocations')
+            ->whereHas('userLocations', function ($q) use ($filterLocation) {
+                $q->where('wardcode', 'LIKE', '%' . $filterLocation . '%');
+            })
             ->when($request->sort_by, function ($query, $value) {
                 $query->orderBy($value, request('order_by', 'asc'));
             })
-            // ->when(!isset($request->sort_by), function ($query) {
-            //     $query->latest();
-            // })
             ->when($request->search, function ($query, $value) {
                 $query->where('firstName', 'LIKE', '%' . $value . '%')
                     ->orWhere('middleName', 'LIKE', '%' . $value . '%')
                     ->orWhere('lastName', 'LIKE', '%' . $value . '%')
                     ->orWhere('username', 'LIKE', '%' . $value . '%');
             })
+            ->when($request->status, function ($query, $value) {
+                $query->where('status', 'LIKE', '%' . $value . '%');
+            })
             ->where('username', '!=', 'sa')
             ->paginate($request->page_size ?? 15);
 
         return Inertia::render('Users/Index', [
             'users' => $users,
+            'locations' =>  $locations
         ]);
     }
 

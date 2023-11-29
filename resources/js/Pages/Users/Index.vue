@@ -262,19 +262,71 @@
       >
         <v-card-text>
           <v-row class="d-flex justify-end">
-            <v-col
-              cols="12"
-              md="6"
-              lg="4"
+            <v-menu
+              offset-y
+              :close-on-content-click="false"
             >
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                color="color_primary"
-                label="Search Users"
-                dense
-              ></v-text-field>
-            </v-col>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  v-bind="attrs"
+                  v-on="on"
+                  color="primary"
+                  class="ma-2"
+                >
+                  FILTER
+                </v-btn>
+              </template>
+              <v-card style="width: 280px; padding: 1em">
+                <v-card-title class="ma-0 pa-0"> Filter </v-card-title>
+                <v-divider></v-divider>
+                <div class="d-flex flex-column mt-1 pa-0">
+                  <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    color="color_primary"
+                    label="Search Users"
+                    outlined
+                    clearable
+                  ></v-text-field>
+
+                  <v-select
+                    v-model="filterStatus"
+                    color="color_primary"
+                    :items="status"
+                    outlined
+                    label="Status"
+                    clearable
+                    dense
+                  >
+                  </v-select>
+
+                  <v-select
+                    :items="locations"
+                    v-model="filterLocation"
+                    item-text="wardname"
+                    item-value="wardcode"
+                    label="Location"
+                    color="color_primary"
+                    class="ma-0 pa-0"
+                    dense
+                    outlined
+                    clearable
+                  ></v-select>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions class="px-0 mb-0">
+                    <v-btn
+                      @click="clearFilter"
+                      class="ma-0 pa-0 align-self-start"
+                      color="color_error white--text"
+                    >
+                      Clear
+                    </v-btn>
+                  </v-card-actions>
+                </div>
+              </v-card>
+            </v-menu>
           </v-row>
         </v-card-text>
 
@@ -445,9 +497,12 @@ export default {
   },
   props: {
     users: Object,
+    locations: Array,
   },
   data() {
     return {
+      filterStatus: null,
+      filterLocation: null,
       showPassword: false,
       locationList: [],
       status: ['activated', 'deactivated'],
@@ -554,6 +609,16 @@ export default {
     },
     tzone(date) {
       return moment.tz(date, 'Asia/Manila').format('LLL');
+    },
+    clearFilter() {
+      this.employee_id = null;
+      this.pss_id = null;
+      this.from = null;
+      this.to = null;
+      this.sex = 'NO FILTER';
+      this.education = 'NO FILTER';
+      this.department = null;
+      this.location = null;
     },
     cancel() {
       this.dialog = false;
@@ -696,6 +761,15 @@ export default {
     search: function (val) {
       this.params.search = val;
       this.params.page = 1;
+      this.updateData();
+    },
+    filterStatus: function (val) {
+      this.params.status = val;
+      this.params.page = 1;
+      this.updateData();
+    },
+    filterLocation: function (val) {
+      this.params.location = val;
       this.updateData();
     },
   },

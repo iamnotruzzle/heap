@@ -1490,7 +1490,7 @@ export default {
     // console.log(this.surveyAnswers.data);
     this.processJsonData();
 
-    console.log(this.locations);
+    // console.log(this.locations);
   },
   methods: {
     updateData() {
