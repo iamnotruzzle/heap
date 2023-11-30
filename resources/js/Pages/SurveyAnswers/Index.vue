@@ -126,6 +126,7 @@
                         color="color_primary"
                         class="ma-0 pa-0"
                         dense
+                        clearable
                         outlined
                       ></v-select>
 
@@ -971,8 +972,18 @@
         right
         class="color_primary"
       >
+        <!-- <a
+          :href="`answers/export?page=1&page_size=15&order_by=desc&employee_id=${params.employee_id}&pss_id=${params.pss_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
+          target="_blank"
+        >
+          <download-icon
+            size="24"
+            as="v-icon"
+            color="white"
+          ></download-icon>
+        </a> -->
         <a
-          :href="`answers/export?page=1&page_size=15&order_by=desc&from=${params.from}&to=${params.to}`"
+          :href="`answers/export?order_by=desc&employee_id=${params.employee_id}&pss_id=${params.pss_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
           target="_blank"
         >
           <download-icon

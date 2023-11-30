@@ -9,6 +9,7 @@ use App\Models\SurveyGeneralInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Mockery\Undefined;
 
 class SurveyAnswersController extends Controller
 {
@@ -18,6 +19,15 @@ class SurveyAnswersController extends Controller
     {
         // $reports = array();
         // $reports = [];
+
+        $employee_id = $request->employee_id;
+        $pss_id = $request->pss_id;
+        $education = $request->education;
+        $location = $request->location;
+        $from = $request->from;
+        $to = $request->to;
+        // dd($location);
+
 
         $searchString = $request->search;
 
@@ -32,23 +42,43 @@ class SurveyAnswersController extends Controller
                 'wardLocationDetail',
                 'assistedBy:id,username,firstName,lastName',
             )
-                ->when($request->sort_by, function ($query, $value) {
-                    $query->orderBy($value, request('order_by', 'asc'));
-                })
                 ->when(
-                    $request->from,
+                    $employee_id == "undefined" ? '' : $employee_id,
+                    function ($query, $value) {
+                        $query->where('assisted_by', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $pss_id == "undefined" ? '' : $pss_id,
+                    function ($query, $value) {
+                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $education == "undefined" ? '' : $education,
+                    function ($query, $value) {
+                        $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $location == "undefined" ? '' : $location,
+                    function ($query, $value) {
+                        $query->where('ward', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $from,
                     function ($query, $value) {
                         $query->whereDate('created_at', '>=', $value);
                     }
                 )
                 ->when(
-                    $request->to,
+                    $to,
                     function ($query, $value) {
                         $query->whereDate('created_at', '<=', $value);
                     }
                 )
-                ->orderBy('created_at', 'DESC')
-                // ->get();
+                ->orderBy('created_at', 'desc')
                 ->chunk(500, function ($results) {
                     foreach ($results as $e) {
                         $this->reports[] = [
@@ -114,23 +144,44 @@ class SurveyAnswersController extends Controller
                 'wardLocationDetail',
                 'assistedBy:id,username,firstName,lastName',
             )
-                ->when($request->sort_by, function ($query, $value) {
-                    $query->orderBy($value, request('order_by', 'asc'));
-                })
                 ->when(
-                    $request->from,
+                    $employee_id == "undefined" ? '' : $employee_id,
+                    function ($query, $value) {
+                        $query->where('assisted_by', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $pss_id == "undefined" ? '' : $pss_id,
+                    function ($query, $value) {
+                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $education == "undefined" ? '' : $education,
+                    function ($query, $value) {
+                        $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $location == "undefined" ? '' : $location,
+                    function ($query, $value) {
+                        $query->where('ward', 'LIKE', '%' . $value . '%');
+                    }
+                )
+                ->when(
+                    $from,
                     function ($query, $value) {
                         $query->whereDate('created_at', '>=', $value);
                     }
                 )
                 ->when(
-                    $request->to,
+                    $to,
                     function ($query, $value) {
                         $query->whereDate('created_at', '<=', $value);
                     }
                 )
                 ->where('ward', $authCurrentLocation->wardcode)
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('created_at', 'desc')
                 ->chunk(500, function ($results) {
                     foreach ($results as $e) {
                         $this->reports[] = [
