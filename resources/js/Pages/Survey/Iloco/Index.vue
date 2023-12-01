@@ -264,7 +264,7 @@
                     <label
                       for="educAt"
                       v-if="v$.educationalAttainment.$error"
-                      class="red--text"
+                      class="error-message red--text"
                     >
                       Naturpos nga adal:
                     </label>

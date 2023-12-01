@@ -262,7 +262,7 @@
                     <label
                       for="educAt"
                       v-if="v$.educationalAttainment.$error"
-                      class="red--text"
+                      class="error-message red--text"
                     >
                       Educational Attainment
                     </label>
