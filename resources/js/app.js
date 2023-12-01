@@ -8,6 +8,7 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import { InertiaProgress } from '@inertiajs/progress';
 import JsonExcel from 'vue-json-excel';
+import Vuelidate from '@vuelidate/core';
 
 import moment from 'moment-timezone';
 
@@ -17,6 +18,7 @@ Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
 Vue.use(Vuetify);
 Vue.use(JsonExcel);
+Vue.use(Vuelidate);
 
 const app = document.getElementById('app');
 

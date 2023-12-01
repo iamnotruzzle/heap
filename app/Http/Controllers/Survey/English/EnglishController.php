@@ -37,6 +37,8 @@ class EnglishController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
+
         $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
 
         // get hospital number

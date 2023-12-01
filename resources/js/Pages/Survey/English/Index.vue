@@ -117,8 +117,8 @@
                   </v-col>
                   <v-col cols="12">
                     <div
-                      v-if="form.errors.respondent"
-                      class="red--text my-2 mb-0 text-h6-edited font-weight-bold"
+                      v-if="v$.respondent.$error"
+                      class="error-message red--text my-2 mb-0 text-h6-edited font-weight-bold"
                     >
                       <p>The Respondent of this Survey Form:</p>
                     </div>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
-                        v-model="form.respondent"
+                        v-model="respondent"
                         label="Patient"
                         value="Patient"
                         dense
@@ -139,7 +139,7 @@
                       ></v-checkbox>
 
                       <v-checkbox
-                        v-model="form.respondent"
+                        v-model="respondent"
                         label="Companion(Family/Relative)"
                         value="Companion"
                         dense
@@ -161,8 +161,8 @@
                   >
                     <label
                       for="age"
-                      v-if="form.errors.age"
-                      class="red--text"
+                      v-if="v$.age.$error"
+                      class="error-message red--text"
                     >
                       Age
                     </label>
@@ -174,7 +174,7 @@
                     </label>
                     <v-text-field
                       id="age"
-                      v-model="form.age"
+                      v-model="age"
                       type="number"
                       hide-spin-buttons
                       outlined
@@ -190,7 +190,7 @@
                   >
                     <label
                       for="sex"
-                      v-if="form.errors.sex"
+                      v-if="v$.sex.$error"
                       class="red--text"
                     >
                       Sex
@@ -205,7 +205,7 @@
                     <div class="d-flex flex-row">
                       <v-checkbox
                         id="sex"
-                        v-model="form.sex"
+                        v-model="sex"
                         label="Male"
                         value="Male"
                         dense
@@ -214,7 +214,7 @@
                       ></v-checkbox>
                       <v-checkbox
                         id="sex"
-                        v-model="form.sex"
+                        v-model="sex"
                         label="Female"
                         value="Female"
                         dense
@@ -231,8 +231,8 @@
                   >
                     <label
                       for="religion"
-                      v-if="form.errors.religion"
-                      class="red--text"
+                      v-if="v$.religion.$error"
+                      class="error-message red--text"
                     >
                       Religion (Please encode if your religion is not included in the list. )
                     </label>
@@ -245,7 +245,7 @@
 
                     <v-combobox
                       id="religion"
-                      v-model="form.religion"
+                      v-model="religion"
                       :items="religions"
                       dense
                       hide-details
@@ -261,7 +261,7 @@
                   <v-col cols="12">
                     <label
                       for="educAt"
-                      v-if="form.errors.educationalAttainment"
+                      v-if="v$.educationalAttainment.$error"
                       class="red--text"
                     >
                       Educational Attainment
@@ -277,7 +277,7 @@
                       <v-checkbox
                         id="educAt"
                         :disabled="!enableElementary"
-                        v-model="form.educationalAttainment"
+                        v-model="educationalAttainment"
                         label="Elementary"
                         value="Elementary"
                         dense
@@ -288,7 +288,7 @@
                       <v-checkbox
                         id="educAt"
                         :disabled="!enableSecondary"
-                        v-model="form.educationalAttainment"
+                        v-model="educationalAttainment"
                         label="Secondary"
                         value="Secondary"
                         dense
@@ -299,7 +299,7 @@
                       <v-checkbox
                         id="educAt"
                         :disabled="!enableVocational"
-                        v-model="form.educationalAttainment"
+                        v-model="educationalAttainment"
                         label="Vocational"
                         value="Vocational"
                         dense
@@ -310,7 +310,7 @@
                       <v-checkbox
                         id="educAt"
                         :disabled="!enableCollege"
-                        v-model="form.educationalAttainment"
+                        v-model="educationalAttainment"
                         label="College"
                         value="College"
                         dense
@@ -321,7 +321,7 @@
                       <v-checkbox
                         id="educAt"
                         :disabled="!enablePGM"
-                        v-model="form.educationalAttainment"
+                        v-model="educationalAttainment"
                         label="Postgraduate/Masters"
                         value="Postgraduate/Masters"
                         dense
@@ -332,7 +332,7 @@
                       <v-checkbox
                         id="educAt"
                         :disabled="!enableNoEduc"
-                        v-model="form.educationalAttainment"
+                        v-model="educationalAttainment"
                         label="No formal Education"
                         value="No formal Education"
                         dense
@@ -399,166 +399,14 @@
                     </v-menu>
                   </v-col>
 
-                  <!-- <v-col cols="12">
-                    <v-divider color="black"></v-divider>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <label
-                      for="pointOfEntry"
-                      v-if="form.errors.pointOfEntry"
-                      class="red--text"
-                    >
-                      Point of entry (Please encode if not on the list.)
-                    </label>
-                    <label
-                      for="pointOfEntry"
-                      v-else
-                    >
-                      Point of entry (Please encode if not on the list.)
-                    </label>
-
-                    <v-combobox
-                      id="departments"
-                      v-model="form.pointOfEntry"
-                      :items="departments"
-                      dense
-                      hide-details
-                      outlined
-                    ></v-combobox>
-                  </v-col> -->
-
-                  <!-- <v-col cols="12">
-                    <v-divider color="black"></v-divider>
-                  </v-col> -->
-
-                  <!-- <v-col cols="12">
-                    <div
-                      v-if="form.errors.serviceAvailed"
-                      class="red--text mx-2"
-                    >
-                      <p>Service Availed:</p>
-                    </div>
-                    <div v-else>
-                      <p>Service Availed:</p>
-                    </div>
-                    <div
-                      :class="
-                        $vuetify.breakpoint.mdAndUp ? 'd-flex flex-row ma-0 pa-0' : 'd-flex flex-column ma-0 pa-0'
-                      "
-                    >
-                      <div class="mr-14">
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Consultation"
-                          value="Consultation"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Admission"
-                          value="Admission"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Laboratory"
-                          value="Laboratory"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Radiology"
-                          value="Radiology"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Discharge"
-                          value="Discharge"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Settlement of fees"
-                          value="Settlement of fees"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-                      </div>
-
-                      <div>
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Request for Medical Records"
-                          value="Request for Medical Records"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Request for Psychosocial Assessment/Intervention"
-                          value="Request for Psychosocial Assessment/Intervention"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Request for Financial Assistance"
-                          value="Request for Financial Assistance"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="form.serviceAvailed"
-                          label="Counseling (i.e Nutrition and Dietetics)"
-                          value="Counseling (i.e Nutrition and Dietetics)"
-                          dense
-                          hide-details
-                          class="mx-2"
-                        ></v-checkbox>
-
-                        <div class="d-flex flex-row mx-2 mt-1">
-                          <v-text-field
-                            v-model="form.otherServiceAvailed"
-                            label="Others (Specify)"
-                            dense
-                          ></v-text-field>
-                        </div>
-                      </div>
-                    </div>
-                  </v-col> -->
-
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
 
                   <v-col cols="12">
                     <div
-                      v-if="form.errors.frequentlyVisit"
-                      class="red--text mx-2"
+                      v-if="v$.frequentlyVisit.$error"
+                      class="error-message red--text mx-2"
                     >
                       <p>How frequent do you visit this facility?</p>
                     </div>
@@ -572,7 +420,7 @@
                         "
                       >
                         <v-checkbox
-                          v-model="form.frequentlyVisit"
+                          v-model="frequentlyVisit"
                           label="First time"
                           value="First time"
                           dense
@@ -581,7 +429,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.frequentlyVisit"
+                          v-model="frequentlyVisit"
                           label="1-3x a year"
                           value="1-3x a year"
                           dense
@@ -590,7 +438,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.frequentlyVisit"
+                          v-model="frequentlyVisit"
                           label="4-6x a year"
                           value="4-6x a year"
                           dense
@@ -599,7 +447,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.frequentlyVisit"
+                          v-model="frequentlyVisit"
                           label="7-11x a year"
                           value="7-11x a year"
                           dense
@@ -608,7 +456,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.frequentlyVisit"
+                          v-model="frequentlyVisit"
                           label=">12x a year"
                           value=">12x a year"
                           dense
@@ -637,8 +485,8 @@
                     <!-- cc1 -->
                     <div>
                       <p
-                        class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
-                        v-if="form.errors.cc1"
+                        class="error-message text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
+                        v-if="v$.cc1.$error"
                       >
                         Which of the following best describes your awareness of a CC?
                       </p>
@@ -651,7 +499,7 @@
 
                       <div>
                         <v-checkbox
-                          v-model="form.cc1"
+                          v-model="cc1"
                           label="I know what a CC is and I saw this office's CC."
                           :value="1"
                           dense
@@ -660,7 +508,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc1"
+                          v-model="cc1"
                           label="I know what a CC is but I did NOT see this office's CC."
                           :value="2"
                           dense
@@ -669,7 +517,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc1"
+                          v-model="cc1"
                           label="I learned of the CC only when I saw this office's CC."
                           :value="3"
                           dense
@@ -678,7 +526,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc1"
+                          v-model="cc1"
                           label="I do not know what a CC is and I did not see one in this office."
                           :value="4"
                           dense
@@ -691,8 +539,8 @@
                     <!-- cc2 -->
                     <div class="mt-2">
                       <p
-                        class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
-                        v-if="form.errors.cc1"
+                        class="error-message text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
+                        v-if="v$.cc1.$error"
                       >
                         If aware of CC, would you say that the CC of this office was …?
                       </p>
@@ -704,7 +552,7 @@
                       </p>
                       <div>
                         <v-checkbox
-                          v-model="form.cc2"
+                          v-model="cc2"
                           label="Easy to see"
                           :value="1"
                           dense
@@ -714,7 +562,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc2"
+                          v-model="cc2"
                           label="Somewhat easy to see"
                           :value="2"
                           dense
@@ -724,7 +572,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc2"
+                          v-model="cc2"
                           label="Difficult to see"
                           :value="3"
                           dense
@@ -734,7 +582,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc2"
+                          v-model="cc2"
                           label="Not visible at all"
                           :value="4"
                           dense
@@ -744,7 +592,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc2"
+                          v-model="cc2"
                           label="N/A"
                           :value="5"
                           dense
@@ -757,8 +605,8 @@
                     <!-- cc3 -->
                     <div class="mt-2">
                       <p
-                        class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
-                        v-if="form.errors.cc1"
+                        class="error-message text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
+                        v-if="v$.cc1.$error"
                       >
                         If aware of CC, how much did the CC help you in your transaction?
                       </p>
@@ -770,7 +618,7 @@
                       </p>
                       <div>
                         <v-checkbox
-                          v-model="form.cc3"
+                          v-model="cc3"
                           label="Helped very much"
                           :value="1"
                           dense
@@ -780,7 +628,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc3"
+                          v-model="cc3"
                           label="Somewhat helped"
                           :value="2"
                           dense
@@ -790,7 +638,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc3"
+                          v-model="cc3"
                           label="Did not help"
                           :value="3"
                           dense
@@ -800,7 +648,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.cc3"
+                          v-model="cc3"
                           label="N/A"
                           :value="4"
                           dense
@@ -830,8 +678,8 @@
                     <!-- q1 The waiting areas were clean, orderly, and comfortable. -->
                     <div>
                       <p
-                        v-if="form.errors[`q1.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q1_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         1. {{ survey_questions[0].desc }}
                       </p>
@@ -843,38 +691,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q1.answer"
+                        v-model="q1_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q1.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q1_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q1.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q1_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q1.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q1_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q1.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q1_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q1.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q1_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -890,8 +738,8 @@
                     <!-- q2 The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.-->
                     <div>
                       <p
-                        v-if="form.errors[`q2.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q2_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         2. {{ survey_questions[1].desc }}
                       </p>
@@ -903,38 +751,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q2.answer"
+                        v-model="q2_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q2.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q2_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q2.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q2_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q2.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q2_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q2.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q2_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q2.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q2_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -950,8 +798,8 @@
                     <!-- q3 The patients' rooms were kept clean, tidy, and comfortable.-->
                     <div>
                       <p
-                        v-if="form.errors[`q3.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q3_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         3. {{ survey_questions[2].desc }}
                       </p>
@@ -963,38 +811,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q3.answer"
+                        v-model="q3_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q3.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q3_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q3.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q3_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q3.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q3_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q3.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q3_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q3.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q3_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1010,8 +858,8 @@
                     <!-- q4 The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).-->
                     <div>
                       <p
-                        v-if="form.errors[`q4.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q4_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         4. {{ survey_questions[3].desc }}
                       </p>
@@ -1023,38 +871,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q4.answer"
+                        v-model="q4_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q4.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q4_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q4.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q4_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q4.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q4_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q4.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q4_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q4.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q4_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1070,8 +918,8 @@
                     <!-- q5 The office followed the transaction’s requirements and steps based on the information provided.(SQD2).-->
                     <div>
                       <p
-                        v-if="form.errors[`q5.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q5_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         5. {{ survey_questions[4].desc }}
                       </p>
@@ -1083,38 +931,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q5.answer"
+                        v-model="q5_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q5.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q5_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q5.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q5_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q5.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q5_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q5.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q5_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q5.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q5_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1130,8 +978,8 @@
                     <!-- q6 I easily found information about my transaction from the office or its website.(SQD4).-->
                     <div>
                       <p
-                        v-if="form.errors[`q6.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q6_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         6. {{ survey_questions[5].desc }}
                       </p>
@@ -1143,38 +991,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q6.answer"
+                        v-model="q6_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q6.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q6_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q6.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q6_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q6.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q6_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q6.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q6_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q6.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q6_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1190,8 +1038,8 @@
                     <!-- q7 I spent a reasonable amount of time for my transaction.(SQD1).-->
                     <div>
                       <p
-                        v-if="form.errors[`q7.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q7_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         7. {{ survey_questions[6].desc }}
                       </p>
@@ -1203,38 +1051,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q7.answer"
+                        v-model="q7_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q7.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q7_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q7.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q7_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q7.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q7_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q7.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q7_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q7.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q7_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1256,8 +1104,8 @@
                     <!-- q8 The medical condition, procedures and instructions were discussed clearly.-->
                     <div>
                       <p
-                        v-if="form.errors[`q8.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q8_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         8. {{ survey_questions[7].desc }}
                       </p>
@@ -1269,38 +1117,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q8.answer"
+                        v-model="q8_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q8.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q8_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q8.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q8_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q8.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q8_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q8.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q8_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q8.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q8_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1316,8 +1164,8 @@
                     <!-- q9 Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.-->
                     <div>
                       <p
-                        v-if="form.errors[`q9.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q9_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         9. {{ survey_questions[8].desc }}
                       </p>
@@ -1329,38 +1177,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q9.answer"
+                        v-model="q9_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q9.answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          <v-icon :color="q9_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q9.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q9_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q9.answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          <v-icon :color="q9_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q9.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q9_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q9.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q9_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1376,8 +1224,8 @@
                     <!-- q10 We were given the chance to decide which treatment procedure shall be performed.-->
                     <div>
                       <p
-                        v-if="form.errors[`q10.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q10_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         10. {{ survey_questions[9].desc }}
                       </p>
@@ -1389,42 +1237,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q10.answer"
+                        v-model="q10_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q10.answer == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="q10_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q10.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q10_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q10.answer == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="q10_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q10.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q10_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q10.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q10_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1440,8 +1284,8 @@
                     <!-- q11 I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)-->
                     <div>
                       <p
-                        v-if="form.errors[`q11.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q11_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         11. {{ survey_questions[10].desc }}
                       </p>
@@ -1453,42 +1297,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q11.answer"
+                        v-model="q11_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q11.answer == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="q11_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q11.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q11_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q11.answer == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="q11_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q11.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q11_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q11.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q11_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1504,8 +1344,8 @@
                     <!-- q12 I paid a reasonable amount of fees for my transaction.(SQD5)-->
                     <div>
                       <p
-                        v-if="form.errors[`q12.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q12_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         12. {{ survey_questions[11].desc }}
                       </p>
@@ -1517,42 +1357,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q12.answer"
+                        v-model="q12_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q12.answer == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="q12_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q12.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q12_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q12.answer == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="q12_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q12.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q12_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q12.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q12_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1584,8 +1420,8 @@
                     <!-- doctor -->
                     <div>
                       <p
-                        v-if="form.errors[`doctor.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.doctor_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Doctor
                       </p>
@@ -1597,7 +1433,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.doctor.rating"
+                        v-model="doctor_rating"
                         dense
                         class="pb-2"
                       >
@@ -1605,39 +1441,31 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.doctor.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="doctor_rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.doctor.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="doctor_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.doctor.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="doctor_rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.doctor.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="doctor_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.doctor.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="doctor_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1651,8 +1479,8 @@
                     <!-- nurse -->
                     <div>
                       <p
-                        v-if="form.errors[`nurse.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.nurse_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Nurse
                       </p>
@@ -1664,7 +1492,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.nurse.rating"
+                        v-model="nurse_rating"
                         dense
                         class="pb-2"
                       >
@@ -1672,39 +1500,31 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.nurse.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="nurse_rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.nurse.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="nurse_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.nurse.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="nurse_rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.nurse.rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="nurse_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.nurse.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="nurse_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1718,8 +1538,8 @@
                     <!-- midwife -->
                     <div>
                       <p
-                        v-if="form.errors[`midwife.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.midwife_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Midwife
                       </p>
@@ -1731,7 +1551,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.midwife.rating"
+                        v-model="midwife_rating"
                         dense
                         class="pb-2"
                       >
@@ -1739,41 +1559,31 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.midwife.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="midwife_rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.midwife.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="midwife_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.midwife.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="midwife_rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.midwife.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="midwife_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.midwife.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="midwife_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1787,8 +1597,8 @@
                     <!-- security -->
                     <div>
                       <p
-                        v-if="form.errors[`security.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.security_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Security
                       </p>
@@ -1800,7 +1610,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.security.rating"
+                        v-model="security_rating"
                         dense
                         class="pb-2"
                       >
@@ -1808,7 +1618,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.security.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="security_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1816,15 +1626,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.security.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="security_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.security.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="security_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1832,17 +1640,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.security.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="security_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.security.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="security_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1856,8 +1660,8 @@
                     <!-- radiology -->
                     <div>
                       <p
-                        v-if="form.errors[`radiology.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.radiology_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Radiology
                       </p>
@@ -1869,7 +1673,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.radiology.rating"
+                        v-model="radiology_rating"
                         dense
                         class="pb-2"
                       >
@@ -1877,7 +1681,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.radiology.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="radiology_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1885,15 +1689,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.radiology.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="radiology_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.radiology.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="radiology_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1901,17 +1703,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.radiology.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="radiology_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.radiology.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="radiology_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1925,8 +1723,8 @@
                     <!-- pharmacy -->
                     <div>
                       <p
-                        v-if="form.errors[`pharmacy.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.pharmacy_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Pharmacy
                       </p>
@@ -1938,7 +1736,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.pharmacy.rating"
+                        v-model="pharmacy_rating"
                         dense
                         class="pb-2"
                       >
@@ -1946,7 +1744,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.pharmacy.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="pharmacy_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -1954,15 +1752,13 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.pharmacy.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="pharmacy_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.pharmacy.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="pharmacy_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -1970,17 +1766,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.pharmacy.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="pharmacy_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.pharmacy.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="pharmacy_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -1994,8 +1786,8 @@
                     <!-- laboratory -->
                     <div>
                       <p
-                        v-if="form.errors[`laboratory.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.laboratory_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Laboratory
                       </p>
@@ -2007,7 +1799,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.laboratory.rating"
+                        v-model="laboratory_rating"
                         dense
                         class="pb-2"
                       >
@@ -2015,7 +1807,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.laboratory.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="laboratory_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2023,7 +1815,7 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.laboratory.rating == 4 ? 'white' : 'black'"
+                          <v-icon :color="laboratory_rating == 4 ? 'white' : 'black'"
                             >mdi-emoticon-happy-outline</v-icon
                           >
                         </v-btn>
@@ -2031,7 +1823,7 @@
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.laboratory.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="laboratory_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2039,15 +1831,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.laboratory.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="laboratory_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.laboratory.rating == 1 ? 'white' : 'black'"
+                          <v-icon :color="laboratory_rating == 1 ? 'white' : 'black'"
                             >mdi-emoticon-angry-outline</v-icon
                           >
                         </v-btn>
@@ -2063,8 +1853,8 @@
                     <!-- admitting_staff -->
                     <div>
                       <p
-                        v-if="form.errors[`admitting_staff.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.admitting_staff_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Admitting staff
                       </p>
@@ -2076,7 +1866,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.admitting_staff.rating"
+                        v-model="admitting_staff_rating"
                         dense
                         class="pb-2"
                       >
@@ -2084,7 +1874,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.admitting_staff.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="admitting_staff_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2092,7 +1882,7 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.admitting_staff.rating == 4 ? 'white' : 'black'"
+                          <v-icon :color="admitting_staff_rating == 4 ? 'white' : 'black'"
                             >mdi-emoticon-happy-outline</v-icon
                           >
                         </v-btn>
@@ -2100,7 +1890,7 @@
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.admitting_staff.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="admitting_staff_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2108,7 +1898,7 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.admitting_staff.rating == 2 ? 'white' : 'black'"
+                          <v-icon :color="admitting_staff_rating == 2 ? 'white' : 'black'"
                             >mdi-emoticon-sad-outline</v-icon
                           >
                         </v-btn>
@@ -2116,7 +1906,7 @@
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.admitting_staff.rating == 1 ? 'white' : 'black'"
+                          <v-icon :color="admitting_staff_rating == 1 ? 'white' : 'black'"
                             >mdi-emoticon-angry-outline</v-icon
                           >
                         </v-btn>
@@ -2132,8 +1922,8 @@
                     <!-- medical_records -->
                     <div>
                       <p
-                        v-if="form.errors[`medical_records.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.medical_records_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Medical records
                       </p>
@@ -2145,7 +1935,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.medical_records.rating"
+                        v-model="medical_records_rating"
                         dense
                         class="pb-2"
                       >
@@ -2153,7 +1943,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.medical_records.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="medical_records_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2161,7 +1951,7 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.medical_records.rating == 4 ? 'white' : 'black'"
+                          <v-icon :color="medical_records_rating == 4 ? 'white' : 'black'"
                             >mdi-emoticon-happy-outline</v-icon
                           >
                         </v-btn>
@@ -2169,7 +1959,7 @@
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.medical_records.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="medical_records_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2177,7 +1967,7 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.medical_records.rating == 2 ? 'white' : 'black'"
+                          <v-icon :color="medical_records_rating == 2 ? 'white' : 'black'"
                             >mdi-emoticon-sad-outline</v-icon
                           >
                         </v-btn>
@@ -2185,7 +1975,7 @@
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.medical_records.rating == 1 ? 'white' : 'black'"
+                          <v-icon :color="medical_records_rating == 1 ? 'white' : 'black'"
                             >mdi-emoticon-angry-outline</v-icon
                           >
                         </v-btn>
@@ -2201,8 +1991,8 @@
                     <!-- billing -->
                     <div>
                       <p
-                        v-if="form.errors[`billing.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.billing_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Billing
                       </p>
@@ -2214,7 +2004,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.billing.rating"
+                        v-model="billing_rating"
                         dense
                         class="pb-2"
                       >
@@ -2222,41 +2012,31 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.billing.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="billing_rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.billing.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="billing_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.billing.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="billing_rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.billing.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="billing_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.billing.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="billing_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2270,8 +2050,8 @@
                     <!-- cashier -->
                     <div>
                       <p
-                        v-if="form.errors[`cashier.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.cashier_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Cashier
                       </p>
@@ -2283,7 +2063,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.cashier.rating"
+                        v-model="cashier_rating"
                         dense
                         class="pb-2"
                       >
@@ -2291,41 +2071,31 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.cashier.rating == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="cashier_rating == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.cashier.rating == 4 ? 'white' : 'black'"
-                            >mdi-emoticon-happy-outline</v-icon
-                          >
+                          <v-icon :color="cashier_rating == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.cashier.rating == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="cashier_rating == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.cashier.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="cashier_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.cashier.rating == 1 ? 'white' : 'black'"
-                            >mdi-emoticon-angry-outline</v-icon
-                          >
+                          <v-icon :color="cashier_rating == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2339,8 +2109,8 @@
                     <!-- social_worker -->
                     <div>
                       <p
-                        v-if="form.errors[`social_worker.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.social_worker_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Social worker
                       </p>
@@ -2352,7 +2122,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.social_worker.rating"
+                        v-model="social_worker_rating"
                         dense
                         class="pb-2"
                       >
@@ -2360,7 +2130,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.social_worker.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="social_worker_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2368,7 +2138,7 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.social_worker.rating == 4 ? 'white' : 'black'"
+                          <v-icon :color="social_worker_rating == 4 ? 'white' : 'black'"
                             >mdi-emoticon-happy-outline</v-icon
                           >
                         </v-btn>
@@ -2376,7 +2146,7 @@
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.social_worker.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="social_worker_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2384,7 +2154,7 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.social_worker.rating == 2 ? 'white' : 'black'"
+                          <v-icon :color="social_worker_rating == 2 ? 'white' : 'black'"
                             >mdi-emoticon-sad-outline</v-icon
                           >
                         </v-btn>
@@ -2392,7 +2162,7 @@
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.social_worker.rating == 1 ? 'white' : 'black'"
+                          <v-icon :color="social_worker_rating == 1 ? 'white' : 'black'"
                             >mdi-emoticon-angry-outline</v-icon
                           >
                         </v-btn>
@@ -2408,8 +2178,8 @@
                     <!-- food_server -->
                     <div>
                       <p
-                        v-if="form.errors[`food_server.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.food_server_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Food server
                       </p>
@@ -2421,7 +2191,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.food_server.rating"
+                        v-model="food_server_rating"
                         dense
                         class="pb-2"
                       >
@@ -2429,7 +2199,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.food_server.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="food_server_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2437,7 +2207,7 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.food_server.rating == 4 ? 'white' : 'black'"
+                          <v-icon :color="food_server_rating == 4 ? 'white' : 'black'"
                             >mdi-emoticon-happy-outline</v-icon
                           >
                         </v-btn>
@@ -2445,7 +2215,7 @@
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.food_server.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="food_server_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2453,15 +2223,13 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.food_server.rating == 2 ? 'white' : 'black'"
-                            >mdi-emoticon-sad-outline</v-icon
-                          >
+                          <v-icon :color="food_server_rating == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.food_server.rating == 1 ? 'white' : 'black'"
+                          <v-icon :color="food_server_rating == 1 ? 'white' : 'black'"
                             >mdi-emoticon-angry-outline</v-icon
                           >
                         </v-btn>
@@ -2477,8 +2245,8 @@
                     <!-- janitors_orderly -->
                     <div>
                       <p
-                        v-if="form.errors[`janitors_orderly.rating`]"
-                        class="ma-0 red--text text-h6-edited"
+                        v-if="v$.janitors_orderly_rating.$error"
+                        class="error-message ma-0 red--text text-h6-edited"
                       >
                         Janitors / Orderly
                       </p>
@@ -2490,7 +2258,7 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.janitors_orderly.rating"
+                        v-model="janitors_orderly_rating"
                         dense
                         class="pb-2"
                       >
@@ -2498,7 +2266,7 @@
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.janitors_orderly.rating == 5 ? 'white' : 'black'"
+                          <v-icon :color="janitors_orderly_rating == 5 ? 'white' : 'black'"
                             >mdi-emoticon-excited-outline</v-icon
                           >
                         </v-btn>
@@ -2506,7 +2274,7 @@
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.janitors_orderly.rating == 4 ? 'white' : 'black'"
+                          <v-icon :color="janitors_orderly_rating == 4 ? 'white' : 'black'"
                             >mdi-emoticon-happy-outline</v-icon
                           >
                         </v-btn>
@@ -2514,7 +2282,7 @@
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.janitors_orderly.rating == 3 ? 'white' : 'black'"
+                          <v-icon :color="janitors_orderly_rating == 3 ? 'white' : 'black'"
                             >mdi-emoticon-neutral-outline</v-icon
                           >
                         </v-btn>
@@ -2522,7 +2290,7 @@
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.janitors_orderly.rating == 2 ? 'white' : 'black'"
+                          <v-icon :color="janitors_orderly_rating == 2 ? 'white' : 'black'"
                             >mdi-emoticon-sad-outline</v-icon
                           >
                         </v-btn>
@@ -2530,7 +2298,7 @@
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.janitors_orderly.rating == 1 ? 'white' : 'black'"
+                          <v-icon :color="janitors_orderly_rating == 1 ? 'white' : 'black'"
                             >mdi-emoticon-angry-outline</v-icon
                           >
                         </v-btn>
@@ -2548,8 +2316,8 @@
                     <!-- q14 I was treated fairly, or "walang palakasan" during my transaction.(SQD6)-->
                     <div>
                       <p
-                        v-if="form.errors[`q14.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q14_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         14. {{ survey_questions[13].desc }}
                       </p>
@@ -2561,42 +2329,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q14.answer"
+                        v-model="q14_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q14.answer == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="q14_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q14.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q14_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q14.answer == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="q14_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q14.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q14_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q14.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q14_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2610,8 +2374,8 @@
                     <!-- q15 I am satisfied with the service that I availed.-->
                     <div class="my-4">
                       <p
-                        v-if="form.errors[`q15.answer`]"
-                        class="ma-0 red--text text-h6-edited questions-font-style"
+                        v-if="v$.q15_answer.$error"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
                       >
                         15. {{ survey_questions[14].desc }}
                       </p>
@@ -2623,42 +2387,38 @@
                       </p>
 
                       <v-btn-toggle
-                        v-model="form.q15.answer"
+                        v-model="q15_answer"
                         dense
                       >
                         <v-btn
                           value="5"
                           active-class="green darken-2"
                         >
-                          <v-icon :color="form.q15.answer == 5 ? 'white' : 'black'"
-                            >mdi-emoticon-excited-outline</v-icon
-                          >
+                          <v-icon :color="q15_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="4"
                           active-class="light-green accent-4"
                         >
-                          <v-icon :color="form.q15.answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          <v-icon :color="q15_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="3"
                           active-class="yellow"
                         >
-                          <v-icon :color="form.q15.answer == 3 ? 'white' : 'black'"
-                            >mdi-emoticon-neutral-outline</v-icon
-                          >
+                          <v-icon :color="q15_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="2"
                           active-class="amber darken-2"
                         >
-                          <v-icon :color="form.q15.answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          <v-icon :color="q15_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="1"
                           active-class="red accent-2"
                         >
-                          <v-icon :color="form.q15.answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          <v-icon :color="q15_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
                         </v-btn>
                         <v-btn
                           value="0"
@@ -2719,13 +2479,13 @@
                   <v-col cols="12">
                     <!-- HOSPITAL NUMBER-->
                     <label for="hospital_number">
-                      <span class="font-weight-black ma-0">
+                      <span class="error-message font-weight-black ma-0">
                         PATIENT'S HOSPITAL NUMBER <span class="red--text">(Required)</span>
                       </span>
                     </label>
                     <v-text-field
                       id="hospital_number"
-                      v-model="form.hospital_number"
+                      v-model="hospital_number"
                       hide-details
                       dense
                       outlined
@@ -2742,8 +2502,8 @@
                       <label for="preference">
                         <span class="font-weight-black ma-0">
                           <p
-                            v-if="form.errors[`preference`]"
-                            class="font-weight-black ma-0 red--text"
+                            v-if="v$.preference.$error"
+                            class="error-message font-weight-black ma-0 red--text"
                           >
                             In the future, I prefer to answer using:
                           </p>
@@ -2758,7 +2518,7 @@
 
                       <div class="d-flex flex-row">
                         <v-checkbox
-                          v-model="form.preference"
+                          v-model="preference"
                           label="Computer Assisted Survey"
                           value="Computer Assisted Survey"
                           dense
@@ -2767,7 +2527,7 @@
                         ></v-checkbox>
 
                         <v-checkbox
-                          v-model="form.preference"
+                          v-model="preference"
                           label="Pen and Paper Survey"
                           value="Pen and Paper Survey"
                           dense
@@ -2781,8 +2541,8 @@
                       <label for="pss_rating">
                         <span class="font-weight-black ma-0">
                           <p
-                            v-if="form.errors[`pss_rating`]"
-                            class="font-weight-black ma-0 red--text"
+                            v-if="v$.pss_rating.$error"
+                            class="error-message font-weight-black ma-0 red--text"
                           >
                             How would you rate our Computer assisted satisfaction survey?
                           </p>
@@ -2796,7 +2556,7 @@
                       </label>
                       <v-rating
                         id="pss_rating"
-                        v-model="form.pss_rating"
+                        v-model="pss_rating"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
                         color="orange"
@@ -2891,6 +2651,11 @@ import Iloco from '@/Components/Iloco';
 import English from '@/Components/English';
 import Tagalog from '@/Components/Tagalog';
 import { Link } from '@inertiajs/inertia-vue';
+import { useVuelidate } from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
+import Vue from 'vue';
+import Vuelidate from '@vuelidate/core';
+Vue.use(Vuelidate);
 
 export default {
   components: {
@@ -2908,6 +2673,60 @@ export default {
     // other_depts: Array,
   },
   remember: 'form',
+  setup() {
+    return { v$: useVuelidate() };
+  },
+  mounted() {
+    // console.log(this.v$);
+  },
+  validations() {
+    return {
+      respondent: { required },
+      //   pointOfEntry: { required },
+      frequentlyVisit: { required, $autoDirty: true },
+      age: { required },
+      sex: { required },
+      religion: { required },
+      educationalAttainment: { required },
+      //   dateOfVisit: { required },
+      cc1: { required },
+      cc2: { required },
+      cc3: { required },
+      hospital_number: { required },
+      preference: { required },
+      pss_rating: { required },
+      q1_answer: { required },
+      q2_answer: { required },
+      q3_answer: { required },
+      q4_answer: { required },
+      q5_answer: { required },
+      q6_answer: { required },
+      q7_answer: { required },
+      q8_answer: { required },
+      q9_answer: { required },
+      q10_answer: { required },
+      q11_answer: { required },
+      q12_answer: { required },
+      q14_answer: { required },
+      doctor_rating: { required },
+      nurse_rating: { required },
+      midwife_rating: { required },
+      security_rating: { required },
+      radiology_rating: { required },
+      pharmacy_rating: { required },
+      laboratory_rating: { required },
+      admitting_staff_rating: { required },
+      medical_records_rating: { required },
+      billing_rating: { required },
+      cashier_rating: { required },
+      social_worker_rating: { required },
+      food_server_rating: { required },
+      janitors_orderly_rating: { required },
+      q15_answer: { required },
+      preference: { required },
+      pss_rating: { required },
+    };
+  },
   data() {
     return {
       selectedTab: 2,
@@ -2961,6 +2780,72 @@ export default {
         'Pharmacy',
         'Information & Admitting Section',
       ],
+      // for vuelidate
+      respondent: '',
+      //   pointOfEntry: '',
+      frequentlyVisit: '',
+      age: null,
+      sex: '',
+      religion: '',
+      educationalAttainment: '',
+      dateOfVisit: new Date().toISOString().slice(0, -14),
+      cc1: null,
+      cc2: null,
+      cc3: null,
+      hospital_number: null,
+      preference: null,
+      pss_rating: null,
+      // The waiting areas were clean, orderly, and comfortable.
+      q1_answer: null,
+      // The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.
+      q2_answer: null,
+      // The patients' rooms were kept clean, tidy, and comfortable.
+      q3_answer: null,
+      // The steps (including payment) I needed to do for my transaction were easy and simple.(SQD3).
+      q4_answer: null,
+      // The office followed the transaction’s requirements and steps based on the information provided.(SQD2).
+      q5_answer: null,
+      // I easily found information about my transaction from the office or its website.(SQD4).
+      q6_answer: null,
+      // I spent a reasonable amount of time for my transaction.(SQD1).
+      q7_answer: null,
+      // The medical condition, procedures and instructions were discussed clearly.
+      q8_answer: null,
+      // Our sentiments, cultural background, and beliefs were heard and considered in the treatment procedure.
+      q9_answer: null,
+      // We were given the chance to decide which treatment procedure shall be performed.
+      q10_answer: null,
+      // I got what I needed from the hospital, or (if denied) denial of request was sufficiently explained to me.(SQD8)
+      q11_answer: null,
+      // I paid a reasonable amount of fees for my transaction.(SQD5)
+      q12_answer: null,
+      // I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7)
+      // q13: {
+      //   id: this.survey_questions[12].id,
+      //   answer: undefined,
+      // },
+      // I was treated fairly, or "walang palakasan" during my transaction.(SQD6)
+      q14_answer: null,
+      doctor_rating: null,
+      nurse_rating: null,
+      midwife_rating: null,
+      security_rating: null,
+      radiology_rating: null,
+      pharmacy_rating: null,
+      laboratory_rating: null,
+      admitting_staff_rating: null,
+      medical_records_rating: null,
+      billing_rating: null,
+      cashier_rating: null,
+      social_worker_rating: null,
+      food_server_rating: null,
+      janitors_orderly_rating: null,
+      // I am satisfied with the service that I availed
+      q15_answer: null,
+      preference: null,
+      pss_rating: null,
+      // end for vuelidate
+
       form: this.$inertia.form({
         respondent: '',
         pointOfEntry: '',
@@ -3122,22 +3007,38 @@ export default {
       }),
     };
   },
-  mounted() {
-    // console.log(this.survey_questions);
-  },
   methods: {
-    submit() {
-      this.form.post(route('eng.store'), {
-        onSuccess: () => {
-          this.isLoading = true;
-          this.form.reset();
-          this.createdMsg();
-        },
-        onError: (errors) => {
-          this.errorExistsMsg();
-        },
-      });
+    async submit() {
+      const isFormCorrect = await this.v$.$validate();
+      //   console.log(this.v$);
+      if (isFormCorrect) {
+        this.form.post(route('eng.store'), {
+          onSuccess: () => {
+            this.isLoading = true;
+            this.form.reset();
+            this.createdMsg();
+            // console.log(this.$page);
+          },
+          onError: (errors) => {
+            // console.log(errors);
+            this.errorExistsMsg();
+          },
+        });
+      } else {
+        // Form is invalid, scroll to the first error
+        let firstErrorElement = document.querySelector('.error-message');
+        if (firstErrorElement) {
+          //   console.log('b');
+          firstErrorElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     },
+    // focusFirstError() {
+    //   const errorElement = document.querySelector('.error-message');
+    //   if (errorElement) {
+    //     errorElement.previousElementSibling.focus();
+    //   }
+    // },
     createdMsg() {
       this.snack = true;
       this.snackColor = 'color_primary';
@@ -3150,7 +3051,19 @@ export default {
     },
   },
   watch: {
-    'form.age': function (val) {
+    respondent(val) {
+      this.form.respondent = val;
+    },
+    // pointOfEntry(val) {
+    //   this.form.pointOfEntry = val;
+    // },
+    frequentlyVisit(val) {
+      this.form.frequentlyVisit = val;
+    },
+    frequentlyVisit(val) {
+      this.form.frequentlyVisit = val;
+    },
+    age: function (val) {
       if (val == null || val == 0) {
         this.enableElementary = false;
         this.enableSecondary = false;
@@ -3189,17 +3102,142 @@ export default {
       } else {
         this.enableNoEduc = false;
       }
+      this.form.age = val;
     },
-    'form.cc1': function (val) {
+    sex(val) {
+      this.form.sex = val;
+    },
+    religion(val) {
+      this.form.religion = val;
+    },
+    educationalAttainment(val) {
+      this.form.educationalAttainment = val;
+    },
+    dateOfVisit(val) {
+      this.form.dateOfVisit = val;
+    },
+    cc1: function (val) {
       if (val == 4) {
         this.disableCC = true;
         this.form.cc2 = 5; // N/A
         this.form.cc3 = 4; // N/A
+        this.cc2 = 5;
+        this.cc3 = 4;
       } else {
         this.disableCC = false;
         this.form.cc2 = null; // N/A
         this.form.cc3 = null; // N/A
+        this.cc2 = null;
+        this.cc3 = null;
       }
+      this.form.cc1 = val;
+    },
+    cc2(val) {
+      this.form.cc2 = val;
+    },
+    cc3(val) {
+      this.form.cc3 = val;
+    },
+    hospital_number(val) {
+      this.form.hospital_number = val;
+    },
+    preference(val) {
+      this.form.preference = val;
+    },
+    pss_rating(val) {
+      this.form.pss_rating = val;
+    },
+    q1_answer(val) {
+      console.log(val);
+
+      this.form.q1.answer = val;
+    },
+    q2_answer(val) {
+      this.form.q2.answer = val;
+    },
+    q3_answer(val) {
+      this.form.q3.answer = val;
+    },
+    q4_answer(val) {
+      this.form.q4.answer = val;
+    },
+    q5_answer(val) {
+      this.form.q5.answer = val;
+    },
+    q6_answer(val) {
+      this.form.q6.answer = val;
+    },
+    q7_answer(val) {
+      this.form.q7.answer = val;
+    },
+    q8_answer(val) {
+      this.form.q8.answer = val;
+    },
+    q9_answer(val) {
+      this.form.q9.answer = val;
+    },
+    q10_answer(val) {
+      this.form.q10.answer = val;
+    },
+    q11_answer(val) {
+      this.form.q11.answer = val;
+    },
+    q12_answer(val) {
+      this.form.q12.answer = val;
+    },
+    q14_answer(val) {
+      this.form.q14.answer = val;
+    },
+    doctor_rating(val) {
+      this.form.doctor.rating = val;
+    },
+    nurse_rating(val) {
+      this.form.nurse.rating = val;
+    },
+    midwife_rating(val) {
+      this.form.midwife.rating = val;
+    },
+    security_rating(val) {
+      this.form.security.rating = val;
+    },
+    radiology_rating(val) {
+      this.form.radiology.rating = val;
+    },
+    pharmacy_rating(val) {
+      this.form.pharmacy.rating = val;
+    },
+    laboratory_rating(val) {
+      this.form.laboratory.rating = val;
+    },
+    admitting_staff_rating(val) {
+      this.form.admitting_staff.rating = val;
+    },
+    medical_records_rating(val) {
+      this.form.medical_records.rating = val;
+    },
+    billing_rating(val) {
+      this.form.billing.rating = val;
+    },
+    cashier_rating(val) {
+      this.form.cashier.rating = val;
+    },
+    social_worker_rating(val) {
+      this.form.social_worker.rating = val;
+    },
+    food_server_rating(val) {
+      this.form.food_server.rating = val;
+    },
+    janitors_orderly_rating(val) {
+      this.form.janitors_orderly.rating = val;
+    },
+    q15_answer(val) {
+      this.form.q15.answer = val;
+    },
+    preference(val) {
+      this.form.preference = val;
+    },
+    pss_rating(val) {
+      this.form.pss_rating = val;
     },
   },
 };
