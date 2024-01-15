@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SurveyTagalogQuestions;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
             HospitalStaffSeeder::class,
             SurveyEnglishQuestionsSeeder::class,
             SurveyIlocoQuestionsSeeder::class,
+            SurveyTagalogQuestions::class,
             LocationsSeeder::class,
         ]);
     }

@@ -7,6 +7,7 @@ use App\Models\DepartmentsVisited;
 use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
+use App\Models\LoginHistory;
 use App\Models\SurveyAbtStaff;
 use App\Models\SurveyAnswers;
 use App\Models\SurveyGeneralInfo;
@@ -15,6 +16,7 @@ use App\Models\SurveyOptAnswers;
 use App\Models\SurveyOptQuestions;
 use App\Models\SurveyQuestions;
 use App\Models\SurveyRespondents;
+use App\Models\SurveyTagalogQuestions;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,10 +29,10 @@ class TagalogController extends Controller
     {
         $hospital_staffs = HospitalStaff::all('id', 'type');
 
-        $survey_questions = SurveyIlocoQuestions::all('id', 'desc');
+        $survey_questions = SurveyTagalogQuestions::all('id', 'desc');
 
         return Inertia::render(
-            'Survey/Iloco/Index',
+            'Survey/Tagalog/Index',
             [
                 'hospital_staffs' => $hospital_staffs,
                 'survey_questions' => $survey_questions,
@@ -40,18 +42,9 @@ class TagalogController extends Controller
 
     public function store(Request $request)
     {
-        // $servicesAvailed = $request->serviceAvailed;
-        // $convertedArrToStr = '';
+        // dd($request);
 
-        // if ($request->otherServiceAvailed != '' || $request->otherServiceAvailed != null) {
-        //     // $serviceAvailed = implode(", ", $request->serviceAvailed);
-        //     array_push($servicesAvailed, $request->otherServiceAvailed);
-        // }
-
-        // // convert array to string when inserting in database
-        // $convertedArrToStr = implode(", ", $servicesAvailed);
-
-        $authUsername = Auth::user()->username;
+        $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
 
         // get hospital number
         $hospital_number = HospitalNumber::where('hpercode', $request->hospital_number)
@@ -145,7 +138,8 @@ class TagalogController extends Controller
                     'hospital_number' => $request->hospital_number,
                     'preference' => $request->preference,
                     'pss_rating' => $request->pss_rating,
-                    'ward' => $authUsername,
+                    'ward' => $authCurrentLocation->wardcode,
+                    'assisted_by' => Auth::user()->username,
                 ]);
 
                 // reason why some $request is converted to string https://github.com/laravel/framework/issues/28923
