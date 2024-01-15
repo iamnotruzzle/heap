@@ -27,8 +27,7 @@
               <Link
                 as="v-tab"
                 key="1"
-                href="#"
-                v-show="false"
+                href="tagalog"
                 >Tagalog</Link
               >
               <Link
