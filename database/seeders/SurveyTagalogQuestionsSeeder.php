@@ -87,13 +87,13 @@ class SurveyTagalogQuestionsSeeder extends Seeder
             ],
             [
                 // 12
-                'desc' => 'I paid a reasonable amount of fees for my transaction.(SQD5)',
+                'desc' => 'Nagbayad ako ng makatwirang halaga ng mga bayarin para sa aking transaksiyon. (SQD5)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 // 13
-                'desc' => 'Nagbayad ako ng makatwirang halaga ng mga bayarin para sa aking transaksiyon. (SQD5)',
+                'desc' => 'Magalang akong tinugunan ng staff, at (kung humingi ng tulong) ang staff ay matulungin. (SQD7)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

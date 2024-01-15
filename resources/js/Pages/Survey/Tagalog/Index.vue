@@ -93,11 +93,10 @@
               <v-row class="font-weight-black mb-4">
                 <v-col cols="12">
                   <div class="font-italic text-center">
-                    Dagiti sumaganad a saludsod ket pakaseknan iti pannakapnekyo iti serbisio ti MMMHC a naipaay
-                    kadakayo. Iti gagemmi nga ad-adda pay a mapasayaat ti serbisiomi, dawatenmi iti naan-anay a
-                    panangsungbatyo kadagiti sumaganad a saludsod basar iti kapadasanyo. Mangnamnamakayo nga aniaman a
-                    sungbat ket agserbi iti pannakapasayaat ti serbisio ti ospital ken agtalinaed a palimed iti
-                    siasinnoman.
+                    Ang survey na ito ay magsisilbing batayan upang tulungan kaming mapabuti ang aming mga serbisyo
+                    upang magkaroon kayo ng mas magandang karanasan sa ospital dahil mahalaga kayo sa amin. Ang anumang
+                    mga komento o mungkahi na inyong ibibigay sa pamamagitan ng survey na ito ay lubos na pahahalagahan
+                    at ituturing na kumpidensiyal.
                   </div>
                 </v-col>
               </v-row>
@@ -108,7 +107,7 @@
               >
                 <div class="grey lighten-1 mb-4">
                   <p class="text-h6-edited mx-2 py-1">
-                    Direksyon: Ikkan ti tsek (<v-icon>mdi-check</v-icon>) ti umno a sungbat:
+                    PANUTO: Lagyan ng tsek(<v-icon>mdi-check</v-icon>) ang mga angkop na sagot:
                   </p>
                 </div>
 
@@ -121,18 +120,18 @@
                       v-if="v$.respondent.$error"
                       class="error-message red--text my-2 mb-0 text-h6-edited font-weight-bold"
                     >
-                      <p>Nagresponde kadaytoy a porma:</p>
+                      <p>Ang Respondente ng Survey Form na ito:</p>
                     </div>
                     <div
                       v-else
                       class="my-2 mb-0 text-h6-edited font-weight-bold"
                     >
-                      <p>Nagresponde kadaytoy a porma:</p>
+                      <p>Ang Respondente ng Survey Form na ito:</p>
                     </div>
                     <div class="d-flex flex-column ma-0 pa-0">
                       <v-checkbox
                         v-model="respondent"
-                        label="Pasiente"
+                        label="Pasyente"
                         value="Patient"
                         dense
                         hide-details
@@ -141,7 +140,7 @@
 
                       <v-checkbox
                         v-model="respondent"
-                        label="Nangkadua (Kabagian)"
+                        label="Kasama (Pamilya/Kamag-anak)"
                         value="Companion"
                         dense
                         hide-details
@@ -165,13 +164,13 @@
                       v-if="v$.age.$error"
                       class="error-message red--text"
                     >
-                      Tawen
+                      Edad
                     </label>
                     <label
                       for="age"
                       v-else
                     >
-                      Tawen
+                      Edad
                     </label>
                     <v-text-field
                       id="age"
@@ -194,13 +193,13 @@
                       v-if="v$.sex.$error"
                       class="red--text"
                     >
-                      Katatao
+                      Kasarian
                     </label>
                     <label
                       for="sex"
                       v-else
                     >
-                      Katatao
+                      Kasarian
                     </label>
 
                     <div class="d-flex flex-row">
@@ -216,7 +215,7 @@
                       <v-checkbox
                         id="sex"
                         v-model="sex"
-                        label="Babai"
+                        label="Babae"
                         value="Female"
                         dense
                         hide-details
@@ -235,13 +234,13 @@
                       v-if="v$.religion.$error"
                       class="error-message red--text"
                     >
-                      Relihion (Daduma pay, ilanad)
+                      Relihiyon (Iba pa (Tukuyin))
                     </label>
                     <label
                       for="religion"
                       v-else
                     >
-                      Relihion (Daduma pay, ilanad)
+                      Relihiyon (Iba pa (Tukuyin))
                     </label>
 
                     <v-combobox
@@ -265,13 +264,13 @@
                       v-if="v$.educationalAttainment.$error"
                       class="error-message red--text"
                     >
-                      Naturpos nga adal:
+                      Antas ng Edukasyon:
                     </label>
                     <label
                       for="educAt"
                       v-else
                     >
-                      Naturpos nga adal:
+                      Antas ng Edukasyon:
                     </label>
 
                     <div :class="$vuetify.breakpoint.smAndDown == true ? 'd-flex flex-column' : 'd-flex flex-row'">
@@ -279,7 +278,7 @@
                         id="educAt"
                         :disabled="!enableElementary"
                         v-model="educationalAttainment"
-                        label="Elementaria"
+                        label="Elementarya"
                         value="Elementary"
                         dense
                         hide-details
@@ -290,7 +289,7 @@
                         id="educAt"
                         :disabled="!enableSecondary"
                         v-model="educationalAttainment"
-                        label="Sekondaria"
+                        label="Sekondarya"
                         value="Secondary"
                         dense
                         hide-details
@@ -301,7 +300,7 @@
                         id="educAt"
                         :disabled="!enableVocational"
                         v-model="educationalAttainment"
-                        label="Bokasional"
+                        label="Bokasyonal"
                         value="Vocational"
                         dense
                         hide-details
@@ -312,7 +311,7 @@
                         id="educAt"
                         :disabled="!enableCollege"
                         v-model="educationalAttainment"
-                        label="Kolehio"
+                        label="Kolehiyo"
                         value="College"
                         dense
                         hide-details
@@ -323,7 +322,7 @@
                         id="educAt"
                         :disabled="!enablePGM"
                         v-model="educationalAttainment"
-                        label="Nainayon nga adal wenno nagun-od kalpasan ti kolehiio"
+                        label="Postgraduate/Masters"
                         value="Postgraduate/Masters"
                         dense
                         hide-details
@@ -334,7 +333,7 @@
                         id="educAt"
                         :disabled="!enableNoEduc"
                         v-model="educationalAttainment"
-                        label="Awan pormal nga edukasion"
+                        label="Walang Pormal na Edukasyon"
                         value="No formal Education"
                         dense
                         hide-details
@@ -356,13 +355,13 @@
                       v-if="form.errors.dateOfVisit"
                       class="red--text"
                     >
-                      Petsa ti Konsultasyon:
+                      Petsa ng Konsultasyon/Pagbisita:
                     </label>
                     <label
                       for="dateOfVisit"
                       v-else
                     >
-                      Petsa ti Konsultasyon:
+                      Petsa ng Konsultasyon/Pagbisita:
                     </label>
 
                     <v-menu
@@ -409,10 +408,10 @@
                       v-if="v$.frequentlyVisit.$error"
                       class="error-message red--text mx-2"
                     >
-                      <p>Kasano ti kaadu a mabisita daytoy a pasilidad?</p>
+                      <p>Gaano ka kadalas bumisita sa ospital na ito?</p>
                     </div>
                     <div v-else>
-                      <p>Kasano ti kaadu a mabisita daytoy a pasilidad?</p>
+                      <p>Gaano ka kadalas bumisita sa ospital na ito?</p>
                     </div>
                     <div class="ma-0 pa-0">
                       <div
@@ -422,7 +421,7 @@
                       >
                         <v-checkbox
                           v-model="frequentlyVisit"
-                          label="Damdamo"
+                          label="Unang Beses"
                           value="First time"
                           dense
                           hide-details
@@ -431,7 +430,7 @@
 
                         <v-checkbox
                           v-model="frequentlyVisit"
-                          label="1-3x kada tawen"
+                          label="1-3x sa loob ng isang taon"
                           value="1-3x a year"
                           dense
                           hide-details
@@ -440,7 +439,7 @@
 
                         <v-checkbox
                           v-model="frequentlyVisit"
-                          label="4-6x kada tawen"
+                          label="4-6x sa loob ng isang taon"
                           value="4-6x a year"
                           dense
                           hide-details
@@ -449,7 +448,7 @@
 
                         <v-checkbox
                           v-model="frequentlyVisit"
-                          label="7-11x kada tawen"
+                          label="7-11x sa loob ng isang taon"
                           value="7-11x a year"
                           dense
                           hide-details
@@ -458,7 +457,7 @@
 
                         <v-checkbox
                           v-model="frequentlyVisit"
-                          label="Nasurok 12x kada tawen"
+                          label="12x sa loob ng isang taon"
                           value=">12x a year"
                           dense
                           hide-details
@@ -474,14 +473,14 @@
 
                   <v-col cols="12">
                     <h4 class="font-weight-black text-center title">
-                      Daytoy Citizen’s Charter wenno CC ket opisyal a dokyumento nga mangipasimudaag ti serbisyo iti
-                      ahensiya ti gobyerno, pakaramanan kadagiti kasapulan, pagbayad ken ti pannakaproseso kadagiti amin
-                      nga nailanad.
+                      Ang Citizen's Charter ay isang opisyal na dokumento na nagpapakita ng mga serbisyo ng isang
+                      ahensiya/opisina ng pamahalaan kasama na ang mga kahingian nito, mga bayarin, at panahon ng
+                      pagproseso maging sa iba pa.
                     </h4>
 
                     <h4 class="my-6">
-                      <span class="font-weight-black">INSTRAKSYON:</span>
-                      Ikkan ti tsek (✔) ti umno a sungbat.
+                      <span class="font-weight-black">PANUTO:</span>
+                      Lagyan ng tsek (✔) ang inyong sagot sa mga tanong sa Citizen's Charter (CC) o Gabay ng Mamamayan.
                     </h4>
 
                     <!-- cc1 -->
@@ -490,19 +489,19 @@
                         class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
                         v-if="v$.cc1.$error"
                       >
-                        Ana kadagitoy sumaganad tay pannakailadawan iti pannakaawatyo ti Citizen’s Charter?
+                        Alin sa sumusunod ang mas naglalarawan ng iyong kabatiran sa isang CC?
                       </p>
                       <p
                         class="text-h6-edited ma-0 questions-font-style font-weight-bold"
                         v-else
                       >
-                        Ana kadagitoy sumaganad tay pannakailadawan iti pannakaawatyo ti Citizen’s Charter?
+                        Alin sa sumusunod ang mas naglalarawan ng iyong kabatiran sa isang CC?
                       </p>
 
                       <div>
                         <v-checkbox
                           v-model="cc1"
-                          label="Ammok ti CC ket nakitak kadagiti opisina."
+                          label="Alam ko kung ano ang CC at nakita ko ang CC ng opisinang ito."
                           :value="1"
                           dense
                           hide-details
@@ -511,7 +510,7 @@
 
                         <v-checkbox
                           v-model="cc1"
-                          label="Ammok ti CC ngem awan nakitak kadagiti opisina."
+                          label="Alam ko kung ano ang CC ngunit HINDI ko nakita ang CC ng opisinang ito."
                           :value="2"
                           dense
                           hide-details
@@ -520,7 +519,7 @@
 
                         <v-checkbox
                           v-model="cc1"
-                          label="Naamuak lang ti CC apaman a nakitak ditoy nga opisina."
+                          label=" Nalaman ko lang ang CC nang makita ko ang CC ng opisinang ito."
                           :value="3"
                           dense
                           hide-details
@@ -529,7 +528,7 @@
 
                         <v-checkbox
                           v-model="cc1"
-                          label="Awan ammok ti CC ken awan nakitak kadigitoy nga opisina."
+                          label="Hindi ko alam kung ano ang CC at wala akong nakita sa opisinang ito."
                           :value="4"
                           dense
                           hide-details
@@ -544,18 +543,18 @@
                         class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
                         v-if="v$.cc1.$error"
                       >
-                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagam nga ti CC ditoy nga opisan ket?
+                        Kung alam mo ang CC (nasagot ang 1-3 sa CC1), masasabi mo ba na ang CC ng opisinang ito ay…?
                       </p>
                       <p
                         class="text-h6-edited ma-0 questions-font-style font-weight-bold"
                         v-else
                       >
-                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), maibagam nga ti CC ditoy nga opisan ket?
+                        Kung alam mo ang CC (nasagot ang 1-3 sa CC1), masasabi mo ba na ang CC ng opisinang ito ay…?
                       </p>
                       <div>
                         <v-checkbox
                           v-model="cc2"
-                          label="Nalaka a makita"
+                          label="Madaling Makita"
                           :value="1"
                           dense
                           hide-details
@@ -565,7 +564,7 @@
 
                         <v-checkbox
                           v-model="cc2"
-                          label="Medio nalaka a Makita"
+                          label="Medyo Madaling Makita"
                           :value="2"
                           dense
                           hide-details
@@ -575,7 +574,7 @@
 
                         <v-checkbox
                           v-model="cc2"
-                          label="Narigat a makita"
+                          label="Mahirap Makita"
                           :value="3"
                           dense
                           hide-details
@@ -585,7 +584,7 @@
 
                         <v-checkbox
                           v-model="cc2"
-                          label="Haan pulos a makita"
+                          label="Hindi Nakikita"
                           :value="4"
                           dense
                           hide-details
@@ -610,20 +609,20 @@
                         class="text-h6-edited ma-0 red--text mx-2 questions-font-style font-weight-bold"
                         v-if="v$.cc1.$error"
                       >
-                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), kasano kaadu iti naitulungan kenka iti
-                        transakyon mo?
+                        Kung alam mo ang CC (sinagot ang codes 1-3 sa CC1), gaano kalaki ang naitulong ng CC sa iyong
+                        transaksiyon?
                       </p>
                       <p
                         class="text-h6-edited ma-0 questions-font-style font-weight-bold"
                         v-else
                       >
-                        No ammom man ti CC (nasungbatan iti 1-3 idiay CC1), kasano kaadu iti naitulungan kenka iti
-                        transakyon mo?
+                        Kung alam mo ang CC (sinagot ang codes 1-3 sa CC1), gaano kalaki ang naitulong ng CC sa iyong
+                        transaksiyon?
                       </p>
                       <div>
                         <v-checkbox
                           v-model="cc3"
-                          label="Nakatulong unay"
+                          label="Lubhang Nakatulong"
                           :value="1"
                           dense
                           hide-details
@@ -633,7 +632,7 @@
 
                         <v-checkbox
                           v-model="cc3"
-                          label="Nakatulong lang"
+                          label="Medyo Nakatulong"
                           :value="2"
                           dense
                           hide-details
@@ -643,7 +642,7 @@
 
                         <v-checkbox
                           v-model="cc3"
-                          label="Awan naitulong na"
+                          label="Hindi Nakatulong"
                           :value="3"
                           dense
                           hide-details
@@ -668,15 +667,15 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <h5 class="text-h5-edited font-weight-black">Pannakapnek iti naipaay a serbisio</h5>
+                    <h5 class="text-h5-edited font-weight-black">Paano mo ire-rate ang aming serbisyo?</h5>
                     <p>
-                      <span class="font-weight-black">Direksyon:</span>
-                      Pilyen ti umno a rupa nga mangi-pakita ti rating mo ti kada damag.
+                      <span class="font-weight-black">PANUTO:</span>
+                      Mag-click sa emoticon na pinakamahusay na tumutugma sa iyong rating para sa bawat item.
                     </p>
 
                     <!-- partA -->
                     <div class="grey lighten-1 mb-4">
-                      <span class="text-h6-edited mx-2">A. Maaramat a Pasilidad</span>
+                      <span class="text-h6-edited mx-2">A. Mga Impraestraktura at Proseso </span>
                     </div>
 
                     <!-- q1 The waiting areas were clean, orderly, and comfortable. -->
@@ -1411,16 +1410,14 @@
 
                   <!-- partC -->
                   <v-col cols="12">
-                    <div class="grey lighten-1 mb-4">
-                      C. Pannakapnek kadagiti serbisio a naipaay babaen kadagiti empleyado
-                    </div>
+                    <div class="grey lighten-1 mb-4">C. Kakayahan sa Pagtugon</div>
 
                     <!-- staff survey -->
                     <h3 class="my-2 font-weight-black">
                       <!-- q13 I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7) -->
                       <p class="text-h6-edited questions-font-style">13. {{ survey_questions[12].desc }}</p>
                       <p class="text-h6-edited">
-                        ***NOTE: Tsekan (✔) wenno isurat ti N/A no saanyo a nakalangen dagiti empleyado.
+                        ***TANDAAN: Lagyan ng tsek (✔) ang N/A kung hindi ka nakipag-ugnayan sa mga tauhan
                       </p>
                     </h3>
 
@@ -2487,7 +2484,7 @@
                     <!-- HOSPITAL NUMBER-->
                     <label for="hospital_number">
                       <span class="error-message font-weight-black ma-0">
-                        HOSPITAL NUMBER TI PASIENTE <span class="red--text">(Masapol)</span>
+                        HOSPITAL NUMBER NG PASYENTE <span class="red--text">(Kailangan)</span>
                       </span>
                     </label>
                     <v-text-field
@@ -2512,13 +2509,13 @@
                             v-if="v$.preference.$error"
                             class="error-message font-weight-black ma-0 red--text"
                           >
-                            Intuno maminsan, kayat ko usaren ket:
+                            Sa hinaharap, mas gusto kong sumagot gamit ang:
                           </p>
                           <p
                             v-else
                             class="font-weight-black ma-0"
                           >
-                            Intuno maminsan, kayat ko usaren ket:
+                            Sa hinaharap, mas gusto kong sumagot gamit ang:
                           </p>
                         </span>
                       </label>
@@ -2551,13 +2548,13 @@
                             v-if="v$.pss_rating.$error"
                             class="error-message font-weight-black ma-0 red--text"
                           >
-                            Kasanum i-rate iti Computer assisted satisfaction survey?
+                            Paano mo ire-rate ang aming Computer assisted satisfaction survey?
                           </p>
                           <p
                             v-else
                             class="font-weight-black ma-0"
                           >
-                            Kasanum i-rate iti Computer assisted satisfaction survey?
+                            Paano mo ire-rate ang aming Computer assisted satisfaction survey?
                           </p>
                         </span>
                       </label>
@@ -2591,8 +2588,7 @@
                   >
                     <div class="d-flex justify-center align-center flex-column text-center">
                       <h5 class="text-h5-edited font-weight-black">
-                        Agyamankami iti inpaayyo nga oras para iti pannakaammo kadagiti suhestionyo para iti
-                        pannakapasayaat ti serbisio ti MMMHMC.
+                        Salamat sa iyong mahalagang oras at pagkakataon upang mapaglingkuran ka ng mas mahusay.
                       </h5>
 
                       <span class="font-weight-black mt-2">Patient Satisfaction Committee</span>
