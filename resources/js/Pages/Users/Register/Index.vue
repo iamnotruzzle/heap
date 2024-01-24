@@ -220,6 +220,21 @@ export default {
           wardname: e.wardname,
         });
       });
+
+      this.locationList.sort((a, b) => {
+        let fa = a.wardname.toLowerCase(),
+          fb = b.wardname.toLowerCase();
+
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+
+      //   s
     },
     submit() {
       //   console.log(this.$page.props);
