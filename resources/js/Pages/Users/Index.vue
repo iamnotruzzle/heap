@@ -15,7 +15,7 @@
           <v-dialog
             v-model="dialog"
             @keydown.esc="cancel"
-            @click:outside="cancel"
+            persistent
             width="500"
           >
             <template v-slot:activator="{ on, attrs }">
@@ -584,12 +584,10 @@ export default {
   methods: {
     storeLocationInContainer() {
       this.$page.props.pss_location.forEach((e) => {
-        // if (e.wardcode != 'admin') {
         this.locationList.push({
           wardcode: e.wardcode,
           wardname: e.wardname,
         });
-        // }
       });
 
       this.$page.props.ward_location.forEach((e) => {
