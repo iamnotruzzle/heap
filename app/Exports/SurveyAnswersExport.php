@@ -49,7 +49,7 @@ class SurveyAnswersExport implements FromArray, WithHeadings
                 'Q12',
                 'Q13',
                 'Q14',
-                // 'Q15',
+                'Q15',
                 'Q16',
                 'DOCTOR',
                 'NURSE',
