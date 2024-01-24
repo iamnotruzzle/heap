@@ -1285,13 +1285,6 @@ export default {
           sortable: false,
           class: 'color_main_dark_background',
         },
-        {
-          text: 'CORRECTIVE ACTION',
-          align: 'start',
-          value: 'attachment',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
         // DOCTOR
         {
           text: 'DOCTOR',
