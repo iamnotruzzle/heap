@@ -234,14 +234,14 @@
                       class="error-message red--text"
                     >
                       <!-- Religion (Please encode if your religion is not included in the list. ) -->
-                      Gendered Preferred Pronoun
+                      Gender Preferred Pronoun
                     </label>
                     <label
                       for="pronoun"
                       v-else
                     >
                       <!-- Religion (Please encode if your religion is not included in the list. ) -->
-                      Gendered Preferred Pronoun
+                      Gender Preferred Pronoun
                     </label>
 
                     <v-select
