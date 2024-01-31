@@ -233,15 +233,13 @@
                       v-if="v$.pronoun.$error"
                       class="error-message red--text"
                     >
-                      <!-- Religion (Please encode if your religion is not included in the list. ) -->
-                      Gender Preferred Pronoun
+                      Gender preferred pronoun
                     </label>
                     <label
                       for="pronoun"
                       v-else
                     >
-                      <!-- Religion (Please encode if your religion is not included in the list. ) -->
-                      Gender Preferred Pronoun
+                      Gender preferred pronoun
                     </label>
 
                     <v-select
