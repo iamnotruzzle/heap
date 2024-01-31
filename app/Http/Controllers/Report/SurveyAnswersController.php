@@ -96,19 +96,12 @@ class SurveyAnswersController extends Controller
                             'HOSPITAL #' => $e->hospital_number,
                             'Preference' => $e->preference,
                             'PSS RATING' => $e->pss_rating,
-                            'CC1' => $e->cc1 == 1 ? "I know what a CC is and I saw this office's CC." :
-                                $e->cc1 == 2 ? "I know what a CC is but I did NOT see this office's CC." :
-                                $e->cc1 == 3 ? "I learned of the CC only when I saw this office's CC." :
-                                "I do not know what a CC is and I did not see one in this office.",
-                            'CC2' => $e->cc2 == 1 ? "Easy to see" :
-                                $e->cc2 == 2 ? "Somewhat easy to see" :
-                                $e->cc2 == 3 ? "Difficult to see" :
-                                $e->cc2 == 4 ? "Not visible at all" :
-                                "N/A",
-                            'CC3' => $e->cc3 == 1 ? "Helped very much" :
-                                $e->cc3 == 2 ? "Somewhat helped" :
-                                $e->cc3 == 3 ? "Did not help" :
-                                "N/A",
+                            'CC1' => $e->cc1 == 1 ? "I know what a CC is and I saw this office's CC." : ($e->cc1 == 2 ? "I know what a CC is but I did NOT see this office's CC." : ($e->cc1 == 3 ? "I learned of the CC only when I saw this office's CC." :
+                                "I do not know what a CC is and I did not see one in this office.")),
+                            'CC2' => $e->cc2 == 1 ? "Easy to see" : ($e->cc2 == 2 ? "Somewhat easy to see" : ($e->cc2 == 3 ? "Difficult to see" : ($e->cc2 == 4 ? "Not visible at all" :
+                                "N/A"))),
+                            'CC3' => $e->cc3 == 1 ? "Helped very much" : ($e->cc3 == 2 ? "Somewhat helped" : ($e->cc3 == 3 ? "Did not help" :
+                                        "N/A")),
                             'Q1' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[0]->answer,
                             'Q2' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[1]->answer,
                             'Q3' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[2]->answer,
