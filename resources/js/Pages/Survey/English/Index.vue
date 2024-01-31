@@ -185,7 +185,7 @@
                   <v-col
                     cols="12"
                     md="3"
-                    class="font-weight-black"
+                    class="font-weight-black ma-0"
                   >
                     <label
                       for="sex"
@@ -222,10 +222,42 @@
                     </div>
                   </v-col>
 
+                  <!-- pronoun -->
+                  <v-col
+                    cols="12"
+                    md="3"
+                    class="font-weight-black ma-0"
+                  >
+                    <label
+                      for="pronoun"
+                      v-if="v$.pronoun.$error"
+                      class="error-message red--text"
+                    >
+                      <!-- Religion (Please encode if your religion is not included in the list. ) -->
+                      Gendered Preferred Pronoun
+                    </label>
+                    <label
+                      for="pronoun"
+                      v-else
+                    >
+                      <!-- Religion (Please encode if your religion is not included in the list. ) -->
+                      Gendered Preferred Pronoun
+                    </label>
+
+                    <v-select
+                      label="Select"
+                      v-model="pronoun"
+                      :items="pronouns"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-select>
+                  </v-col>
+
                   <!-- religion -->
                   <v-col
                     cols="12"
-                    md="6"
+                    md="3"
                     class="font-weight-black ma-0"
                   >
                     <label
@@ -233,23 +265,34 @@
                       v-if="v$.religion.$error"
                       class="error-message red--text"
                     >
-                      Religion (Please encode if your religion is not included in the list. )
+                      <!-- Religion (Please encode if your religion is not included in the list. ) -->
+                      Religion
                     </label>
                     <label
                       for="religion"
                       v-else
                     >
-                      Religion (Please encode if your religion is not included in the list. )
+                      <!-- Religion (Please encode if your religion is not included in the list. ) -->
+                      Religion
                     </label>
 
-                    <v-combobox
+                    <!-- <v-combobox
                       id="religion"
                       v-model="religion"
                       :items="religions"
                       dense
                       hide-details
                       outlined
-                    ></v-combobox>
+                    ></v-combobox> -->
+
+                    <v-select
+                      label="Select"
+                      v-model="religion"
+                      :items="religions"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-select>
                   </v-col>
 
                   <v-col cols="12">
@@ -2685,6 +2728,7 @@ export default {
       frequentlyVisit: { required, $autoDirty: true },
       age: { required },
       sex: { required },
+      pronoun: { required },
       religion: { required },
       educationalAttainment: { required },
       //   dateOfVisit: { required },
@@ -2744,17 +2788,7 @@ export default {
       enablePGM: false,
       enableNoEduc: false,
       disableCC: false,
-      religions: [
-        'Aglipayan',
-        'Roman Catholic',
-        'Islam',
-        'Protestant',
-        'Iglesia ni Cristo',
-        'Baptist',
-        "Jehovah's Witnesses",
-        'Born Again',
-        'Evangelicals',
-      ].sort(),
+      religions: ['Christian', 'Iglesia Ni Cristo', 'Islam', 'Roman Catholic', 'None', 'Others'],
       departments: [
         'Clinics',
         'Surgery',
@@ -2785,6 +2819,8 @@ export default {
       frequentlyVisit: '',
       age: null,
       sex: '',
+      pronouns: ['He/Him/His', 'She/Her/Hers', 'Others'],
+      pronoun: '',
       religion: '',
       educationalAttainment: '',
       dateOfVisit: new Date().toISOString().slice(0, -14),
@@ -2853,6 +2889,7 @@ export default {
         frequentlyVisit: '',
         age: null,
         sex: '',
+        pronoun: '',
         religion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
@@ -3105,6 +3142,9 @@ export default {
     },
     sex(val) {
       this.form.sex = val;
+    },
+    pronoun(val) {
+      this.form.pronoun = val;
     },
     religion(val) {
       this.form.religion = val;

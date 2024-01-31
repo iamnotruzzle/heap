@@ -21,6 +21,7 @@ class SurveyGeneralInfo extends Model
         'respondent',
         'age',
         'sex',
+        'pronoun',
         'religion',
         'educational_attainment',
         'date_of_visit',
