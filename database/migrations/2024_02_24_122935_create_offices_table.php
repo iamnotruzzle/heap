@@ -16,6 +16,7 @@ class CreateOfficesTable extends Migration
         Schema::connection('sqlsrv2')->create('offices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('status');
             $table->timestamps();
         });
     }

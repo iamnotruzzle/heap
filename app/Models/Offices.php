@@ -14,5 +14,6 @@ class Offices extends Model
     protected $fillable = [
         'id',
         'name',
+        'status',
     ];
 }
