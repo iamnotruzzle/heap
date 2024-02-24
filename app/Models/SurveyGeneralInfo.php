@@ -23,7 +23,7 @@ class SurveyGeneralInfo extends Model
         'sex',
         'pronoun',
         'office',
-        'service_availed',
+        'service',
         'religion',
         'educational_attainment',
         'date_of_visit',

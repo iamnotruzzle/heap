@@ -23,7 +23,7 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->string('educational_attainment')->nullable();
             $table->date('date_of_visit')->nullable();
             $table->bigInteger('office');
-            $table->bigInteger('service_availed');
+            $table->bigInteger('service');
             $table->string('frequently_visit')->nullable();
             $table->string('cc1')->nullable();
             $table->string('cc2')->nullable();

@@ -444,6 +444,7 @@
                     <v-divider color="black"></v-divider>
                   </v-col>
 
+                  <!-- date of consultation -->
                   <v-col
                     cols="12"
                     md="3"
@@ -495,6 +496,42 @@
                       >
                       </v-date-picker>
                     </v-menu>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
+                  <!-- service availed -->
+                  <v-col
+                    cols="12"
+                    md="5"
+                    class="font-weight-black ma-0"
+                  >
+                    <label
+                      for="serviceAvailed"
+                      v-if="v$.service.$error"
+                      class="error-message red--text"
+                    >
+                      <span>Service Availed</span>
+                    </label>
+                    <label
+                      for="serviceAvailed"
+                      v-else
+                    >
+                      <span>Service Availed</span>
+                    </label>
+
+                    <v-select
+                      label="Select"
+                      v-model="service"
+                      :items="services"
+                      item-value="id"
+                      item-text="name"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-select>
                   </v-col>
 
                   <v-col cols="12">
@@ -2785,6 +2822,7 @@ export default {
       sex: { required },
       pronoun: { required },
       office: { required },
+      service: { required },
       religion: { required },
       educationalAttainment: { required },
       //   dateOfVisit: { required },
@@ -2845,6 +2883,7 @@ export default {
       enableNoEduc: false,
       disableCC: false,
       offices: [],
+      services: [],
       religions: ['Christian', 'Iglesia Ni Cristo', 'Islam', 'Roman Catholic', 'None', 'Others'],
       departments: [
         'Clinics',
@@ -2878,6 +2917,7 @@ export default {
       pronouns: ['He/Him/His', 'She/Her/Hers', 'Others'],
       pronoun: '',
       office: null,
+      service: null,
       religion: '',
       educationalAttainment: '',
       dateOfVisit: new Date().toISOString().slice(0, -14),
@@ -2947,6 +2987,7 @@ export default {
         sex: '',
         pronoun: '',
         office: null,
+        service: null,
         religion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
@@ -3102,11 +3143,20 @@ export default {
   },
   mounted() {
     this.storeOfficesInContainer();
+    this.storeServicesInContainer();
   },
   methods: {
     storeOfficesInContainer() {
       this.$page.props.offices.forEach((e) => {
         this.offices.push({
+          id: e.id,
+          name: e.name,
+        });
+      });
+    },
+    storeServicesInContainer() {
+      this.$page.props.services.forEach((e) => {
+        this.services.push({
           id: e.id,
           name: e.name,
         });
@@ -3213,6 +3263,9 @@ export default {
     },
     office(val) {
       this.form.office = val;
+    },
+    service(val) {
+      this.form.service = val;
     },
     religion(val) {
       this.form.religion = val;

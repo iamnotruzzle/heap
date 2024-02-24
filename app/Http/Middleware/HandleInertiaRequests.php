@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\LoginHistory;
 use App\Models\Offices;
 use App\Models\PssLocation;
+use App\Models\Services;
 use App\Models\User;
 use App\Models\Ward;
 use Illuminate\Http\Request;
@@ -66,6 +67,11 @@ class HandleInertiaRequests extends Middleware
             },
             'offices' => function () {
                 return Offices::where('status', '=', 'A')
+                    ->orderBy('name', 'ASC')
+                    ->get(['id', 'name']);
+            },
+            'services' => function () {
+                return Services::where('status', '=', 'A')
                     ->orderBy('name', 'ASC')
                     ->get(['id', 'name']);
             },
