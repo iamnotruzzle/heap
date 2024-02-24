@@ -1141,7 +1141,7 @@ export default {
         {
           text: 'POINT OF ENTRY',
           align: 'start',
-          value: 'point_of_entry',
+          value: 'office',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1537,7 +1537,7 @@ export default {
           RELIGION: e.religion,
           'LEVEL OF EDUCATION': e.educational_attainment,
           'DATE OF CONSULT/VISIT': this.tzone2(e.date_of_visit),
-          'POINT OF ENTRY': e.point_of_entry,
+          'POINT OF ENTRY': e.office,
           'SERVICES AVAILED': e.service_availed,
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,

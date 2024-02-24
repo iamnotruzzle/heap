@@ -90,7 +90,7 @@ class SurveyAnswersController extends Controller
                             'Religion' => $e->religion,
                             'Level of education' => $e->educational_attainment,
                             'Date of Consultation/Visit' => $e->date_of_visit,
-                            'Point of Entry' => $e->point_of_entry,
+                            'Point of Entry' => $e->office,
                             'Services Availed' => $e->service_availed,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
                             'HOSPITAL #' => $e->hospital_number,
@@ -101,7 +101,7 @@ class SurveyAnswersController extends Controller
                             'CC2' => $e->cc2 == 1 ? "Easy to see" : ($e->cc2 == 2 ? "Somewhat easy to see" : ($e->cc2 == 3 ? "Difficult to see" : ($e->cc2 == 4 ? "Not visible at all" :
                                 "N/A"))),
                             'CC3' => $e->cc3 == 1 ? "Helped very much" : ($e->cc3 == 2 ? "Somewhat helped" : ($e->cc3 == 3 ? "Did not help" :
-                                        "N/A")),
+                                "N/A")),
                             'Q1' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[0]->answer,
                             'Q2' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[1]->answer,
                             'Q3' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[2]->answer,
@@ -197,7 +197,7 @@ class SurveyAnswersController extends Controller
                             'Religion' => $e->religion,
                             'Level of education' => $e->educational_attainment,
                             'Date of Consultation/Visit' => $e->date_of_visit,
-                            'Point of Entry' => $e->point_of_entry,
+                            'Point of Entry' => $e->office,
                             'Services Availed' => $e->service_availed,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
                             'HOSPITAL #' => $e->hospital_number,

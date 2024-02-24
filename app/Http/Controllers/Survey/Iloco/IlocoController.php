@@ -127,7 +127,7 @@ class IlocoController extends Controller
                     'pronoun' => $request->pronoun,
                     'religion' => $request->religion,
                     'date_of_visit' => $request->dateOfVisit,
-                    'point_of_entry' => 'IN-PATIENT',
+                    'office' => 'IN-PATIENT',
                     'service_availed' => 'Admission',
                     'frequently_visit' => $request->frequentlyVisit,
                     'cc1' => $request->cc1,

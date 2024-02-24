@@ -25,7 +25,7 @@ class SurveyGeneralInfo extends Model
         'religion',
         'educational_attainment',
         'date_of_visit',
-        'point_of_entry',
+        'office',
         'service_availed',
         'frequently_visit',
         'cc1',
