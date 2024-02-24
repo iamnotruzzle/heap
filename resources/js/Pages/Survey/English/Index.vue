@@ -13,7 +13,7 @@
             elevation="24"
             class="corners large-screen"
           >
-            <v-tabs
+            <!-- <v-tabs
               active-class="blue white--text"
               grow
               v-model="selectedTab"
@@ -36,7 +36,7 @@
                 href="eng"
                 >English</Link
               >
-            </v-tabs>
+            </v-tabs> -->
 
             <v-card-title>
               <v-row>
@@ -3283,7 +3283,7 @@ export default {
 <style scoped>
 .background {
   height: 100%;
-  background-color: #ffe9ec;
+  background-color: #add6c1;
   font-family: 'Roboto', sans-serif;
 }
 

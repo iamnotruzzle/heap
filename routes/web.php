@@ -25,7 +25,7 @@ Route::get('answers/export/', [SurveyAnswersController::class, 'export']);
 
 
 Route::resource('eng', EnglishController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
-Route::resource('iloco', IlocoController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
-Route::resource('tagalog', TagalogController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
+// Route::resource('iloco', IlocoController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
+// Route::resource('tagalog', TagalogController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 Route::resource('answers', AnswersController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
 Route::resource('deleterequest', DeleteRequestController::class)->middleware(['auth:sanctum', 'verified'])->only(['index', 'store', 'update', 'destroy']);
