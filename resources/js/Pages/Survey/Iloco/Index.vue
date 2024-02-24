@@ -2512,26 +2512,6 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <!-- HOSPITAL NUMBER-->
-                    <label for="hospital_number">
-                      <span class="error-message font-weight-black ma-0">
-                        HOSPITAL NUMBER TI PASIENTE <span class="red--text">(Masapol)</span>
-                      </span>
-                    </label>
-                    <v-text-field
-                      id="hospital_number"
-                      v-model="hospital_number"
-                      hide-details
-                      dense
-                      outlined
-                    ></v-text-field>
-                    <div
-                      v-if="$page.props.errors[0]"
-                      class="red--text"
-                    >
-                      {{ $page.props.errors[0] }}
-                    </div>
-
                     <!-- preference-->
                     <div class="mt-6">
                       <label for="preference">
@@ -2728,7 +2708,6 @@ export default {
       cc1: { required },
       cc2: { required },
       cc3: { required },
-      hospital_number: { required },
       preference: { required },
       arta_rating: { required },
       q1_answer: { required },
@@ -2819,7 +2798,6 @@ export default {
       cc1: null,
       cc2: null,
       cc3: null,
-      hospital_number: null,
       preference: null,
       arta_rating: null,
       // The waiting areas were clean, orderly, and comfortable.
@@ -2887,7 +2865,6 @@ export default {
         cc1: null,
         cc2: null,
         cc3: null,
-        hospital_number: null,
         preference: null,
         arta_rating: null,
         // The waiting areas were clean, orderly, and comfortable.
@@ -3164,9 +3141,6 @@ export default {
     },
     cc3(val) {
       this.form.cc3 = val;
-    },
-    hospital_number(val) {
-      this.form.hospital_number = val;
     },
     preference(val) {
       this.form.preference = val;

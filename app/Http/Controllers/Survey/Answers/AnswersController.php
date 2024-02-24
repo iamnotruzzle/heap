@@ -96,12 +96,6 @@ class AnswersController extends Controller
                         $query->where('ward', 'LIKE', '%' . $value . '%');
                     }
                 )
-                ->when(
-                    $request->search,
-                    function ($query, $value) {
-                        $query->where('hospital_number', 'LIKE', '%' . $value . '%');
-                    }
-                )
                 ->orderBy('created_at', 'desc')
                 ->paginate($request->page_size ?? 15);
         } else {
@@ -137,12 +131,6 @@ class AnswersController extends Controller
                     $request->education,
                     function ($query, $value) {
                         $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->search,
-                    function ($query, $value) {
-                        $query->where('hospital_number', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->where('ward', $authCurrentLocation->wardcode)

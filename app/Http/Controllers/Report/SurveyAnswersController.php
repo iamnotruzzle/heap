@@ -92,7 +92,6 @@ class SurveyAnswersController extends Controller
                             'Date of Consultation/Visit' => $e->date_of_visit,
                             'Point of Entry' => $e->office,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
-                            'HOSPITAL #' => $e->hospital_number,
                             'Preference' => $e->preference,
                             'ARTA RATING' => $e->arta_rating,
                             'CC1' => $e->cc1 == 1 ? "I know what a CC is and I saw this office's CC." : ($e->cc1 == 2 ? "I know what a CC is but I did NOT see this office's CC." : ($e->cc1 == 3 ? "I learned of the CC only when I saw this office's CC." :
@@ -198,7 +197,6 @@ class SurveyAnswersController extends Controller
                             'Date of Consultation/Visit' => $e->date_of_visit,
                             'Point of Entry' => $e->office,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
-                            'HOSPITAL #' => $e->hospital_number,
                             'Preference' => $e->preference,
                             'ARTA RATING' => $e->arta_rating,
                             'CC1' => $e->cc1,
