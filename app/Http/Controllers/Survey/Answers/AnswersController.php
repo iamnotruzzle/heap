@@ -22,7 +22,6 @@ class AnswersController extends Controller
         $searchString = $request->search;
 
         $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
-        // dd($authCurrentLocation->wardcode);
 
         $pssLocation = PssLocation::get(['wardcode', 'wardname']);
         $wardLocation = Ward::where('wardstat', 'A')->get(['wardcode', 'wardname']);
