@@ -117,8 +117,8 @@ class TagalogController extends Controller
                 ]);
                 // get count of key generator where year is NOW
                 $currentCodeCount = KeyGenerator::whereYear('created_at', Carbon::now()->year)->count();
-                // ART = Patient satisfaction survey
-                $arta_id = 'ART' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
+                // ARTA = Patient satisfaction survey
+                $arta_id = 'ARTA' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
 
                 $surveyGeneralInfo = SurveyGeneralInfo::create([
                     'arta_id' => $arta_id,

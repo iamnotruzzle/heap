@@ -93,7 +93,7 @@ return [
             'prefix_indexes' => true,
         ],
 
-        // ART: secondary database
+        // ARTA: secondary database
         'sqlsrv2' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

@@ -104,7 +104,7 @@
                         type="text"
                         color="color_primary"
                         class="ma-0 pa-0"
-                        label="ART ID"
+                        label="ARTA ID"
                       ></v-text-field>
 
                       <v-select
@@ -357,7 +357,7 @@
             </v-dialog>
           </template>
 
-          <!-- ART RATING -->
+          <!-- ARTA RATING -->
           <template #item.arta_rating="{ item }">
             <span
               v-if="item.arta_rating <= 2"
@@ -1088,7 +1088,7 @@ export default {
       params: {},
       primary_answers: [
         {
-          text: 'ART ID',
+          text: 'ARTA ID',
           value: 'arta_id',
           align: 'start',
           sortable: false,
@@ -1167,7 +1167,7 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'ART RATING',
+          text: 'ARTA RATING',
           align: 'start',
           value: 'arta_rating',
           sortable: false,
@@ -1451,7 +1451,7 @@ export default {
       ],
       delete_request_headers: [
         {
-          text: 'ART ID',
+          text: 'ARTA ID',
           value: 'arta_id',
           align: 'start',
           sortable: false,
@@ -1534,7 +1534,7 @@ export default {
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,
           PREFERENCE: e.preference,
-          'ART RATING': e.arta_rating,
+          'ARTA RATING': e.arta_rating,
           CC1: e.cc1,
           CC2: e.cc2,
           CC3: e.cc3,
