@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\LoginHistory;
+use App\Models\Offices;
 use App\Models\PssLocation;
 use App\Models\User;
 use App\Models\Ward;
@@ -64,7 +65,8 @@ class HandleInertiaRequests extends Middleware
                     ->get(['wardcode', 'wardname']);
             },
             'officess' => function () {
-                return PssLocation::get(['wardcode', 'wardname']);
+                return Offices::where('status', '=', 'A')
+                    ->get(['id', 'name']);
             },
             'auth.user.currentLocation' => function () use ($request) {
                 return ($request->user() ? LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first() : null);

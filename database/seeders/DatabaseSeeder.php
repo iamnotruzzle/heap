@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SurveyIlocoQuestionsSeeder::class,
             SurveyTagalogQuestionsSeeder::class,
             LocationsSeeder::class,
+            OfficesSeeder::class,
         ]);
     }
 }
