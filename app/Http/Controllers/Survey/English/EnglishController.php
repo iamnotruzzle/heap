@@ -113,6 +113,7 @@ class EnglishController extends Controller
             'cc2' => $request->cc2,
             'cc3' => $request->cc3,
             'cc3' => $request->cc3,
+            'name_of_respondent' => $request->name_of_respondent,
         ]);
 
         // reason why some $request is converted to string https://github.com/laravel/framework/issues/28923

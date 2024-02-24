@@ -2645,6 +2645,22 @@
                     <v-divider color="black"></v-divider>
                   </v-col>
 
+                  <!-- name of respondent -->
+                  <v-col
+                    cols="12"
+                    md="6"
+                    class="font-weight-black ma-0 pb-0"
+                  >
+                    <label for="name_of_respondent"> Name of respondent (optional) </label>
+                    <v-text-field
+                      id="name_of_respondent"
+                      v-model="name_of_respondent"
+                      hide-spin-buttons
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </v-col>
+
                   <v-col
                     cols="12"
                     class="text-right"
@@ -2824,6 +2840,7 @@ export default {
       enablePGM: false,
       enableNoEduc: false,
       disableCC: false,
+      name_of_respondent: null,
       offices: [],
       services: [],
       religions: ['Christian', 'Iglesia Ni Cristo', 'Islam', 'Roman Catholic', 'None', 'Others'],
@@ -2926,6 +2943,7 @@ export default {
         sex: '',
         pronoun: '',
         office: null,
+        name_of_respondent: null,
         service: null,
         religion: '',
         point_of_entry: '',
@@ -3200,6 +3218,9 @@ export default {
     },
     office(val) {
       this.form.office = val;
+    },
+    name_of_respondent(val) {
+      this.form.name_of_respondent = val;
     },
     service(val) {
       this.form.service = val;

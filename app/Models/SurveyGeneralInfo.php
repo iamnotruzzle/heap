@@ -33,6 +33,7 @@ class SurveyGeneralInfo extends Model
         'cc2',
         'cc3',
         'attachment',
+        'name_of_respondent'
     ];
 
     // protected $casts = [
