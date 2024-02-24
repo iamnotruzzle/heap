@@ -16,14 +16,4 @@ class UserLocations extends Model
         'wardcode',
         'user_id'
     ];
-
-    public function pssLocationDetail()
-    {
-        return $this->hasOne(PssLocation::class, 'wardcode', 'wardcode');
-    }
-
-    public function wardLocationDetail()
-    {
-        return $this->hasOne(Ward::class, 'wardcode', 'wardcode');
-    }
 }

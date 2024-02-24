@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Models\LoginHistory;
 use App\Models\Offices;
-use App\Models\PssLocation;
 use App\Models\Services;
 use App\Models\User;
 use App\Models\Ward;
@@ -54,17 +53,6 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'message' => fn () => $request->session()->get('message')
             ],
-            'pss_location' => function () {
-                // return PssLocation::where('wardcode', '!=', 'admin')->get(['wardcode', 'wardname']);
-                return PssLocation::get(['wardcode', 'wardname']);
-            },
-            'ward_location' => function () {
-                return
-                    Ward::where('wardstat', 'A')
-                    ->where('wardcode', '!=', 'ADMIN')
-                    ->where('wardcode', '!=', 'CSR')
-                    ->get(['wardcode', 'wardname']);
-            },
             'offices' => function () {
                 return Offices::where('status', '=', 'A')
                     ->orderBy('name', 'ASC')
@@ -74,12 +62,6 @@ class HandleInertiaRequests extends Middleware
                 return Services::where('status', '=', 'A')
                     ->orderBy('name', 'ASC')
                     ->get(['id', 'name']);
-            },
-            'auth.user.currentLocation' => function () use ($request) {
-                return ($request->user() ? LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first() : null);
-            },
-            'auth.approved_location' => function () use ($request) {
-                return ($request->user() ? User::with('userLocations')->where('id', Auth::user()->id)->first() : null);
             },
         ]);
     }

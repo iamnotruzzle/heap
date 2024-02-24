@@ -189,26 +189,6 @@
                       >
                       </v-select>
                     </v-col>
-
-                    <v-col
-                      cols="12"
-                      class="py-0"
-                    >
-                      <v-select
-                        v-model="form.locations"
-                        :items="locationList"
-                        item-text="wardname"
-                        item-value="wardcode"
-                        label="Location"
-                        persistent-hint
-                        single-line
-                        multiple
-                        chips
-                        :error-messages="form.errors.locations"
-                        color="color_primary"
-                      >
-                      </v-select>
-                    </v-col>
                   </v-row>
                 </v-form>
               </v-card-text>
@@ -298,18 +278,6 @@
                     clearable
                   >
                   </v-select>
-
-                  <v-select
-                    :items="locations"
-                    v-model="filterLocation"
-                    item-text="wardname"
-                    item-value="wardcode"
-                    label="Location"
-                    color="color_primary"
-                    class="ma-0 pa-0"
-                    outlined
-                    clearable
-                  ></v-select>
 
                   <v-divider></v-divider>
 
@@ -495,14 +463,11 @@ export default {
   },
   props: {
     users: Object,
-    locations: Array,
   },
   data() {
     return {
       filterStatus: null,
-      filterLocation: null,
       showPassword: false,
-      locationList: [],
       status: ['activated', 'deactivated'],
       roles: ['admin', 'user'],
       snack: '',
@@ -572,46 +537,13 @@ export default {
         image: null,
         status: null,
         role: null,
-        locations: [],
       }),
     };
   },
   mounted() {
     // console.log(this.authUser);
-
-    this.storeLocationInContainer();
   },
   methods: {
-    storeLocationInContainer() {
-      this.$page.props.pss_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
-      });
-
-      this.$page.props.ward_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
-      });
-
-      this.locationList.sort((a, b) => {
-        let fa = a.wardname.toLowerCase(),
-          fb = b.wardname.toLowerCase();
-
-        if (fa < fb) {
-          return -1;
-        }
-        if (fa > fb) {
-          return 1;
-        }
-        return 0;
-      });
-
-      //   s
-    },
     updateData() {
       this.$inertia.get('users', this.params, {
         preserveState: true,
@@ -623,7 +555,6 @@ export default {
     },
     clearFilter() {
       this.search = null;
-      this.filterLocation = null;
       this.filterStatus = null;
     },
     cancel() {
@@ -657,7 +588,6 @@ export default {
             password: this.form.password,
             image: this.form.image,
             status: this.form.status,
-            locations: this.form.locations,
             role: this.form.role,
           },
           {
@@ -684,22 +614,6 @@ export default {
       }
     },
     editItem(item) {
-      // get the users locations
-      let userLocationsCopy = [];
-      if (item.user_locations.length != 0) {
-        // console.log('test');
-        item.user_locations.forEach((e) => {
-          //   console.log('e', e);
-          if (e.pss_location_detail != null) {
-            userLocationsCopy.push(e.pss_location_detail.wardcode);
-          }
-          if (e.ward_location_detail != null) {
-            userLocationsCopy.push(e.ward_location_detail.wardcode);
-          }
-        });
-      }
-      // end get the users locations
-
       this.form.firstName = item.firstName;
       this.form.middleName = item.middleName;
       this.form.lastName = item.lastName;
@@ -708,7 +622,6 @@ export default {
       this.form.password = item.password;
       this.form.status = item.status;
       this.form.role = item.role;
-      this.form.locations = userLocationsCopy.slice(0);
       this.isUpdate = true;
       this.itemId = item.id;
       this.dialog = true;
@@ -772,10 +685,6 @@ export default {
     filterStatus: function (val) {
       this.params.status = val;
       this.params.page = 1;
-      this.updateData();
-    },
-    filterLocation: function (val) {
-      this.params.location = val;
       this.updateData();
     },
   },

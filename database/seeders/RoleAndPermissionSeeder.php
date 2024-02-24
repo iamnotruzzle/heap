@@ -55,15 +55,15 @@ class RoleAndPermissionSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $sa = UserLocations::create([
-            'wardcode' => 'admin',
-            'user_id' => $superAdminUser->id,
-        ]);
+        // $sa = UserLocations::create([
+        //     'wardcode' => 'admin',
+        //     'user_id' => $superAdminUser->id,
+        // ]);
 
-        $admin = UserLocations::create([
-            'wardcode' => 'petro',
-            'user_id' => $adminUser->id,
-        ]);
+        // $admin = UserLocations::create([
+        //     'wardcode' => 'petro',
+        //     'user_id' => $adminUser->id,
+        // ]);
 
 
         // assign role to the created super-admin user

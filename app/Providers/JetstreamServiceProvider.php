@@ -35,22 +35,10 @@ class JetstreamServiceProvider extends ServiceProvider
         Jetstream::deleteUsersUsing(DeleteUser::class);
 
         Fortify::authenticateUsing(function (Request $request) {
-            $user = User::with('userLocations')->where('username', $request->login)->first();
-            $userLocation = array();
-            foreach ($user->userLocations as $e) {
-                array_push($userLocation, $e->wardcode);
-            }
+            $user = User::where('username', $request->login)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
-                if ($user->status != 'activated') {
-                    throw ValidationException::withMessages(["Your account is not activated yet."]);
-                } else {
-                    if (in_array($request->location, $userLocation)) {
-                        return $user;
-                    } else {
-                        throw ValidationException::withMessages(["You don't have permission to login on this location."]);
-                    }
-                }
+                return $user;
             }
         });
     }

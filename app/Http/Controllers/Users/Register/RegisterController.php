@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Users\Register;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserLocations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -43,13 +42,6 @@ class RegisterController extends Controller
             'status' => 'deactivated',
             'role' => 'user',
         ]);
-
-        foreach ($request->locations as $x) {
-            UserLocations::create([
-                'wardcode' => $x,
-                'user_id' => $user->id,
-            ]);
-        }
 
         // assign role
         $user->assignRole('super-admin');

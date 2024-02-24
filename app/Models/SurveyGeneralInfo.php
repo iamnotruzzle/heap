@@ -50,16 +50,6 @@ class SurveyGeneralInfo extends Model
         return $this->hasMany(SurveyAbtStaff::class, 'arta_id', 'arta_id');
     }
 
-    public function pssLocationDetail()
-    {
-        return $this->hasOne(PssLocation::class, 'wardcode', 'ward');
-    }
-
-    public function wardLocationDetail()
-    {
-        return $this->hasOne(Ward::class, 'wardcode', 'ward');
-    }
-
     public function assistedBy()
     {
         return $this->hasOne(User::class, 'username', 'assisted_by');

@@ -117,19 +117,6 @@
                         outlined
                       ></v-select>
 
-                      <v-select
-                        :items="locations"
-                        v-model="location"
-                        item-text="wardname"
-                        item-value="wardcode"
-                        label="Location"
-                        color="color_primary"
-                        class="ma-0 pa-0"
-                        dense
-                        clearable
-                        outlined
-                      ></v-select>
-
                       <v-text-field
                         v-model="from"
                         clearable
@@ -1017,7 +1004,6 @@ export default {
   props: {
     surveyAnswers: Object,
     delete_requests: Object,
-    locations: Array,
   },
   data() {
     return {
@@ -1457,8 +1443,6 @@ export default {
   mounted() {
     // console.log(this.surveyAnswers.data);
     this.processJsonData();
-
-    // console.log(this.locations);
   },
   methods: {
     updateData() {

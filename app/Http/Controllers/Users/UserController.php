@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\PssLocation;
 use App\Models\User;
-use App\Models\UserLocations;
 use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,35 +17,10 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $pssLocation = PssLocation::get(['wardcode', 'wardname']);
-        $wardLocation = Ward::where('wardstat', 'A')->get(['wardcode', 'wardname']);
-        $locations = array();
 
-        $filterLocation = $request->location;
-
-        foreach ($pssLocation as $e) {
-            $locations[] = (object)[
-                'wardcode' => $e->wardcode,
-                'wardname' => $e->wardname,
-            ];
-        }
-        foreach ($wardLocation as $e) {
-            $locations[] = (object)[
-                'wardcode' => $e->wardcode,
-                'wardname' => $e->wardname,
-            ];
-        }
-        usort($locations, function ($a, $b) {
-            return strcmp($a->wardname, $b->wardname);
-        });
-
-        $users = User::with('userLocations')
-            ->whereHas('userLocations', function ($q) use ($filterLocation) {
-                $q->where('wardcode', 'LIKE', '%' . $filterLocation . '%');
-            })
-            ->when($request->sort_by, function ($query, $value) {
-                $query->orderBy($value, request('order_by', 'asc'));
-            })
+        $users = User::when($request->sort_by, function ($query, $value) {
+            $query->orderBy($value, request('order_by', 'asc'));
+        })
             ->when($request->search, function ($query, $value) {
                 $query->where('firstName', 'LIKE', '%' . $value . '%')
                     ->orWhere('middleName', 'LIKE', '%' . $value . '%')
@@ -62,14 +35,11 @@ class UserController extends Controller
 
         return Inertia::render('Users/Index', [
             'users' => $users,
-            'locations' =>  $locations
         ]);
     }
 
     public function store(Request $request)
     {
-        // dd($request->locations);
-
         $image = '';
 
         $request->validate([
@@ -81,7 +51,6 @@ class UserController extends Controller
             'username' => 'required|string|unique:users,username|max:14',
             'password' => 'required|min:8',
             'status' => 'required',
-            'locations' => 'required',
             'role' => 'required',
         ]);
 
@@ -103,13 +72,6 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
-        foreach ($request->locations as $x) {
-            UserLocations::create([
-                'wardcode' => $x,
-                'user_id' => $user->id,
-            ]);
-        }
-
         // assign role
         $user->assignRole('super-admin');
 
@@ -119,8 +81,6 @@ class UserController extends Controller
 
     public function update(User $user, Request $request)
     {
-        // dd($request->locations);
-
         $image = $user->image;
 
         if ($request->password != null || $request->password != '') {
@@ -157,16 +117,6 @@ class UserController extends Controller
                 'status' => $request->status,
                 'role' => $request->role,
             ]);
-
-            // delete then assign locations
-            UserLocations::where('user_id', $user->id)->delete();
-            // dd($$request->locations);
-            foreach ($request->locations as $x) {
-                UserLocations::create([
-                    'wardcode' => $x,
-                    'user_id' => $user->id,
-                ]);
-            }
         } else {
             $request->validate([
                 'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:5048',
@@ -199,15 +149,6 @@ class UserController extends Controller
                 'status' => $request->status,
                 'role' => $request->role,
             ]);
-
-            // delete then assign locations
-            UserLocations::where('user_id', $user->id)->delete();
-            foreach ($request->locations as $x) {
-                UserLocations::create([
-                    'wardcode' => $x,
-                    'user_id' => $user->id,
-                ]);
-            }
         }
 
         // update user role
@@ -226,8 +167,6 @@ class UserController extends Controller
 
         // remove user role
         $user->roles()->detach();
-
-        UserLocations::where('user_id', $user->id)->delete();
 
         // return redirect()->back();
         return Redirect::route('users.index');

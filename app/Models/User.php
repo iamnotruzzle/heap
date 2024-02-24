@@ -39,9 +39,4 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-
-    public function userLocations()
-    {
-        return $this->hasMany(UserLocations::class, 'user_id', 'id')->with(['pssLocationDetail:wardcode,wardname', 'wardLocationDetail:wardcode,wardname']);
-    }
 }

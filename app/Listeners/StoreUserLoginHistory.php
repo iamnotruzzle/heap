@@ -24,10 +24,5 @@ class StoreUserLoginHistory
     public function handle(Login $event)
     {
         $user = User::where('username', $this->request->login)->first();
-
-        LoginHistory::create([
-            'user_id' => $user->id,
-            'wardcode' => $this->request->location
-        ]);
     }
 }

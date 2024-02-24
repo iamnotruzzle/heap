@@ -80,20 +80,6 @@
                   color="color_primary"
                   label="Suffix"
                 ></v-text-field>
-                <v-select
-                  v-model="form.locations"
-                  :items="locationList"
-                  item-text="wardname"
-                  item-value="wardcode"
-                  label="Location"
-                  persistent-hint
-                  single-line
-                  multiple
-                  chips
-                  :error-messages="form.errors.locations"
-                  color="color_primary"
-                >
-                </v-select>
                 <v-text-field
                   v-model="form.username"
                   color="color_primary"
@@ -186,7 +172,6 @@ export default {
       snack: false,
       snackColor: null,
       snackText: '',
-      locationList: [],
       form: this.$inertia.form({
         firstName: null,
         middleName: null,
@@ -194,46 +179,13 @@ export default {
         suffix: null,
         username: null,
         password: null,
-        locations: [],
       }),
     };
   },
   mounted() {
     // console.log(this.authUser);
-
-    this.storeLocationInContainer();
   },
   methods: {
-    storeLocationInContainer() {
-      this.$page.props.pss_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
-      });
-
-      this.$page.props.ward_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
-      });
-
-      this.locationList.sort((a, b) => {
-        let fa = a.wardname.toLowerCase(),
-          fb = b.wardname.toLowerCase();
-
-        if (fa < fb) {
-          return -1;
-        }
-        if (fa > fb) {
-          return 1;
-        }
-        return 0;
-      });
-
-      //   s
-    },
     submit() {
       //   console.log(this.$page.props);
 

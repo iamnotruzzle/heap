@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\PssLocation;
 use Illuminate\Database\Seeder;
 
 class LocationsSeeder extends Seeder
@@ -57,6 +56,6 @@ class LocationsSeeder extends Seeder
             ],
         ];
 
-        PssLocation::insert($location);
+        // PssLocation::insert($location);
     }
 }

@@ -70,18 +70,6 @@
 
               <p>Sign in with your username and password:</p>
               <v-form @submit.prevent="submit">
-                <v-select
-                  v-model="form.location"
-                  :items="locationList"
-                  item-text="wardname"
-                  item-value="wardcode"
-                  label="Location"
-                  persistent-hint
-                  single-line
-                  prepend-icon="mdi-map"
-                  color="color_primary"
-                >
-                </v-select>
                 <v-text-field
                   v-model="form.login"
                   prepend-icon="mdi-account"
@@ -152,49 +140,15 @@ export default {
   data() {
     return {
       showPassword: false,
-      locationList: [],
       form: this.$inertia.form({
-        location: '',
         login: '',
         password: '',
         remember: false,
       }),
     };
   },
-  mounted() {
-    this.storeLocationInContainer();
-  },
+  mounted() {},
   methods: {
-    storeLocationInContainer() {
-      this.$page.props.pss_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
-      });
-
-      this.$page.props.ward_location.forEach((e) => {
-        this.locationList.push({
-          wardcode: e.wardcode,
-          wardname: e.wardname,
-        });
-      });
-
-      this.locationList.sort((a, b) => {
-        let fa = a.wardname.toLowerCase(),
-          fb = b.wardname.toLowerCase();
-
-        if (fa < fb) {
-          return -1;
-        }
-        if (fa > fb) {
-          return 1;
-        }
-        return 0;
-      });
-
-      //   s
-    },
     submit() {
       this.form
         .transform((data) => ({
