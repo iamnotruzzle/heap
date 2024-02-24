@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Survey\Iloco;
 
 use App\Http\Controllers\Controller;
 use App\Models\DepartmentsVisited;
-use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
 use App\Models\LoginHistory;
