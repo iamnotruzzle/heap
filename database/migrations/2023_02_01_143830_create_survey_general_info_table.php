@@ -29,7 +29,6 @@ class CreateSurveyGeneralInfoTable extends Migration
             $table->string('cc1')->nullable();
             $table->string('cc2')->nullable();
             $table->string('cc3')->nullable();
-            $table->string('arta_rating')->nullable();
             $table->string('name_of_respondent')->nullable();
             $table->timestamps();
         });

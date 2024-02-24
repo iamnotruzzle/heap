@@ -2645,35 +2645,6 @@
                     <v-divider color="black"></v-divider>
                   </v-col>
 
-                  <v-col cols="12">
-                    <!-- pss rating-->
-                    <div class="mt-6">
-                      <label for="arta_rating">
-                        <span class="font-weight-black ma-0">
-                          <p
-                            v-if="v$.arta_rating.$error"
-                            class="error-message font-weight-black ma-0 red--text"
-                          >
-                            How would you rate our Computer assisted satisfaction survey?
-                          </p>
-                          <p
-                            v-else
-                            class="font-weight-black ma-0"
-                          >
-                            How would you rate our Computer assisted satisfaction survey?
-                          </p>
-                        </span>
-                      </label>
-                      <v-rating
-                        id="arta_rating"
-                        v-model="arta_rating"
-                        background-color="orange darken-3"
-                        class="ma-0 pa-0"
-                        color="orange"
-                      ></v-rating>
-                    </div>
-                  </v-col>
-
                   <v-col
                     cols="12"
                     class="text-right"
@@ -2805,7 +2776,6 @@ export default {
       cc1: { required },
       cc2: { required },
       cc3: { required },
-      arta_rating: { required },
       q1_answer: { required },
       q2_answer: { required },
       q3_answer: { required },
@@ -2834,7 +2804,6 @@ export default {
       food_server_rating: { required },
       janitors_orderly_rating: { required },
       q15_answer: { required },
-      arta_rating: { required },
     };
   },
   data() {
@@ -2899,7 +2868,6 @@ export default {
       cc1: null,
       cc2: null,
       cc3: null,
-      arta_rating: null,
       // The waiting areas were clean, orderly, and comfortable.
       q1_answer: null,
       // The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.
@@ -2947,7 +2915,6 @@ export default {
       janitors_orderly_rating: null,
       // I am satisfied with the service that I availed
       q15_answer: null,
-      arta_rating: null,
       // end for vuelidate
 
       form: this.$inertia.form({
@@ -2967,7 +2934,6 @@ export default {
         cc1: null,
         cc2: null,
         cc3: null,
-        arta_rating: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
           id: this.survey_questions[0].id,
@@ -3272,9 +3238,6 @@ export default {
     cc3(val) {
       this.form.cc3 = val;
     },
-    arta_rating(val) {
-      this.form.arta_rating = val;
-    },
     q1_answer(val) {
       console.log(val);
 
@@ -3360,9 +3323,6 @@ export default {
     },
     q15_answer(val) {
       this.form.q15.answer = val;
-    },
-    arta_rating(val) {
-      this.form.arta_rating = val;
     },
   },
 };

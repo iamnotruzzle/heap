@@ -32,7 +32,6 @@ class SurveyGeneralInfo extends Model
         'cc1',
         'cc2',
         'cc3',
-        'arta_rating',
         'attachment',
     ];
 

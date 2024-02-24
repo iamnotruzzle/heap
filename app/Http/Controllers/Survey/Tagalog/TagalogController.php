@@ -55,7 +55,6 @@ class TagalogController extends Controller
             'cc1' => 'required',
             'cc2' => 'required',
             'cc3' => 'required',
-            'arta_rating' => 'required',
             'q1.answer' => 'required',
             'q2.answer' => 'required',
             'q3.answer' => 'required',
@@ -113,7 +112,6 @@ class TagalogController extends Controller
             'cc2' => $request->cc2,
             'cc3' => $request->cc3,
             'cc3' => $request->cc3,
-            'arta_rating' => $request->arta_rating,
             'assisted_by' => Auth::user()->username,
         ]);
 

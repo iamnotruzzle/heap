@@ -357,28 +357,6 @@
             </v-dialog>
           </template>
 
-          <!-- ARTA RATING -->
-          <template #item.arta_rating="{ item }">
-            <span
-              v-if="item.arta_rating <= 2"
-              class="red--text"
-            >
-              {{ item.arta_rating }}
-            </span>
-            <span
-              v-else-if="item.arta_rating == 3"
-              class="amber--text darken-3"
-            >
-              {{ item.arta_rating }}
-            </span>
-            <span
-              v-else
-              class="green--text"
-            >
-              {{ item.arta_rating }}
-            </span>
-          </template>
-
           <template #item.attachment="{ item }">
             <a
               v-if="item.attachment != null"
@@ -1160,13 +1138,6 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'ARTA RATING',
-          align: 'start',
-          value: 'arta_rating',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
           text: 'CC1',
           align: 'start',
           value: 'cc1',
@@ -1526,7 +1497,6 @@ export default {
           OFFICE: e.office,
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,
-          'ARTA RATING': e.arta_rating,
           CC1: e.cc1,
           CC2: e.cc2,
           CC3: e.cc3,

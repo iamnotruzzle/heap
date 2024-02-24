@@ -92,7 +92,6 @@ class SurveyAnswersController extends Controller
                             'Date of Consultation/Visit' => $e->date_of_visit,
                             'Point of Entry' => $e->office,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
-                            'ARTA RATING' => $e->arta_rating,
                             'CC1' => $e->cc1 == 1 ? "I know what a CC is and I saw this office's CC." : ($e->cc1 == 2 ? "I know what a CC is but I did NOT see this office's CC." : ($e->cc1 == 3 ? "I learned of the CC only when I saw this office's CC." :
                                 "I do not know what a CC is and I did not see one in this office.")),
                             'CC2' => $e->cc2 == 1 ? "Easy to see" : ($e->cc2 == 2 ? "Somewhat easy to see" : ($e->cc2 == 3 ? "Difficult to see" : ($e->cc2 == 4 ? "Not visible at all" :
@@ -196,7 +195,6 @@ class SurveyAnswersController extends Controller
                             'Date of Consultation/Visit' => $e->date_of_visit,
                             'Point of Entry' => $e->office,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
-                            'ARTA RATING' => $e->arta_rating,
                             'CC1' => $e->cc1,
                             'CC2' => $e->cc2,
                             'CC3' => $e->cc3,
