@@ -2542,9 +2542,9 @@
                       <span class="font-weight-black">Brgy. 06 San Julian, Batac City, Ilocos Norte</span>
                       <span class="font-weight-black">Trunk line: (077) 600-8000</span>
                       <span class="font-weight-black">Fax line: (077) 792-3133</span>
-                      <span class="font-weight-black text-decoration-underline">
+                      <!-- <span class="font-weight-black text-decoration-underline">
                         <a href="mailto: psc.mmmhmc@gmail.com">psc.mmmhmc@gmail.com</a>
-                      </span>
+                      </span> -->
                     </div>
                   </v-col>
                 </v-row>
