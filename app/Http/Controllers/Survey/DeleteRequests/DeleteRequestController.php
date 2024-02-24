@@ -18,7 +18,7 @@ class DeleteRequestController extends Controller
     {
         // dd($request);
         DeleteRequest::create([
-            'pss_id' => $request->pss_id,
+            'arta_id' => $request->arta_id,
             'user_id' => $request->user_id,
             'status' => $request->status,
         ]);

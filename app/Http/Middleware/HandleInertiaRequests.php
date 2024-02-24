@@ -64,8 +64,9 @@ class HandleInertiaRequests extends Middleware
                     ->where('wardcode', '!=', 'CSR')
                     ->get(['wardcode', 'wardname']);
             },
-            'officess' => function () {
+            'offices' => function () {
                 return Offices::where('status', '=', 'A')
+                    ->orderBy('name', 'ASC')
                     ->get(['id', 'name']);
             },
             'auth.user.currentLocation' => function () use ($request) {

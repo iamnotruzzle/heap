@@ -17,7 +17,7 @@ class SurveyAnswers extends Model
 
     protected $fillable = [
         'id',
-        'pss_id',
+        'arta_id',
         'survey_question_id',
         'answer',
     ];

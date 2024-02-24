@@ -93,7 +93,7 @@ return [
             'prefix_indexes' => true,
         ],
 
-        // PSS: secondary database
+        // ART: secondary database
         'sqlsrv2' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

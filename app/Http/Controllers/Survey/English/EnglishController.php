@@ -37,10 +37,6 @@ class EnglishController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
-
-        $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
-
         // get hospital number
         $hospital_number = HospitalNumber::where('hpercode', $request->hospital_number)
             // ->where('encstat', 'a')
@@ -60,10 +56,10 @@ class EnglishController extends Controller
             } else {
                 $request->validate([
                     'respondent' => "required",
-                    // 'pointOfEntry' => "required",
                     'age' => 'required|numeric|max:120',
                     'sex' => 'required',
                     'pronoun' => 'required',
+                    'office' => 'required',
                     'religion' => 'required',
                     'educationalAttainment' => 'required',
                     'dateOfVisit' => 'required',
@@ -73,7 +69,7 @@ class EnglishController extends Controller
                     'cc2' => 'required',
                     'cc3' => 'required',
                     'hospital_number' => 'required|min:6|max:7|',
-                    'pss_rating' => 'required',
+                    'arta_rating' => 'required',
                     'q1.answer' => 'required',
                     'q2.answer' => 'required',
                     'q3.answer' => 'required',
@@ -113,20 +109,20 @@ class EnglishController extends Controller
                 ]);
                 // get count of key generator where year is NOW
                 $currentCodeCount = KeyGenerator::whereYear('created_at', Carbon::now()->year)->count();
-                // PSS = Patient satisfaction survey
-                $pss_id = 'PSS' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
+                // ART = Patient satisfaction survey
+                $arta_id = 'ART' . Carbon::now()->format('y') . '-' . sprintf('%06d', $currentCodeCount);
 
                 $surveyGeneralInfo = SurveyGeneralInfo::create([
-                    'pss_id' => $pss_id,
+                    'arta_id' => $arta_id,
                     'respondent' => $request->respondent,
                     'educational_attainment' => $request->educationalAttainment,
                     'age' => $request->age,
                     'sex' => $request->sex,
                     'pronoun' => $request->pronoun,
+                    'office' => $request->office,
                     'religion' => $request->religion,
                     'date_of_visit' => $request->dateOfVisit,
-                    'office' => 'IN-PATIENT',
-                    'service_availed' => 'Admission',
+                    'office' => $request->office,
                     'frequently_visit' => $request->frequentlyVisit,
                     'cc1' => $request->cc1,
                     'cc2' => $request->cc2,
@@ -134,128 +130,126 @@ class EnglishController extends Controller
                     'cc3' => $request->cc3,
                     'hospital_number' => $request->hospital_number,
                     'preference' => $request->preference,
-                    'pss_rating' => $request->pss_rating,
-                    'ward' => $authCurrentLocation->wardcode,
-                    'assisted_by' => Auth::user()->username,
+                    'arta_rating' => $request->arta_rating,
                 ]);
 
                 // reason why some $request is converted to string https://github.com/laravel/framework/issues/28923
                 $surveyAnswers = SurveyAnswers::insert(
                     [
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q1['id'],
                             'answer' => (string)$request->q1['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q2['id'],
                             'answer' => (string)$request->q2['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q3['id'],
                             'answer' => (string)$request->q3['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q4['id'],
                             'answer' => (string)$request->q4['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q5['id'],
                             'answer' => (string)$request->q5['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q6['id'],
                             'answer' => (string)$request->q6['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q7['id'],
                             'answer' => (string)$request->q7['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q8['id'],
                             'answer' => (string)$request->q8['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q9['id'],
                             'answer' => (string)$request->q9['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q10['id'],
                             'answer' => (string)$request->q10['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q11['id'],
                             'answer' => (string)$request->q11['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q12['id'],
                             'answer' => (string)$request->q12['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         // [
-                        //     'pss_id' => $pss_id,
+                        //     'arta_id' => $arta_id,
                         //     'survey_question_id' => $request->q13['id'],
                         //     'answer' => (string)$request->q13['answer'],
                         //     'created_at' => Carbon::now(),
                         //     'updated_at' => Carbon::now(),
                         // ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q14['id'],
                             'answer' => (string)$request->q14['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->q15['id'],
                             'answer' => (string)$request->q15['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->not_numbered1['id'],
                             'answer' => $request->not_numbered1['answer'],
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
                         ],
                         [
-                            'pss_id' => $pss_id,
+                            'arta_id' => $arta_id,
                             'survey_question_id' => $request->not_numbered2['id'],
                             'answer' => $request->not_numbered2['answer'],
                             'created_at' => Carbon::now(),
@@ -266,98 +260,98 @@ class EnglishController extends Controller
 
                 $surveyAbtStaff = SurveyAbtStaff::insert([
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->doctor['id'],
                         'rating' => $request->doctor['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->nurse['id'],
                         'rating' => $request->nurse['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->midwife['id'],
                         'rating' => $request->midwife['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->security['id'],
                         'rating' => $request->security['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->radiology['id'],
                         'rating' => $request->radiology['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->pharmacy['id'],
                         'rating' => $request->pharmacy['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->laboratory['id'],
                         'rating' => $request->laboratory['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->admitting_staff['id'],
                         'rating' => $request->admitting_staff['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->medical_records['id'],
                         'rating' => $request->medical_records['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->billing['id'],
                         'rating' => $request->billing['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->cashier['id'],
                         'rating' => $request->cashier['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->social_worker['id'],
                         'rating' => $request->social_worker['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->food_server['id'],
                         'rating' => $request->food_server['rating'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ],
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'staff_type' => $request->janitors_orderly['id'],
                         'rating' => $request->janitors_orderly['rating'],
                         'created_at' => Carbon::now(),
@@ -367,7 +361,7 @@ class EnglishController extends Controller
                 //a
                 $survey_respondents = SurveyRespondents::insert([
                     [
-                        'pss_id' => $pss_id,
+                        'arta_id' => $arta_id,
                         'hpercode' => $request->hospital_number,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),

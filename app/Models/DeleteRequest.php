@@ -17,7 +17,7 @@ class DeleteRequest extends Model
 
     protected $fillable = [
         'id',
-        'pss_id',
+        'arta_id',
         'user_id',
         'status',
     ];

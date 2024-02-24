@@ -17,7 +17,7 @@ class SurveyAbtStaff extends Model
 
     protected $fillable = [
         'id',
-        'pss_id',
+        'arta_id',
         'staff_type',
         'rating',
     ];

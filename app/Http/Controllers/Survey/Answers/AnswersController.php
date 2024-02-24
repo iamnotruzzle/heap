@@ -79,9 +79,9 @@ class AnswersController extends Controller
                     }
                 )
                 ->when(
-                    $request->pss_id,
+                    $request->arta_id,
                     function ($query, $value) {
-                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
+                        $query->where('arta_id', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->when(
@@ -221,11 +221,11 @@ class AnswersController extends Controller
     {
         // dd($id);
 
-        DB::table('survey_respondents')->where('pss_id', $id)->delete();
-        DB::table('survey_general_info')->where('pss_id', $id)->delete();
-        DB::table('survey_answers')->where('pss_id', $id)->delete();
-        DB::table('survey_abt_staff')->where('pss_id', $id)->delete();
-        DB::table('delete_request')->where('pss_id', $id)->delete();
+        DB::table('survey_respondents')->where('arta_id', $id)->delete();
+        DB::table('survey_general_info')->where('arta_id', $id)->delete();
+        DB::table('survey_answers')->where('arta_id', $id)->delete();
+        DB::table('survey_abt_staff')->where('arta_id', $id)->delete();
+        DB::table('delete_request')->where('arta_id', $id)->delete();
 
         // return Redirect::route('answers.index');
 

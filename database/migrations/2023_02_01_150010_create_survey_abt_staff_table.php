@@ -15,7 +15,7 @@ class CreateSurveyAbtStaffTable extends Migration
     {
         Schema::connection('sqlsrv2')->create('survey_abt_staff', function (Blueprint $table) {
             $table->id();
-            $table->string('pss_id');
+            $table->string('arta_id');
             $table->bigInteger('staff_type');
             $table->integer('rating');
             $table->timestamps();

@@ -123,24 +123,27 @@
                   >
                     <label
                       for="office"
-                      v-if="v$.religion.$error"
-                      class="error-message red--text"
+                      v-if="v$.office.$error"
+                      class="error-message red--text d-flex flex-column"
                     >
-                      <p>Office/Department/Clinic</p>
-                      <p>(Choose the area that you are currently transacting with)</p>
+                      <span>Office/Department/Clinic</span>
+                      <span>(Choose the area that you are currently transacting with)</span>
                     </label>
                     <label
                       for="office"
                       v-else
+                      class="d-flex flex-column"
                     >
-                      <p>Office/Department/Clinic</p>
-                      <p>(Choose the area that you are currently transacting with)</p>
+                      <span>Office/Department/Clinic</span>
+                      <span>(Choose the area that you are currently transacting with)</span>
                     </label>
 
                     <v-select
                       label="Select"
-                      v-model="religion"
-                      :items="religions"
+                      v-model="office"
+                      :items="offices"
+                      item-value="id"
+                      item-text="name"
                       dense
                       hide-details
                       outlined
@@ -178,6 +181,24 @@
                         v-model="respondent"
                         label="Companion(Family/Relative)"
                         value="Companion"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="respondent"
+                        label="Business(Visited for Business Purposes)"
+                        value="Business"
+                        dense
+                        hide-details
+                        class="mx-2"
+                      ></v-checkbox>
+
+                      <v-checkbox
+                        v-model="respondent"
+                        label="Employee"
+                        value="Employee"
                         dense
                         hide-details
                         class="mx-2"
@@ -2615,10 +2636,10 @@
 
                     <!-- pss rating-->
                     <div class="mt-6">
-                      <label for="pss_rating">
+                      <label for="arta_rating">
                         <span class="font-weight-black ma-0">
                           <p
-                            v-if="v$.pss_rating.$error"
+                            v-if="v$.arta_rating.$error"
                             class="error-message font-weight-black ma-0 red--text"
                           >
                             How would you rate our Computer assisted satisfaction survey?
@@ -2632,8 +2653,8 @@
                         </span>
                       </label>
                       <v-rating
-                        id="pss_rating"
-                        v-model="pss_rating"
+                        id="arta_rating"
+                        v-model="arta_rating"
                         background-color="orange darken-3"
                         class="ma-0 pa-0"
                         color="orange"
@@ -2759,11 +2780,11 @@ export default {
   validations() {
     return {
       respondent: { required },
-      //   pointOfEntry: { required },
       frequentlyVisit: { required, $autoDirty: true },
       age: { required },
       sex: { required },
       pronoun: { required },
+      office: { required },
       religion: { required },
       educationalAttainment: { required },
       //   dateOfVisit: { required },
@@ -2772,7 +2793,7 @@ export default {
       cc3: { required },
       hospital_number: { required },
       preference: { required },
-      pss_rating: { required },
+      arta_rating: { required },
       q1_answer: { required },
       q2_answer: { required },
       q3_answer: { required },
@@ -2802,7 +2823,7 @@ export default {
       janitors_orderly_rating: { required },
       q15_answer: { required },
       preference: { required },
-      pss_rating: { required },
+      arta_rating: { required },
     };
   },
   data() {
@@ -2823,6 +2844,7 @@ export default {
       enablePGM: false,
       enableNoEduc: false,
       disableCC: false,
+      offices: [],
       religions: ['Christian', 'Iglesia Ni Cristo', 'Islam', 'Roman Catholic', 'None', 'Others'],
       departments: [
         'Clinics',
@@ -2850,12 +2872,12 @@ export default {
       ],
       // for vuelidate
       respondent: '',
-      //   pointOfEntry: '',
       frequentlyVisit: '',
       age: null,
       sex: '',
       pronouns: ['He/Him/His', 'She/Her/Hers', 'Others'],
       pronoun: '',
+      office: null,
       religion: '',
       educationalAttainment: '',
       dateOfVisit: new Date().toISOString().slice(0, -14),
@@ -2864,7 +2886,7 @@ export default {
       cc3: null,
       hospital_number: null,
       preference: null,
-      pss_rating: null,
+      arta_rating: null,
       // The waiting areas were clean, orderly, and comfortable.
       q1_answer: null,
       // The toilets and bathrooms inside the facility were kept clean, orderly and with a steady water supply.
@@ -2913,18 +2935,18 @@ export default {
       // I am satisfied with the service that I availed
       q15_answer: null,
       preference: null,
-      pss_rating: null,
+      arta_rating: null,
       // end for vuelidate
 
       form: this.$inertia.form({
         respondent: '',
-        pointOfEntry: '',
         // serviceAvailed: [],
         // otherServiceAvailed: '',
         frequentlyVisit: '',
         age: null,
         sex: '',
         pronoun: '',
+        office: null,
         religion: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
@@ -2933,7 +2955,7 @@ export default {
         cc3: null,
         hospital_number: null,
         preference: null,
-        pss_rating: null,
+        arta_rating: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
           id: this.survey_questions[0].id,
@@ -3078,7 +3100,18 @@ export default {
       }),
     };
   },
+  mounted() {
+    this.storeOfficesInContainer();
+  },
   methods: {
+    storeOfficesInContainer() {
+      this.$page.props.offices.forEach((e) => {
+        this.offices.push({
+          id: e.id,
+          name: e.name,
+        });
+      });
+    },
     async submit() {
       const isFormCorrect = await this.v$.$validate();
       //   console.log(this.v$);
@@ -3125,9 +3158,6 @@ export default {
     respondent(val) {
       this.form.respondent = val;
     },
-    // pointOfEntry(val) {
-    //   this.form.pointOfEntry = val;
-    // },
     frequentlyVisit(val) {
       this.form.frequentlyVisit = val;
     },
@@ -3181,6 +3211,9 @@ export default {
     pronoun(val) {
       this.form.pronoun = val;
     },
+    office(val) {
+      this.form.office = val;
+    },
     religion(val) {
       this.form.religion = val;
     },
@@ -3218,8 +3251,8 @@ export default {
     preference(val) {
       this.form.preference = val;
     },
-    pss_rating(val) {
-      this.form.pss_rating = val;
+    arta_rating(val) {
+      this.form.arta_rating = val;
     },
     q1_answer(val) {
       console.log(val);
@@ -3310,8 +3343,8 @@ export default {
     preference(val) {
       this.form.preference = val;
     },
-    pss_rating(val) {
-      this.form.pss_rating = val;
+    arta_rating(val) {
+      this.form.arta_rating = val;
     },
   },
 };

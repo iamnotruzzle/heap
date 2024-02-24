@@ -97,14 +97,14 @@
                       ></v-text-field>
 
                       <v-text-field
-                        v-model="pss_id"
+                        v-model="arta_id"
                         clearable
                         dense
                         outlined
                         type="text"
                         color="color_primary"
                         class="ma-0 pa-0"
-                        label="PSS ID"
+                        label="ART ID"
                       ></v-text-field>
 
                       <v-select
@@ -357,25 +357,25 @@
             </v-dialog>
           </template>
 
-          <!-- PSS RATING -->
-          <template #item.pss_rating="{ item }">
+          <!-- ART RATING -->
+          <template #item.arta_rating="{ item }">
             <span
-              v-if="item.pss_rating <= 2"
+              v-if="item.arta_rating <= 2"
               class="red--text"
             >
-              {{ item.pss_rating }}
+              {{ item.arta_rating }}
             </span>
             <span
-              v-else-if="item.pss_rating == 3"
+              v-else-if="item.arta_rating == 3"
               class="amber--text darken-3"
             >
-              {{ item.pss_rating }}
+              {{ item.arta_rating }}
             </span>
             <span
               v-else
               class="green--text"
             >
-              {{ item.pss_rating }}
+              {{ item.arta_rating }}
             </span>
           </template>
 
@@ -973,7 +973,7 @@
         class="color_primary"
       >
         <!-- <a
-          :href="`answers/export?page=1&page_size=15&order_by=desc&employee_id=${params.employee_id}&pss_id=${params.pss_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
+          :href="`answers/export?page=1&page_size=15&order_by=desc&employee_id=${params.employee_id}&arta_id=${params.arta_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
           target="_blank"
         >
           <download-icon
@@ -983,7 +983,7 @@
           ></download-icon>
         </a> -->
         <a
-          :href="`answers/export?order_by=desc&employee_id=${params.employee_id}&pss_id=${params.pss_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
+          :href="`answers/export?order_by=desc&employee_id=${params.employee_id}&arta_id=${params.arta_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
           target="_blank"
         >
           <download-icon
@@ -1046,7 +1046,7 @@ export default {
       date: new Date(),
 
       employee_id: '',
-      pss_id: '',
+      arta_id: '',
       // filter menu
       from: null,
       to: null,
@@ -1088,8 +1088,8 @@ export default {
       params: {},
       primary_answers: [
         {
-          text: 'PSS ID',
-          value: 'pss_id',
+          text: 'ART ID',
+          value: 'arta_id',
           align: 'start',
           sortable: false,
           filterable: false,
@@ -1139,16 +1139,9 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'POINT OF ENTRY',
+          text: 'OFFICE',
           align: 'start',
           value: 'office',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'SERVICES AVAILED',
-          align: 'start',
-          value: 'service_availed',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1174,9 +1167,9 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'PSS RATING',
+          text: 'ART RATING',
           align: 'start',
-          value: 'pss_rating',
+          value: 'arta_rating',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1458,8 +1451,8 @@ export default {
       ],
       delete_request_headers: [
         {
-          text: 'PSS ID',
-          value: 'pss_id',
+          text: 'ART ID',
+          value: 'arta_id',
           align: 'start',
           sortable: false,
           filterable: false,
@@ -1484,10 +1477,10 @@ export default {
         { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
       form: this.$inertia.form({
-        pss_id: null,
+        arta_id: null,
       }),
       formDeleteRequest: this.$inertia.form({
-        pss_id: null,
+        arta_id: null,
         user_id: null,
         status: 'pending',
       }),
@@ -1530,19 +1523,18 @@ export default {
     processJsonData() {
       this.surveyAnswers.data.forEach((e) => {
         this.json_data.push({
-          ID: e.pss_id,
+          ID: e.arta_id,
           RESPONDENT: e.respondent,
           AGE: e.age,
           SEX: e.sex,
           RELIGION: e.religion,
           'LEVEL OF EDUCATION': e.educational_attainment,
           'DATE OF CONSULT/VISIT': this.tzone2(e.date_of_visit),
-          'POINT OF ENTRY': e.office,
-          'SERVICES AVAILED': e.service_availed,
+          OFFICE: e.office,
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,
           PREFERENCE: e.preference,
-          'PSS RATING': e.pss_rating,
+          'ART RATING': e.arta_rating,
           CC1: e.cc1,
           CC2: e.cc2,
           CC3: e.cc3,
@@ -1586,7 +1578,7 @@ export default {
     },
     clearDateFilter() {
       this.employee_id = null;
-      this.pss_id = null;
+      this.arta_id = null;
       this.from = null;
       this.to = null;
       this.sex = 'NO FILTER';
@@ -1667,7 +1659,7 @@ export default {
       }
     },
     deleteItem(item) {
-      this.itemId = item.pss_id;
+      this.itemId = item.arta_id;
       this.dialogDelete = true;
     },
     destroy() {
@@ -1681,7 +1673,7 @@ export default {
           },
         });
       } else {
-        this.formDeleteRequest.pss_id = this.itemId;
+        this.formDeleteRequest.arta_id = this.itemId;
         this.formDeleteRequest.user_id = this.user.id;
 
         this.formDeleteRequest.post(route('deleterequest.store'), {
@@ -1737,8 +1729,8 @@ export default {
       this.params.employee_id = val;
       this.updateData();
     },
-    pss_id: function (val) {
-      this.params.pss_id = val;
+    arta_id: function (val) {
+      this.params.arta_id = val;
       this.updateData();
     },
     from: function (val) {

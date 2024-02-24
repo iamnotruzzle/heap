@@ -10,7 +10,7 @@ class CreateSurveyAnswersTable extends Migration
     {
         Schema::connection('sqlsrv2')->create('survey_answers', function (Blueprint $table) {
             $table->id();
-            $table->string('pss_id');
+            $table->string('arta_id');
             $table->bigInteger('survey_question_id');
             $table->string('answer', 700)->nullable();
             $table->timestamps();

@@ -21,7 +21,7 @@ class SurveyAnswersController extends Controller
         // $reports = [];
 
         $employee_id = $request->employee_id;
-        $pss_id = $request->pss_id;
+        $arta_id = $request->arta_id;
         $education = $request->education;
         $location = $request->location;
         $from = $request->from;
@@ -49,9 +49,9 @@ class SurveyAnswersController extends Controller
                     }
                 )
                 ->when(
-                    $pss_id == "undefined" ? '' : $pss_id,
+                    $arta_id == "undefined" ? '' : $arta_id,
                     function ($query, $value) {
-                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
+                        $query->where('arta_id', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->when(
@@ -82,7 +82,7 @@ class SurveyAnswersController extends Controller
                 ->chunk(500, function ($results) {
                     foreach ($results as $e) {
                         $this->reports[] = [
-                            'ID' => $e->pss_id,
+                            'ID' => $e->arta_id,
                             'Respondent' => $e->respondent,
                             'Age' => $e->age,
                             'Sex' => $e->sex,
@@ -91,11 +91,10 @@ class SurveyAnswersController extends Controller
                             'Level of education' => $e->educational_attainment,
                             'Date of Consultation/Visit' => $e->date_of_visit,
                             'Point of Entry' => $e->office,
-                            'Services Availed' => $e->service_availed,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
                             'HOSPITAL #' => $e->hospital_number,
                             'Preference' => $e->preference,
-                            'PSS RATING' => $e->pss_rating,
+                            'ART RATING' => $e->arta_rating,
                             'CC1' => $e->cc1 == 1 ? "I know what a CC is and I saw this office's CC." : ($e->cc1 == 2 ? "I know what a CC is but I did NOT see this office's CC." : ($e->cc1 == 3 ? "I learned of the CC only when I saw this office's CC." :
                                 "I do not know what a CC is and I did not see one in this office.")),
                             'CC2' => $e->cc2 == 1 ? "Easy to see" : ($e->cc2 == 2 ? "Somewhat easy to see" : ($e->cc2 == 3 ? "Difficult to see" : ($e->cc2 == 4 ? "Not visible at all" :
@@ -155,9 +154,9 @@ class SurveyAnswersController extends Controller
                     }
                 )
                 ->when(
-                    $pss_id == "undefined" ? '' : $pss_id,
+                    $arta_id == "undefined" ? '' : $arta_id,
                     function ($query, $value) {
-                        $query->where('pss_id', 'LIKE', '%' . $value . '%');
+                        $query->where('arta_id', 'LIKE', '%' . $value . '%');
                     }
                 )
                 ->when(
@@ -189,7 +188,7 @@ class SurveyAnswersController extends Controller
                 ->chunk(500, function ($results) {
                     foreach ($results as $e) {
                         $this->reports[] = [
-                            'ID' => $e->pss_id,
+                            'ID' => $e->arta_id,
                             'Respondent' => $e->respondent,
                             'Age' => $e->age,
                             'Sex' => $e->sex,
@@ -198,11 +197,10 @@ class SurveyAnswersController extends Controller
                             'Level of education' => $e->educational_attainment,
                             'Date of Consultation/Visit' => $e->date_of_visit,
                             'Point of Entry' => $e->office,
-                            'Services Availed' => $e->service_availed,
                             'How frequent do you visit this facility?' => $e->frequently_visit,
                             'HOSPITAL #' => $e->hospital_number,
                             'Preference' => $e->preference,
-                            'PSS RATING' => $e->pss_rating,
+                            'ART RATING' => $e->arta_rating,
                             'CC1' => $e->cc1,
                             'CC2' => $e->cc2,
                             'CC3' => $e->cc3,

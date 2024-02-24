@@ -17,25 +17,23 @@ class SurveyGeneralInfo extends Model
 
     protected $fillable = [
         'id',
-        'pss_id',
+        'arta_id',
         'respondent',
         'age',
         'sex',
         'pronoun',
+        'office',
+        'service_availed',
         'religion',
         'educational_attainment',
         'date_of_visit',
-        'office',
-        'service_availed',
         'frequently_visit',
         'cc1',
         'cc2',
         'cc3',
         'hospital_number',
         'preference',
-        'pss_rating',
-        'ward',
-        'assisted_by',
+        'arta_rating',
         'attachment',
     ];
 
@@ -45,12 +43,12 @@ class SurveyGeneralInfo extends Model
 
     public function surveyAnswers()
     {
-        return $this->hasMany(SurveyAnswers::class, 'pss_id', 'pss_id');
+        return $this->hasMany(SurveyAnswers::class, 'arta_id', 'arta_id');
     }
 
     public function surveyAbtStaffs()
     {
-        return $this->hasMany(SurveyAbtStaff::class, 'pss_id', 'pss_id');
+        return $this->hasMany(SurveyAbtStaff::class, 'arta_id', 'arta_id');
     }
 
     public function pssLocationDetail()
