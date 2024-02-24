@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Survey\English;
 
 use App\Http\Controllers\Controller;
-use App\Models\HospitalNumber;
 use App\Models\HospitalStaff;
 use App\Models\KeyGenerator;
 use App\Models\LoginHistory;
