@@ -16,13 +16,14 @@ class CreateSurveyGeneralInfoTable extends Migration
         Schema::connection('sqlsrv2')->create('survey_general_info', function (Blueprint $table) {
             $table->id();
             $table->string('arta_id')->nullable();
+            $table->bigInteger('office');
             $table->string('respondent')->nullable();
             $table->integer('age')->nullable();
             $table->string('sex')->nullable();
             $table->string('religion')->nullable();
             $table->string('educational_attainment')->nullable();
             $table->date('date_of_visit')->nullable();
-            $table->bigInteger('office');
+            $table->string('point_of_entry')->nullable();
             $table->bigInteger('service');
             $table->string('frequently_visit')->nullable();
             $table->string('cc1')->nullable();

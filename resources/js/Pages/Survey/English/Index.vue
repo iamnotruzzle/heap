@@ -502,6 +502,40 @@
                     <v-divider color="black"></v-divider>
                   </v-col>
 
+                  <!-- point_of_entry -->
+                  <v-col
+                    cols="12"
+                    md="3"
+                    class="font-weight-black ma-0"
+                  >
+                    <label
+                      for="point_of_entry"
+                      v-if="v$.point_of_entry.$error"
+                      class="error-message red--text"
+                    >
+                      Point of entry
+                    </label>
+                    <label
+                      for="point_of_entry"
+                      v-else
+                    >
+                      Point of entry
+                    </label>
+
+                    <v-select
+                      label="Select"
+                      v-model="point_of_entry"
+                      :items="point_of_entries"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-select>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
                   <!-- service availed -->
                   <v-col
                     cols="12"
@@ -2823,6 +2857,7 @@ export default {
       pronoun: { required },
       office: { required },
       service: { required },
+      point_of_entry: { required },
       religion: { required },
       educationalAttainment: { required },
       //   dateOfVisit: { required },
@@ -2885,6 +2920,7 @@ export default {
       offices: [],
       services: [],
       religions: ['Christian', 'Iglesia Ni Cristo', 'Islam', 'Roman Catholic', 'None', 'Others'],
+      point_of_entries: ['Emergency Room', 'Inpatient/Ward', 'Outpatient Department', 'Other Offices'],
       departments: [
         'Clinics',
         'Surgery',
@@ -2919,6 +2955,7 @@ export default {
       office: null,
       service: null,
       religion: '',
+      point_of_entry: '',
       educationalAttainment: '',
       dateOfVisit: new Date().toISOString().slice(0, -14),
       cc1: null,
@@ -2989,6 +3026,7 @@ export default {
         office: null,
         service: null,
         religion: '',
+        point_of_entry: '',
         educationalAttainment: '',
         dateOfVisit: new Date().toISOString().slice(0, -14),
         cc1: null,
@@ -3269,6 +3307,9 @@ export default {
     },
     religion(val) {
       this.form.religion = val;
+    },
+    point_of_entry(val) {
+      this.form.point_of_entry = val;
     },
     educationalAttainment(val) {
       this.form.educationalAttainment = val;
