@@ -1160,13 +1160,6 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'PREFERENCE',
-          align: 'start',
-          value: 'preference',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
           text: 'ARTA RATING',
           align: 'start',
           value: 'arta_rating',
@@ -1533,7 +1526,6 @@ export default {
           OFFICE: e.office,
           'VISIT PER YEAR': e.frequently_visit,
           'HOSPITAL #': e.hospital_number,
-          PREFERENCE: e.preference,
           'ARTA RATING': e.arta_rating,
           CC1: e.cc1,
           CC2: e.cc2,

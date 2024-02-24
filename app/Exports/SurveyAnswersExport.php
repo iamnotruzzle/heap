@@ -31,7 +31,6 @@ class SurveyAnswersExport implements FromArray, WithHeadings
                 'Services Availed',
                 'How frequent do you visit this facility?',
                 'HOSPITAL #',
-                'Preference',
                 'ARTA RATING',
                 'Which of the following best describes your awareness of a CC?', // cc1
                 'If aware of CC (answered 1-3 in CC1), would you say that the CC of this office was …?', // cc2

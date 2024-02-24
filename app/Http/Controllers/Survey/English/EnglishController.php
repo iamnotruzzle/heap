@@ -114,7 +114,6 @@ class EnglishController extends Controller
             'cc2' => $request->cc2,
             'cc3' => $request->cc3,
             'cc3' => $request->cc3,
-            'preference' => $request->preference,
             'arta_rating' => $request->arta_rating,
         ]);
 

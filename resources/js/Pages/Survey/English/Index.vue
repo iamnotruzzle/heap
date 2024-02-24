@@ -2646,45 +2646,6 @@
                   </v-col>
 
                   <v-col cols="12">
-                    <!-- preference-->
-                    <div class="mt-6">
-                      <label for="preference">
-                        <span class="font-weight-black ma-0">
-                          <p
-                            v-if="v$.preference.$error"
-                            class="error-message font-weight-black ma-0 red--text"
-                          >
-                            In the future, I prefer to answer using:
-                          </p>
-                          <p
-                            v-else
-                            class="font-weight-black ma-0"
-                          >
-                            In the future, I prefer to answer using:
-                          </p>
-                        </span>
-                      </label>
-
-                      <div class="d-flex flex-row">
-                        <v-checkbox
-                          v-model="preference"
-                          label="Computer Assisted Survey"
-                          value="Computer Assisted Survey"
-                          dense
-                          hide-details
-                          class="mr-2"
-                        ></v-checkbox>
-
-                        <v-checkbox
-                          v-model="preference"
-                          label="Pen and Paper Survey"
-                          value="Pen and Paper Survey"
-                          dense
-                          hide-details
-                        ></v-checkbox>
-                      </div>
-                    </div>
-
                     <!-- pss rating-->
                     <div class="mt-6">
                       <label for="arta_rating">
@@ -2844,7 +2805,6 @@ export default {
       cc1: { required },
       cc2: { required },
       cc3: { required },
-      preference: { required },
       arta_rating: { required },
       q1_answer: { required },
       q2_answer: { required },
@@ -2874,7 +2834,6 @@ export default {
       food_server_rating: { required },
       janitors_orderly_rating: { required },
       q15_answer: { required },
-      preference: { required },
       arta_rating: { required },
     };
   },
@@ -2940,7 +2899,6 @@ export default {
       cc1: null,
       cc2: null,
       cc3: null,
-      preference: null,
       arta_rating: null,
       // The waiting areas were clean, orderly, and comfortable.
       q1_answer: null,
@@ -2989,7 +2947,6 @@ export default {
       janitors_orderly_rating: null,
       // I am satisfied with the service that I availed
       q15_answer: null,
-      preference: null,
       arta_rating: null,
       // end for vuelidate
 
@@ -3010,7 +2967,6 @@ export default {
         cc1: null,
         cc2: null,
         cc3: null,
-        preference: null,
         arta_rating: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
@@ -3316,9 +3272,6 @@ export default {
     cc3(val) {
       this.form.cc3 = val;
     },
-    preference(val) {
-      this.form.preference = val;
-    },
     arta_rating(val) {
       this.form.arta_rating = val;
     },
@@ -3407,9 +3360,6 @@ export default {
     },
     q15_answer(val) {
       this.form.q15.answer = val;
-    },
-    preference(val) {
-      this.form.preference = val;
     },
     arta_rating(val) {
       this.form.arta_rating = val;
