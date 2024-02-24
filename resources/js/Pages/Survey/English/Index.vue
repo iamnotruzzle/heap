@@ -114,6 +114,43 @@
                   <v-col cols="12">
                     <v-divider color="black"></v-divider>
                   </v-col>
+
+                  <!-- office/department/clinic -->
+                  <v-col
+                    cols="12"
+                    md="5"
+                    class="font-weight-black ma-0"
+                  >
+                    <label
+                      for="office"
+                      v-if="v$.religion.$error"
+                      class="error-message red--text"
+                    >
+                      <p>Office/Department/Clinic</p>
+                      <p>(Choose the area that you are currently transacting with)</p>
+                    </label>
+                    <label
+                      for="office"
+                      v-else
+                    >
+                      <p>Office/Department/Clinic</p>
+                      <p>(Choose the area that you are currently transacting with)</p>
+                    </label>
+
+                    <v-select
+                      label="Select"
+                      v-model="religion"
+                      :items="religions"
+                      dense
+                      hide-details
+                      outlined
+                    ></v-select>
+                  </v-col>
+
+                  <v-col cols="12">
+                    <v-divider color="black"></v-divider>
+                  </v-col>
+
                   <v-col cols="12">
                     <div
                       v-if="v$.respondent.$error"
