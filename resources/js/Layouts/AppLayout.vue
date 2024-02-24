@@ -214,7 +214,7 @@
             </v-list-item-content>
           </Link> -->
 
-          <Link
+          <!-- <Link
             href="eng"
             :class="{ 'color_primary--text': $page.component === 'English/Index' }"
             as="v-list-item"
@@ -235,7 +235,7 @@
                 >Questionnaire</v-list-item-title
               >
             </v-list-item-content>
-          </Link>
+          </Link> -->
 
           <Link
             href="profile"
