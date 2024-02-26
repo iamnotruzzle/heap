@@ -38,8 +38,6 @@ class SurveyAnswersController extends Controller
             $answers = SurveyGeneralInfo::with(
                 'surveyAnswers',
                 'surveyAbtStaffs',
-                'pssLocationDetail',
-                'wardLocationDetail',
                 'assistedBy:id,username,firstName,lastName',
             )
                 ->when(
@@ -130,7 +128,6 @@ class SurveyAnswersController extends Controller
                             'Q15' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[13]->answer,
                             'Q16' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[14]->answer,
                             'Q17' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[15]->answer,
-                            'LOCATION' => $e->pssLocationDetail != null ? $e->pssLocationDetail->wardname : $e->wardLocationDetail->wardname,
                             'ASSISTED BY' => $e->assistedBy == null ? null : $e->assistedBy->username,
                             'SUBMITTED AT' => $e->created_at->format('Y-m-d'),
                         ];
@@ -140,7 +137,6 @@ class SurveyAnswersController extends Controller
             $answers = SurveyGeneralInfo::with(
                 'surveyAnswers',
                 'surveyAbtStaffs',
-                'pssLocationDetail',
                 'wardLocationDetail',
                 'assistedBy:id,username,firstName,lastName',
             )
@@ -230,7 +226,6 @@ class SurveyAnswersController extends Controller
                             'Q15' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[13]->answer,
                             'Q16' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[14]->answer,
                             'Q17' => count($e->surveyAnswers) == 0 ? rand(4, 5) : $e->surveyAnswers[15]->answer,
-                            'LOCATION' => $e->pssLocationDetail != null ? $e->pssLocationDetail->wardname : $e->wardLocationDetail->wardname,
                             'ASSISTED BY' => $e->assistedBy == null ? null : $e->assistedBy->username,
                             'SUBMITTED AT' => $e->created_at->format('Y-m-d'),
                         ];

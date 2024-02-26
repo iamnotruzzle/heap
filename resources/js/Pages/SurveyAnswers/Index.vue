@@ -175,11 +175,62 @@
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
+          <template #item.arta_id="{ item }">
+            <span>{{ item.arta_id }}</span>
+          </template>
+
+          <template #item.office="{ item }">
+            <span>{{ item.office_visiting.name }}</span>
+          </template>
+
+          <template #item.respondent="{ item }">
+            <span>{{ item.respondent }}</span>
+          </template>
+
+          <template #item.age="{ item }">
+            <span>{{ item.age }}</span>
+          </template>
+
+          <template #item.sex="{ item }">
+            <span>{{ item.sex }}</span>
+          </template>
+
+          <template #item.religion="{ item }">
+            <span>{{ item.religion }}</span>
+          </template>
+
+          <template #item.educational_attainment="{ item }">
+            <span>{{ item.educational_attainment }}</span>
+          </template>
+
           <template #item.date_of_visit="{ item }">
             <span class="text-no-wrap">{{ tzone2(item.date_of_visit) }}</span>
           </template>
 
-          <!-- previous_visit -->
+          <template #item.point_of_entry="{ item }">
+            <span>{{ item.point_of_entry }}</span>
+          </template>
+
+          <template #item.service_availed="{ item }">
+            <span>{{ item.services.name }}</span>
+          </template>
+
+          <template #item.frequently_visit="{ item }">
+            <span>{{ item.frequently_visit }}</span>
+          </template>
+
+          <template #item.cc1="{ item }">
+            <span>{{ item.cc1 }}</span>
+          </template>
+
+          <template #item.cc2="{ item }">
+            <span>{{ item.cc2 }}</span>
+          </template>
+
+          <template #item.cc3="{ item }">
+            <span>{{ item.cc3 }}</span>
+          </template>
+
           <template #item.previous_visit="{ item }">
             <span
               v-if="item.visited_before == 'y'"
@@ -256,12 +307,12 @@
             <span>{{ item.survey_answers[11].answer }}</span>
           </template>
 
-          <!-- Q13 -->
+          <!-- I was treated fairly, or "walang palakasan" during my transaction.(SQD6) -->
           <template #item.q13="{ item }">
             <span>{{ item.survey_answers[12].answer }}</span>
           </template>
 
-          <!-- Q14 -->
+          <!-- I am satisfied with the service that I availed. (SQD0) -->
           <template #item.q14="{ item }">
             <span>{{ item.survey_answers[13].answer }}</span>
           </template>
@@ -678,20 +729,6 @@
             </div>
           </template>
 
-          <!-- location -->
-          <template #item.location="{ item }">
-            <div class="d-flex flex-row">
-              <span v-if="item.pss_location_detail != null"> {{ item.pss_location_detail.wardname }}</span>
-              <span v-else> {{ item.ward_location_detail.wardname }}</span>
-            </div>
-          </template>
-
-          <!-- assisted_by -->
-          <template #item.assisted_by="{ item }">
-            <span v-if="item.assisted_by != null"> ({{ item.assisted_by.username }}) </span>
-            <span v-else></span>
-          </template>
-
           <template #item.created_at="{ item }">
             <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
           </template>
@@ -874,7 +911,7 @@
         <v-card-title>DELETE REQUESTS</v-card-title>
 
         <!-- delete request table -->
-        <v-data-table
+        <!-- <v-data-table
           fixed-header
           dense
           :headers="delete_request_headers"
@@ -886,7 +923,6 @@
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
-          <!-- requested by -->
           <template #item.requested_by="{ item }">
             <span>{{ item.users[0].firstName }} {{ item.users[0].lastName }}</span>
           </template>
@@ -896,7 +932,6 @@
               class="d-flex flex-no-wrap"
               v-if="$page.props.auth.user.roles[0] == 'super-admin' || $page.props.auth.user.roles[0] == 'admin'"
             >
-              <!--  -->
               <v-icon
                 size="20"
                 color="color_error"
@@ -910,7 +945,7 @@
           <template #item.created_at="{ item }">
             <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
           </template>
-        </v-data-table>
+        </v-data-table> -->
       </v-card>
 
       <v-btn
@@ -1003,7 +1038,7 @@ export default {
   },
   props: {
     surveyAnswers: Object,
-    delete_requests: Object,
+    // delete_requests: Object,
   },
   data() {
     return {
@@ -1053,8 +1088,16 @@ export default {
       primary_answers: [
         {
           text: 'ARTA ID',
-          value: 'arta_id',
           align: 'start',
+          value: 'arta_id',
+          sortable: false,
+          filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'CURRENTLY TRANSACTING',
+          align: 'start',
+          value: 'office',
           sortable: false,
           filterable: false,
           class: 'color_main_dark_background',
@@ -1103,9 +1146,16 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'OFFICE',
+          text: 'POINT OF ENTRY',
           align: 'start',
-          value: 'office',
+          value: 'point_of_entry',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'SERVICE AVAILED',
+          align: 'start',
+          value: 'service_availed',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1113,13 +1163,6 @@ export default {
           text: 'VISIT PER YEAR',
           align: 'start',
           value: 'frequently_visit',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Hosp. #',
-          align: 'start',
-          value: 'hospital_number',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1376,20 +1419,6 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'LOCATION',
-          align: 'start',
-          value: 'location',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'ASSISTED BY',
-          align: 'start',
-          value: 'assisted_by',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
           text: 'CREATED AT',
           value: 'created_at',
           align: 'start',
@@ -1441,7 +1470,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.surveyAnswers.data);
+    console.log(this.surveyAnswers.data);
     this.processJsonData();
   },
   methods: {
@@ -1516,8 +1545,6 @@ export default {
           'SOCIAL WORKER': e.survey_abt_staffs[11].rating, // social worker
           'FOOD SERVER': e.survey_abt_staffs[12].rating, // food server
           'JANITORS/ORDERLY': e.survey_abt_staffs[13].rating, // janitors/orderly
-          LOCATION: e.pss_location_detail != null ? e.pss_location_detail.wardname : e.ward_location_detail.wardname,
-          'ASSISTED BY': e.assisted_by == null ? null : e.assisted_by.username,
           'SUBMITTED AT': this.tzone2(e.created_at),
         });
       });

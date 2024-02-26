@@ -1580,7 +1580,7 @@
                     <!-- staff survey -->
                     <h3 class="my-2 font-weight-black">
                       <!-- q13 I was treated courteously by the staff, and (if asked for help) the staff was helpful. (SQD7) -->
-                      <p class="text-h6-edited questions-font-style">13. {{ survey_questions[12].desc }}</p>
+                      <p class="text-h6-edited questions-font-style">{{ survey_questions[12].desc }}</p>
                       <p class="text-h6-edited">
                         ***NOTE: Put a check mark (&check;) on N/A if you did not interact with the staff.
                       </p>

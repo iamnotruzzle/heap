@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Survey\Answers;
 use App\Http\Controllers\Controller;
 use App\Models\DeleteRequest;
 use App\Models\LoginHistory;
-use App\Models\PssLocation;
 use App\Models\SurveyGeneralInfo;
 use App\Models\Ward;
 use Illuminate\Http\Request;
@@ -21,126 +20,57 @@ class AnswersController extends Controller
     {
         $searchString = $request->search;
 
-        $authCurrentLocation = LoginHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
+        // Get user roles
+        $authRole = Auth::user()->getRoleNames();
+        // dd($authRole[0]);
 
-        $pssLocation = PssLocation::get(['wardcode', 'wardname']);
-        $wardLocation = Ward::where('wardstat', 'A')->get(['wardcode', 'wardname']);
-        $locations = array();
-
-        foreach ($pssLocation as $e) {
-            $locations[] = (object)[
-                'wardcode' => $e->wardcode,
-                'wardname' => $e->wardname,
-            ];
-        }
-        foreach ($wardLocation as $e) {
-            $locations[] = (object)[
-                'wardcode' => $e->wardcode,
-                'wardname' => $e->wardname,
-            ];
-        }
-        usort($locations, function ($a, $b) {
-            return strcmp($a->wardname, $b->wardname);
-        });
-
-        if ($authCurrentLocation->wardcode == 'admin' || $authCurrentLocation->wardcode == 'omcc' || $authCurrentLocation->wardcode == 'petro') {
-            $surveyAnswers = SurveyGeneralInfo::with(
-                'surveyAnswers',
-                'surveyAbtStaffs',
-                'pssLocationDetail',
-                'wardLocationDetail',
-                'assistedBy:id,username,firstName,lastName',
+        $surveyAnswers = SurveyGeneralInfo::with(
+            'surveyAnswers',
+            'officeVisiting:id,name',
+            'services:id,name',
+            'surveyAbtStaffs',
+        )
+            ->when($request->sort_by, function ($query, $value) {
+                $query->orderBy($value, request('order_by', 'asc'));
+            })
+            ->when(
+                $request->from,
+                function ($query, $value) {
+                    $query->whereDate('created_at', '>=', $value);
+                }
             )
-                ->when($request->sort_by, function ($query, $value) {
-                    $query->orderBy($value, request('order_by', 'asc'));
-                })
-                // ->when(
-                //     $request->sex,
-                //     function ($query, $value) {
-                //         $query->where('sex', $value);
-                //     }
-                // )
-                ->when(
-                    $request->from,
-                    function ($query, $value) {
-                        $query->whereDate('created_at', '>=', $value);
-                    }
-                )
-                ->when(
-                    $request->to,
-                    function ($query, $value) {
-                        $query->whereDate('created_at', '<=', $value);
-                    }
-                )
-                ->when(
-                    $request->employee_id,
-                    function ($query, $value) {
-                        $query->where('assisted_by', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->arta_id,
-                    function ($query, $value) {
-                        $query->where('arta_id', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->education,
-                    function ($query, $value) {
-                        $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->when(
-                    $request->location,
-                    function ($query, $value) {
-                        $query->where('ward', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->orderBy('created_at', 'desc')
-                ->paginate($request->page_size ?? 15);
-        } else {
-            $surveyAnswers = SurveyGeneralInfo::with(
-                'surveyAnswers',
-                'surveyAbtStaffs',
-                'pssLocationDetail',
-                'wardLocationDetail',
-                'assistedBy:id,username,firstName,lastName',
+            ->when(
+                $request->to,
+                function ($query, $value) {
+                    $query->whereDate('created_at', '<=', $value);
+                }
             )
-                ->when($request->sort_by, function ($query, $value) {
-                    $query->orderBy($value, request('order_by', 'asc'));
-                })
-                ->when(
-                    $request->sex,
-                    function ($query, $value) {
-                        $query->where('sex', $value);
-                    }
-                )
-                ->when(
-                    $request->from,
-                    function ($query, $value) {
-                        $query->whereDate('created_at', '>=', $value);
-                    }
-                )
-                ->when(
-                    $request->to,
-                    function ($query, $value) {
-                        $query->whereDate('created_at', '<=', $value);
-                    }
-                )
-                ->when(
-                    $request->education,
-                    function ($query, $value) {
-                        $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-                    }
-                )
-                ->where('ward', $authCurrentLocation->wardcode)
-                ->orderBy('created_at', 'desc')
-                ->paginate($request->page_size ?? 15);
-        }
-
-        $delete_requests = DeleteRequest::with('users')
+            ->when(
+                $request->employee_id,
+                function ($query, $value) {
+                    $query->where('assisted_by', 'LIKE', '%' . $value . '%');
+                }
+            )
+            ->when(
+                $request->arta_id,
+                function ($query, $value) {
+                    $query->where('arta_id', 'LIKE', '%' . $value . '%');
+                }
+            )
+            ->when(
+                $request->education,
+                function ($query, $value) {
+                    $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                }
+            )
+            ->when(
+                $request->location,
+                function ($query, $value) {
+                    $query->where('ward', 'LIKE', '%' . $value . '%');
+                }
+            )
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate($request->page_size ?? 15);
 
         // dd($surveyAnswers);
 
@@ -148,8 +78,6 @@ class AnswersController extends Controller
             'SurveyAnswers/Index',
             [
                 'surveyAnswers' => $surveyAnswers,
-                'delete_requests' => $delete_requests,
-                'locations' =>  $locations
             ]
         );
     }

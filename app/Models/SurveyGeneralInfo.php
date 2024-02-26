@@ -50,6 +50,16 @@ class SurveyGeneralInfo extends Model
         return $this->hasMany(SurveyAbtStaff::class, 'arta_id', 'arta_id');
     }
 
+    public function officeVisiting()
+    {
+        return $this->hasOne(Offices::class, 'id', 'office');
+    }
+
+    public function services()
+    {
+        return $this->hasOne(Services::class, 'id', 'service');
+    }
+
     public function assistedBy()
     {
         return $this->hasOne(User::class, 'username', 'assisted_by');
