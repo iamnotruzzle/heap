@@ -44,11 +44,11 @@ class RoleAndPermissionSeeder extends Seeder
         ]);
 
         $adminUser = User::factory()->create([
-            'firstName' => 'Charo',
-            'middleName' => null,
-            'lastName' => 'Galang',
+            'firstName' => 'Joanna Marie',
+            'middleName' => 'Capulong',
+            'lastName' => 'Constantino',
             'suffix' => null,
-            'username' => '001843',
+            'username' => 'joanna',
             'image' => null,
             'role' => 'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
