@@ -359,10 +359,6 @@
             </v-dialog>
           </template>
 
-          <template #item.name_of_respondent="{ item }">
-            <span class="font-weight-bold">{{ item.name_of_respondent }}</span>
-          </template>
-
           <!-- Q16 -->
           <template #item.q16="{ item }">
             <!-- <span>{{ item.survey_answers[15].answer }}</span> -->
@@ -412,6 +408,10 @@
               <v-icon color="blue darken-2">mdi-download-box-outline</v-icon>
             </a>
             <span v-else></span>
+          </template>
+
+          <template #item.name_of_respondent="{ item }">
+            <span class="font-weight-bold">{{ item.name_of_respondent }}</span>
           </template>
 
           <!-- DOCTOR -->
@@ -1409,16 +1409,16 @@ export default {
           class: 'color_main_dark_background',
         },
         {
-          text: 'NAME OF RESPONDENT',
+          text: 'CORRECTIVE ACTION',
           align: 'start',
-          value: 'name_of_respondent',
+          value: 'attachment',
           sortable: false,
           class: 'color_main_dark_background',
         },
         {
-          text: 'CORRECTIVE ACTION',
+          text: 'NAME OF RESPONDENT',
           align: 'start',
-          value: 'attachment',
+          value: 'name_of_respondent',
           sortable: false,
           class: 'color_main_dark_background',
         },
