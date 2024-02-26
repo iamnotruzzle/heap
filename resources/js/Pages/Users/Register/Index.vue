@@ -83,7 +83,7 @@
                 <v-text-field
                   v-model="form.username"
                   color="color_primary"
-                  label="Employee ID"
+                  label="Username"
                   :error-messages="form.errors.username"
                 ></v-text-field>
                 <v-text-field
