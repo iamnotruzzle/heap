@@ -30,9 +30,20 @@ class AnswersController extends Controller
             'services:id,name',
             'surveyAbtStaffs',
         )
-            ->when($request->sort_by, function ($query, $value) {
-                $query->orderBy($value, request('order_by', 'asc'));
-            })
+            ->when(
+                $request->visiting,
+                function ($query, $value) {
+                    $query->whereHas('officeVisiting', function ($q) use ($value) {
+                        $q->where('id', $value);
+                    });
+                }
+            )
+            ->when(
+                $request->education,
+                function ($query, $value) {
+                    $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
+                }
+            )
             ->when(
                 $request->from,
                 function ($query, $value) {
@@ -43,30 +54,6 @@ class AnswersController extends Controller
                 $request->to,
                 function ($query, $value) {
                     $query->whereDate('created_at', '<=', $value);
-                }
-            )
-            ->when(
-                $request->employee_id,
-                function ($query, $value) {
-                    $query->where('assisted_by', 'LIKE', '%' . $value . '%');
-                }
-            )
-            ->when(
-                $request->arta_id,
-                function ($query, $value) {
-                    $query->where('arta_id', 'LIKE', '%' . $value . '%');
-                }
-            )
-            ->when(
-                $request->education,
-                function ($query, $value) {
-                    $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-                }
-            )
-            ->when(
-                $request->location,
-                function ($query, $value) {
-                    $query->where('ward', 'LIKE', '%' . $value . '%');
                 }
             )
             ->orderBy('created_at', 'desc')

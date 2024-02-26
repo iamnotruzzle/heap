@@ -85,7 +85,7 @@
                         </v-radio>
                       </v-radio-group> -->
 
-                      <v-text-field
+                      <!-- <v-text-field
                         v-model="arta_id"
                         clearable
                         dense
@@ -94,7 +94,20 @@
                         color="color_primary"
                         class="ma-0 pa-0"
                         label="ARTA ID"
-                      ></v-text-field>
+                      ></v-text-field> -->
+
+                      <v-select
+                        :items="officesList"
+                        item-text="name"
+                        item-value="id"
+                        v-model="visiting"
+                        label="Currently visiting"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        clearable
+                        dense
+                        outlined
+                      ></v-select>
 
                       <v-select
                         :items="educationList"
@@ -102,6 +115,7 @@
                         label="Level of education"
                         color="color_primary"
                         class="ma-0 pa-0"
+                        clearable
                         dense
                         outlined
                       ></v-select>
@@ -1031,7 +1045,6 @@ export default {
       education: 'NO FILTER', // default selected
       department: 0,
       educationList: [
-        'NO FILTER',
         'Elementary',
         'Secondary',
         'Vocational',
@@ -1039,6 +1052,8 @@ export default {
         'Postgraduate/Masters',
         'No formal Education',
       ],
+      officesList: [],
+      visiting: null,
       // end filter menu
 
       // excel
@@ -1449,8 +1464,17 @@ export default {
   mounted() {
     console.log(this.surveyAnswers.data);
     this.processJsonData();
+    this.storeOfficesListInContainer();
   },
   methods: {
+    storeOfficesListInContainer() {
+      this.$page.props.offices.forEach((e) => {
+        this.officesList.push({
+          id: e.id,
+          name: e.name,
+        });
+      });
+    },
     updateData() {
       this.json_data = [];
       this.$inertia.get('answers', this.params, {
@@ -1698,6 +1722,10 @@ export default {
     search: function (val) {
       this.params.search = val;
       this.params.page = 1;
+      this.updateData();
+    },
+    visiting: function (val) {
+      this.params.visiting = val;
       this.updateData();
     },
     // sex: function (val) {
