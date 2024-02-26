@@ -86,17 +86,6 @@
                       </v-radio-group> -->
 
                       <v-text-field
-                        v-model="employee_id"
-                        clearable
-                        dense
-                        outlined
-                        type="text"
-                        color="color_primary"
-                        class="ma-0 pa-0"
-                        label="Employee ID"
-                      ></v-text-field>
-
-                      <v-text-field
                         v-model="arta_id"
                         clearable
                         dense
@@ -972,18 +961,8 @@
         right
         class="color_primary"
       >
-        <!-- <a
-          :href="`answers/export?page=1&page_size=15&order_by=desc&employee_id=${params.employee_id}&arta_id=${params.arta_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
-          target="_blank"
-        >
-          <download-icon
-            size="24"
-            as="v-icon"
-            color="white"
-          ></download-icon>
-        </a> -->
         <a
-          :href="`answers/export?order_by=desc&employee_id=${params.employee_id}&arta_id=${params.arta_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
+          :href="`answers/export?order_by=desc&arta_id=${params.arta_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
           target="_blank"
         >
           <download-icon
@@ -1043,8 +1022,6 @@ export default {
   data() {
     return {
       date: new Date(),
-
-      employee_id: '',
       arta_id: '',
       // filter menu
       from: null,
@@ -1550,8 +1527,6 @@ export default {
       });
     },
     clearDateFilter() {
-      this.employee_id = null;
-      this.arta_id = null;
       this.from = null;
       this.to = null;
       this.sex = 'NO FILTER';
@@ -1696,14 +1671,6 @@ export default {
     // },
     location: function (val) {
       this.params.location = val;
-      this.updateData();
-    },
-    employee_id: function (val) {
-      this.params.employee_id = val;
-      this.updateData();
-    },
-    arta_id: function (val) {
-      this.params.arta_id = val;
       this.updateData();
     },
     from: function (val) {
