@@ -198,6 +198,10 @@
             <span>{{ item.sex }}</span>
           </template>
 
+          <template #item.pronoun="{ item }">
+            <span>{{ item.pronoun }}</span>
+          </template>
+
           <template #item.religion="{ item }">
             <span>{{ item.religion }}</span>
           </template>
@@ -980,7 +984,7 @@
         class="color_primary"
       >
         <a
-          :href="`answers/export?order_by=desc&arta_id=${params.arta_id}&education=${params.education}&location=${params.location}&from=${params.from}&to=${params.to}`"
+          :href="`answers/export?order_by=desc&search=${params.search}&visiting=${params.visiting}&education=${params.education}&from=${params.from}&to=${params.to}`"
           target="_blank"
         >
           <download-icon
@@ -1118,6 +1122,13 @@ export default {
           text: 'SEX',
           align: 'start',
           value: 'sex',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'Gender preferred pronoun',
+          align: 'start',
+          value: 'pronoun',
           sortable: false,
           class: 'color_main_dark_background',
         },
@@ -1475,7 +1486,7 @@ export default {
   },
   mounted() {
     console.log(this.surveyAnswers.data);
-    this.processJsonData();
+    // this.processJsonData();
     this.storeOfficesListInContainer();
   },
   methods: {
@@ -1521,9 +1532,9 @@ export default {
           RELIGION: e.religion,
           'LEVEL OF EDUCATION': e.educational_attainment,
           'DATE OF CONSULT/VISIT': this.tzone2(e.date_of_visit),
-          OFFICE: e.office,
+          'POINT OF ENTRY': e.point_of_entry,
+          'SERVICE AVAILED': e.services.name,
           'VISIT PER YEAR': e.frequently_visit,
-          'HOSPITAL #': e.hospital_number,
           CC1: e.cc1,
           CC2: e.cc2,
           CC3: e.cc3,
@@ -1544,6 +1555,7 @@ export default {
           Q15: e.survey_answers[14].answer,
           Q16: e.survey_answers[15].answer,
           'CORRECTIVE ACTION': e.attachment == null ? null : e.attachment,
+          'NAME OF RESPONDENT': e.name_of_respondent, // doctor
           // about staff
           DOCTOR: e.survey_abt_staffs[0].rating, // doctor
           NURSE: e.survey_abt_staffs[1].rating, // nurse

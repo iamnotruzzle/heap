@@ -20,6 +20,7 @@ class SurveyAnswersExport implements FromArray, WithHeadings
         return [
             [
                 'ID',
+                'CURRENTLY TRANSACTING',
                 'Respondent',
                 'Age',
                 'Sex',
@@ -30,8 +31,6 @@ class SurveyAnswersExport implements FromArray, WithHeadings
                 'Point of Entry',
                 'Services Availed',
                 'How frequent do you visit this facility?',
-                'HOSPITAL #',
-                'ARTA RATING',
                 'Which of the following best describes your awareness of a CC?', // cc1
                 'If aware of CC (answered 1-3 in CC1), would you say that the CC of this office was …?', // cc2
                 'If aware of CC (answered codes 1-3 in CC1), how much did the CC help you in your transaction?', // cc3
@@ -47,10 +46,6 @@ class SurveyAnswersExport implements FromArray, WithHeadings
                 'Q10',
                 'Q11',
                 'Q12',
-                // 'Q13',
-                // 'Q14',
-                // 'Q15',
-                // 'Q16',
                 'Doctor',
                 'Nurse',
                 'Midwife',
@@ -67,10 +62,9 @@ class SurveyAnswersExport implements FromArray, WithHeadings
                 'Janitors/Orderly',
                 'Q14',
                 'Q15',
-                'Q16',
-                'Q17',
-                'LOCATION',
-                'ASSISTED BY',
+                'Q16', // suggestions
+                'Q17', // commendation
+                'NAME OF RESPONDENT',
                 'SUBMITTED AT',
             ],
         ];
