@@ -852,7 +852,7 @@
 
               <div class="mr-2"></div>
 
-              <div>
+              <div v-if="$page.props.user.role == 'super-admin' || $page.props.user.role == 'admin'">
                 <v-icon
                   size="20"
                   color="color_error"
@@ -919,7 +919,7 @@
         }"
         elevation="20"
       >
-        <v-card-title>DELETE REQUESTS</v-card-title>
+        <!-- <v-card-title>DELETE REQUESTS</v-card-title> -->
 
         <!-- delete request table -->
         <!-- <v-data-table
