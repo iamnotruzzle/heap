@@ -1551,10 +1551,11 @@ export default {
       });
     },
     clearDateFilter() {
+      this.visiting = null;
       this.from = null;
       this.to = null;
       this.sex = 'NO FILTER';
-      this.education = 'NO FILTER';
+      this.education = null;
       this.department = null;
       this.location = null;
     },
