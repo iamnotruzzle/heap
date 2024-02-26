@@ -31,6 +31,12 @@ class AnswersController extends Controller
             'surveyAbtStaffs',
         )
             ->when(
+                $request->search,
+                function ($query, $value) {
+                    $query->where('name_of_respondent', 'LIKE', '%' . $value . '%');
+                }
+            )
+            ->when(
                 $request->visiting,
                 function ($query, $value) {
                     $query->whereHas('officeVisiting', function ($q) use ($value) {

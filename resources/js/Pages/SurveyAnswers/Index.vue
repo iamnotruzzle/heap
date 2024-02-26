@@ -29,7 +29,7 @@
                   v-model="search"
                   append-icon="mdi-magnify"
                   color="color_primary"
-                  label="Search hospital #"
+                  label="Name of respondent"
                   outlined
                   dense
                 ></v-text-field>
@@ -357,6 +357,10 @@
                 </v-card>
               </template>
             </v-dialog>
+          </template>
+
+          <template #item.name_of_respondent="{ item }">
+            <span class="font-weight-bold">{{ item.name_of_respondent }}</span>
           </template>
 
           <!-- Q16 -->
@@ -1054,6 +1058,7 @@ export default {
       ],
       officesList: [],
       visiting: null,
+      name_of_respondent: null,
       // end filter menu
 
       // excel
@@ -1404,6 +1409,13 @@ export default {
           class: 'color_main_dark_background',
         },
         {
+          text: 'NAME OF RESPONDENT',
+          align: 'start',
+          value: 'name_of_respondent',
+          sortable: false,
+          class: 'color_main_dark_background',
+        },
+        {
           text: 'CORRECTIVE ACTION',
           align: 'start',
           value: 'attachment',
@@ -1502,6 +1514,7 @@ export default {
       this.surveyAnswers.data.forEach((e) => {
         this.json_data.push({
           ID: e.arta_id,
+          'CURRENTLY TRANSACTING': e.office_visiting.name,
           RESPONDENT: e.respondent,
           AGE: e.age,
           SEX: e.sex,
