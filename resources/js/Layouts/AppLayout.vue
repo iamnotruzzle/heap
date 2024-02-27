@@ -329,16 +329,16 @@ export default {
 
     const theme = localStorage.getItem('darkTheme');
     // Check if the user has set the theme state before
-    if (theme) {
-      if (theme === 'true') {
-        this.$vuetify.theme.dark = true;
-      } else {
-        this.$vuetify.theme.dark = false;
-      }
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.$vuetify.theme.dark = true;
-      localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString());
+    // if (theme) {
+    if (theme === 'true') {
+      this.$vuetify.theme.dark = false;
+    } else {
+      this.$vuetify.theme.dark = false;
     }
+    // } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //   this.$vuetify.theme.dark = false;
+    //   //   localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString());
+    // }
   },
   methods: {
     // toggleTheme() {
