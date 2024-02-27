@@ -33,7 +33,7 @@
         <!-- add space BETWEEN title and signout -->
         <v-spacer></v-spacer>
 
-        <v-btn
+        <!-- <v-btn
           icon
           v-if="!$vuetify.theme.dark"
           @click="toggleTheme()"
@@ -50,7 +50,7 @@
           @click="toggleTheme()"
         >
           <v-icon color="yellow darken-3">mdi-weather-night</v-icon>
-        </v-btn>
+        </v-btn> -->
 
         <!-- <v-menu offset-y>
           <template v-slot:activator="{ on }">
