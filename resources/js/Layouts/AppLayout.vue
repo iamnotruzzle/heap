@@ -341,10 +341,10 @@ export default {
     }
   },
   methods: {
-    toggleTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString());
-    },
+    // toggleTheme() {
+    //   this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    //   localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString());
+    // },
     logout() {
       this.$inertia.post(route('logout'));
     },
