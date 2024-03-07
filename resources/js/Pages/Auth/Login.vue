@@ -75,7 +75,7 @@
                   prepend-icon="mdi-account"
                   color="color_primary"
                   name="login"
-                  label="Employee ID"
+                  label="Username"
                   type="login"
                 ></v-text-field>
                 <v-text-field
