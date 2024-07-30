@@ -68,9 +68,10 @@
               <v-row class="font-weight-black mb-4">
                 <v-col cols="12">
                   <div class="font-italic text-center">
-                    This survey will serve as a basis to help us to improve our services for you to have a better
-                    experience in the facility because you are important to us. Any comments or suggestions you provide
-                    through this survey will be highly-appreciated and will be treated with utmost confidentiality.
+                    Ang survey na ito ay magsisilbing batayan upang tulungan kaming mapabuti ang aming mga serbisyo
+                    upang magkaroon kayo ng mas magandang karanasan sa ospital dahil mahalaga kayo sa amin. Ang anumang
+                    mga komento o mungkahi na inyong ibibigay sa pamamagitan ng survey na ito ay lubos na pahahalagahan
+                    at ituturing na kumpidensiyal.
                   </div>
                 </v-col>
               </v-row>
@@ -81,7 +82,7 @@
               >
                 <div class="grey lighten-1 mb-4">
                   <p class="text-h6-edited mx-2 py-1">
-                    Direction: Put a check(<v-icon>mdi-check</v-icon>) mark on the appropriate box of your answer:
+                    PANUTO: Lagyan ng tsek(<v-icon>mdi-check</v-icon>) ang mga angkop na sagot:
                   </p>
                 </div>
 
@@ -93,14 +94,14 @@
                       v-if="v$.event_name.$error"
                       class="error-message ma-0 red--text text-h6-edited questions-font-style"
                     >
-                      Event name
+                      Pangalan ng programa
                     </label>
                     <label
                       for="event_name"
                       v-else
                       class="ma-0 text-h6-edited questions-font-style"
                     >
-                      Event name
+                      Pangalan ng programa
                     </label>
                     <v-textarea
                       id="event_name"
@@ -261,14 +262,19 @@
                   >
                     <div class="d-flex justify-center align-center flex-column text-center">
                       <h5 class="text-h5-edited font-weight-black">
-                        Thank you for your valuable time and opportunity to serve you better.
+                        Salamat sa iyong mahalagang oras at pagkakataon upang mapaglingkuran ka ng mas mahusay.
                       </h5>
+
+                      <span class="font-weight-black mt-2">Patient Satisfaction Committee</span>
                       <span class="font-weight-black font-italic"
                         >Mariano Marcos Memorial Hospital and Medical Center</span
                       >
                       <span class="font-weight-black">Brgy. 06 San Julian, Batac City, Ilocos Norte</span>
                       <span class="font-weight-black">Trunk line: (077) 600-8000</span>
-                      <span class="font-weight-black">Fax line: (077) 792-303</span>
+                      <span class="font-weight-black">Fax line: (077) 792-3133</span>
+                      <!-- <span class="font-weight-black text-decoration-underline">
+                        <a href="mailto: psc.mmmhmc@gmail.com">psc.mmmhmc@gmail.com</a>
+                      </span> -->
                     </div>
                   </v-col>
                 </v-row>
@@ -343,6 +349,9 @@ export default {
       q1_answer: null,
       q2_answer: null,
       event_name: null,
+      snackColor: null,
+      snack: null,
+      snackText: null,
 
       form: this.$inertia.form({
         event_name: null,
