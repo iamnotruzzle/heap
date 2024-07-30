@@ -29,7 +29,7 @@
                   v-model="search"
                   append-icon="mdi-magnify"
                   color="color_primary"
-                  label="Name of respondent"
+                  label="Search"
                   outlined
                   dense
                 ></v-text-field>
@@ -51,75 +51,6 @@
                     <v-card-title class="ma-0 pa-0"> Filter </v-card-title>
                     <v-divider></v-divider>
                     <div class="d-flex flex-column mt-1 pa-0">
-                      <!-- <v-radio-group
-                        v-model="sex"
-                        class="ma-0"
-                        dense
-                      >
-                        <template v-slot:label>
-                          <div>Gender</div>
-                        </template>
-                        <v-radio
-                          value="Male"
-                          color="color_primary"
-                        >
-                          <template v-slot:label>
-                            <div>Male</div>
-                          </template>
-                        </v-radio>
-                        <v-radio
-                          value="Female"
-                          color="color_primary"
-                        >
-                          <template v-slot:label>
-                            <div>Female</div>
-                          </template>
-                        </v-radio>
-                        <v-radio
-                          value="NO FILTER"
-                          color="color_primary"
-                        >
-                          <template v-slot:label>
-                            <div>No Filter</div>
-                          </template>
-                        </v-radio>
-                      </v-radio-group> -->
-
-                      <!-- <v-text-field
-                        v-model="survey_id"
-                        clearable
-                        dense
-                        outlined
-                        type="text"
-                        color="color_primary"
-                        class="ma-0 pa-0"
-                        label="ARTA ID"
-                      ></v-text-field> -->
-
-                      <v-select
-                        :items="officesList"
-                        item-text="name"
-                        item-value="id"
-                        v-model="visiting"
-                        label="Currently visiting"
-                        color="color_primary"
-                        class="ma-0 pa-0"
-                        clearable
-                        dense
-                        outlined
-                      ></v-select>
-
-                      <v-select
-                        :items="educationList"
-                        v-model="education"
-                        label="Level of education"
-                        color="color_primary"
-                        class="ma-0 pa-0"
-                        clearable
-                        dense
-                        outlined
-                      ></v-select>
-
                       <v-text-field
                         v-model="from"
                         clearable
@@ -168,7 +99,7 @@
           fixed-header
           dense
           :search="search"
-          :headers="primary_answers"
+          :headers="answers"
           :items="surveyAnswers.data"
           :items-per-page="15"
           :options.sync="options"
@@ -178,566 +109,12 @@
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
-          <template #item.survey_id="{ item }">
-            <span>{{ item.survey_id }}</span>
+          <template #item.id="{ item }">
+            <span>{{ item.id }}</span>
           </template>
 
-          <template #item.office="{ item }">
-            <span>{{ item.office_visiting.name }}</span>
-          </template>
-
-          <template #item.respondent="{ item }">
-            <span>{{ item.respondent }}</span>
-          </template>
-
-          <template #item.age="{ item }">
-            <span>{{ item.age }}</span>
-          </template>
-
-          <template #item.sex="{ item }">
-            <span>{{ item.sex }}</span>
-          </template>
-
-          <template #item.pronoun="{ item }">
-            <span>{{ item.pronoun }}</span>
-          </template>
-
-          <template #item.religion="{ item }">
-            <span>{{ item.religion }}</span>
-          </template>
-
-          <template #item.educational_attainment="{ item }">
-            <span>{{ item.educational_attainment }}</span>
-          </template>
-
-          <template #item.date_of_visit="{ item }">
-            <span class="text-no-wrap">{{ tzone2(item.date_of_visit) }}</span>
-          </template>
-
-          <template #item.point_of_entry="{ item }">
-            <span>{{ item.point_of_entry }}</span>
-          </template>
-
-          <template #item.service_availed="{ item }">
-            <span>{{ item.services.name }}</span>
-          </template>
-
-          <template #item.frequently_visit="{ item }">
-            <span>{{ item.frequently_visit }}</span>
-          </template>
-
-          <template #item.cc1="{ item }">
-            <span>{{ item.cc1 }}</span>
-          </template>
-
-          <template #item.cc2="{ item }">
-            <span>{{ item.cc2 }}</span>
-          </template>
-
-          <template #item.cc3="{ item }">
-            <span>{{ item.cc3 }}</span>
-          </template>
-
-          <template #item.previous_visit="{ item }">
-            <span
-              v-if="item.visited_before == 'y'"
-              plain
-              class="color_primary--text"
-            >
-              YES
-            </span>
-            <span
-              v-else
-              class="color_error--text"
-            >
-              NO
-            </span>
-          </template>
-
-          <!-- Q1 -->
-          <template #item.q1="{ item }">
-            <span>{{ item.survey_answers[0].answer }}</span>
-          </template>
-
-          <!-- Q2 -->
-          <template #item.q2="{ item }">
-            <span>{{ item.survey_answers[1].answer }}</span>
-          </template>
-
-          <!-- Q3 -->
-          <template #item.q3="{ item }">
-            <span>{{ item.survey_answers[2].answer }}</span>
-          </template>
-
-          <!-- Q4 -->
-          <template #item.q4="{ item }">
-            <span>{{ item.survey_answers[3].answer }}</span>
-          </template>
-
-          <!-- Q5 -->
-          <template #item.q5="{ item }">
-            <span>{{ item.survey_answers[4].answer }}</span>
-          </template>
-
-          <!-- Q6 -->
-          <template #item.q6="{ item }">
-            <span>{{ item.survey_answers[5].answer }}</span>
-          </template>
-
-          <!-- Q7 -->
-          <template #item.q7="{ item }">
-            <span>{{ item.survey_answers[6].answer }}</span>
-          </template>
-
-          <!-- Q8 -->
-          <template #item.q8="{ item }">
-            <span>{{ item.survey_answers[7].answer }}</span>
-          </template>
-
-          <!-- Q9 -->
-          <template #item.q9="{ item }">
-            <span>{{ item.survey_answers[8].answer }}</span>
-          </template>
-
-          <!-- Q10 -->
-          <template #item.q10="{ item }">
-            <span>{{ item.survey_answers[9].answer }}</span>
-          </template>
-
-          <!-- Q11 -->
-          <template #item.q11="{ item }">
-            <span>{{ item.survey_answers[10].answer }}</span>
-          </template>
-
-          <!-- Q12 -->
-          <template #item.q12="{ item }">
-            <span>{{ item.survey_answers[11].answer }}</span>
-          </template>
-
-          <!-- I was treated fairly, or "walang palakasan" during my transaction.(SQD6) -->
-          <template #item.q13="{ item }">
-            <span>{{ item.survey_answers[12].answer }}</span>
-          </template>
-
-          <!-- I am satisfied with the service that I availed. (SQD0) -->
-          <template #item.q14="{ item }">
-            <span>{{ item.survey_answers[13].answer }}</span>
-          </template>
-
-          <!-- Q15 -->
-          <template #item.q15="{ item }">
-            <!-- <span>{{ item.survey_answers[14].answer }}</span> -->
-            <v-dialog max-width="600">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="purple lighten-2 white--text"
-                  v-bind="attrs"
-                  v-on="on"
-                  text
-                  icon
-                >
-                  <v-icon dark> mdi-eye-outline </v-icon>
-                </v-btn>
-              </template>
-              <template v-slot:default="dialog">
-                <v-card>
-                  <v-toolbar
-                    color="purple lighten-2"
-                    dark
-                  >
-                    Suggestions on how we can further improve our services.
-                  </v-toolbar>
-                  <v-card-text>
-                    <div class="mt-4 font-weight-bold">{{ item.survey_answers[14].answer }}</div>
-                  </v-card-text>
-                  <v-card-actions class="justify-end">
-                    <v-btn
-                      text
-                      @click="dialog.value = false"
-                    >
-                      Close
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </template>
-            </v-dialog>
-          </template>
-
-          <!-- Q16 -->
-          <template #item.q16="{ item }">
-            <!-- <span>{{ item.survey_answers[15].answer }}</span> -->
-            <v-dialog max-width="600">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="indigo lighten-2 white--text"
-                  v-bind="attrs"
-                  v-on="on"
-                  text
-                  icon
-                >
-                  <v-icon dark> mdi-eye-outline </v-icon>
-                </v-btn>
-              </template>
-              <template v-slot:default="dialog">
-                <v-card>
-                  <v-toolbar
-                    color="indigo lighten-2"
-                    dark
-                  >
-                    Commendation
-                  </v-toolbar>
-                  <v-card-text>
-                    <div class="mt-4 font-weight-bold">{{ item.survey_answers[15].answer }}</div>
-                  </v-card-text>
-                  <v-card-actions class="justify-end">
-                    <v-btn
-                      text
-                      @click="dialog.value = false"
-                    >
-                      Close
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </template>
-            </v-dialog>
-          </template>
-
-          <template #item.attachment="{ item }">
-            <a
-              v-if="item.attachment != null"
-              :href="'/storage/' + item.attachment"
-              target="_blank"
-              download
-            >
-              <v-icon color="blue darken-2">mdi-download-box-outline</v-icon>
-            </a>
-            <span v-else></span>
-          </template>
-
-          <template #item.name_of_respondent="{ item }">
-            <span class="font-weight-bold">{{ item.name_of_respondent }}</span>
-          </template>
-
-          <!-- DOCTOR -->
-          <template #item.doctor="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[0].rating }}
-
-              <span v-if="item.survey_abt_staffs[0].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[0].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[0].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- NURSE -->
-          <template #item.nurse="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[1].rating }}
-
-              <span v-if="item.survey_abt_staffs[1].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[1].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[1].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- MIDWIFE -->
-          <template #item.midwife="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[2].rating }}
-
-              <span v-if="item.survey_abt_staffs[2].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[2].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[2].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- SECURITY -->
-          <template #item.security="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[3].rating }}
-
-              <span v-if="item.survey_abt_staffs[3].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[3].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[3].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- RADIOLOGY -->
-          <template #item.radiology="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[4].rating }}
-
-              <span v-if="item.survey_abt_staffs[4].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[4].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[4].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- PHARMACY -->
-          <template #item.pharmacy="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[5].rating }}
-
-              <span v-if="item.survey_abt_staffs[5].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[5].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[5].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- LABORATORY -->
-          <template #item.laboratory="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[6].rating }}
-
-              <span v-if="item.survey_abt_staffs[6].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[6].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[6].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- ADMITTING STAFF -->
-          <template #item.admitting="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[7].rating }}
-
-              <span v-if="item.survey_abt_staffs[7].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[7].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[7].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- MEDICAL RECORDS -->
-          <template #item.medical_records="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[8].rating }}
-
-              <span v-if="item.survey_abt_staffs[8].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[8].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[8].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- BILLING -->
-          <template #item.billing="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[9].rating }}
-
-              <span v-if="item.survey_abt_staffs[9].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[9].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[9].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- CASHIER -->
-          <template #item.cashier="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[10].rating }}
-
-              <span v-if="item.survey_abt_staffs[10].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[10].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[10].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- SOCIAL WORKER -->
-          <template #item.social_worker="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[11].rating }}
-
-              <span v-if="item.survey_abt_staffs[11].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[11].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[11].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- FOOD SERVER -->
-          <template #item.food_server="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[12].rating }}
-
-              <span v-if="item.survey_abt_staffs[12].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[12].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[12].comment }}
-              </v-tooltip>
-            </div>
-          </template>
-
-          <!-- JANITORS/ORDERLY -->
-          <template #item.janitors_orderly="{ item }">
-            <div class="d-flex flex-row">
-              {{ item.survey_abt_staffs[13].rating }}
-
-              <span v-if="item.survey_abt_staffs[13].comment != null">,&nbsp;</span>
-
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <span
-                    v-bind="attrs"
-                    v-on="on"
-                    class="d-inline-block text-truncate"
-                    style="max-width: 120px"
-                  >
-                    {{ item.survey_abt_staffs[13].comment }}
-                  </span>
-                </template>
-                {{ item.survey_abt_staffs[13].comment }}
-              </v-tooltip>
-            </div>
+          <template #item.questions="{ item }">
+            <span>{{ item.questions.desc }}</span>
           </template>
 
           <template #item.created_at="{ item }">
@@ -746,112 +123,6 @@
 
           <template v-slot:item.actions="{ item }">
             <div class="d-flex flex-row">
-              <v-dialog
-                v-model="dialogAttachment"
-                @keydown.esc="cancel"
-                @click:outside="cancel"
-                width="500"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-icon
-                    v-if="item.attachment == null"
-                    color="color_primary white--text"
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="setFormFileId(item)"
-                    size="20"
-                  >
-                    mdi-paperclip
-                  </v-icon>
-                  <v-icon
-                    v-else
-                    color="yellow darken-2 white--text"
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="updateAttachment(item)"
-                    size="20"
-                  >
-                    mdi-paperclip
-                  </v-icon>
-                </template>
-
-                <v-card>
-                  <v-card-title
-                    class="text-h6-edited color_primary white--text"
-                    v-if="isUpdate != true"
-                  >
-                    Attach file
-                  </v-card-title>
-                  <v-card-title
-                    class="text-h6-edited color_secondary white--text d-flex justify-space-between"
-                    v-else
-                  >
-                    Update attached file
-                  </v-card-title>
-
-                  <v-card-text class="mt-8">
-                    <v-form ref="form">
-                      <v-row>
-                        <v-col
-                          cols="12"
-                          class="py-0"
-                        >
-                          <v-file-input
-                            v-model="formFile.attachment"
-                            @input="formFile.attachment = $event.target.files[0]"
-                            :error-messages="formFile.errors.attachment"
-                            color="color_primary"
-                            chips
-                            show-size
-                            small-chips
-                            label="File"
-                            prepend-icon=""
-                            truncate-length="15"
-                          ></v-file-input>
-                        </v-col>
-                      </v-row>
-                    </v-form>
-                  </v-card-text>
-
-                  <v-divider></v-divider>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <div>
-                      <v-btn
-                        color="color_error"
-                        text
-                        :disabled="formFile.processing"
-                        @click="cancel"
-                      >
-                        Cancel
-                      </v-btn>
-
-                      <v-btn
-                        v-if="isUpdate == false"
-                        color="color_primary white--text"
-                        :loading="formFile.processing"
-                        @click="submitFile"
-                        @keyup.enter="submitFile"
-                      >
-                        Save
-                      </v-btn>
-                      <v-btn
-                        v-else
-                        color="color_secondary white--text"
-                        :loading="formFile.processing"
-                        @click="submitFile"
-                        @keyup.enter="submitFile"
-                      >
-                        Update
-                      </v-btn>
-                    </div>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-
-              <div class="mr-2"></div>
-
               <div v-if="$page.props.user.role == 'super-admin' || $page.props.user.role == 'admin'">
                 <v-icon
                   size="20"
@@ -959,7 +230,7 @@
         </v-data-table> -->
       </v-card>
 
-      <v-btn
+      <!-- <v-btn
         v-if="from == null || to == null"
         fab
         dark
@@ -993,7 +264,7 @@
             color="white"
           ></download-icon>
         </a>
-      </v-btn>
+      </v-btn> -->
     </v-container>
 
     <!-- snackbar -->
@@ -1048,23 +319,6 @@ export default {
       // filter menu
       from: null,
       to: null,
-      //   sex: 'NO FILTER', // default selected
-      sexList: ['NO FILTER', 'Male', 'Female'],
-      education: 'NO FILTER', // default selected
-      department: 0,
-      educationList: [
-        'Elementary',
-        'Secondary',
-        'Vocational',
-        'College',
-        'Postgraduate/Masters',
-        'No formal Education',
-      ],
-      officesList: [],
-      visiting: null,
-      name_of_respondent: null,
-      // end filter menu
-
       // excel
       json_data: [],
       // end excel
@@ -1086,376 +340,27 @@ export default {
       location: '',
       options: {},
       params: {},
-      primary_answers: [
+      answers: [
         {
-          text: 'ARTA ID',
-          align: 'start',
-          value: 'survey_id',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CURRENTLY TRANSACTING',
-          align: 'start',
-          value: 'office',
-          sortable: false,
-          filterable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Respondent',
-          align: 'start',
-          value: 'respondent',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'AGE',
-          align: 'start',
-          value: 'age',
-          sortable: true,
-
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'SEX',
-          align: 'start',
-          value: 'sex',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Gender preferred pronoun',
-          align: 'start',
-          value: 'pronoun',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'RELIGION',
-          align: 'start',
-          value: 'religion',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'LEVEL OF EDUCATION',
-          align: 'start',
-          value: 'educational_attainment',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'DATE OF CONSULT/VISIT',
-          align: 'start',
-          value: 'date_of_visit',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'POINT OF ENTRY',
-          align: 'start',
-          value: 'point_of_entry',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'SERVICE AVAILED',
-          align: 'start',
-          value: 'service_availed',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'VISIT PER YEAR',
-          align: 'start',
-          value: 'frequently_visit',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CC1',
-          align: 'start',
-          value: 'cc1',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CC2',
-          align: 'start',
-          value: 'cc2',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CC3',
-          align: 'start',
-          value: 'cc3',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q1',
-          align: 'start',
-          value: 'q1',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q2',
-          align: 'start',
-          value: 'q2',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q3',
-          align: 'start',
-          value: 'q3',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q4',
-          align: 'start',
-          value: 'q4',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q5',
-          align: 'start',
-          value: 'q5',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q6',
-          align: 'start',
-          value: 'q6',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q7',
-          align: 'start',
-          value: 'q7',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q8',
-          align: 'start',
-          value: 'q8',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q9',
-          align: 'start',
-          value: 'q9',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q10',
-          align: 'start',
-          value: 'q10',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q11',
-          align: 'start',
-          value: 'q11',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q12',
-          align: 'start',
-          value: 'q12',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // DOCTOR
-        {
-          text: 'DOCTOR',
-          align: 'start',
-          value: 'doctor',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // NURSE
-        {
-          text: 'NURSE',
-          align: 'start',
-          value: 'nurse',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // MIDWIFE
-        {
-          text: 'MIDWIFE',
-          align: 'start',
-          value: 'midwife',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // SECURITY
-        {
-          text: 'SECURITY',
-          align: 'start',
-          value: 'security',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // RADIOLOGY
-        {
-          text: 'RADIOLOGY',
-          align: 'start',
-          value: 'radiology',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // PHARMACY
-        {
-          text: 'PHARMACY',
-          align: 'start',
-          value: 'pharmacy',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // PHARMACY
-        {
-          text: 'LABORATORY',
-          align: 'start',
-          value: 'laboratory',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // ADMITTING STAFF
-        {
-          text: 'ADMITTING STAFF',
-          align: 'start',
-          value: 'admitting',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // MEDICAL RECORDS
-        {
-          text: 'MEDICAL RECORDS',
-          align: 'start',
-          value: 'medical_records',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // BILLING
-        {
-          text: 'BILLING',
-          align: 'start',
-          value: 'billing',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // CASHIER
-        {
-          text: 'CASHIER',
-          align: 'start',
-          value: 'cashier',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // SOCIAL WORKER
-        {
-          text: 'SOCIAL WORKER',
-          align: 'start',
-          value: 'social_worker',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // FOOD SERVER
-        {
-          text: 'FOOD SERVER',
-          align: 'start',
-          value: 'food_server',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        // JANITORS/ORDERLY
-        {
-          text: 'JANITORS/ORDERLY',
-          align: 'start',
-          value: 'janitors_orderly',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q14',
-          align: 'start',
-          value: 'q13',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q15',
-          align: 'start',
-          value: 'q14',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q16',
-          align: 'start',
-          value: 'q15',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'Q17',
-          align: 'start',
-          value: 'q16',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CORRECTIVE ACTION',
-          align: 'start',
-          value: 'attachment',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'NAME OF RESPONDENT',
-          align: 'start',
-          value: 'name_of_respondent',
-          sortable: false,
-          class: 'color_main_dark_background',
-        },
-        {
-          text: 'CREATED AT',
-          value: 'created_at',
+          text: 'EVENT NAME',
+          value: 'event_name',
           align: 'start',
           sortable: false,
-          filterable: false,
+          filterable: true,
           class: 'color_main_dark_background',
         },
-        { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
-      ],
-      delete_request_headers: [
         {
-          text: 'ARTA ID',
-          value: 'survey_id',
+          text: 'QUESTION',
+          value: 'questions',
           align: 'start',
           sortable: false,
-          filterable: false,
+          filterable: true,
           class: 'color_main_dark_background',
         },
         {
-          text: 'REQUESTED BY',
-          value: 'requested_by',
-          align: 'start',
+          text: 'RATE',
+          value: 'answer',
+          align: 'end',
           sortable: false,
           filterable: false,
           class: 'color_main_dark_background',
@@ -1487,17 +392,9 @@ export default {
   mounted() {
     console.log(this.surveyAnswers.data);
     // this.processJsonData();
-    this.storeOfficesListInContainer();
+    // this.storeOfficesListInContainer();
   },
   methods: {
-    storeOfficesListInContainer() {
-      this.$page.props.offices.forEach((e) => {
-        this.officesList.push({
-          id: e.id,
-          name: e.name,
-        });
-      });
-    },
     updateData() {
       this.json_data = [];
       this.$inertia.get('answers', this.params, {
@@ -1522,58 +419,13 @@ export default {
       return moment.tz(date, 'Asia/Manila').format('LL');
     },
     processJsonData() {
-      this.surveyAnswers.data.forEach((e) => {
-        this.json_data.push({
-          ID: e.survey_id,
-          'CURRENTLY TRANSACTING': e.office_visiting.name,
-          RESPONDENT: e.respondent,
-          AGE: e.age,
-          SEX: e.sex,
-          RELIGION: e.religion,
-          'LEVEL OF EDUCATION': e.educational_attainment,
-          'DATE OF CONSULT/VISIT': this.tzone2(e.date_of_visit),
-          'POINT OF ENTRY': e.point_of_entry,
-          'SERVICE AVAILED': e.services.name,
-          'VISIT PER YEAR': e.frequently_visit,
-          CC1: e.cc1,
-          CC2: e.cc2,
-          CC3: e.cc3,
-          Q1: e.survey_answers[0].answer,
-          Q2: e.survey_answers[1].answer,
-          Q3: e.survey_answers[2].answer,
-          Q4: e.survey_answers[3].answer,
-          Q5: e.survey_answers[4].answer,
-          Q6: e.survey_answers[5].answer,
-          Q7: e.survey_answers[6].answer,
-          Q8: e.survey_answers[7].answer,
-          Q9: e.survey_answers[8].answer,
-          Q10: e.survey_answers[9].answer,
-          Q11: e.survey_answers[10].answer,
-          Q12: e.survey_answers[11].answer,
-          Q13: e.survey_answers[12].answer,
-          Q14: e.survey_answers[13].answer,
-          Q15: e.survey_answers[14].answer,
-          Q16: e.survey_answers[15].answer,
-          'CORRECTIVE ACTION': e.attachment == null ? null : e.attachment,
-          'NAME OF RESPONDENT': e.name_of_respondent, // doctor
-          // about staff
-          DOCTOR: e.survey_abt_staffs[0].rating, // doctor
-          NURSE: e.survey_abt_staffs[1].rating, // nurse
-          MIDWIFE: e.survey_abt_staffs[2].rating, // midwife
-          SECURITY: e.survey_abt_staffs[3].rating, // security
-          RADIOLOGY: e.survey_abt_staffs[4].rating, // radiology
-          PHARMACY: e.survey_abt_staffs[5].rating, // pharmacy
-          LABORATORY: e.survey_abt_staffs[6].rating, // laboratory
-          'ADMITTING STAFF': e.survey_abt_staffs[7].rating, // admitting staff
-          'MEDICAL RECORDS': e.survey_abt_staffs[8].rating, // medical records
-          BILLING: e.survey_abt_staffs[9].rating, // billing
-          CASHIER: e.survey_abt_staffs[10].rating, // cashier
-          'SOCIAL WORKER': e.survey_abt_staffs[11].rating, // social worker
-          'FOOD SERVER': e.survey_abt_staffs[12].rating, // food server
-          'JANITORS/ORDERLY': e.survey_abt_staffs[13].rating, // janitors/orderly
-          'SUBMITTED AT': this.tzone2(e.created_at),
-        });
-      });
+      //   this.surveyAnswers.data.forEach((e) => {
+      //     this.json_data.push({
+      //       ID: e.id,
+      //       'EVENT NAME': e.event_name,
+      //       Q1: e.survey_answers[0].answer,
+      //     });
+      //   });
     },
     clearDateFilter() {
       this.visiting = null;
@@ -1585,10 +437,6 @@ export default {
       this.location = null;
     },
     setFormFileId(item) {
-      this.formFile.id = item.id;
-    },
-    updateAttachment(item) {
-      this.isUpdate = true;
       this.formFile.id = item.id;
     },
     cancel() {
@@ -1624,41 +472,6 @@ export default {
       this.snack = true;
       this.snackColor = 'color_primary';
       this.snackText = 'Delete request submitted.';
-    },
-    submitFile() {
-      if (this.isUpdate) {
-        Inertia.post(
-          route('answers.update', this.formFile.id),
-          {
-            _method: 'PUT',
-            preserveScroll: true,
-            attachment: this.formFile.attachment,
-          },
-          {
-            onSuccess: () => {
-              this.isLoading = false;
-              this.dialogAttachment = false;
-              this.isUpdate = false;
-              this.formFile.reset();
-              this.updatedMsg();
-            },
-          }
-        );
-      } else {
-        this.formFile.post(route('answers.store'), {
-          preserveScroll: true,
-          onSuccess: () => {
-            this.isLoading = true;
-            this.dialogAttachment = false;
-            this.formFile.reset();
-            this.createdMsg();
-          },
-        });
-      }
-    },
-    deleteItem(item) {
-      this.itemId = item.survey_id;
-      this.dialogDelete = true;
     },
     destroy() {
       if (this.$page.props.user.role == 'super-admin' || this.$page.props.user.role == 'admin') {
@@ -1714,13 +527,9 @@ export default {
       this.params.order_by = val.sortDesc[0] ? 'asc' : 'desc';
       this.updateData();
     },
-    // options_delete_requests: function (val) {
-    //   this.params.page = val.page;
-    //   this.params.page_size = val.itemsPerPage;
-    //   this.updateData();
-    // },
-    location: function (val) {
-      this.params.location = val;
+    search: function (val) {
+      this.params.search = val;
+      this.params.page = 1;
       this.updateData();
     },
     from: function (val) {
@@ -1748,26 +557,6 @@ export default {
     search: function (val) {
       this.params.search = val;
       this.params.page = 1;
-      this.updateData();
-    },
-    visiting: function (val) {
-      this.params.visiting = val;
-      this.updateData();
-    },
-    // sex: function (val) {
-    //   if (val == 'NO FILTER') {
-    //     this.params.sex = '';
-    //   } else {
-    //     this.params.sex = val;
-    //   }
-    //   this.updateData();
-    // },
-    education: function (val) {
-      if (val == 'NO FILTER') {
-        this.params.education = '';
-      } else {
-        this.params.education = val;
-      }
       this.updateData();
     },
   },

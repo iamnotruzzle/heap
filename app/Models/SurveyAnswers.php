@@ -24,7 +24,8 @@ class SurveyAnswers extends Model
         'assisted_by',
     ];
 
-    // protected $casts = [
-    //     'created_at' => 'datetime:m-d-Y',
-    // ];
+    public function questions()
+    {
+        return $this->hasOne(SurveyQuestions::class, 'id', 'survey_question_id');
+    }
 }

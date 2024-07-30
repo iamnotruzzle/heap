@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Survey\Answers;
 
 use App\Http\Controllers\Controller;
+use App\Models\SurveyAnswers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,53 +21,31 @@ class AnswersController extends Controller
         // $authRole = Auth::user()->getRoleNames();
         // // dd($authRole[0]);
 
-        // $surveyAnswers = SurveyGeneralInfo::with(
-        //     'surveyAnswers',
-        //     'officeVisiting:id,name',
-        //     'services:id,name',
-        //     'surveyAbtStaffs',
-        // )
-        //     ->when(
-        //         $request->search,
-        //         function ($query, $value) {
-        //             $query->where('name_of_respondent', 'LIKE', '%' . $value . '%');
-        //         }
-        //     )
-        //     ->when(
-        //         $request->visiting,
-        //         function ($query, $value) {
-        //             $query->whereHas('officeVisiting', function ($q) use ($value) {
-        //                 $q->where('id', $value);
-        //             });
-        //         }
-        //     )
-        //     ->when(
-        //         $request->education,
-        //         function ($query, $value) {
-        //             $query->where('educational_attainment', 'LIKE', '%' . $value . '%');
-        //         }
-        //     )
-        //     ->when(
-        //         $request->from,
-        //         function ($query, $value) {
-        //             $query->whereDate('created_at', '>=', $value);
-        //         }
-        //     )
-        //     ->when(
-        //         $request->to,
-        //         function ($query, $value) {
-        //             $query->whereDate('created_at', '<=', $value);
-        //         }
-        //     )
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate($request->page_size ?? 15);
+        $surveyAnswers = SurveyAnswers::with('questions')
+            ->when($request->search, function ($query, $value) {
+                $query->where(function ($query) use ($value) {
+                    $query->where('event_name', 'LIKE', '%' . $value . '%')
+                        ->orWhereHas('questions', function ($query) use ($value) {
+                            $query->where('desc', 'LIKE', '%' . $value . '%');
+                        });
+                });
+            })
+            ->when($request->from, function ($query, $value) {
+                $query->whereDate('created_at', '>=', $value);
+            })
+            ->when($request->to, function ($query, $value) {
+                $query->whereDate('created_at', '<=', $value);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate($request->page_size ?? 15);
 
         // dd($surveyAnswers);
+
 
         return Inertia::render(
             'SurveyAnswers/Index',
             [
-                // 'surveyAnswers' => $surveyAnswers,
+                'surveyAnswers' => $surveyAnswers,
             ]
         );
     }
