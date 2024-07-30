@@ -17,9 +17,11 @@ class SurveyAnswers extends Model
 
     protected $fillable = [
         'id',
-        'arta_id',
+        'event_name',
         'survey_question_id',
         'answer',
+        'remarks',
+        'assisted_by',
     ];
 
     // protected $casts = [

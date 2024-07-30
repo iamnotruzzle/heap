@@ -83,29 +83,29 @@ return [
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '192.168.0.3'),
+            'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'hospital'),
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', 'pacs'),
+            'database' => env('DB_DATABASE', 'heap'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', '089608946!aA'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
         ],
 
         // ARTA: secondary database
-        'sqlsrv2' => [
-            'driver' => 'sqlsrv',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST_2', 'localhost'),
-            'port' => env('DB_PORT_2', '1433'),
-            'database' => env('DB_DATABASE_2', 'pss'),
-            'username' => env('DB_USERNAME_2', 'root'),
-            'password' => env('DB_PASSWORD_2', 'pinakb3t'),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
-        ],
+        // 'sqlsrv2' => [
+        //     'driver' => 'sqlsrv',
+        //     'url' => env('DATABASE_URL'),
+        //     'host' => env('DB_HOST_2', 'localhost'),
+        //     'port' => env('DB_PORT_2', '1433'),
+        //     'database' => env('DB_DATABASE_2', 'pss'),
+        //     'username' => env('DB_USERNAME_2', 'root'),
+        //     'password' => env('DB_PASSWORD_2', 'pinakb3t'),
+        //     'charset' => 'utf8',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        // ],
 
         // test database
         // 'sqlsrv2' => [

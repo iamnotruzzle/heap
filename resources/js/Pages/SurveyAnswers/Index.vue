@@ -86,7 +86,7 @@
                       </v-radio-group> -->
 
                       <!-- <v-text-field
-                        v-model="arta_id"
+                        v-model="survey_id"
                         clearable
                         dense
                         outlined
@@ -178,8 +178,8 @@
             color_main_dark_background: $vuetify.theme.dark,
           }"
         >
-          <template #item.arta_id="{ item }">
-            <span>{{ item.arta_id }}</span>
+          <template #item.survey_id="{ item }">
+            <span>{{ item.survey_id }}</span>
           </template>
 
           <template #item.office="{ item }">
@@ -1044,7 +1044,7 @@ export default {
   data() {
     return {
       date: new Date(),
-      arta_id: '',
+      survey_id: '',
       // filter menu
       from: null,
       to: null,
@@ -1090,7 +1090,7 @@ export default {
         {
           text: 'ARTA ID',
           align: 'start',
-          value: 'arta_id',
+          value: 'survey_id',
           sortable: false,
           filterable: false,
           class: 'color_main_dark_background',
@@ -1446,7 +1446,7 @@ export default {
       delete_request_headers: [
         {
           text: 'ARTA ID',
-          value: 'arta_id',
+          value: 'survey_id',
           align: 'start',
           sortable: false,
           filterable: false,
@@ -1471,10 +1471,10 @@ export default {
         { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
       form: this.$inertia.form({
-        arta_id: null,
+        survey_id: null,
       }),
       formDeleteRequest: this.$inertia.form({
-        arta_id: null,
+        survey_id: null,
         user_id: null,
         status: 'pending',
       }),
@@ -1524,7 +1524,7 @@ export default {
     processJsonData() {
       this.surveyAnswers.data.forEach((e) => {
         this.json_data.push({
-          ID: e.arta_id,
+          ID: e.survey_id,
           'CURRENTLY TRANSACTING': e.office_visiting.name,
           RESPONDENT: e.respondent,
           AGE: e.age,
@@ -1657,7 +1657,7 @@ export default {
       }
     },
     deleteItem(item) {
-      this.itemId = item.arta_id;
+      this.itemId = item.survey_id;
       this.dialogDelete = true;
     },
     destroy() {
@@ -1671,7 +1671,7 @@ export default {
           },
         });
       } else {
-        this.formDeleteRequest.arta_id = this.itemId;
+        this.formDeleteRequest.survey_id = this.itemId;
         this.formDeleteRequest.user_id = this.user.id;
 
         this.formDeleteRequest.post(route('deleterequest.store'), {

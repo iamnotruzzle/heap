@@ -68,7 +68,7 @@ class SurveyAnswersController extends Controller
             ->chunk(500, function ($results) {
                 foreach ($results as $e) {
                     $this->reports[] = [
-                        'ID' => $e->arta_id,
+                        'ID' => $e->survey_id,
                         'CURRENTLY VISITING' => $e->officeVisiting->name,
                         'Respondent' => $e->respondent,
                         'Age' => $e->age,

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\SurveyTagalogQuestions;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,13 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleAndPermissionSeeder::class,
-            HospitalStaffSeeder::class,
-            SurveyEnglishQuestionsSeeder::class,
-            SurveyIlocoQuestionsSeeder::class,
-            SurveyTagalogQuestionsSeeder::class,
-            LocationsSeeder::class,
-            OfficesSeeder::class,
-            ServicesSeeder::class,
+            SurveyQuestionsSeeder::class,
         ]);
     }
 }

@@ -38,6 +38,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.42",
     "prettier": "^2.7.1",
+    "sockjs": "^0.3.24",
     "vue-feather-icons": "^5.1.0",
     "vue-json-excel": "^0.3.0",
     "vuetify": "^2.6.9"
