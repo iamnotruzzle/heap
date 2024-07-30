@@ -121,7 +121,7 @@
             <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
           </template>
 
-          <template v-slot:item.actions="{ item }">
+          <!-- <template v-slot:item.actions="{ item }">
             <div class="d-flex flex-row">
               <div v-if="$page.props.user.role == 'super-admin' || $page.props.user.role == 'admin'">
                 <v-icon
@@ -133,7 +133,7 @@
                 </v-icon>
               </div>
             </div>
-          </template>
+          </template> -->
 
           <!-- pagination -->
           <template #[`item.index`]="{ index }">
@@ -373,7 +373,7 @@ export default {
           filterable: false,
           class: 'color_main_dark_background',
         },
-        { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
+        // { text: 'Actions', value: 'actions', sortable: false, class: 'color_main_dark_background' },
       ],
       form: this.$inertia.form({
         survey_id: null,
