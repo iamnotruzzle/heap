@@ -265,7 +265,7 @@
                         Salamat sa iyong mahalagang oras at pagkakataon upang mapaglingkuran ka ng mas mahusay.
                       </h5>
 
-                      <span class="font-weight-black mt-2">Patient Satisfaction Committee</span>
+                      <span class="font-weight-black mt-2">Health Education and Advocacy Programs</span>
                       <span class="font-weight-black font-italic"
                         >Mariano Marcos Memorial Hospital and Medical Center</span
                       >
