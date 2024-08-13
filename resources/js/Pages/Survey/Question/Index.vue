@@ -9,6 +9,7 @@
           justify-center
           align-center
         >
+          <!-- large-screen -->
           <v-card
             elevation="24"
             class="corners large-screen"
@@ -81,25 +82,25 @@
                 class="no-wrap"
               >
                 <div class="grey lighten-1 mb-4">
-                  <p class="text-h6-edited mx-2 py-1">
+                  <p class="text-h6-edited mx-2 py-1 font-weight-black">
                     PANUTO: Lagyan ng tsek(<v-icon>mdi-check</v-icon>) ang mga angkop na sagot:
                   </p>
                 </div>
 
                 <v-row class="font-weight-black">
                   <!-- Event name -->
-                  <v-col>
+                  <v-col cols="12">
                     <label
                       for="event_name"
                       v-if="v$.event_name.$error"
-                      class="error-message ma-0 red--text text-h6-edited questions-font-style"
+                      class="error-message ma-0 red--text text-h6-edited questions-font-style font-weight-black"
                     >
                       Pangalan ng programa
                     </label>
                     <label
                       for="event_name"
                       v-else
-                      class="ma-0 text-h6-edited questions-font-style"
+                      class="ma-0 text-h6-edited questions-font-style font-weight-black"
                     >
                       Pangalan ng programa
                     </label>
@@ -114,65 +115,82 @@
                 </v-row>
 
                 <v-row class="font-weight-black">
-                  <v-col>
+                  <v-col cols="12">
                     <!-- q1 Gaano ka nasiyahan sa pataluntunang iyong dinaluhan sa pangkalahatan?-->
                     <div>
                       <p
                         v-if="v$.q1_answer.$error"
-                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style font-weight-black"
                       >
                         1. {{ survey_questions[0].desc }}
                       </p>
                       <p
                         v-else
-                        class="ma-0 text-h6-edited questions-font-style"
+                        class="ma-0 text-h6-edited questions-font-style font-weight-black"
                       >
                         1. {{ survey_questions[0].desc }}
                       </p>
 
-                      <v-btn-toggle v-model="q1_answer">
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                          large
-                        >
-                          <v-icon :color="q1_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                          large
-                        >
-                          <v-icon :color="q1_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                          large
-                        >
-                          <v-icon :color="q1_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                          large
-                        >
-                          <v-icon :color="q1_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                          large
-                        >
-                          <v-icon :color="q1_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                          large
-                        >
-                          N/A
-                        </v-btn>
+                      <v-btn-toggle
+                        dense
+                        v-model="q1_answer"
+                        :class="deviceWidth >= 600 ? 'w-full d-flex justify-space-between px-7' : 'w-full'"
+                        class="font-weight-medium"
+                      >
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="5"
+                            active-class="green darken-2"
+                          >
+                            <v-icon :color="q1_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Sobrang masaya</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="4"
+                            active-class="light-green accent-4"
+                          >
+                            <v-icon :color="q1_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Masaya</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="3"
+                            active-class="yellow"
+                          >
+                            <v-icon :color="q1_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Medyo masaya</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="2"
+                            active-class="amber darken-2"
+                          >
+                            <v-icon :color="q1_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Medyo hindi</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="1"
+                            active-class="red accent-2"
+                          >
+                            <v-icon :color="q1_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Hindi masaya</span>
+                        </div>
+                        <div class="d-flex flex-column align-center">
+                          <v-btn
+                            value="0"
+                            active-class="blue white--text"
+                          >
+                            N/A
+                          </v-btn>
+                          <!-- <span>Happy</span> -->
+                        </div>
                       </v-btn-toggle>
                     </div>
 
@@ -180,60 +198,77 @@
                     <div class="my-4">
                       <p
                         v-if="v$.q2_answer.$error"
-                        class="error-message ma-0 red--text text-h6-edited questions-font-style"
+                        class="error-message ma-0 red--text text-h6-edited questions-font-style font-weight-black"
                       >
                         2. {{ survey_questions[1].desc }}
                       </p>
                       <p
                         v-else
-                        class="ma-0 text-h6-edited questions-font-style"
+                        class="ma-0 text-h6-edited questions-font-style font-weight-black"
                       >
                         2. {{ survey_questions[1].desc }}
                       </p>
 
-                      <v-btn-toggle v-model="q2_answer">
-                        <v-btn
-                          value="5"
-                          active-class="green darken-2"
-                          large
-                        >
-                          <v-icon :color="q2_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="4"
-                          active-class="light-green accent-4"
-                          large
-                        >
-                          <v-icon :color="q2_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="3"
-                          active-class="yellow"
-                          large
-                        >
-                          <v-icon :color="q2_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="2"
-                          active-class="amber darken-2"
-                          large
-                        >
-                          <v-icon :color="q2_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="1"
-                          active-class="red accent-2"
-                          large
-                        >
-                          <v-icon :color="q2_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
-                        </v-btn>
-                        <v-btn
-                          value="0"
-                          active-class="blue white--text"
-                          large
-                        >
-                          N/A
-                        </v-btn>
+                      <v-btn-toggle
+                        dense
+                        v-model="q2_answer"
+                        :class="deviceWidth >= 600 ? 'w-full d-flex justify-space-between px-4 ' : 'w-full'"
+                        class="font-weight-medium"
+                      >
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="5"
+                            active-class="green darken-2"
+                          >
+                            <v-icon :color="q2_answer == 5 ? 'white' : 'black'">mdi-emoticon-excited-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Sobrang makakatulong </span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="4"
+                            active-class="light-green accent-4"
+                          >
+                            <v-icon :color="q2_answer == 4 ? 'white' : 'black'">mdi-emoticon-happy-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Makakatulong</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="3"
+                            active-class="yellow"
+                          >
+                            <v-icon :color="q2_answer == 3 ? 'white' : 'black'">mdi-emoticon-neutral-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Medyo makakatulong</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="2"
+                            active-class="amber darken-2"
+                          >
+                            <v-icon :color="q2_answer == 2 ? 'white' : 'black'">mdi-emoticon-sad-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Medyo hindi</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="1"
+                            active-class="red accent-2"
+                          >
+                            <v-icon :color="q2_answer == 1 ? 'white' : 'black'">mdi-emoticon-angry-outline</v-icon>
+                          </v-btn>
+                          <span v-if="deviceWidth >= 600">Hindi makakatulong</span>
+                        </div>
+                        <div class="d-flex flex-column align-center text-center">
+                          <v-btn
+                            value="0"
+                            active-class="blue white--text"
+                          >
+                            N/A
+                          </v-btn>
+                          <!-- <span>Happy</span> -->
+                        </div>
                       </v-btn-toggle>
                     </div>
                   </v-col>
@@ -352,6 +387,7 @@ export default {
       snackColor: null,
       snack: null,
       snackText: null,
+      deviceWidth: null,
 
       form: this.$inertia.form({
         event_name: null,
@@ -367,6 +403,10 @@ export default {
         },
       }),
     };
+  },
+  mounted() {
+    this.deviceWidth = window.innerWidth;
+    console.log(window.innerWidth);
   },
   methods: {
     // async submit() {
