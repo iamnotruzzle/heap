@@ -408,7 +408,6 @@ export default {
   },
   mounted() {
     this.deviceWidth = window.innerWidth;
-    console.log(window.innerWidth);
   },
   methods: {
     // async submit() {
@@ -423,6 +422,7 @@ export default {
             this.createdMsg();
             this.q1_answer = null;
             this.q2_answer = null;
+            this.form.event_name = this.event_name;
           },
           onError: (errors) => {
             // console.log(errors);
