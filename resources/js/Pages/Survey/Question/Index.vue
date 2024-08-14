@@ -373,10 +373,12 @@ export default {
     return { v$: useVuelidate() };
   },
   validations() {
+    const notWhitespace = (value) => !!value && value.trim().length > 0;
+
     return {
       q1_answer: { required },
       q2_answer: { required },
-      event_name: { required },
+      event_name: { required, notWhitespace },
     };
   },
   data() {
