@@ -25,6 +25,24 @@
               lg="4"
             >
               <div class="d-flex flex-row">
+                <v-btn
+                  v-if="search == null || search == ''"
+                  class="mr-2"
+                  color="indigo"
+                  :disabled="true"
+                >
+                  <v-icon dark> mdi-download </v-icon>
+                </v-btn>
+                <v-btn
+                  v-else
+                  class="mr-2"
+                  color="indigo"
+                  dark
+                  @click="exportToExcel()"
+                >
+                  <v-icon dark> mdi-download </v-icon>
+                </v-btn>
+
                 <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
@@ -243,43 +261,87 @@
           </template>
         </v-data-table> -->
       </v-card>
-
-      <!-- <v-btn
-        v-if="from == null || to == null"
-        fab
-        dark
-        fixed
-        bottom
-        right
-        class="color_primary"
-      >
-        <download-icon
-          size="24"
-          as="v-icon"
-          color="white"
-        ></download-icon>
-      </v-btn>
-      <v-btn
-        v-else
-        fab
-        dark
-        fixed
-        bottom
-        right
-        class="color_primary"
-      >
-        <a
-          :href="`answers/export?order_by=desc&search=${params.search}&visiting=${params.visiting}&education=${params.education}&from=${params.from}&to=${params.to}`"
-          target="_blank"
-        >
-          <download-icon
-            size="24"
-            as="v-icon"
-            color="white"
-          ></download-icon>
-        </a>
-      </v-btn> -->
     </v-container>
+
+    <div
+      id="print"
+      v-show="false"
+      style="background-color: white"
+    >
+      <div style="width: 100%; display: flex; justify-content: center; align-items: center">
+        <div style="padding: 0 2rem; color: #1f2937; margin: 0">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            "
+          >
+            <p style="font-weight: bold; font-size: 1.125rem; margin: 0; padding: 0">Survey Answers</p>
+          </div>
+
+          <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 0.25rem">
+            <table style="width: 100%; font-size: 0.75rem; border-collapse: collapse">
+              <thead>
+                <tr>
+                  <th style="padding: 0.5rem; text-align: left; border-bottom-style: solid; border-top-style: solid">
+                    EVENT NAME
+                  </th>
+                  <th style="padding: 0.5rem; text-align: left; border-bottom-style: solid; border-top-style: solid">
+                    QUESTION
+                  </th>
+                  <th style="padding: 0.5rem; text-align: left; border-bottom-style: solid; border-top-style: solid">
+                    RATE
+                  </th>
+                  <th style="padding: 0.5rem; text-align: left; border-bottom-style: solid; border-top-style: solid">
+                    GENDER
+                  </th>
+                  <th style="padding: 0.5rem; text-align: left; border-bottom-style: solid; border-top-style: solid">
+                    DATE
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="item in surveyAnswers.data"
+                  :key="item.id"
+                >
+                  <td style="padding: 0.5rem; text-align: left; border-bottom-style: solid">
+                    {{ item.event_name }}
+                  </td>
+                  <td style="padding: 0.5rem; text-align: right; border-bottom-style: solid">
+                    {{ item.questions.id }}
+                  </td>
+                  <td style="padding: 0.5rem; text-align: right; border-bottom-style: solid">
+                    {{ item.answer }}
+                  </td>
+                  <td style="padding: 0.5rem; text-align: right; border-bottom-style: solid">
+                    {{ item.gender }}
+                  </td>
+                  <td style="padding: 0.5rem; text-align: left; border-bottom-style: solid">
+                    {{ tzone(item.created_at) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              align-items: flex-end;
+              text-align: flex-end;
+            "
+          >
+            <span>Total response: {{ surveyAnswers.total }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- snackbar -->
     <v-snackbar
@@ -451,6 +513,51 @@ export default {
       //     });
       //   });
     },
+    exportToExcel() {
+      const tableHTML = document.getElementById('print').outerHTML;
+      const dataType = 'application/vnd.ms-excel';
+      const tableStyle = `
+        <style>
+        body, table {
+            font-family: Calibri, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            padding: 5px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        </style>
+    `;
+
+      const excelHTML = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:x="urn:schemas-microsoft-com:office:excel"
+            xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+            <meta charset="UTF-8">
+            <title>Export HTML to Excel</title>
+            ${tableStyle}
+        </head>
+        <body>
+            ${tableHTML}
+        </body>
+        </html>
+    `;
+
+      const blob = new Blob([excelHTML], { type: dataType });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'exported_table.xls';
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    },
     clearDateFilter() {
       this.visiting = null;
       this.from = null;
@@ -609,5 +716,19 @@ export default {
   background-color: rgb(220, 220, 220);
   color: black;
   width: 20% !important;
+}
+
+@media print {
+  @page {
+    margin: 0;
+    /* font-size: 50px; */
+    /* font-weight: bold; */
+  }
+  body {
+    font-family: Calibri, sans-serif;
+  }
+  #print {
+    font-family: Calibri, sans-serif;
+  }
 }
 </style>
