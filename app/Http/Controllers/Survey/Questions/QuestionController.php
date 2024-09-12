@@ -44,6 +44,7 @@ class QuestionController extends Controller
             [
                 [
                     'event_name' => $request->event_name,
+                    'gender' => $request->gender,
                     'survey_question_id' => $request->q1['id'],
                     'answer' => (string)$request->q1['answer'],
                     'created_at' => Carbon::now(),
@@ -51,6 +52,7 @@ class QuestionController extends Controller
                 ],
                 [
                     'event_name' => $request->event_name,
+                    'gender' => $request->gender,
                     'survey_question_id' => $request->q2['id'],
                     'answer' => (string)$request->q2['answer'],
                     'created_at' => Carbon::now(),

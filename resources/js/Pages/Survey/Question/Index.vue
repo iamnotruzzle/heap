@@ -88,6 +88,38 @@
                 </div>
 
                 <v-row class="font-weight-black">
+                  <!-- gender -->
+                  <v-col
+                    cols="12"
+                    md="3"
+                    class="font-weight-black ma-0"
+                  >
+                    <label
+                      for="gender"
+                      v-if="v$.gender.$error"
+                      class="error-message ma-0 red--text text-h6-edited questions-font-style font-weight-black"
+                    >
+                      Kasarian
+                    </label>
+                    <label
+                      for="gender"
+                      v-else
+                      class="ma-0 text-h6-edited questions-font-style font-weight-black"
+                    >
+                      Kasarian
+                    </label>
+
+                    <v-select
+                      label="Pumili"
+                      v-model="gender"
+                      :items="genders"
+                      dense
+                      hide-details
+                      outlined
+                      class="ma-0"
+                    ></v-select>
+                  </v-col>
+
                   <!-- Event name -->
                   <v-col cols="12">
                     <label
@@ -376,6 +408,7 @@ export default {
     const notWhitespace = (value) => !!value && value.trim().length > 0;
 
     return {
+      gender: { required },
       q1_answer: { required },
       q2_answer: { required },
       event_name: { required, notWhitespace },
@@ -386,12 +419,15 @@ export default {
       q1_answer: null,
       q2_answer: null,
       event_name: null,
+      gender: null,
+      genders: ['Lalaki', 'Babae'],
       snackColor: null,
       snack: null,
       snackText: null,
       deviceWidth: null,
 
       form: this.$inertia.form({
+        gender: null,
         event_name: null,
         // The waiting areas were clean, orderly, and comfortable.
         q1: {
@@ -422,6 +458,7 @@ export default {
             this.createdMsg();
             this.q1_answer = null;
             this.q2_answer = null;
+            this.gender = null;
             this.form.event_name = this.event_name;
           },
           onError: (errors) => {
@@ -456,6 +493,9 @@ export default {
     },
   },
   watch: {
+    gender(val) {
+      this.form.gender = val;
+    },
     event_name(val) {
       this.form.event_name = val;
     },

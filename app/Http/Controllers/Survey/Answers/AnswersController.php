@@ -36,6 +36,12 @@ class AnswersController extends Controller
             ->when($request->to, function ($query, $value) {
                 $query->whereDate('created_at', '<=', $value);
             })
+            ->when(
+                $request->gender,
+                function ($query, $value) {
+                    $query->where('gender', 'LIKE', '%' . $value . '%');
+                }
+            )
             ->orderBy('created_at', 'desc')
             ->paginate($request->page_size ?? 15);
 

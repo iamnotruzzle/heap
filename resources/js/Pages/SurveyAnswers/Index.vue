@@ -75,6 +75,16 @@
                         hide-details
                       ></v-text-field>
 
+                      <v-select
+                        :items="genderList"
+                        v-model="gender"
+                        label="Gender"
+                        color="color_primary"
+                        class="ma-0 pa-0"
+                        dense
+                        outlined
+                      ></v-select>
+
                       <v-divider></v-divider>
 
                       <v-card-actions class="px-0 mb-0">
@@ -119,6 +129,10 @@
 
           <template #item.created_at="{ item }">
             <span class="text-no-wrap">{{ tzone(item.created_at) }}</span>
+          </template>
+
+          <template #item.gender="{ item }">
+            <span>{{ item.gender }}</span>
           </template>
 
           <!-- <template v-slot:item.actions="{ item }">
@@ -331,6 +345,8 @@ export default {
       dialog: false,
       dialogDelete: false,
       dialogAttachment: false,
+      gender: '',
+      genderList: ['NO FILTER', 'Lalaki', 'Babae'],
       itemId: null,
       valid: true,
       url: null,
@@ -363,6 +379,14 @@ export default {
           align: 'end',
           sortable: false,
           filterable: false,
+          class: 'color_main_dark_background',
+        },
+        {
+          text: 'GENDER',
+          align: 'start',
+          value: 'gender',
+          sortable: true,
+
           class: 'color_main_dark_background',
         },
         {
@@ -431,7 +455,7 @@ export default {
       this.visiting = null;
       this.from = null;
       this.to = null;
-      this.sex = 'NO FILTER';
+      this.gender = 'NO FILTER';
       this.education = null;
       this.department = null;
       this.location = null;
@@ -551,6 +575,14 @@ export default {
       } else {
         this.params.to = null;
         this.to = null;
+      }
+      this.updateData();
+    },
+    gender: function (val) {
+      if (val == 'NO FILTER') {
+        this.params.gender = '';
+      } else {
+        this.params.gender = val;
       }
       this.updateData();
     },

@@ -22,6 +22,7 @@ class SurveyAnswers extends Model
         'answer',
         'remarks',
         'assisted_by',
+        'gender',
     ];
 
     public function questions()
